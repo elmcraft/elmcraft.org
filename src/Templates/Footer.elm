@@ -67,7 +67,8 @@ view model =
                 , row [ spacing 10 ]
                     [ pageHover [] "Terms" Pages.pages.placeholder
                     , pageHover [] "Privacy" Pages.pages.placeholder
-                    , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
+
+                    -- , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
                     ]
                 ]
             ]

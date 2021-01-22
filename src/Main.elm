@@ -11,6 +11,7 @@ import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
+import ElmMarkup
 import Feed
 import Head
 import Head.Seo as Seo
@@ -77,7 +78,7 @@ main =
                     }
         , update = update
         , subscriptions = subscriptions
-        , documents = [ markdownDocument ]
+        , documents = [ markdownDocument, ElmMarkup.document ]
         , manifest = manifest
         , canonicalSiteUrl = canonicalSiteUrl
         , onPageChange = Just (\meta -> ClearNav)
