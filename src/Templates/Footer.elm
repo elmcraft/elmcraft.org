@@ -8,7 +8,8 @@ import Element.Font as Font
 import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes
-import Pages
+import Pages exposing (pages)
+import Templates.Layout
 import Templates.UI exposing (..)
 
 
@@ -20,53 +21,55 @@ view model =
     column
         [ Background.color white, width fill, Font.color charcoal ]
         [ column
-            [ centerX, width (fill |> maximum 1440), padding_ 60 30 20 30, spacing 50 ]
+            [ centerX, width (fill |> maximum Templates.Layout.maxWidth), padding_ 60 30 20 30, spacing 50 ]
             [ whenMoreThan 800 model <|
                 row [ width fill, spacing 20 ]
                     [ footerGroup "Discover"
-                        [ item "Curious" Pages.pages.discover.curious
-                        , item "Beginner" Pages.pages.discover.beginner
-                        , item "Developer" Pages.pages.discover.developer
-                        , item "Manager" Pages.pages.discover.developer
+                        [ item "Curious" pages.discover.curious
+                        , item "Beginner" pages.discover.beginner
+                        , item "Developer" pages.discover.developer
+                        , item "Manager/CTO" pages.discover.manager
                         ]
                     , footerGroup "Build"
-                        [ item "Packages" Pages.pages.placeholder
-                        , item "Tooling" Pages.pages.placeholder
-                        , item "Design patterns" Pages.pages.placeholder
-                        , item "Examples" Pages.pages.placeholder
-                        , item "Contributing" Pages.pages.placeholder
+                        [ item "Packages" pages.build.packages
+                        , item "Tooling" pages.build.tooling
+                        , item "Design patterns" pages.build.designPatterns
+                        , item "Examples" pages.build.examples
+                        , item "Contributing" pages.build.contributing
                         ]
                     , footerGroup "Media"
-                        [ item "Newsletters" Pages.pages.placeholder
-                        , item "Podcasts" Pages.pages.placeholder
-                        , item "Videos" Pages.pages.placeholder
-                        , item "Books" Pages.pages.placeholder
+                        [ item "Newsletters" pages.media.newsletters
+                        , item "Articles" pages.media.articles
+                        , item "Podcasts" pages.media.podcasts
+                        , item "Videos" pages.media.videos
+                        , item "Books" pages.media.books
                         ]
                     , footerGroup "Community"
-                        [ item "Forums/Chat" Pages.pages.placeholder
-                        , item "Meetups" Pages.pages.placeholder
-                        , item "Conferences" Pages.pages.placeholder
+                        [ item "Forums/Chat" pages.community.forumsChat
+                        , item "Meetups" pages.community.meetups
+                        , item "Conferences" pages.community.conferences
+                        , item "FAQs" pages.faqs.index
                         ]
                     , footerGroup "Commercial"
-                        [ item "Elm at work" Pages.pages.placeholder
-                        , item "Succcess stories" Pages.pages.placeholder
-                        , item "Hiring" Pages.pages.placeholder
-                        , item "Jobs" Pages.pages.placeholder
-                        , item "Support" Pages.pages.placeholder
+                        [ item "Elm at work" pages.commercial.elmAtWork
+                        , item "Succcess stories" pages.commercial.successStories
+                        , item "Hiring" pages.commercial.hiring
+                        , item "Jobs" pages.commercial.jobs
+                        , item "Support" pages.commercial.support
                         ]
                     , footerGroup "Elmcraft"
-                        [ item "About us" Pages.pages.about
-                        , item "Chat With Us" Pages.pages.discuss
+                        [ item "About" pages.about
+                        , item "Chat" pages.discuss
                         , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
                         ]
                     ]
-            , paragraph [ Font.center, spacing 10 ]
+            , paragraph [ Font.center, spacing 15 ]
                 [ text " © elmcraft.org "
                 , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "Creative Commons Attribution-ShareAlike 4.0 International License" } }
                 , text " - "
                 , row [ spacing 10 ]
-                    [ pageHover [] "Terms" Pages.pages.placeholder
-                    , pageHover [] "Privacy" Pages.pages.placeholder
+                    [ pageHover [] "Terms" pages.placeholder
+                    , pageHover [] "Privacy" pages.placeholder
 
                     -- , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
                     ]

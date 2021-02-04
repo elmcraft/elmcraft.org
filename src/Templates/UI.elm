@@ -15,11 +15,8 @@ import Markdown.Block exposing (HeadingLevel(..), ListItem(..), headingLevelToIn
 import Markdown.Parser
 import Markdown.Renderer
 import Pages.PagePath
+import Templates.Layout
 import Types exposing (Msg(..))
-
-
-fontFace =
-    "inter"
 
 
 asPath page =
@@ -49,7 +46,7 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
         [ rowToColumnWhen breakpoint
             model
             [ centerX
-            , width (fill |> maximum 1440)
+            , width (fill |> maximum Templates.Layout.maxWidth)
             , paddingXY 30 0
             , spacing 50
             ]
@@ -64,7 +61,7 @@ standardCenteredSection model background children =
         ]
         [ column
             [ centerX
-            , width (fill |> maximum 1440)
+            , width (fill |> maximum Templates.Layout.maxWidth)
             , paddingXY 30 0
             , spacing 50
             ]
@@ -160,6 +157,19 @@ buttonLinkSmall attrs url label =
         }
 
 
+badge color label =
+    el
+        [ width shrink
+        , paddingXY 5 5
+        , Border.rounded 4
+        , Border.width 1
+        , Border.color color
+        , mouseOver [ Background.color elmTeal ]
+        ]
+    <|
+        el [ Font.color charcoal, Font.medium, Font.center, width fill ] (text label)
+
+
 rowToColumnWhen width model attrs children =
     if model.window.width > width then
         row attrs children
@@ -176,19 +186,35 @@ heading { level, rawText, children } =
                 [ Font.size 48
                 , Font.bold
                 , Font.color green
+                , paddingXY 0 20
                 ]
 
             2 ->
                 [ Font.color elmTeal
-                , Font.size 14
+                , Font.size 24
                 , Font.bold
-                , uppercase
+                , paddingEach { top = 50, right = 0, bottom = 20, left = 0 }
+                ]
+
+            3 ->
+                [ Font.color charcoal
+                , Font.size 20
+                , Font.bold
+                , paddingXY 0 20
+                ]
+
+            4 ->
+                [ Font.color charcoal
+                , Font.size 18
+                , Font.bold
+                , paddingXY 0 20
                 ]
 
             _ ->
                 [ Font.size 36
                 , Font.bold
                 , Font.center
+                , paddingXY 0 20
                 ]
          )
             ++ [ Region.heading (headingLevelToInt level)
@@ -335,26 +361,3 @@ responsiveStyle ref name default brackets =
         in
         fn (attrs ++ [ inFront styleNode ]) children
     )
-
-
-markdown markdownBody =
-    Markdown.Parser.parse markdownBody
-        -- |> Debug.log "parse result"
-        -- @TODO show markdown parsing errors, i.e. malformed html?
-        |> Result.withDefault []
-        -- |> Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer
-        |> (\parsed ->
-                parsed
-                    |> Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer
-                    |> (\res ->
-                            case res of
-                                Ok htmlElements ->
-                                    List.map html htmlElements
-
-                                Err err ->
-                                    [ text "Oops! Something went wrong rendering this page:", text err ]
-                       )
-                    |> column
-                        [ width fill
-                        ]
-           )

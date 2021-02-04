@@ -10,15 +10,26 @@ import Html exposing (Html)
 import Html.Attributes
 import Markdown.Html
 import Templates.Feature
+import Templates.FindYourPath
 import Templates.Header
 import Templates.Homepage
+import Templates.QuizIsElmForMe
 import Templates.UI exposing (..)
 
 
 htmlMapping model =
     Markdown.Html.oneOf
-        [ Markdown.Html.tag "img" (\src content -> image [] { src = src, description = "" })
+        [ Markdown.Html.tag "img"
+            (\src width_ content ->
+                let
+                    attrs =
+                        [ width_ |> Maybe.andThen String.toInt |> Maybe.map (\w -> width (px w)) ]
+                            |> justs
+                in
+                image attrs { src = src, description = "" }
+            )
             |> Markdown.Html.withAttribute "src"
+            |> Markdown.Html.withOptionalAttribute "width"
         , Markdown.Html.tag "header"
             (\src description content ->
                 Templates.Header.view model src description content
@@ -56,6 +67,12 @@ htmlMapping model =
             )
             |> Markdown.Html.withAttribute "label"
             |> Markdown.Html.withAttribute "url"
+        , Markdown.Html.tag "buttonsecondary"
+            (\label url content ->
+                buttonLinkSecondary [ Font.size 16, paddingXY 19 11 ] url label
+            )
+            |> Markdown.Html.withAttribute "label"
+            |> Markdown.Html.withAttribute "url"
         , Markdown.Html.tag "title" (\content -> headingLargest [] content)
         , Markdown.Html.tag "row" (\content -> row [ spacing 20 ] content)
         , Markdown.Html.tag "arrowlink"
@@ -80,8 +97,52 @@ htmlMapping model =
             )
             |> Markdown.Html.withOptionalAttribute "size"
         , Markdown.Html.tag "nospacing" (\content -> column [] content)
+        , Markdown.Html.tag "pill"
+            (\color children ->
+                row [ Background.color <| translateColloquialNames color, paddingXY 10 5, Border.rounded 5 ] children
+            )
+            |> Markdown.Html.withAttribute "color"
+        , Markdown.Html.tag "view"
+            (\module_ children ->
+                case module_ of
+                    "Templates.FindYourPath" ->
+                        Templates.FindYourPath.view model
+
+                    "Templates.QuizIsElmForMe" ->
+                        Templates.QuizIsElmForMe.view model
+
+                    _ ->
+                        text <| "Oops! View for '" ++ module_ ++ "' not mapped!"
+            )
+            |> Markdown.Html.withAttribute "module"
+        , Markdown.Html.tag "sup" (\content -> row [ htmlAttribute <| Html.Attributes.class "sup" ] content)
         ]
+
+
+translateColloquialNames colorName =
+    case colorName of
+        "green" ->
+            green
+
+        "grey" ->
+            grey
+
+        _ ->
+            fromHex colorName
 
 
 fromHtml =
     html
+
+
+justs =
+    List.foldl
+        (\v acc ->
+            case v of
+                Just el ->
+                    [ el ] ++ acc
+
+                Nothing ->
+                    acc
+        )
+        []

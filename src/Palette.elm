@@ -3,7 +3,7 @@ module Palette exposing (blogHeading, color)
 import Element exposing (Element)
 import Element.Font as Font
 import Element.Region
-import Templates.UI
+import Templates.Layout
 
 
 color :
@@ -20,7 +20,7 @@ blogHeading : String -> Element msg
 blogHeading title =
     Element.paragraph
         [ Font.bold
-        , Font.family [ Font.typeface Templates.UI.fontFace ]
+        , Font.family [ Font.typeface Templates.Layout.fontFace ]
         , Element.Region.heading 1
         , Font.size 36
         , Font.center

@@ -1,5 +1,8 @@
 module Templates.Markdown exposing (..)
 
+-- import Templates.All
+-- import Templates.UI exposing (..)
+
 import Browser.Dom
 import Browser.Events
 import Color
@@ -29,20 +32,31 @@ import Types exposing (..)
 renderer : Model -> Markdown.Renderer.Renderer (Element msg)
 renderer model =
     { heading = \data -> row [] [ heading data ]
-    , paragraph = \children -> paragraph [] children
+    , paragraph = \children -> paragraph [ paddingXY 0 10 ] children
     , blockQuote =
         \children ->
-            fromHtml <| Html.blockquote [] (asHtml children)
+            -- fromHtml <| Html.blockquote [] (asHtml children)
+            column
+                [ Font.size 20
+                , Font.italic
+                , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
+                , Border.color grey
+                , Font.color charcoal
+                , padding 10
+                ]
+                children
     , html = Templates.All.htmlMapping model
-    , text = text
+
+    -- @TODO preserve newlines on... new lines?
+    , text = \s -> el [] <| text s
     , codeSpan =
         \content -> fromHtml <| Html.code [] [ Html.text content ]
     , strong = \list -> paragraph [ Font.bold ] list
-    , emphasis = \list -> paragraph [ Font.color elmTeal ] list
+    , emphasis = \list -> paragraph [ Font.italic ] list
     , hardLineBreak = fromHtml <| Html.br [] []
     , link =
         \{ title, destination } list ->
-            link [ Font.underline ]
+            link [ Font.underline, Font.color elmTealDark ]
                 { url = destination
                 , label =
                     case title of
@@ -56,12 +70,8 @@ renderer model =
         \{ alt, src, title } ->
             let
                 attrs =
-                    case title of
-                        Just title_ ->
-                            [ htmlAttribute <| Html.Attributes.attribute "title" title_ ]
-
-                        Nothing ->
-                            []
+                    [ title |> Maybe.map (\title_ -> htmlAttribute <| Html.Attributes.attribute "title" title_) ]
+                        |> justs
             in
             image
                 attrs
@@ -129,3 +139,16 @@ asHtml children =
 
 toHtml e =
     layout [] e
+
+
+justs =
+    List.foldl
+        (\v acc ->
+            case v of
+                Just el ->
+                    [ el ] ++ acc
+
+                Nothing ->
+                    acc
+        )
+        []

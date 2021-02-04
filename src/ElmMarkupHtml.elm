@@ -1,4 +1,4 @@
-module ElmMarkup exposing (..)
+module ElmMarkupHtml exposing (..)
 
 import Browser
 import Element exposing (Element)
@@ -31,15 +31,15 @@ document =
 
 compile source =
     case Mark.compile markDocument source of
-        Mark.Success html ->
-            Html.div [] html.body
+        Mark.Success body ->
+            Html.div [ Attr.class "emu" ] body
 
         Mark.Almost { result, errors } ->
             -- This is the case where there has been an error,
             -- but it has been caught by `Mark.onError` and is still rendereable.
             Html.div []
                 [ Html.div [] (viewErrors errors)
-                , Html.div [] result.body
+                , Html.div [] result
                 ]
 
         Mark.Failure errors ->
@@ -48,6 +48,25 @@ compile source =
 
 
 markDocument =
+    Mark.document
+        (\body ->
+            Html.node "style" [] [ Html.text stylesheet ]
+                :: body
+        )
+        (Mark.manyOf
+            [ header1
+            , header2
+            , header3
+            , image
+            , list
+            , code
+            , blockQuote
+            , Mark.map (Html.p []) text
+            ]
+        )
+
+
+markDocumentMeta =
     Mark.documentWith
         (\meta body ->
             { metadata = meta
@@ -61,7 +80,9 @@ markDocument =
         { metadata = metadata
         , body =
             Mark.manyOf
-                [ header
+                [ header1
+                , header2
+                , header3
                 , image
                 , list
                 , code
@@ -78,6 +99,10 @@ viewErrors errors =
 
 stylesheet =
     """
+.emu {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
 .italic {
     font-style: italic;
 }
@@ -177,7 +202,7 @@ metadata =
 {- Handle Blocks -}
 
 
-header =
+header1 =
     Mark.block "H1"
         (\children ->
             Html.h1 []
@@ -186,19 +211,40 @@ header =
         text
 
 
+header2 =
+    Mark.block "H2"
+        (\children ->
+            Html.h2 []
+                children
+        )
+        text
+
+
+header3 =
+    Mark.block "H3"
+        (\children ->
+            Html.h3 []
+                children
+        )
+        text
+
+
 image =
     Mark.record "Image"
-        (\src description ->
+        (\src description width ->
             Html.img
                 [ Attr.src src
                 , Attr.alt description
-                , Attr.style "float" "left"
+
+                -- , Attr.style "float" "left"
                 , Attr.style "margin-right" "48px"
+                , Attr.style "width" (String.fromInt width ++ "px")
                 ]
                 []
         )
         |> Mark.field "src" Mark.string
         |> Mark.field "description" Mark.string
+        |> Mark.field "width" Mark.int
         |> Mark.toBlock
 
 
@@ -208,6 +254,20 @@ code =
             Html.pre
                 [ Attr.style "padding" "12px"
                 , Attr.style "background-color" "#eee"
+                ]
+                [ Html.text str ]
+        )
+        Mark.string
+
+
+blockQuote =
+    Mark.block "BlockQuote"
+        (\str ->
+            Html.div
+                [ Attr.style "padding" "12px"
+                , Attr.style "border-left" "2px solid #eee"
+                , Attr.style "font-style" "italic"
+                , Attr.style "font-size" "22px"
                 ]
                 [ Html.text str ]
         )

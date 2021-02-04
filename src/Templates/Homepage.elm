@@ -10,6 +10,7 @@ import Html exposing (Html)
 import Html.Attributes
 import Pages
 import Templates.Feature
+import Templates.FindYourPath
 import Templates.Footer
 import Templates.UI exposing (..)
 
@@ -17,91 +18,38 @@ import Templates.UI exposing (..)
 view model _ =
     column [ width fill ]
         [ column [ width fill, spacing 20 ]
-            [ heading1 "World of Elmcraft"
-            , littleTitle [] "A place for all things Elm"
+            [ none
+
+            -- , heading1 "World of Elmcraft"
+            , heading2 [] "A place for all things Elm"
             , paragraph [] [ text "Welcome! We're just getting started here. Something missing? Got ideas? ", pageHover [] "Discuss them with us!" Pages.pages.discuss ]
             , spacer 20
-            , heading2 [] "Find your path"
-            , rowToColumnWhen 700
-                model
+            , column
                 [ width fill, spacing 20 ]
-                [ box "Elm Curious"
-                    "Curious what Elm is about? Whether you're a Developer, Manager, or just generally interested, start here!"
-                    [ wrappedRow [ width fill, spacing 10 ]
-                        [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I'm new to code"
-                        , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code"
-                        , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code JS"
-                        , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I don't code"
-                        ]
+                [ heading2 [] "What's new"
+                , column
+                    [ width fill, spacing 20 ]
+                    [ row [ spacing 20 ] [ el [ width (px 100) ] <| badge grey "News", paragraph [] [ text "2021-02-03 - An update from Evan" ] ]
+                    , row [ spacing 20 ] [ el [ width (px 100) ] <| badge grey "Package", paragraph [] [ text "2021-02-02 - BrianHicks/elm-csv 3.0.1 is out! For maximum boredom, it can now encode CSVs as well as decoding them." ] ]
+                    , row [ spacing 20 ] [ el [ width (px 100) ] <| badge grey "News", paragraph [] [ text "2021-02-01 - Arrival has hired @unsoundscapes to expand their use of Elm for 3D intensive UIs!" ] ]
                     ]
-                , box "Elm Beginner"
-                    "Starting out with Elm? Find all the resources and support here!"
-                    [ wrappedRow [ width fill, spacing 10 ]
-                        [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I'm new to code"
-                        , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code"
-                        , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code JS"
-                        ]
-                    ]
-                , box "Elm Developer"
-                    "Already familiar with Elm? Delve deeper into the world of Elmcraft here!"
-                    [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "Let's go!" ]
                 ]
-            , paragraph []
-                [ Templates.UI.markdown """
-
-Ideas that need a home:
-
-Learning Elm
-
-- Starting out
-- > The Elm Guide
-- > …
-- Coming from Javascript
-- > JS Clean Presentation (Intro to Elm for JS devs)
-- > …
-
-Areas
-
-- UI Frameworks
-- > elm-ui
-- Games
-- Static sites & SSR
-- > elm-pages et all
-
-Contributing
-
-- Elm Core development
-- > How Elm language development works
-- Ways to contribute
-- > Write a Package
-- > Projects welcoming help
-
-Backend
-
-- Elm with Javascript
-- Elm with TypeScript
-- Elm with Node.js
-- Elm with Haskell
-- Elm on the server
-
-Lore
-- History of Elm
-- Roadmap
-
-Misc
-
-- Is Elm Dead?
-- Bus Factor Insurance
-
-                """
+            , spacer 20
+            , column
+                [ width fill, spacing 20 ]
+                [ heading2 [] "Spotlight"
+                , column
+                    [ width fill, spacing 20 ]
+                    [ row [ spacing 20 ] [ el [ width (px 100) ] <| badge grey "Tooling", paragraph [] [ text "This month we're looking at Elm Language Server, and the incredible work being put in to make the Elm IDE experience a dream!" ] ]
+                    ]
+                ]
+            , spacer 20
+            , Templates.FindYourPath.view model
+            , spacer 20
+            , column [ Border.width 1, Border.color elmTeal, padding 20, Border.rounded 10, width fill, spacing 20 ]
+                [ paragraph [ Font.center, Font.size 18, Font.bold ] [ text "Is Elm for me?" ]
+                , paragraph [ Font.center ] [ text "A short quiz to find answers about the parts of Elm that matter to you." ]
+                , buttonLinkSmall [ centerX ] "/quiz/is-elm-for-me" "Take the Quiz"
                 ]
             ]
         ]
-
-
-box title desc extra =
-    column [ width fill, spacing 20, alignTop ] <|
-        [ littleTitle [] title
-        , paragraph [] [ text desc ]
-        ]
-            ++ extra

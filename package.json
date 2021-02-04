@@ -10,8 +10,8 @@
   "author": "Mario Rogic",
   "license": "BSD-3",
   "dependencies": {
-    "elm-pages": "1.4.0",
-    "node-sass": "^4.14.1"
+    "elm-pages": "1.5.4",
+    "node-sass": "^5.0.0"
   },
   "devDependencies": {
     "elm": "latest-0.19.1",

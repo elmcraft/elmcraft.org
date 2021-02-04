@@ -9,6 +9,10 @@ elmTeal =
     fromHex "#5DAEC6"
 
 
+elmTealDark =
+    fromHex "#448294"
+
+
 yellow =
     fromHex "#E9A702"
 
@@ -31,6 +35,10 @@ transparent_ =
 
 red =
     Element.rgb 255 0 0
+
+
+grey =
+    fromHex "#eee"
 
 
 fromHex : String -> Color

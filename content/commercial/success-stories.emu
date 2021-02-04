@@ -1,0 +1,58 @@
+---
+type: page
+title: Success Stories
+description: Testimonials, blog posts and articles from the people and companies using Elm commercially.
+---
+
+
+@TODO Maybe companies should also be a DB!
+
+
+|> H2
+    Elm at work
+
+|> Image
+    src = /images/logos/vy.png
+    description = Vy (Vygruppen) Logo
+    width = 200
+
+|> BlockQuote
+    Vy is the largest transport provider in Norway. Their website has over a million visitors each month, and people depend on it every day to purchase bus and train tickets. Another interesting fact about this website is that it’s almost entirely written in Elm.
+
+4 years
+
+[https://blogg.bekk.no/using-elm-at-vy-e028b11179eb]{link| url = https://blogg.bekk.no/using-elm-at-vy-e028b11179eb }
+
+
+---
+
+
+|> Image
+    src = /images/logos/nri.png
+    description = NoRedInk Logo
+    width = 200
+
+|> BlockQuote
+    NoRedInk has over 200,000 lines of Elm in production.
+
+5 years
+
+[https://blog.noredink.com/search/elm]{link| url = https://blogg.bekk.no/using-elm-at-vy-e028b11179eb }
+
+
+---
+
+
+|> Image
+    src = /images/logos/rakuten.png
+    description = NoRedInk Logo
+    width = 200
+
+|> BlockQuote
+    The benefits are overwhelmingly in the majority, compared to the issues, and this is why we are happy with the choice we made.
+    ...
+    Compared to the pre-Elm experience, coding is now more enjoyable, more productive, and without runtime errors! 🎉
+
+2 years
+
+[https://dev.to/lucamug/elm-6m8]{link| url = https://dev.to/lucamug/elm-6m8 }

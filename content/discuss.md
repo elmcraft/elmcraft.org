@@ -4,7 +4,9 @@ title: "Elmcraft: Discord"
 description: Elmcraft Discord
 ---
 
-Find the Elmcraft team on Discord
+# Discuss
+
+You can find the Elmcraft team on Discord.
 
 - Join Elmcraft Discord @TODO
 - Open #general on Elmcraft Discord (must have joined first!) @TODO

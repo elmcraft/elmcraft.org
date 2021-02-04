@@ -1,0 +1,111 @@
+---
+type: page
+title: Forums/Chat
+description: Elm community forums/chat
+---
+
+
+|> H2
+    Official
+
+|> Image
+    src = /images/logos/slack.png
+    description = Slack Logo
+    width = 200
+
+|> H3
+    Slack
+
+Fast paced and ethereal conversation
+
+Register here: [https://elmlang.herokuapp.com/]{link| url = https://elmlang.herokuapp.com/ }
+
+
+|> H3
+    Discourse
+
+
+|> Image
+    src = /images/logos/discourse.png
+    description = Slack Logo
+    width = 200
+
+https://discourse.elm-lang.org/
+
+Longer form and persistent conversation, all posts are one of 3 categories:
+
+<row>testing</row>
+  ### Learn
+
+  Use this category if you trying to figure something out and want to ask a question. This is a great place for beginners, too!
+
+  ### Request Feedback
+
+  Use this category when you want to get feedback on ideas, packages, APIs, writing drafts, code snippets, etc.
+
+  ### Show and Tell
+
+  Use this category when you want to show off something you’ve made.
+
+<row/>
+
+## Unofficial
+
+- Incremental Elm
+- Elm-in-Elm
+- Lamdera
+
+
+
+
+`Lorem Ipsum is simply`{drop} --- dummy text of the printing and [typesetting industry]{link| url = http://mechanical-elephant.com }. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id pellentesque elit, id sollicitudin felis. Morbi eu risus molestie enim suscipit auctor. Morbi pharetra, nisl ut finibus ornare, dolor tortor aliquet est, quis feugiat odio sem ut sem. Nullam eu bibendum ligula. Nunc mollis tortor ac rutrum interdum. Nunc ultrices risus eu pretium interdum. Nullam maximus convallis quam vitae ullamcorper. Praesent sapien nulla, hendrerit quis tincidunt a, placerat et felis. Nullam consectetur magna nec lacinia egestas. Aenean rutrum nunc diam.
+
+Morbi ut porta justo. Integer ac eleifend sem. Fusce sed auctor velit, et condimentum quam. Vivamus id mollis libero, mattis commodo mauris. In hac habitasse platea dictumst. Duis eu lobortis arcu, ac volutpat ante. Duis sapien enim, auctor vitae semper vitae, tincidunt et justo. Cras aliquet turpis nec enim mattis finibus. Nulla diam urna, semper ut elementum at, porttitor ut sapien. Pellentesque et dui neque. In eget lectus odio. Fusce nulla velit, eleifend sit amet malesuada ac, hendrerit id neque. Curabitur blandit elit et urna fringilla, id commodo quam fermentum.
+
+But for real, here's a kitten.
+
+
+|> Image
+    src = http://placekitten.com/g/200/300
+    description = What a cute kitten.
+    width = 200
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id pellentesque elit, id sollicitudin felis. Morbi eu risus molestie enim suscipit auctor. Morbi pharetra, nisl ut finibus ornare, dolor tortor aliquet est, quis feugiat odio sem ut sem. Nullam eu bibendum ligula. Nunc mollis tortor ac rutrum interdum. Nunc ultrices risus eu pretium interdum. Nullam maximus convallis quam vitae ullamcorper. Praesent sapien nulla, hendrerit quis tincidunt a, placerat et felis. Nullam consectetur magna nec lacinia egestas. Aenean rutrum nunc diam.
+
+Morbi ut porta justo. Integer ac eleifend sem. Fusce sed auctor velit, et condimentum quam. Vivamus id mollis libero, mattis commodo mauris. In hac habitasse platea dictumst. Duis eu lobortis arcu, ac volutpat ante. Duis sapien enim, auctor vitae semper vitae, tincidunt et justo. Cras aliquet turpis nec enim mattis finibus. Nulla diam urna, semper ut elementum at, porttitor ut sapien. Pellentesque et dui neque. In eget lectus odio. Fusce nulla velit, eleifend sit amet malesuada ac, hendrerit id neque. Curabitur blandit elit et urna fringilla, id commodo quam fermentum.
+
+|> Code
+    This is a code block
+
+    With Multiple lines
+
+|> H1
+    My section on /lists/
+
+What does a *list* look like?
+
+|> List
+    1.  This is definitely the first thing.
+        Add all together now
+        With some Content
+
+    -- Another thing.
+
+        1. sublist
+
+        -- more sublist
+
+            -- indented
+
+
+        -- other sublist
+
+            -- subthing
+
+            -- other subthing
+
+    -- and yet, another
+        --  and another one
+            With some content

@@ -11,7 +11,7 @@ import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
-import ElmMarkup
+import ElmMarkupHtml
 import Feed
 import Head
 import Head.Seo as Seo
@@ -33,6 +33,7 @@ import Palette
 import Sitemap_
 import Task
 import Templates.Footer
+import Templates.Layout
 import Templates.Markdown
 import Templates.Navigation
 import Templates.UI exposing (..)
@@ -58,7 +59,8 @@ manifest =
     , themeColor = Just Color.white
     , startUrl = pages.index
     , shortName = Just "elmcraft"
-    , sourceIcon = images.favicon
+    , sourceIcon = images.elmcraftHeart
+    , icons = []
     }
 
 
@@ -66,22 +68,22 @@ type alias PageView =
     Model -> Element Msg
 
 
-main : Pages.Platform.Program Model Msg Metadata PageView
+main : Pages.Platform.Program Model Msg Metadata PageView Pages.PathKey
 main =
     Pages.Platform.init
         { init = \_ -> init
+        , update = update
         , view =
             \siteMetadata page ->
                 StaticHttp.succeed
                     { view = \model viewDocument -> pageView siteMetadata page viewDocument model
                     , head = head page.frontmatter
                     }
-        , update = update
         , subscriptions = subscriptions
-        , documents = [ markdownDocument, ElmMarkup.document ]
+        , documents = [ markdownDocument, ElmMarkupHtml.document ]
+        , onPageChange = Just (\meta -> ClearNav)
         , manifest = manifest
         , canonicalSiteUrl = canonicalSiteUrl
-        , onPageChange = Just (\meta -> ClearNav)
         , internals = Pages.internals
         }
         |> Pages.Platform.withFileGenerator generateFiles
@@ -119,7 +121,8 @@ pageView_ page metadata model content =
         layout
             [ width fill
             , Font.size 18
-            , Font.family [ Font.typeface Templates.UI.fontFace ]
+            , Font.family [ Font.typeface Templates.Layout.fontFace ]
+            , Font.color charcoal
             , width fill
             ]
         <|
@@ -169,6 +172,7 @@ markdownDocument =
                                        )
                                     |> column
                                         [ width fill
+                                        , spacing 20
                                         ]
                             )
                    )
@@ -255,8 +259,8 @@ update msg model =
             ( model, Cmd.none )
 
 
-subscriptions : Model -> Sub Msg
-subscriptions _ =
+subscriptions : Metadata -> PagePath Pages.PathKey -> Model -> Sub Msg
+subscriptions _ _ _ =
     Sub.batch
         [ Browser.Events.onResize WindowResized
         , cookieConsentValue CookieConsentValueReceived
