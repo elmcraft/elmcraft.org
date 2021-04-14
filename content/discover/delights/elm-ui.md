@@ -17,11 +17,11 @@ Build UIs that are type-safe, consistent cross-browser and reusable, without CSS
 
 <testimonials>
   <testimonial name="Mario" pic="path/to/pic.png">
-    Since I discovered elm-ui 2 years ago, I’ve written every project since without HTML/CSS. I never want to go back!
+  Since I discovered elm-ui 2 years ago, I’ve written every project since without HTML/CSS. I never want to go back!
   </testimonial>
 
   <testimonial name="Mark" pic="path/to/pic.png">
-    1 day with #elm-ui and I can create UIs more reliably and faster than with #CSS after 15 years of exposure/use. Thank you @mech_elephant (and @elmlang).
+  1 day with #elm-ui and I can create UIs more reliably and faster than with #CSS after 15 years of exposure/use. Thank you @mech_elephant (and @elmlang).
   </testimonial>
 </testimonials>
 

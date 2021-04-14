@@ -53,3 +53,8 @@ fromHex str =
 
         Err _ ->
             Element.rgb 255 0 0
+
+
+alpha80 : Color -> Color
+alpha80 c =
+    c |> Element.toRgb |> (\c_ -> { c_ | alpha = 0.8 }) |> Element.fromRgb

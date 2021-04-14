@@ -9,8 +9,9 @@ description: Companies that offer commercial Elm support, consultancy and develo
 
 Companies that offer commercial Elm support, consultancy and development.
 
-- Incremental Elm
-- Cofoundry
+- [Incremental Elm Consulting](https://cofoundry.uk/)
+- [Cofoundry](https://cofoundry.uk/)
+- [Curry Software](https://www.curry-software.com/en/elm-services/)
 - ...
 
 Also a DB?

@@ -9,12 +9,16 @@ import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes
 import Markdown.Html
+import Templates.Articles
+import Templates.CuratedBy
 import Templates.Feature
 import Templates.FindYourPath
 import Templates.Header
 import Templates.Homepage
 import Templates.QuizIsElmForMe
+import Templates.Testimonial
 import Templates.UI exposing (..)
+import Templates.Videos
 
 
 htmlMapping model =
@@ -116,6 +120,41 @@ htmlMapping model =
             )
             |> Markdown.Html.withAttribute "module"
         , Markdown.Html.tag "sup" (\content -> row [ htmlAttribute <| Html.Attributes.class "sup" ] content)
+        , Markdown.Html.tag "curatedby"
+            (\authors children ->
+                Templates.CuratedBy.view model authors
+            )
+            |> Markdown.Html.withAttribute "authors"
+        , Markdown.Html.tag "testimonial"
+            (\name pic children ->
+                Templates.Testimonial.view model name pic children
+            )
+            |> Markdown.Html.withAttribute "name"
+            |> Markdown.Html.withAttribute "pic"
+        , Markdown.Html.tag "testimonials"
+            (\children ->
+                row [ width fill, spacing 20 ] children
+            )
+        , Markdown.Html.tag "column"
+            (\children ->
+                column [ width fill ] children
+            )
+        , Markdown.Html.tag "paragraph"
+            (\children ->
+                paragraph [] children
+            )
+        , Markdown.Html.tag "articles"
+            (\tagged mLimit children ->
+                Templates.Articles.list model tagged mLimit
+            )
+            |> Markdown.Html.withAttribute "tagged"
+            |> Markdown.Html.withOptionalAttribute "limit"
+        , Markdown.Html.tag "videos"
+            (\tagged mLimit children ->
+                Templates.Videos.list model tagged mLimit
+            )
+            |> Markdown.Html.withAttribute "tagged"
+            |> Markdown.Html.withOptionalAttribute "limit"
         ]
 
 
