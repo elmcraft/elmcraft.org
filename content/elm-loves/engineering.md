@@ -8,7 +8,9 @@ Elm can be used to build powerful real-world web applications<sup>[1](???)</sup>
 
 ### Real World Applications
 
-Elm is ready to create single-page apps without _any_ extra dependencies, no need to select a state management library, or a router library, or anything else really, it's all part of the package. That being said, there are useful libraries that you can use to get you running faster – for instance, check out [elm-spa](https://www.elm-spa.dev) for one of the simplest Elm experiences available.
+Elm is ready to create single-page apps without _any_ extra dependencies, no need to select a state management library, or a router library, or anything else really, it's all part of the language. 
+
+There are also useful libraries that you can use to get you running even faster – for instance, check out [elm-spa](https://www.elm-spa.dev) for one of the simplest Elm experiences available.
 
 If your application requires static files for better SEO and faster rendering time, [elm-pages](https://elm-pages.com) is your tool for the job. Want to work with 3d in the browser? Check out [elm-webgl](https://package.elm-lang.org/packages/elm-explorations/webgl/latest) – some people creating really interesting things with it<sup>[4](https://erkal.github.io/elm-3d-playground-exploration/multiple-shadows-from-ianmackenzie/)</sup>.
 
