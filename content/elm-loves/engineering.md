@@ -22,6 +22,6 @@ Want to take things one step further? Then check out [elm-review](https://jfmeng
 
 ### Safety
 
-With Elm's strong type system, it's almost impossible to create runtime exceptions. The compiler will warn you whenever some part of your code will possibly cause issues and it will guide you step by step on how to fix it. This is part of the reason Elm's compiler got so famous and is now inspiring other languages like Rust and Rescript to create friendly compilers.
+With Elm's strong type system, it's almost impossible to create runtime exceptions. The compiler will warn you whenever some part of your code will possibly cause issues and it will guide you step by step on how to fix it. This is part of the reason Elm's compiler got so famous and influenced other languages like Rust<sup>[5](https://blog.rust-lang.org/2016/08/10/Shape-of-errors-to-come.html)</sup> and Rescript to create friendly compilers.
 
 !(Elm Compiler suggestions)[TODO]
