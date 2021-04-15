@@ -4,7 +4,7 @@ title: "Elm ❤️ Engineering"
 description: Discover elm-ui, A New Language for Layout and Interface
 ---
 
-Elm is not just a pleasant "beginner" language. It can be used to build powerful real-world web applications<sup>[1](???)</sup>, that are tiny and fast to download<sup>[2](https://medium.com/dailyjs/a-realworld-comparison-of-front-end-frameworks-2020-4e50655fe4c1)</sup>, and best of all: that are really hard to crash while your users are using it<sup>[3](https://www.infoq.com/news/2017/05/elm-zero-runtime-exception/)</sup>. But how does it manage this?
+Elm can be used to build powerful real-world web applications<sup>[1](???)</sup>, that are tiny and fast to download<sup>[2](https://medium.com/dailyjs/a-realworld-comparison-of-front-end-frameworks-2020-4e50655fe4c1)</sup>, and best of all: that are really hard to crash while your users are using it<sup>[3](https://www.infoq.com/news/2017/05/elm-zero-runtime-exception/)</sup>. But how does it manage this?
 
 ### Real World Applications
 
