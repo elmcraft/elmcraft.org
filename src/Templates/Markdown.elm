@@ -117,7 +117,14 @@ renderer model =
                 )
     , codeBlock =
         \{ body, language } ->
-            text "[UNIMPLEMENTED:codeblock]"
+            column
+                [ Font.family [ Font.monospace ]
+                , Background.color grey
+                , Border.rounded 5
+                , padding 10
+                , width fill
+                ]
+                [ paragraph [] [ text body ] ]
     , thematicBreak = text "[UNIMPLEMENTED:thematicBreak]"
     , table = \list -> text "[UNIMPLEMENTED:table]"
     , tableHeader = \list -> text "[UNIMPLEMENTED:tableHeader]"
