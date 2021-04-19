@@ -9,12 +9,12 @@ import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes
 import Markdown.Html
+import Pages.Homepage
 import Templates.Articles
 import Templates.CuratedBy
 import Templates.Feature
 import Templates.FindYourPath
 import Templates.Header
-import Templates.Homepage
 import Templates.QuizIsElmForMe
 import Templates.Testimonial
 import Templates.UI exposing (..)
@@ -90,7 +90,7 @@ htmlMapping model =
             )
             |> Markdown.Html.withAttribute "href"
             |> Markdown.Html.withAttribute "text"
-        , Markdown.Html.tag "homepagecontent" <| Templates.Homepage.view model
+        , Markdown.Html.tag "homepagecontent" <| Pages.Homepage.view model
         , Markdown.Html.tag "space"
             (\sizeM _ ->
                 let

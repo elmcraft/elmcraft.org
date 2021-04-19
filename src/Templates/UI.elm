@@ -185,7 +185,7 @@ heading { level, rawText, children } =
             1 ->
                 [ Font.size 48
                 , Font.bold
-                , Font.color green
+                , Font.color charcoal
                 , paddingXY 0 20
                 ]
 

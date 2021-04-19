@@ -1,6 +1,6 @@
 ---
 type: homepage
-title: World of Elmcraft
+title: Elmcraft
 description: All things Elm
 ---
 

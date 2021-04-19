@@ -1,4 +1,4 @@
-module Templates.Homepage exposing (..)
+module Pages.Homepage exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
@@ -16,6 +16,27 @@ import Templates.UI exposing (..)
 
 
 view model _ =
+    column [ width fill ]
+        [ column [ width fill, spacing 20 ]
+            [ none
+
+            -- , heading1 "World of Elmcraft"
+            , heading2 [] "A place for all things Elm"
+            , paragraph [] [ text "Welcome! We're just getting started here." ]
+            , spacer 20
+            , column
+                [ width fill, spacing 20 ]
+                [ heading2 [] "Elm ❤️'s"
+                , linkHover [] "Elm ❤️ Engineering" "/elm-loves/engineering"
+                , linkHover [] "Elm ❤️ Testing" "/elm-loves/testing"
+                , linkHover [] "Elm ❤️ Humans" "/elm-loves/humans"
+                , linkHover [] "Elm ❤️ Community" "/elm-loves/community"
+                ]
+            ]
+        ]
+
+
+view_old model _ =
     column [ width fill ]
         [ column [ width fill, spacing 20 ]
             [ none

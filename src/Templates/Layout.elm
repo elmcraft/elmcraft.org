@@ -6,4 +6,4 @@ fontFace =
 
 
 maxWidth =
-    1100
+    900

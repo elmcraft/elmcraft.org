@@ -130,12 +130,25 @@ pageView_ page metadata model content =
                 [ width fill
                 ]
                 [ Templates.Navigation.navigation model page.path
+                , if metadata.title == "Elmcraft" then
+                    -- @TODO figure out how to properly match "is index page"
+                    none
+
+                  else
+                    standardCenteredSectionAdaptiveAt
+                        Templates.Layout.maxWidth
+                        model
+                        white
+                        []
+                        [ heading1 metadata.title
+                        ]
                 , standardCenteredSectionAdaptiveAt
-                    1100
+                    Templates.Layout.maxWidth
                     model
                     white
                     [ Region.mainContent ]
-                    [ content model ]
+                    [ content model
+                    ]
                 , Templates.Footer.view model
                 ]
     }

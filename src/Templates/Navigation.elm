@@ -20,13 +20,28 @@ import Templates.UI exposing (..)
 import Types exposing (..)
 
 
-topLevel =
+topLevelMobile =
     -- @TODO figure out how to consolidate with desktop list
-    [ ( Pages.pages.discover.index, "Discover" )
-    , ( Pages.pages.build.index, "Build" )
-    , ( Pages.pages.media.index, "Media" )
-    , ( Pages.pages.community.index, "Community" )
-    , ( Pages.pages.commercial.index, "Commercial" )
+    [ ( Pages.pages.index, "Home" )
+
+    -- , ( Pages.pages.discover.index, "Discover" )
+    -- , ( Pages.pages.build.index, "Build" )
+    -- , ( Pages.pages.media.index, "Media" )
+    -- , ( Pages.pages.community.index, "Community" )
+    -- , ( Pages.pages.commercial.index, "Commercial" )
+    ]
+
+
+topLevel2 currentPath =
+    [ highlightableLink currentPath Pages.pages.directory "Home"
+
+    -- , highlightableLink currentPath Pages.pages.discover.directory "Discover"
+    -- , highlightableLink currentPath Pages.pages.build.directory "Build"
+    -- , highlightableLink currentPath Pages.pages.media.directory "Media"
+    -- , highlightableLink currentPath Pages.pages.community.directory "Community"
+    -- , highlightableLink currentPath Pages.pages.commercial.directory "Commercial"
+    -- , externalLink "Github" "https://github.com/elmcraft/elmcraft.org"
+    -- , spacer 20
     ]
 
 
@@ -97,7 +112,7 @@ navigationMobile model =
           in
           if model.navExpanded then
             column [ width fill, spacing 10, padding 20 ]
-                (topLevel
+                (topLevelMobile
                     |> List.map (\( page, name ) -> navItem name (asPath page))
                     |> List.intersperse (el [ width fill, height (px 1), Background.color charcoal ] none)
                 )
@@ -123,15 +138,7 @@ navigationDesktop model currentPath =
             ]
             [ elmcraftLogoText
             , row [ alignRight ]
-                [ highlightableLink currentPath Pages.pages.discover.directory "Discover"
-                , highlightableLink currentPath Pages.pages.build.directory "Build"
-                , highlightableLink currentPath Pages.pages.media.directory "Media"
-                , highlightableLink currentPath Pages.pages.community.directory "Community"
-                , highlightableLink currentPath Pages.pages.commercial.directory "Commercial"
-
-                -- , externalLink "Github" "https://github.com/elmcraft/elmcraft.org"
-                -- , spacer 20
-                ]
+                (topLevel2 currentPath)
             ]
         ]
 

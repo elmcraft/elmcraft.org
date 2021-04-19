@@ -1,6 +1,6 @@
 ---
 type: page
-title: "Elm Delight: elm-test"
+title: "Elm ❤️ Testing"
 description: Discover Testing in Elm
 ---
 
