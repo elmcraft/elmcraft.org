@@ -18,7 +18,9 @@ view model =
         [ Background.color white, width fill, Font.color charcoal ]
         [ column
             [ centerX, width (fill |> maximum Templates.Layout.maxWidth), padding_ 60 30 20 30, spacing 50 ]
-            [ footerNav model
+            [ none
+
+            -- , footerNav model
             , paragraph [ Font.center, spacing 15 ]
                 [ text " © elmcraft.org "
                 , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "Creative Commons Attribution-ShareAlike 4.0 International License" } }
