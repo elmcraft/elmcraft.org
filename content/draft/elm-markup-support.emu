@@ -20,7 +20,7 @@ Morbi ut porta justo. Integer ac eleifend sem. Fusce sed auctor velit, et condim
 But for real, here's a kitten.
 
 |> Image
-    src = http://placekitten.com/g/200/300
+    src = https://placekitten.com/g/200/300
     description = What a cute kitten.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id pellentesque elit, id sollicitudin felis. Morbi eu risus molestie enim suscipit auctor. Morbi pharetra, nisl ut finibus ornare, dolor tortor aliquet est, quis feugiat odio sem ut sem. Nullam eu bibendum ligula. Nunc mollis tortor ac rutrum interdum. Nunc ultrices risus eu pretium interdum. Nullam maximus convallis quam vitae ullamcorper. Praesent sapien nulla, hendrerit quis tincidunt a, placerat et felis. Nullam consectetur magna nec lacinia egestas. Aenean rutrum nunc diam.

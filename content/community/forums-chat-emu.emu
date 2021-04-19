@@ -68,7 +68,7 @@ But for real, here's a kitten.
 
 
 |> Image
-    src = http://placekitten.com/g/200/300
+    src = https://placekitten.com/g/200/300
     description = What a cute kitten.
     width = 200
 
