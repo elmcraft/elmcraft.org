@@ -95,7 +95,7 @@ buttonLinkPrimary attrs url label =
          , Border.rounded 4
          , Font.medium
          , Font.color white
-         , mouseOver [ Background.color white ]
+         , mouseOver [ Background.color <| alpha80 elmTeal ]
          ]
             ++ attrs
         )
