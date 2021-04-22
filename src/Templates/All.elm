@@ -144,7 +144,13 @@ htmlMapping model =
                 paragraph [] children
             )
         , Markdown.Html.tag "internal"
-            (\children -> none)
+            (\children ->
+                -- @TODO hide internal nodes in prod build dynamically?
+                column [ Background.color grey, padding 20, spacing 10 ]
+                    [ el [ Font.bold ] <| text "Internal note:"
+                    , column [] children
+                    ]
+            )
         , Markdown.Html.tag "articles"
             (\tagged mLimit children ->
                 Templates.Articles.list model tagged mLimit

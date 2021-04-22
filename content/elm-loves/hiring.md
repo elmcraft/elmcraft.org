@@ -6,12 +6,16 @@ description: What its like to hire for Elm
 
 <internal>
 
-SWBAT: understand what the hiring in Elm experience might be like, not just process (actually hiring someone) but also follow on (what it's like to actually integrate that person into the team)
+SWBAT:
 
+Understand what the hiring in Elm experience might be like:
 
-Thinking of the "at a glance" point, the idea is that a CTO could skim the overview for the "shock facts", then go get more detail for any claims they might be curious about.
+- Hiring (actually hiring someone)
+- Onboarding (what it's like to actually integrate that person into the team)
 
-Social proof against each one with real quotes from people.
+Approach:
+- "at a glance" points, CTO can skim overview for "shock facts", then go to detail for any claims interesting to them
+- social proof against each one with real quotes from people.
 
 </internal>
 
@@ -21,9 +25,11 @@ Companies using Elm have consistently reported a great experience with hiring fo
 
 ### Overview
 
-
+#### Hiring
 - [There are more people excited for an Elm role, than there are Elm roles](/elm-loves/hiring#there-are-more-people-excited-for-an-elm-role,-than-there-are-elm-roles)
 - [Candidates are often more excited to work on Elm than Javascript](/elm-loves/hiring#candidates-are-often-more-excited-to-work-on-elm-than-javascript)
+
+#### Onboarding
 - [Candidates with Elm experience can usually become productive immediately](/elm-loves/hiring#candidates-with-elm-experience-can-usually-become-productive-immediately)
 - [Candidates without Elm experience can usually become productive in a few days](/elm-loves/hiring#candidates-without-elm-experience-can-usually-become-productive-in-a-few-days)
 
