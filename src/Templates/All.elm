@@ -143,6 +143,8 @@ htmlMapping model =
             (\children ->
                 paragraph [] children
             )
+        , Markdown.Html.tag "internal"
+            (\children -> none)
         , Markdown.Html.tag "articles"
             (\tagged mLimit children ->
                 Templates.Articles.list model tagged mLimit
