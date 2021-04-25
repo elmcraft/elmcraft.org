@@ -26,7 +26,7 @@ Companies using Elm have consistently reported a great experience with hiring fo
 ### Overview
 
 #### Hiring
-- [There are more people excited for an Elm role, than there are Elm roles](/elm-loves/hiring#there-are-more-people-excited-for-an-elm-role,-than-there-are-elm-roles)
+- [There are more people excited for an Elm role than there are Elm roles](/elm-loves/hiring#there-are-more-people-excited-for-an-elm-role-than-there-are-elm-roles)
 - [Candidates are often more excited to work on Elm than Javascript](/elm-loves/hiring#candidates-are-often-more-excited-to-work-on-elm-than-javascript)
 
 #### Onboarding
@@ -39,7 +39,7 @@ Companies using Elm have consistently reported a great experience with hiring fo
 
 
 
-### There are more people excited for an Elm role, than there are Elm roles
+### There are more people excited for an Elm role than there are Elm roles
 
 This means a higher proportion of high quality candidates willing to swap from their current Javascript job because of Elm.
 
@@ -70,4 +70,4 @@ Companies who’ve hired for Elm have consistently reported that developers with
 
 This is mainly thanks to Elm’s architecture and type inference. The Elm compiler acts as a pair programming buddy, preventing most major mistakes and guiding new users along in a friendly way.
 
-@TODO: insert quote from the Japanese company who spoke at Elm Europe about onboarding beginners, was it Rakuten? If not it was the Japanese guy who spoke.
+@TODO: insert quote from the Japanese company who spoke at Elm Europe about onboarding beginners, was it Rakuten? If not it was the Japanese guy who spoke. https://www.youtube.com/watch?v=A-MqLntcyp0
