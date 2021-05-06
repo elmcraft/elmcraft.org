@@ -31,6 +31,7 @@ view model _ =
                 , linkHover [] "Elm ❤️ Testing" "/elm-loves/testing"
                 , linkHover [] "Elm ❤️ Humans" "/elm-loves/humans"
                 , linkHover [] "Elm ❤️ Community" "/elm-loves/community"
+                , linkHover [] "Elm ❤️ Hiring" "/elm-loves/hiring"
                 ]
             ]
         ]
