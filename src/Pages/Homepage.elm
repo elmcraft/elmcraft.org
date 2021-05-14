@@ -24,15 +24,16 @@ view model _ =
             , heading2 [] "A place for all things Elm"
             , paragraph [] [ text "Welcome! We're just getting started here." ]
             , spacer 20
-            , column
-                [ width fill, spacing 20 ]
-                [ heading2 [] "Elm ❤️'s"
-                , linkHover [] "Elm ❤️ Engineering" "/elm-loves/engineering"
-                , linkHover [] "Elm ❤️ Testing" "/elm-loves/testing"
-                , linkHover [] "Elm ❤️ Humans" "/elm-loves/humans"
-                , linkHover [] "Elm ❤️ Community" "/elm-loves/community"
-                , linkHover [] "Elm ❤️ Hiring" "/elm-loves/hiring"
-                ]
+
+            -- , column
+            --     [ width fill, spacing 20 ]
+            --     [ heading2 [] "Elm ❤️'s"
+            --     , linkHover [] "Elm ❤️ Engineering" "/elm-loves/engineering"
+            --     , linkHover [] "Elm ❤️ Testing" "/elm-loves/testing"
+            --     , linkHover [] "Elm ❤️ Humans" "/elm-loves/humans"
+            --     , linkHover [] "Elm ❤️ Community" "/elm-loves/community"
+            --     , linkHover [] "Elm ❤️ Hiring" "/elm-loves/hiring"
+            --     ]
             ]
         ]
 
