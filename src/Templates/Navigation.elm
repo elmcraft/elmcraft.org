@@ -66,7 +66,7 @@ navigationMobile model =
                 , paddingXY 20 10
                 , Border.rounded 4
                 , Border.width 1
-                , Border.color elmTeal
+                , Border.color purple
                 , onClick ToggleNav
                 , alignRight
                 , pointer
@@ -193,7 +193,7 @@ asColumns ( first, second ) =
 
 desktopHoverItem item =
     el
-        [ mouseOver [ Background.color elmTeal ]
+        [ mouseOver [ Background.color purple ]
         , padding 15
         , Border.rounded 5
         , width fill
@@ -208,7 +208,7 @@ groupItem page title description =
             , label =
                 column [ width fill, spacing 5 ]
                     [ paragraph [ Font.bold ] [ text title ]
-                    , paragraph [ Font.color elmTeal ] [ text description ]
+                    , paragraph [ Font.color purple ] [ text description ]
                     ]
             }
         ]
@@ -228,9 +228,9 @@ highlightableLink currentPath linkDirectory displayName =
         [ Font.semiBold
         , Font.size 14
         , padding 20
-        , mouseOver [ Font.color elmTeal ]
+        , mouseOver [ Font.color purple ]
         , if isHighlighted then
-            Font.color elmTeal
+            Font.color purple
 
           else
             Font.color charcoal
@@ -260,7 +260,7 @@ highlightableLinkIndex model open currentPath index displayName =
                 |> Maybe.map
                     (\( k, v ) ->
                         if k == displayName then
-                            [ Font.color elmTeal
+                            [ Font.color purple
                             , Background.color white
                             , Border.shadow { offset = ( 0, 4 ), size = 0, blur = 4, color = rgba 0 0 0 0.25 }
                             ]
@@ -292,7 +292,7 @@ highlightableLinkIndex model open currentPath index displayName =
     <|
         link
             (if isHighlighted then
-                styles ++ [ Font.color elmTeal ]
+                styles ++ [ Font.color purple ]
 
              else
                 styles
@@ -318,7 +318,7 @@ externalLink displayName url =
         , Font.color charcoal
         , Font.size 14
         , padding 20
-        , mouseOver [ Font.color elmTeal ]
+        , mouseOver [ Font.color purple ]
         ]
         { url = url
         , label = text <| String.toUpper displayName
@@ -334,11 +334,14 @@ elmcraftLogo =
 
 
 elmcraftLogoText =
-    row [ spacing 10 ]
-        [ image [ width (px 30) ] { src = Pages.ImagePath.toString Pages.images.elmcraftHeart, description = "Elmcraft Heart Logo" }
-        , link []
+    column [ spacing 5 ]
+        [ link [ centerX ]
+            { url = "/"
+            , label = image [ width (px 100) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
+            }
+        , link [ centerX, Font.letterSpacing 3 ]
             { url = "/"
             , label =
-                el [ Font.size 24, Font.bold ] (text "Elmcraft")
+                el [ Font.size 18 ] (text "elmcraft")
             }
         ]

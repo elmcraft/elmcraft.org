@@ -13,6 +13,10 @@ elmTealDark =
     fromHex "#448294"
 
 
+purple =
+    fromHex "#5b5cf1"
+
+
 yellow =
     fromHex "#E9A702"
 
