@@ -2,6 +2,7 @@
 type: page
 title: "Elm ❤️ Humans"
 description: Discover the joy of reading, writing, thinking and designing in Elm
+published: false
 ---
 
 What makes Elm such a great match for Humans? For starters, it was designed with us in mind, not for the computer's benefit. Computers are great at processing lots of information. Humans as not. You don't learn Elm, you just use it.
@@ -41,7 +42,7 @@ It's easier to find where the problem is when you don't have a complex multidire
 
  [demo elm format]
 
-## Everything is a function 
+## Everything is a function
 
 Less types of base building blocks, less confusion. Everything returns so you don't have to label with `return` and `function` but you can still read as easily because there is only one kind of stuff.
 

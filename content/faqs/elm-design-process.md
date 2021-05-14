@@ -2,6 +2,7 @@
 type: page
 title: Elm's Design Process
 description: How the Elm language is designed and developed
+published: false
 ---
 
 

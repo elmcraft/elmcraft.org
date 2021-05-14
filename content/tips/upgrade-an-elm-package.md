@@ -2,6 +2,7 @@
 type: page
 title: How to upgrade a package in Elm
 description: The elm-json tool can do this for us!
+published: false
 ---
 
 Currently the Elm compiler doesn't have a package upgrade command.

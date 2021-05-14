@@ -2,6 +2,7 @@
 type: page
 title: Elm for Managers, CTOs and Business owners.
 description: Info about the benefits, risks, hiring and commercial support for Elm
+published: false
 ---
 
 # Elm for Managers, CTOs and Business owners

@@ -2,6 +2,7 @@
 type: page
 title: Elm's Bus Factor
 description: A deeper look at a common question
+published: false
 ---
 
 # Elm and the Bus Factor

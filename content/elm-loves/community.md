@@ -2,6 +2,7 @@
 type: page
 title: "Elm ❤️ Community"
 description: Discover a diverse group of welcoming and supportive peole using Elm
+published: false
 ---
 
 What makes Elm community so special? We work hard to share our knowledge, joys and frustrations openly.

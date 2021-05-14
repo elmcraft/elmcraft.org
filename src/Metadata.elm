@@ -16,6 +16,7 @@ type Metadata
 type alias PageMetadata =
     { title : String
     , description : String
+    , published : Bool
     }
 
 
@@ -26,14 +27,16 @@ decoder =
             (\pageType ->
                 case pageType of
                     "homepage" ->
-                        D.succeed (\title description -> Homepage (PageMetadata title description))
+                        D.succeed (\title description published -> Homepage (PageMetadata title description published))
                             |> required "title" D.string
                             |> required "description" D.string
+                            |> required "published" D.bool
 
                     "page" ->
-                        D.succeed (\title description -> Page (PageMetadata title description))
+                        D.succeed (\title description published -> Page (PageMetadata title description published))
                             |> required "title" D.string
                             |> required "description" D.string
+                            |> required "published" D.bool
 
                     _ ->
                         D.fail ("Unexpected page type " ++ pageType)

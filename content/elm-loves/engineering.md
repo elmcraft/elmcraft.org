@@ -2,13 +2,14 @@
 type: page
 title: "Elm ❤️ Engineering"
 description: Discover elm-ui, A New Language for Layout and Interface
+published: false
 ---
 
 Elm can be used to build powerful real-world web applications<sup>[1](???)</sup>, that are tiny and fast to download<sup>[2](https://medium.com/dailyjs/a-realworld-comparison-of-front-end-frameworks-2020-4e50655fe4c1)</sup>, and best of all: that are really hard to crash while your users are using it<sup>[3](https://www.infoq.com/news/2017/05/elm-zero-runtime-exception/)</sup>. But how does it manage this?
 
 ### Real World Applications
 
-Elm is ready to create single-page apps without _any_ extra dependencies, no need to select a state management library, or a router library, or anything else really, it's all part of the language. 
+Elm is ready to create single-page apps without _any_ extra dependencies, no need to select a state management library, or a router library, or anything else really, it's all part of the language.
 
 There are also useful libraries that you can use to get you running even faster – for instance, check out [elm-spa](https://www.elm-spa.dev) for one of the simplest Elm experiences available.
 

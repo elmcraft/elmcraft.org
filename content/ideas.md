@@ -3,6 +3,7 @@ type: page
 title: Ideas
 description: Ideas
 draft: true
+published: false
 ---
 
 

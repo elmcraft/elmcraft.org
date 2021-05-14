@@ -2,6 +2,7 @@
 type: page
 title: "About Elmcraft"
 description: A place for all things Elm
+published: false
 ---
 
 Elmcraft is an unofficial endeavour, curated by a bunch of people who love and use Elm <img width="20" src="/images/elmcraft-heart.png" />.

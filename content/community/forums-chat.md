@@ -2,6 +2,7 @@
 type: page
 title: Forums/Chat
 description: Elm community forums/chat
+published: false
 ---
 
 ## Official

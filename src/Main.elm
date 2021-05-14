@@ -96,8 +96,21 @@ generateFiles :
 generateFiles siteMetadata =
     StaticHttp.succeed
         [ Feed.fileToGenerate { siteTagline = siteTagline, siteUrl = canonicalSiteUrl } siteMetadata |> Ok
-        , Sitemap_.build { siteUrl = canonicalSiteUrl } siteMetadata |> Ok
+        , siteMetadata
+            |> List.filter isPublished
+            |> Sitemap_.build { siteUrl = canonicalSiteUrl }
+            |> Ok
         ]
+
+
+isPublished : { a | frontmatter : Metadata } -> Bool
+isPublished meta =
+    case meta.frontmatter of
+        Metadata.Homepage pageMetadata ->
+            pageMetadata.published
+
+        Metadata.Page pageMetadata ->
+            pageMetadata.published
 
 
 pageView :
