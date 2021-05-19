@@ -21,6 +21,7 @@
             "elm/url": "1.0.0",
             "elm-community/dict-extra": "2.4.0",
             "elm-community/list-extra": "8.3.0",
+            "mdgriffith/elm-ui": "1.1.8",
             "miniBill/elm-codec": "1.2.0",
             "noahzgordon/elm-color-extra": "1.0.2",
             "tripokey/elm-fuzzy": "5.2.1",

@@ -2,9 +2,9 @@ module Page.Index exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
 import Document exposing (Document)
+import Element exposing (text)
 import Head
 import Head.Seo as Seo
-import Html exposing (text)
 import Page exposing (Page, StaticPayload)
 import Pages.ImagePath as ImagePath
 
