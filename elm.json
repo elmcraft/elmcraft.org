@@ -12,6 +12,7 @@
             "avh4/elm-color": "1.0.0",
             "danyx23/elm-mimetype": "4.0.1",
             "dillonkearns/elm-bcp47-language-tag": "1.0.1",
+            "dillonkearns/elm-markdown": "6.0.1",
             "elm/browser": "1.0.2",
             "elm/core": "1.0.5",
             "elm/html": "1.0.0",
@@ -30,11 +31,13 @@
         "indirect": {
             "elm/bytes": "1.0.8",
             "elm/file": "1.0.5",
+            "elm/parser": "1.1.0",
             "elm/random": "1.0.0",
             "elm/time": "1.0.0",
             "elm/virtual-dom": "1.0.2",
             "fredcy/elm-parseint": "2.0.1",
-            "mgold/elm-nonempty-list": "4.1.0"
+            "mgold/elm-nonempty-list": "4.1.0",
+            "rtfeldman/elm-hex": "1.0.0"
         }
     },
     "test-dependencies": {
