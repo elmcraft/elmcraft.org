@@ -5,3 +5,4 @@ dist/
 gen/
 .DS_Store
 lamdera-stuff
+.elm-pages/
