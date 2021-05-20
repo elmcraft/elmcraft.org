@@ -8,6 +8,7 @@ import Element
 import Head
 import Head.Seo as Seo
 import Html
+import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
 import OptimizedDecoder
@@ -44,34 +45,21 @@ routes =
         |> DataSource.map
             (List.map
                 (\contentPage ->
-                    -- contentPage
-                    { splat =
-                        contentPage
-
-                    -- case String.split "/" contentPage of
-                    --     root :: pages ->
-                    --         ( root, pages ) |> Debug.log "route"
-                    --     _ ->
-                    --         ( "nope", [] )
-                    }
+                    { splat = contentPage }
                 )
             )
 
 
-
--- DataSource.succeed
---     [ { splat = ( "hello", [] )
---       }
---     , { splat = ( "elm-loves", [ "community" ] )
---       }
---     ]
-
-
 content : DataSource (List ( String, List String ))
 content =
-    Glob.succeed (\firstPart secondPart -> ( firstPart, [ secondPart ] ))
+    Glob.succeed
+        (\leadingPath last ->
+            (leadingPath ++ [ last ])
+                |> List.NonEmpty.fromList
+                |> Maybe.withDefault (List.NonEmpty.singleton last)
+        )
         |> Glob.ignore (Glob.literal "content/")
-        |> Glob.capture Glob.wildcard
+        |> Glob.capture (Glob.recursiveWildcard |> Glob.map (String.split "/"))
         |> Glob.ignore (Glob.literal "/")
         |> Glob.capture Glob.wildcard
         |> Glob.ignore (Glob.literal ".md")
