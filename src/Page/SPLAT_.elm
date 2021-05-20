@@ -58,11 +58,11 @@ content =
                 |> List.NonEmpty.fromList
                 |> Maybe.withDefault (List.NonEmpty.singleton last)
         )
-        |> Glob.ignore (Glob.literal "content/")
+        |> Glob.match (Glob.literal "content/")
         |> Glob.capture (Glob.recursiveWildcard |> Glob.map (String.split "/"))
-        |> Glob.ignore (Glob.literal "/")
+        |> Glob.match (Glob.literal "/")
         |> Glob.capture Glob.wildcard
-        |> Glob.ignore (Glob.literal ".md")
+        |> Glob.match (Glob.literal ".md")
         |> Glob.toDataSource
 
 
