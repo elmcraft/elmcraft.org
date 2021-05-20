@@ -59,7 +59,7 @@ content =
                 |> Maybe.withDefault (List.NonEmpty.singleton last)
         )
         |> Glob.match (Glob.literal "content/")
-        |> Glob.capture (Glob.recursiveWildcard |> Glob.map (String.split "/"))
+        |> Glob.capture Glob.recursiveWildcard
         |> Glob.match (Glob.literal "/")
         |> Glob.capture Glob.wildcard
         |> Glob.match (Glob.literal ".md")
