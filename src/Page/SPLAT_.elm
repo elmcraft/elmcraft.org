@@ -3,7 +3,6 @@ module Page.SPLAT_ exposing (Data, Model, Msg, page)
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
-import Document exposing (Document)
 import Element
 import Head
 import Head.Seo as Seo
@@ -13,8 +12,10 @@ import Markdown.Parser
 import Markdown.Renderer
 import OptimizedDecoder
 import Page exposing (Page, PageWithState, StaticPayload)
-import Pages.ImagePath as ImagePath
+import Pages.PageUrl exposing (PageUrl)
+import Pages.Url
 import Shared
+import View exposing (View)
 
 
 type alias Model =
@@ -92,7 +93,7 @@ head static =
         { canonicalUrlOverride = Nothing
         , siteName = "elm-pages"
         , image =
-            { url = ImagePath.build [ "TODO" ]
+            { url = Pages.Url.external "TODO"
             , alt = "elm-pages logo"
             , dimensions = Nothing
             , mimeType = Nothing
@@ -109,9 +110,11 @@ type alias Data =
 
 
 view :
-    StaticPayload Data RouteParams
-    -> Document Msg
-view static =
+    Maybe PageUrl
+    -> Shared.Model
+    -> StaticPayload Data RouteParams
+    -> View Msg
+view maybeUrl sharedModel static =
     { title = "TODO"
     , body =
         [ Element.html (Html.div [] static.data)

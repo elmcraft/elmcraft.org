@@ -1,12 +1,14 @@
 module Page.Index exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
-import Document exposing (Document)
 import Element exposing (text)
 import Head
 import Head.Seo as Seo
 import Page exposing (Page, StaticPayload)
-import Pages.ImagePath as ImagePath
+import Pages.PageUrl exposing (PageUrl)
+import Pages.Url
+import Shared
+import View exposing (View)
 
 
 type alias Model =
@@ -43,7 +45,7 @@ head static =
         { canonicalUrlOverride = Nothing
         , siteName = "elm-pages"
         , image =
-            { url = ImagePath.build [ "TODO" ]
+            { url = Pages.Url.external "TODO"
             , alt = "elm-pages logo"
             , dimensions = Nothing
             , mimeType = Nothing
@@ -60,9 +62,11 @@ type alias Data =
 
 
 view :
-    StaticPayload Data RouteParams
-    -> Document Msg
-view static =
+    Maybe PageUrl
+    -> Shared.Model
+    -> StaticPayload Data RouteParams
+    -> View Msg
+view maybeUrl sharedModel static =
     { title = "Hi!"
     , body =
         [ text "Hey there!"

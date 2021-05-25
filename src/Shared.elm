@@ -2,12 +2,13 @@ module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template)
 
 import Browser.Navigation
 import DataSource
-import Document exposing (Document)
 import Element
 import Html exposing (Html)
 import Pages.Flags
-import Pages.PagePath exposing (PagePath)
+import Pages.PageUrl exposing (PageUrl)
+import Path exposing (Path)
 import SharedTemplate exposing (SharedTemplate)
+import View exposing (View)
 
 
 template : SharedTemplate Msg Model Data SharedMsg msg
@@ -24,7 +25,7 @@ template =
 
 type Msg
     = OnPageChange
-        { path : PagePath
+        { path : Path
         , query : Maybe String
         , fragment : Maybe String
         }
@@ -50,11 +51,12 @@ init :
     ->
         Maybe
             { path :
-                { path : PagePath
+                { path : Path
                 , query : Maybe String
                 , fragment : Maybe String
                 }
             , metadata : route
+            , pageUrl : Maybe PageUrl
             }
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
@@ -73,7 +75,7 @@ update msg model =
             ( model, Cmd.none )
 
 
-subscriptions : PagePath -> Model -> Sub Msg
+subscriptions : Path -> Model -> Sub Msg
 subscriptions _ _ =
     Sub.none
 
@@ -86,12 +88,12 @@ data =
 view :
     Data
     ->
-        { path : PagePath
+        { path : Path
         , frontmatter : route
         }
     -> Model
     -> (Msg -> msg)
-    -> Document msg
+    -> View msg
     -> { body : Html msg, title : String }
 view sharedData page model toMsg pageView =
     { body = Element.layout [] (Element.column [ Element.width Element.fill ] pageView.body)
