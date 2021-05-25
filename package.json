@@ -4,7 +4,7 @@
   "description": "Elmcraft.org Website",
   "scripts": {
     "start": "elm-pages dev",
-    "build": "elm-pages build && cp _redirects dist/ && cp dist/404/index.html dist/404.html && mv public/* dist/"
+    "build": "elm-pages build && cp dist/404/index.html dist/404.html"
   },
   "author": "Mario Rogic",
   "license": "BSD-3",
