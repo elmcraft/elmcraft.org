@@ -71,18 +71,16 @@ data : RouteParams -> DataSource Data
 data routeParams =
     case routeParams.splat of
         ( root, parts ) ->
-            DataSource.File.request (([ "content", root ] ++ parts |> String.join "/") ++ ".md")
-                (DataSource.File.body
-                    |> OptimizedDecoder.andThen
-                        (\rawMarkdown ->
-                            rawMarkdown
-                                |> Markdown.Parser.parse
-                                |> Result.mapError (\_ -> "Markdown parsing error")
-                                |> Result.andThen (Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer)
-                                |> Result.mapError (\_ -> "Markdown parsing error")
-                                |> OptimizedDecoder.fromResult
-                        )
-                )
+            DataSource.File.bodyWithoutFrontmatter (([ "content", root ] ++ parts |> String.join "/") ++ ".md")
+                |> DataSource.andThen
+                    (\rawMarkdown ->
+                        rawMarkdown
+                            |> Markdown.Parser.parse
+                            |> Result.mapError (\_ -> "Markdown parsing error")
+                            |> Result.andThen (Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer)
+                            |> Result.mapError (\_ -> "Markdown parsing error")
+                            |> DataSource.fromResult
+                    )
 
 
 head :
