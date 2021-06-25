@@ -78,15 +78,19 @@ data routeParams =
     in
     case routeParams.splat of
         ( root, parts ) ->
-            DataSource.File.bodyWithoutFrontmatter (([ "content", root ] ++ parts |> String.join "/") ++ ".md")
+            let
+                path =
+                    ([ "content", root ] ++ parts |> String.join "/") ++ ".md"
+            in
+            DataSource.File.bodyWithoutFrontmatter path
                 |> DataSource.andThen
                     (\rawMarkdown ->
                         rawMarkdown
                             |> Markdown.Parser.parse
-                            |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n")
+                            |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ root ++ ": "))
                             |> Result.andThen (Markdown.Renderer.render (Templates.Markdown.renderer model))
                             |> Result.map (\elements -> [ Element.layout [] <| Element.column [] elements ])
-                            |> Result.mapError (\err -> err)
+                            |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ root ++ ": "))
                             |> DataSource.fromResult
                     )
 
