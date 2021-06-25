@@ -1,7 +1,8 @@
 module Templates.Markdown exposing (..)
 
--- import Templates.All
--- import Templates.UI exposing (..)
+-- import Feed
+-- import Palette
+-- import Time
 
 import Browser.Dom
 import Browser.Events
@@ -12,7 +13,6 @@ import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
-import Feed
 import Head
 import Head.Seo as Seo
 import Html exposing (Html)
@@ -22,10 +22,8 @@ import Markdown.Block exposing (ListItem(..))
 import Markdown.Html
 import Markdown.Parser
 import Markdown.Renderer
-import Palette
 import Templates.All
 import Templates.UI exposing (..)
-import Time
 import Types exposing (..)
 
 
@@ -125,13 +123,14 @@ renderer model =
                 , width fill
                 ]
                 [ paragraph [] [ text body ] ]
-    , thematicBreak = text "[UNIMPLEMENTED:thematicBreak]"
-    , table = \list -> text "[UNIMPLEMENTED:table]"
-    , tableHeader = \list -> text "[UNIMPLEMENTED:tableHeader]"
-    , tableBody = \list -> text "[UNIMPLEMENTED:tableBody]"
-    , tableRow = \list -> text "[UNIMPLEMENTED:tableRow]"
-    , tableCell = \list -> text "[UNIMPLEMENTED:tableCell]"
-    , tableHeaderCell = \alignmentM list -> text "[UNIMPLEMENTED:tableHeaderCell]"
+    , thematicBreak = none
+    , table = \children -> column [ width fill ] children
+    , tableHeader = \children -> column [] children
+    , tableBody = \children -> column [] children
+    , tableRow = \children -> row [ width fill ] children
+    , tableCell = \alignment children -> column [ width fill ] children
+    , tableHeaderCell = \alignmentM children -> column [ width fill ] children
+    , strikethrough = \children -> paragraph [ Font.strike ] children
     }
 
 

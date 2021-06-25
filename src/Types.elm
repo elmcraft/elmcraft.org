@@ -12,6 +12,15 @@ type alias Model =
     }
 
 
+initTemporary : Model
+initTemporary =
+    { window = { width = 600, height = 800 }
+    , cookieConsent = ConsentApproved
+    , navExpanded = False
+    , navItemExpanded = Dict.empty
+    }
+
+
 type Consent
     = ConsentUnloaded
     | ConsentAsk

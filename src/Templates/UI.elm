@@ -1,5 +1,7 @@
 module Templates.UI exposing (..)
 
+-- import Pages.PagePath
+
 import Colors exposing (..)
 import Element exposing (..)
 import Element.Background as Background
@@ -14,16 +16,16 @@ import Json.Decode as D
 import Markdown.Block exposing (HeadingLevel(..), ListItem(..), headingLevelToInt)
 import Markdown.Parser
 import Markdown.Renderer
-import Pages.PagePath
 import Templates.Layout
 import Types exposing (Msg(..))
 
 
 asPath page =
-    page
-        |> Pages.PagePath.toPath
-        |> String.join "/"
-        |> (++) "/"
+    -- page
+    --     |> Pages.PagePath.toPath
+    --     |> String.join "/"
+    --     |> (++) "/"
+    "<TODO:asPath>"
 
 
 

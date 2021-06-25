@@ -14,7 +14,10 @@ import OptimizedDecoder
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
+import Parser
 import Shared
+import Templates.Markdown
+import Types
 import View exposing (View)
 
 
@@ -69,6 +72,10 @@ content =
 
 data : RouteParams -> DataSource Data
 data routeParams =
+    let
+        model =
+            Types.initTemporary
+    in
     case routeParams.splat of
         ( root, parts ) ->
             DataSource.File.bodyWithoutFrontmatter (([ "content", root ] ++ parts |> String.join "/") ++ ".md")
@@ -76,11 +83,81 @@ data routeParams =
                     (\rawMarkdown ->
                         rawMarkdown
                             |> Markdown.Parser.parse
-                            |> Result.mapError (\_ -> "Markdown parsing error")
-                            |> Result.andThen (Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer)
-                            |> Result.mapError (\_ -> "Markdown parsing error")
+                            |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n")
+                            |> Result.andThen (Markdown.Renderer.render (Templates.Markdown.renderer model))
+                            |> Result.map (\elements -> [ Element.layout [] <| Element.column [] elements ])
+                            |> Result.mapError (\err -> err)
                             |> DataSource.fromResult
                     )
+
+
+parserDeadEndToString err =
+    let
+        contextToString c =
+            [ "row:" ++ String.fromInt err.row
+            , "col:" ++ String.fromInt err.col
+            ]
+    in
+    -- { row : Int
+    --   , col : Int
+    --   , problem : problem
+    --   , contextStack :
+    --         List
+    --             { row : Int
+    --             , col : Int
+    --             , context : context
+    --             }
+    --   }
+    [ "row:" ++ String.fromInt err.row
+    , "col:" ++ String.fromInt err.col
+    , "problem:" ++ problemToString err.problem
+    ]
+        |> String.join "\n"
+
+
+problemToString problem =
+    case problem of
+        Parser.Expecting string ->
+            "Expecting:" ++ string
+
+        Parser.ExpectingInt ->
+            "ExpectingInt"
+
+        Parser.ExpectingHex ->
+            "ExpectingHex"
+
+        Parser.ExpectingOctal ->
+            "ExpectingOctal"
+
+        Parser.ExpectingBinary ->
+            "ExpectingBinary"
+
+        Parser.ExpectingFloat ->
+            "ExpectingFloat"
+
+        Parser.ExpectingNumber ->
+            "ExpectingNumber"
+
+        Parser.ExpectingVariable ->
+            "ExpectingVariable"
+
+        Parser.ExpectingSymbol string ->
+            "ExpectingSymbol:" ++ string
+
+        Parser.ExpectingKeyword string ->
+            "ExpectingKeyword:" ++ string
+
+        Parser.ExpectingEnd ->
+            "ExpectingEnd"
+
+        Parser.UnexpectedChar ->
+            "UnexpectedChar"
+
+        Parser.Problem string ->
+            "Problem:" ++ string
+
+        Parser.BadRepeat ->
+            "BadRepeat"
 
 
 head :
