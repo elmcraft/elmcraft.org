@@ -15,7 +15,6 @@ import Element.Events exposing (..)
 import Element.Font as Font
 import Element.Region as Region
 import List.Extra as List
-import Palette
 import Templates.Layout
 import Templates.UI exposing (..)
 import Types exposing (..)
