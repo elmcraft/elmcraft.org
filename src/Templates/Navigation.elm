@@ -1,5 +1,10 @@
 module Templates.Navigation exposing (..)
 
+-- import Pages.Directory as Directory exposing (Directory)
+-- import Pages.ImagePath
+-- import Pages.PagePath as PagePath exposing (PagePath)
+-- import Pages
+
 import Colors exposing (..)
 import Dict
 import Dict.Extra as Dict
@@ -10,10 +15,6 @@ import Element.Events exposing (..)
 import Element.Font as Font
 import Element.Region as Region
 import List.Extra as List
-import Pages
-import Pages.Directory as Directory exposing (Directory)
-import Pages.ImagePath
-import Pages.PagePath as PagePath exposing (PagePath)
 import Palette
 import Templates.Layout
 import Templates.UI exposing (..)
@@ -22,8 +23,10 @@ import Types exposing (..)
 
 topLevelMobile =
     -- @TODO figure out how to consolidate with desktop list
-    [ ( Pages.pages.index, "Home" )
+    [ text "@TODO Pages.*"
 
+    --( Pages.pages.index, "Home" )
+    --
     -- , ( Pages.pages.discover.index, "Discover" )
     -- , ( Pages.pages.build.index, "Build" )
     -- , ( Pages.pages.media.index, "Media" )
@@ -33,8 +36,10 @@ topLevelMobile =
 
 
 topLevel2 currentPath =
-    [ highlightableLink currentPath Pages.pages.directory "Home"
+    [ text "@TODO Pages.*"
 
+    -- , highlightableLink currentPath Pages.pages.directory "Home"
+    --
     -- , highlightableLink currentPath Pages.pages.discover.directory "Discover"
     -- , highlightableLink currentPath Pages.pages.build.directory "Build"
     -- , highlightableLink currentPath Pages.pages.media.directory "Media"
@@ -45,7 +50,10 @@ topLevel2 currentPath =
     ]
 
 
-navigation : Model -> PagePath Pages.PathKey -> Element Msg
+
+-- navigation : Model -> PagePath Pages.PathKey -> Element Msg
+
+
 navigation model currentPath =
     if model.window.width < 1000 then
         navigationMobile model
@@ -112,9 +120,10 @@ navigationMobile model =
           in
           if model.navExpanded then
             column [ width fill, spacing 10, padding 20 ]
-                (topLevelMobile
-                    |> List.map (\( page, name ) -> navItem name (asPath page))
-                    |> List.intersperse (el [ width fill, height (px 1), Background.color charcoal ] none)
+                ([ text "@TODO Pages.*" ]
+                 -- topLevelMobile
+                 --     |> List.map (\( page, name ) -> navItem name (asPath page))
+                 --     |> List.intersperse (el [ width fill, height (px 1), Background.color charcoal ] none)
                 )
 
           else
@@ -214,15 +223,21 @@ groupItem page title description =
         ]
 
 
-highlightableLink :
-    PagePath Pages.PathKey
-    -> Directory Pages.PathKey Directory.WithIndex
-    -> String
-    -> Element msg
+
+-- highlightableLink :
+--     PagePath Pages.PathKey
+--     -> Directory Pages.PathKey Directory.WithIndex
+--     -> String
+--     -> Element msg
+
+
 highlightableLink currentPath linkDirectory displayName =
     let
         isHighlighted =
-            currentPath |> Directory.includes linkDirectory
+            False
+
+        -- "@TODO Pages.*"
+        -- currentPath |> Directory.includes linkDirectory
     in
     link
         [ Font.semiBold
@@ -237,19 +252,22 @@ highlightableLink currentPath linkDirectory displayName =
         ]
         -- @TODO need to fix the URL generation here, it's camelcase instead of original?
         -- highlightableLinkIndex fixes this by using index but unsure if correct...
-        { url =
-            linkDirectory
-                -- |> Debug.log ("linkdirectory for " ++ displayName)
-                |> Directory.indexPath
-                -- |> Debug.log "dir indexPath"
-                |> PagePath.toString
+        { url = "@TODO Pages.*"
 
+        -- linkDirectory
+        --     -- |> Debug.log ("linkdirectory for " ++ displayName)
+        --     |> Directory.indexPath
+        --     -- |> Debug.log "dir indexPath"
+        --     |> PagePath.toString
         -- |> Debug.log "pagepath tostring"
         , label = text <| String.toUpper displayName
         }
 
 
-highlightableLinkIndex : Model -> Maybe ( String, Bool ) -> PagePath Pages.PathKey -> PagePath Pages.PathKey -> String -> Element Msg
+
+-- highlightableLinkIndex : Model -> Maybe ( String, Bool ) -> PagePath Pages.PathKey -> PagePath Pages.PathKey -> String -> Element Msg
+
+
 highlightableLinkIndex model open currentPath index displayName =
     let
         isHighlighted =
@@ -297,17 +315,19 @@ highlightableLinkIndex model open currentPath index displayName =
              else
                 styles
             )
-            { url = index |> PagePath.toString
+            { url = "@TODO Pages.*" -- index |> PagePath.toString
             , label =
                 text <| String.toUpper displayName
             }
 
 
 itemsDiscover =
-    ( [ groupItem Pages.pages.placeholder "Example" "Description"
-      ]
-    , [ groupItem Pages.pages.placeholder "Example" "Description"
-      ]
+    ([ text "@TODO Pages.*"
+
+     -- groupItem Pages.pages.placeholder "Example" "Description"
+     ]
+     -- , [ groupItem Pages.pages.placeholder "Example" "Description"
+     --   ]
     )
 
 
@@ -328,8 +348,9 @@ externalLink displayName url =
 elmcraftLogo =
     link []
         { url = "/"
-        , label =
-            image [ width (px 180) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
+        , label = text "@TODO Pages.*"
+
+        -- image [ width (px 180) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
         }
 
 
@@ -337,7 +358,9 @@ elmcraftLogoText =
     column [ spacing 5 ]
         [ link [ centerX ]
             { url = "/"
-            , label = image [ width (px 100) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
+            , label = text "@TODO Pages.*"
+
+            -- image [ width (px 100) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
             }
         , link [ centerX, Font.letterSpacing 3 ]
             { url = "/"

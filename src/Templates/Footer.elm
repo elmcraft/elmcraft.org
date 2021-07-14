@@ -1,5 +1,7 @@
 module Templates.Footer exposing (..)
 
+-- import Pages exposing (pages)
+
 import Colors exposing (..)
 import Element exposing (..)
 import Element.Background as Background
@@ -8,7 +10,6 @@ import Element.Font as Font
 import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes
-import Pages exposing (pages)
 import Templates.Layout
 import Templates.UI exposing (..)
 
@@ -26,9 +27,10 @@ view model =
                 , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "Creative Commons Attribution-ShareAlike 4.0 International License" } }
                 , text " - "
                 , row [ spacing 10 ]
-                    [ pageHover [] "Terms" pages.placeholder
-                    , pageHover [] "Privacy" pages.placeholder
+                    [ none
 
+                    -- , pageHover [] "Terms" pages.placeholder
+                    -- , pageHover [] "Privacy" pages.placeholder
                     -- , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
                     ]
                 ]
@@ -42,46 +44,50 @@ footerNav model =
             linkHover [] title (asPath page)
     in
     whenMoreThan 800 model <|
-        row [ width fill, spacing 20 ]
-            [ footerGroup "Discover"
-                [ item "Curious" pages.discover.curious
-                , item "Beginner" pages.discover.beginner
-                , item "Developer" pages.discover.developer
-                , item "Manager/CTO" pages.discover.manager
-                ]
-            , footerGroup "Build"
-                [ item "Packages" pages.build.packages
-                , item "Tooling" pages.build.tooling
-                , item "Design patterns" pages.build.designPatterns
-                , item "Examples" pages.build.examples
-                , item "Contributing" pages.build.contributing
-                ]
-            , footerGroup "Media"
-                [ item "Newsletters" pages.media.newsletters
-                , item "Articles" pages.media.articles
-                , item "Podcasts" pages.media.podcasts
-                , item "Videos" pages.media.videos
-                , item "Books" pages.media.books
-                ]
-            , footerGroup "Community"
-                [ item "Forums/Chat" pages.community.forumsChat
-                , item "Meetups" pages.community.meetups
-                , item "Conferences" pages.community.conferences
-                , item "FAQs" pages.faqs.index
-                ]
-            , footerGroup "Commercial"
-                [ item "Elm at work" pages.commercial.elmAtWork
-                , item "Succcess stories" pages.commercial.successStories
-                , item "Hiring" pages.commercial.hiring
-                , item "Jobs" pages.commercial.jobs
-                , item "Support" pages.commercial.support
-                ]
-            , footerGroup "Elmcraft"
-                [ item "About" pages.about
-                , item "Chat" pages.discuss
-                , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
-                ]
-            ]
+        text "DISABLED PAGES"
+
+
+
+-- row [ width fill, spacing 20 ]
+--     [ footerGroup "Discover"
+--         [ item "Curious" pages.discover.curious
+--         , item "Beginner" pages.discover.beginner
+--         , item "Developer" pages.discover.developer
+--         , item "Manager/CTO" pages.discover.manager
+--         ]
+--     , footerGroup "Build"
+--         [ item "Packages" pages.build.packages
+--         , item "Tooling" pages.build.tooling
+--         , item "Design patterns" pages.build.designPatterns
+--         , item "Examples" pages.build.examples
+--         , item "Contributing" pages.build.contributing
+--         ]
+--     , footerGroup "Media"
+--         [ item "Newsletters" pages.media.newsletters
+--         , item "Articles" pages.media.articles
+--         , item "Podcasts" pages.media.podcasts
+--         , item "Videos" pages.media.videos
+--         , item "Books" pages.media.books
+--         ]
+--     , footerGroup "Community"
+--         [ item "Forums/Chat" pages.community.forumsChat
+--         , item "Meetups" pages.community.meetups
+--         , item "Conferences" pages.community.conferences
+--         , item "FAQs" pages.faqs.index
+--         ]
+--     , footerGroup "Commercial"
+--         [ item "Elm at work" pages.commercial.elmAtWork
+--         , item "Succcess stories" pages.commercial.successStories
+--         , item "Hiring" pages.commercial.hiring
+--         , item "Jobs" pages.commercial.jobs
+--         , item "Support" pages.commercial.support
+--         ]
+--     , footerGroup "Elmcraft"
+--         [ item "About" pages.about
+--         , item "Chat" pages.discuss
+--         , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
+--         ]
+--     ]
 
 
 footerGroup title items =

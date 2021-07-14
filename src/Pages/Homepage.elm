@@ -45,7 +45,8 @@ view_old model _ =
 
             -- , heading1 "World of Elmcraft"
             , heading2 [] "A place for all things Elm"
-            , paragraph [] [ text "Welcome! We're just getting started here. Something missing? Got ideas? ", pageHover [] "Discuss them with us!" Pages.pages.discuss ]
+
+            -- , paragraph [] [ text "Welcome! We're just getting started here. Something missing? Got ideas? ", pageHover [] "Discuss them with us!" Pages.pages.discuss ]
             , spacer 20
             , column
                 [ width fill, spacing 20 ]
