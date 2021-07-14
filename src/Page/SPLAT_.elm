@@ -3,20 +3,23 @@ module Page.SPLAT_ exposing (Data, Model, Msg, page)
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
-import Element
+import Dict
+import Element exposing (..)
 import Head
 import Head.Seo as Seo
 import Html
 import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
-import OptimizedDecoder
+import OptimizedDecoder as Decode
+import OptimizedDecoder.Pipeline exposing (required)
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Parser
 import Shared
 import Templates.Markdown
+import Theme
 import Types
 import View exposing (View)
 
@@ -26,21 +29,55 @@ type alias Model =
 
 
 type alias Msg =
-    Never
+    Types.Msg
 
 
 type alias RouteParams =
     { splat : ( String, List String ) }
 
 
-page : Page RouteParams Data
+type alias Data =
+    { ui : List (Element Types.Msg)
+    , meta : Meta
+    }
+
+
+type alias Meta =
+    { title : String
+    , description : String
+    , published : Bool
+    }
+
+
+decodeMeta : Decode.Decoder Meta
+decodeMeta =
+    Decode.succeed Meta
+        |> required "title" Decode.string
+        |> required "description" Decode.string
+        |> required "published" Decode.bool
+
+
+page : PageWithState RouteParams Data () Types.Msg
 page =
     Page.prerender
         { head = head
         , routes = routes
         , data = data
         }
-        |> Page.buildNoState { view = view }
+        |> Page.buildWithSharedState
+            { view =
+                \pageUrlMaybe modelShared templateModel static ->
+                    view pageUrlMaybe modelShared static
+            , init =
+                \pageUrlMaybe modelShared static ->
+                    ( (), Cmd.none )
+            , update =
+                \pageUrl keyNavigationBrowserMaybe modelShared static templateMsg templateModel ->
+                    ( (), Cmd.none, Nothing )
+            , subscriptions =
+                \pageUrlMaybe routeParams path templateModel modelShared ->
+                    Sub.none
+            }
 
 
 routes : DataSource (List RouteParams)
@@ -82,17 +119,24 @@ data routeParams =
                 path =
                     ([ "content", root ] ++ parts |> String.join "/") ++ ".md"
             in
-            DataSource.File.bodyWithoutFrontmatter path
-                |> DataSource.andThen
-                    (\rawMarkdown ->
-                        rawMarkdown
+            DataSource.File.bodyWithFrontmatter
+                (\rawMarkdown ->
+                    Decode.map2
+                        (\meta renderedMarkdown ->
+                            { ui = renderedMarkdown
+                            , meta = meta
+                            }
+                        )
+                        decodeMeta
+                        (rawMarkdown
                             |> Markdown.Parser.parse
                             |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ root ++ ": "))
                             |> Result.andThen (Markdown.Renderer.render (Templates.Markdown.renderer model))
-                            |> Result.map (\elements -> [ Element.layout [] <| Element.column [] elements ])
                             |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ root ++ ": "))
-                            |> DataSource.fromResult
-                    )
+                            |> Decode.fromResult
+                        )
+                )
+                path
 
 
 parserDeadEndToString err =
@@ -184,18 +228,12 @@ head static =
         |> Seo.website
 
 
-type alias Data =
-    List (Html.Html Never)
-
-
 view :
     Maybe PageUrl
     -> Shared.Model
     -> StaticPayload Data RouteParams
-    -> View Msg
+    -> View Types.Msg
 view maybeUrl sharedModel static =
-    { title = "TODO"
-    , body =
-        [ Element.html (Html.div [] static.data)
-        ]
-    }
+    Theme.view { title = static.data.meta.title }
+        { navExpanded = False, navItemExpanded = Dict.empty, window = { width = 600 } }
+        static.data

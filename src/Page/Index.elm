@@ -67,8 +67,11 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel static =
-    { title = "Hi!"
+    { title = "Index!!"
     , body =
-        [ text "Hey there!"
+        [ text "Hey there! Hello from the index!"
+        , text <| Debug.toString maybeUrl
+        , text <| Debug.toString sharedModel
+        , text <| Debug.toString static
         ]
     }

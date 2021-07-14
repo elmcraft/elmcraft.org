@@ -15,7 +15,7 @@ config : SiteConfig Data
 config =
     \_ ->
         { data = data
-        , canonicalUrl = "https://elm-pages.com"
+        , canonicalUrl = "https://elmcraft.org"
         , manifest = manifest
         , head = head
         }
@@ -35,8 +35,8 @@ head static =
 manifest : Data -> Manifest.Config
 manifest static =
     Manifest.init
-        { name = "Site Name"
-        , description = "Description"
+        { name = "Elmcraft"
+        , description = "The place for all things Elm"
         , startUrl = Route.Index |> Route.toPath
         , icons = []
         }
