@@ -1,13 +1,18 @@
-module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template)
+module Shared exposing (..)
 
+import Browser.Dom
+import Browser.Events
 import Browser.Navigation
 import DataSource
+import Dict
 import Element
 import Html exposing (Html)
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
 import Path exposing (Path)
 import SharedTemplate exposing (SharedTemplate)
+import Task
+import Types exposing (..)
 import View exposing (View)
 
 
@@ -23,26 +28,20 @@ template =
     }
 
 
-type Msg
-    = OnPageChange
-        { path : Path
-        , query : Maybe String
-        , fragment : Maybe String
-        }
-    | SharedMsg SharedMsg
+type alias Msg =
+    Types.Msg
 
 
 type alias Data =
     ()
 
 
-type SharedMsg
-    = NoOp
+type alias SharedMsg =
+    Types.SharedMsg
 
 
 type alias Model =
-    { showMobileMenu : Bool
-    }
+    Types.Model
 
 
 init :
@@ -60,24 +59,89 @@ init :
             }
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
-    ( { showMobileMenu = False }
-    , Cmd.none
+    ( Types.initTemporary
+    , Cmd.batch
+        [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
+        ]
     )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
+    case Debug.log "msg" msg of
         OnPageChange _ ->
-            ( { model | showMobileMenu = False }, Cmd.none )
+            ( { model | navExpanded = False }, Cmd.none )
 
         SharedMsg globalMsg ->
+            ( model, Cmd.none )
+
+        WindowResized width height ->
+            ( { model | window = { width = width, height = height } }, Cmd.none )
+
+        NewTime newTime ->
+            -- ( { model | currentTime = newTime }, Cmd.none )
+            ( model, Cmd.none )
+
+        CookieConsentValueReceived consented ->
+            ( { model
+                | cookieConsent =
+                    case consented of
+                        Just True ->
+                            ConsentApproved
+
+                        Just False ->
+                            ConsentRejected
+
+                        Nothing ->
+                            ConsentAsk
+              }
+            , Cmd.none
+            )
+
+        CookieConsentSet bool ->
+            ( { model
+                | cookieConsent =
+                    case bool of
+                        True ->
+                            ConsentApproved
+
+                        False ->
+                            ConsentRejected
+              }
+              -- , cookieConsentSet bool
+            , Cmd.none
+            )
+
+        ToggleNav ->
+            ( { model | navExpanded = not model.navExpanded }, Cmd.none )
+
+        ClearNav ->
+            ( { model | navExpanded = False, navItemExpanded = Dict.empty }, Cmd.none )
+
+        ToggleNavItem title ->
+            ( { model
+                | navItemExpanded =
+                    model.navItemExpanded
+                        |> Dict.update title
+                            (\mv ->
+                                case mv of
+                                    Just b ->
+                                        Just <| not b
+
+                                    Nothing ->
+                                        Just True
+                            )
+              }
+            , Cmd.none
+            )
+
+        Noop ->
             ( model, Cmd.none )
 
 
 subscriptions : Path -> Model -> Sub Msg
 subscriptions _ _ =
-    Sub.none
+    Sub.batch [ Browser.Events.onResize Types.WindowResized ]
 
 
 data : DataSource.DataSource Data
@@ -96,6 +160,6 @@ view :
     -> View msg
     -> { body : Html msg, title : String }
 view sharedData page model toMsg pageView =
-    { body = Element.layout [] (Element.column [ Element.width Element.fill ] pageView.body)
-    , title = pageView.title
+    { title = pageView.title
+    , body = pageView.body
     }

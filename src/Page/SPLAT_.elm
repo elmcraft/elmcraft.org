@@ -37,7 +37,7 @@ type alias RouteParams =
 
 
 type alias Data =
-    { ui : List (Element Types.Msg)
+    { ui : Types.Model -> List (Element Types.Msg)
     , meta : Meta
     }
 
@@ -131,7 +131,18 @@ data routeParams =
                         (rawMarkdown
                             |> Markdown.Parser.parse
                             |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ root ++ ": "))
-                            |> Result.andThen (Markdown.Renderer.render (Templates.Markdown.renderer model))
+                            |> Result.andThen
+                                (\blocks ->
+                                    Ok
+                                        (\model_ ->
+                                            case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
+                                                Ok ui ->
+                                                    ui
+
+                                                Err err ->
+                                                    [ text <| "Failure in path " ++ root ++ ": " ++ err ]
+                                        )
+                                )
                             |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ root ++ ": "))
                             |> Decode.fromResult
                         )
@@ -208,22 +219,20 @@ problemToString problem =
             "BadRepeat"
 
 
-head :
-    StaticPayload Data RouteParams
-    -> List Head.Tag
+head : StaticPayload Data RouteParams -> List Head.Tag
 head static =
     Seo.summary
         { canonicalUrlOverride = Nothing
-        , siteName = "elm-pages"
+        , siteName = "Elmcraft"
         , image =
             { url = Pages.Url.external "TODO"
-            , alt = "elm-pages logo"
+            , alt = "Elmcraft logo"
             , dimensions = Nothing
             , mimeType = Nothing
             }
-        , description = "TODO"
+        , description = static.data.meta.description
         , locale = Nothing
-        , title = "TODO title" -- metadata.title -- TODO
+        , title = static.data.meta.title
         }
         |> Seo.website
 
@@ -234,6 +243,6 @@ view :
     -> StaticPayload Data RouteParams
     -> View Types.Msg
 view maybeUrl sharedModel static =
-    Theme.view { title = static.data.meta.title }
-        { navExpanded = False, navItemExpanded = Dict.empty, window = { width = 600 } }
+    Theme.view { maybeUrl = maybeUrl }
+        sharedModel
         static.data

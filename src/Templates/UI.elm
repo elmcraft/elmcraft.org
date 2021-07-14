@@ -56,11 +56,13 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
         ]
 
 
-standardCenteredSection model background children =
+standardCenteredSection model background attrs children =
     column
-        [ Background.color background
-        , width fill
-        ]
+        ([ Background.color background
+         , width fill
+         ]
+            ++ attrs
+        )
         [ column
             [ centerX
             , width (fill |> maximum Templates.Layout.maxWidth)

@@ -1,6 +1,7 @@
 module Types exposing (..)
 
 import Dict exposing (Dict)
+import Path exposing (Path)
 import Time
 
 
@@ -29,7 +30,13 @@ type Consent
 
 
 type Msg
-    = WindowResized Int Int
+    = OnPageChange
+        { path : Path
+        , query : Maybe String
+        , fragment : Maybe String
+        }
+    | SharedMsg SharedMsg
+    | WindowResized Int Int
     | NewTime Time.Posix
     | CookieConsentValueReceived (Maybe Bool)
     | CookieConsentSet Bool
@@ -37,3 +44,7 @@ type Msg
     | ClearNav
     | ToggleNavItem String
     | Noop
+
+
+type SharedMsg
+    = Noop_
