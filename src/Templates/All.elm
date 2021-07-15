@@ -44,9 +44,6 @@ htmlMapping model =
                                     |> Maybe.map (\w -> width (px w))
                                     |> Maybe.withDefault (width fill)
                                 ]
-
-                    x =
-                        Debug.log "w" ( width_, maxWidth_ )
                 in
                 image attrs { src = src, description = "" }
             )
