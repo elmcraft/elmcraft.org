@@ -12,11 +12,13 @@ import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
 import OptimizedDecoder as Decode
-import OptimizedDecoder.Pipeline exposing (required)
+import OptimizedDecoder.Pipeline exposing (hardcoded, required)
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Parser
+import Path
+import Route
 import Shared
 import Templates.Markdown
 import Theme
@@ -46,15 +48,17 @@ type alias Meta =
     { title : String
     , description : String
     , published : Bool
+    , route : Route.Route
     }
 
 
-decodeMeta : Decode.Decoder Meta
-decodeMeta =
+decodeMeta : ( String, List String ) -> Decode.Decoder Meta
+decodeMeta splat =
     Decode.succeed Meta
         |> required "title" Decode.string
         |> required "description" Decode.string
         |> required "published" Decode.bool
+        |> hardcoded (Route.SPLAT_ { splat = splat })
 
 
 page : PageWithState RouteParams Data () Types.Msg
@@ -127,7 +131,7 @@ data routeParams =
                             , meta = meta
                             }
                         )
-                        decodeMeta
+                        (decodeMeta routeParams.splat)
                         (rawMarkdown
                             |> Markdown.Parser.parse
                             |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ root ++ ": "))
@@ -225,7 +229,7 @@ head static =
         { canonicalUrlOverride = Nothing
         , siteName = "Elmcraft"
         , image =
-            { url = Pages.Url.external "TODO"
+            { url = Path.fromString "/images/elmcraft-logo.png" |> Pages.Url.fromPath
             , alt = "Elmcraft logo"
             , dimensions = Nothing
             , mimeType = Nothing
@@ -243,6 +247,6 @@ view :
     -> StaticPayload Data RouteParams
     -> View Types.Msg
 view maybeUrl sharedModel static =
-    Theme.view { maybeUrl = maybeUrl }
+    Theme.view { static = static }
         sharedModel
         static.data

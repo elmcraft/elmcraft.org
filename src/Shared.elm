@@ -5,7 +5,7 @@ import Browser.Events
 import Browser.Navigation
 import DataSource
 import Dict
-import Element
+import Element exposing (..)
 import Html exposing (Html)
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
@@ -49,11 +49,7 @@ init :
     -> Pages.Flags.Flags
     ->
         Maybe
-            { path :
-                { path : Path
-                , query : Maybe String
-                , fragment : Maybe String
-                }
+            { path : { path : Path, query : Maybe String, fragment : Maybe String }
             , metadata : route
             , pageUrl : Maybe PageUrl
             }
@@ -68,7 +64,7 @@ init navigationKey flags maybePagePath =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case Debug.log "msg" msg of
+    case msg of
         OnPageChange _ ->
             ( { model | navExpanded = False }, Cmd.none )
 
@@ -151,10 +147,7 @@ data =
 
 view :
     Data
-    ->
-        { path : Path
-        , frontmatter : route
-        }
+    -> { path : Path, frontmatter : route }
     -> Model
     -> (Msg -> msg)
     -> View msg

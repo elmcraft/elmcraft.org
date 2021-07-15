@@ -1,7 +1,5 @@
 module Templates.UI exposing (..)
 
--- import Pages.PagePath
-
 import Colors exposing (..)
 import Element exposing (..)
 import Element.Background as Background
@@ -16,16 +14,9 @@ import Json.Decode as D
 import Markdown.Block exposing (HeadingLevel(..), ListItem(..), headingLevelToInt)
 import Markdown.Parser
 import Markdown.Renderer
+import Route exposing (Route)
 import Templates.Layout
 import Types exposing (Msg(..))
-
-
-asPath page =
-    -- page
-    --     |> Pages.PagePath.toPath
-    --     |> String.join "/"
-    --     |> (++) "/"
-    "<TODO:asPath>"
 
 
 
@@ -266,12 +257,24 @@ littleTitle attrs label =
     paragraph ([ Font.color elmTeal, Font.size 14, Font.bold ] ++ attrs) [ text <| String.toUpper label ]
 
 
-linkHover attrs label url =
+externalLink attrs label url =
     link [ Font.underline, mouseOver [ Font.color elmTeal ] ] { url = url, label = text label }
 
 
-pageHover attrs label page =
-    link [ Font.underline, mouseOver [ Font.color elmTeal ] ] { url = asPath page, label = text label }
+routeLinkBare : List (Attribute msg) -> String -> Route -> Element msg
+routeLinkBare attrs label route =
+    let
+        elmPagesAttrs =
+            route |> Route.toLink (List.map htmlAttribute)
+
+        url =
+            Route.routeToPath route |> String.join "/"
+    in
+    link ([ mouseOver [ Font.color purple ] ] ++ elmPagesAttrs ++ attrs) { url = url, label = text label }
+
+
+routeLink attrs label route =
+    routeLinkBare (attrs ++ [ Font.underline ]) label route
 
 
 spacer h =

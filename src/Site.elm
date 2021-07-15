@@ -2,6 +2,7 @@ module Site exposing (config)
 
 import DataSource
 import Head
+import Helpers exposing (..)
 import Pages.Manifest as Manifest
 import Route
 import SiteConfig exposing (SiteConfig)
@@ -37,6 +38,6 @@ manifest static =
     Manifest.init
         { name = "Elmcraft"
         , description = "The place for all things Elm"
-        , startUrl = Route.SPLAT_ { splat = ( "", [] ) } |> Route.toPath
+        , startUrl = splat_ "index" |> Route.toPath
         , icons = []
         }

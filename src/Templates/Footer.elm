@@ -1,13 +1,12 @@
 module Templates.Footer exposing (..)
 
--- import Pages exposing (pages)
-
 import Colors exposing (..)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
+import Helpers exposing (..)
 import Html exposing (Html)
 import Html.Attributes
 import Templates.Layout
@@ -20,18 +19,18 @@ view model =
         [ column
             [ centerX, width (fill |> maximum Templates.Layout.maxWidth), padding_ 60 30 20 30, spacing 50 ]
             [ none
-
-            -- , footerNav model
-            , paragraph [ Font.center, spacing 15 ]
-                [ text " © elmcraft.org "
-                , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "Creative Commons Attribution-ShareAlike 4.0 International License" } }
-                , text " - "
-                , row [ spacing 10 ]
-                    [ none
-
-                    -- , pageHover [] "Terms" pages.placeholder
-                    -- , pageHover [] "Privacy" pages.placeholder
-                    -- , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
+            , footerNav model
+            , row [ width fill ]
+                [ row [ alignLeft, width fill ]
+                    [ paragraph []
+                        [ text " © elmcraft.org "
+                        , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "Creative Commons Attribution-ShareAlike 4.0 International License" } }
+                        ]
+                    ]
+                , row [ spacing 10, alignRight ]
+                    [ -- routeLink [] "Terms" (splat_ "placeholder")
+                      -- , routeLink [] "Privacy" (splat_ "placeholder")
+                      externalLink [] "Github" "https://github.com/elmcraft/elmcraft.org"
                     ]
                 ]
             ]
@@ -40,54 +39,50 @@ view model =
 
 footerNav model =
     let
-        item title page =
-            linkHover [] title (asPath page)
+        item title route =
+            routeLink [] title route
     in
     whenMoreThan 800 model <|
-        text "DISABLED PAGES"
-
-
-
--- row [ width fill, spacing 20 ]
---     [ footerGroup "Discover"
---         [ item "Curious" pages.discover.curious
---         , item "Beginner" pages.discover.beginner
---         , item "Developer" pages.discover.developer
---         , item "Manager/CTO" pages.discover.manager
---         ]
---     , footerGroup "Build"
---         [ item "Packages" pages.build.packages
---         , item "Tooling" pages.build.tooling
---         , item "Design patterns" pages.build.designPatterns
---         , item "Examples" pages.build.examples
---         , item "Contributing" pages.build.contributing
---         ]
---     , footerGroup "Media"
---         [ item "Newsletters" pages.media.newsletters
---         , item "Articles" pages.media.articles
---         , item "Podcasts" pages.media.podcasts
---         , item "Videos" pages.media.videos
---         , item "Books" pages.media.books
---         ]
---     , footerGroup "Community"
---         [ item "Forums/Chat" pages.community.forumsChat
---         , item "Meetups" pages.community.meetups
---         , item "Conferences" pages.community.conferences
---         , item "FAQs" pages.faqs.index
---         ]
---     , footerGroup "Commercial"
---         [ item "Elm at work" pages.commercial.elmAtWork
---         , item "Succcess stories" pages.commercial.successStories
---         , item "Hiring" pages.commercial.hiring
---         , item "Jobs" pages.commercial.jobs
---         , item "Support" pages.commercial.support
---         ]
---     , footerGroup "Elmcraft"
---         [ item "About" pages.about
---         , item "Chat" pages.discuss
---         , linkHover [] "Github" "https://github.com/elmcraft/elmcraft.org"
---         ]
---     ]
+        row [ width fill, spacing 20 ]
+            [ -- footerGroup "Discover"
+              --     [ item "Curious" (splat "discover" [ "curious" ])
+              --     , item "Beginner" (splat "discover" [ "beginner" ])
+              --     , item "Developer" (splat "discover" [ "developer" ])
+              --     , item "Manager/CTO" (splat "discover" [ "manager" ])
+              --     ]
+              footerGroup "Build"
+                [ item "Packages" (splat "build" [ "packages" ])
+                , item "Tooling" (splat "build" [ "tooling" ])
+                , item "Design patterns" (splat "build" [ "designPatterns" ])
+                , item "Examples" (splat "build" [ "examples" ])
+                , item "Contributing" (splat "build" [ "contributing" ])
+                ]
+            , footerGroup "Media"
+                [ item "Newsletters" (splat "media" [ "newsletters" ])
+                , item "Articles" (splat "media" [ "articles" ])
+                , item "Podcasts" (splat "media" [ "podcasts" ])
+                , item "Videos" (splat "media" [ "videos" ])
+                , item "Books" (splat "media" [ "books" ])
+                ]
+            , footerGroup "Community"
+                [ item "Forums/Chat" (splat "community" [ "forumsChat" ])
+                , item "Meetups" (splat "community" [ "meetups" ])
+                , item "Conferences" (splat "community" [ "conferences" ])
+                , item "FAQs" (splat "faqs" [ "index" ])
+                ]
+            , footerGroup "Commercial"
+                [ item "Elm at work" (splat "commercial" [ "elmAtWork" ])
+                , item "Succcess stories" (splat "commercial" [ "successStories" ])
+                , item "Hiring" (splat "commercial" [ "hiring" ])
+                , item "Jobs" (splat "commercial" [ "jobs" ])
+                , item "Support" (splat "commercial" [ "support" ])
+                ]
+            , footerGroup "Elmcraft"
+                [ item "About" (splat_ "about")
+                , item "Discuss" (splat_ "discuss")
+                , externalLink [] "Github" "https://github.com/elmcraft/elmcraft.org"
+                ]
+            ]
 
 
 footerGroup title items =

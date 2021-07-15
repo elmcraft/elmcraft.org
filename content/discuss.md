@@ -1,11 +1,9 @@
 ---
 type: page
-title: "Elmcraft: Discord"
+title: Discuss
 description: Elmcraft Discord
 published: false
 ---
-
-# Discuss
 
 You can find the Elmcraft team on Discord.
 

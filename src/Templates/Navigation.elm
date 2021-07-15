@@ -1,10 +1,5 @@
 module Templates.Navigation exposing (..)
 
--- import Pages.Directory as Directory exposing (Directory)
--- import Pages.ImagePath
--- import Pages.PagePath as PagePath exposing (PagePath)
--- import Pages
-
 import Colors exposing (..)
 import Dict
 import Dict.Extra as Dict
@@ -14,45 +9,26 @@ import Element.Border as Border
 import Element.Events exposing (..)
 import Element.Font as Font
 import Element.Region as Region
+import Helpers exposing (..)
 import List.Extra as List
+import Route exposing (Route)
 import Templates.Layout
 import Templates.UI exposing (..)
 import Types exposing (..)
 
 
 topLevelMobile =
-    -- @TODO figure out how to consolidate with desktop list
-    [ text "@TODO Pages.*"
+    [ ( splat_ "index", "Home" )
 
-    --( Pages.pages.index, "Home" )
-    --
-    -- , ( Pages.pages.discover.index, "Discover" )
-    -- , ( Pages.pages.build.index, "Build" )
-    -- , ( Pages.pages.media.index, "Media" )
-    -- , ( Pages.pages.community.index, "Community" )
-    -- , ( Pages.pages.commercial.index, "Commercial" )
+    -- , ( splat "discover" [ "index" ], "Discover" )
+    , ( splat "build" [ "index" ], "Build" )
+    , ( splat "media" [ "index" ], "Media" )
+    , ( splat "community" [ "index" ], "Community" )
+    , ( splat "commercial" [ "index" ], "Commercial" )
     ]
 
 
-topLevel2 currentPath =
-    [ text "@TODO Pages.*"
-
-    -- , highlightableLink currentPath Pages.pages.directory "Home"
-    --
-    -- , highlightableLink currentPath Pages.pages.discover.directory "Discover"
-    -- , highlightableLink currentPath Pages.pages.build.directory "Build"
-    -- , highlightableLink currentPath Pages.pages.media.directory "Media"
-    -- , highlightableLink currentPath Pages.pages.community.directory "Community"
-    -- , highlightableLink currentPath Pages.pages.commercial.directory "Commercial"
-    -- , externalLink "Github" "https://github.com/elmcraft/elmcraft.org"
-    -- , spacer 20
-    ]
-
-
-
--- navigation : Model -> PagePath Pages.PathKey -> Element Msg
-
-
+navigation : Model -> Route -> Element Msg
 navigation model currentPath =
     if model.window.width < 1000 then
         navigationMobile model
@@ -110,19 +86,19 @@ navigationMobile model =
                                 ]
                             ]
 
-            navItem title url =
+            navItem title route =
                 column [ width fill, padding 10 ]
                     [ row [ width fill ]
-                        [ link [ Font.color charcoal, Font.size 14, Font.bold ] { url = url, label = text <| String.toUpper title }
+                        [ -- , link [ Font.color charcoal, Font.size 14, Font.bold ] { url = url, label = text <| String.toUpper title }
+                          routeLinkBare [ Font.color charcoal, Font.size 14, Font.bold ] title route
                         ]
                     ]
           in
           if model.navExpanded then
             column [ width fill, spacing 10, padding 20 ]
-                ([ text "@TODO Pages.*" ]
-                 -- topLevelMobile
-                 --     |> List.map (\( page, name ) -> navItem name (asPath page))
-                 --     |> List.intersperse (el [ width fill, height (px 1), Background.color charcoal ] none)
+                (topLevelMobile
+                    |> List.map (\( route, name ) -> navItem name route)
+                    |> List.intersperse (el [ width fill, height (px 1), Background.color charcoal ] none)
                 )
 
           else
@@ -145,8 +121,12 @@ navigationDesktop model currentPath =
             , centerX
             ]
             [ elmcraftLogoText
-            , row [ alignRight ]
-                (topLevel2 currentPath)
+            , topLevelMobile
+                |> List.map
+                    (\( route, title ) ->
+                        highlightableLink currentPath route title
+                    )
+                |> row [ alignRight ]
             ]
         ]
 
@@ -209,10 +189,10 @@ desktopHoverItem item =
         item
 
 
-groupItem page title description =
+groupItem route title description =
     column [ width fill ]
         [ link [ width fill, stopPropagation ]
-            { url = asPath page
+            { url = toPath route
             , label =
                 column [ width fill, spacing 5 ]
                     [ paragraph [ Font.bold ] [ text title ]
@@ -230,15 +210,12 @@ groupItem page title description =
 --     -> Element msg
 
 
-highlightableLink currentPath linkDirectory displayName =
+highlightableLink currentRoute route displayName =
     let
         isHighlighted =
-            False
-
-        -- "@TODO Pages.*"
-        -- currentPath |> Directory.includes linkDirectory
+            toPath currentRoute |> String.startsWith (toPath route)
     in
-    link
+    routeLinkBare
         [ Font.semiBold
         , Font.size 14
         , padding 20
@@ -249,85 +226,68 @@ highlightableLink currentPath linkDirectory displayName =
           else
             Font.color charcoal
         ]
-        -- @TODO need to fix the URL generation here, it's camelcase instead of original?
-        -- highlightableLinkIndex fixes this by using index but unsure if correct...
-        { url = "@TODO Pages.*"
-
-        -- linkDirectory
-        --     -- |> Debug.log ("linkdirectory for " ++ displayName)
-        --     |> Directory.indexPath
-        --     -- |> Debug.log "dir indexPath"
-        --     |> PagePath.toString
-        -- |> Debug.log "pagepath tostring"
-        , label = text <| String.toUpper displayName
-        }
+        (String.toUpper displayName)
+        route
 
 
 
 -- highlightableLinkIndex : Model -> Maybe ( String, Bool ) -> PagePath Pages.PathKey -> PagePath Pages.PathKey -> String -> Element Msg
-
-
-highlightableLinkIndex model open currentPath index displayName =
-    let
-        isHighlighted =
-            currentPath == index
-
-        hoverStyles =
-            open
-                |> Maybe.map
-                    (\( k, v ) ->
-                        if k == displayName then
-                            [ Font.color purple
-                            , Background.color white
-                            , Border.shadow { offset = ( 0, 4 ), size = 0, blur = 4, color = rgba 0 0 0 0.25 }
-                            ]
-
-                        else
-                            []
-                    )
-                |> Maybe.withDefault []
-
-        styles =
-            [ Font.size 14
-            , padding 20
-            , Font.semiBold
-            , Border.roundEach { topLeft = 5, topRight = 5, bottomRight = 0, bottomLeft = 0 }
-            ]
-                ++ hoverStyles
-    in
-    el
-        [ Font.color charcoal
-        , onMouseEnter <| ToggleNavItem displayName
-        , onMouseLeave <| ClearNav
-        , below <|
-            dropdownDesktop model
-                open
-                displayName
-                [-- ( "Discover", itemsDiscover )
-                ]
-        ]
-    <|
-        link
-            (if isHighlighted then
-                styles ++ [ Font.color purple ]
-
-             else
-                styles
-            )
-            { url = "@TODO Pages.*" -- index |> PagePath.toString
-            , label =
-                text <| String.toUpper displayName
-            }
-
-
-itemsDiscover =
-    ([ text "@TODO Pages.*"
-
-     -- groupItem Pages.pages.placeholder "Example" "Description"
-     ]
-     -- , [ groupItem Pages.pages.placeholder "Example" "Description"
-     --   ]
-    )
+-- highlightableLinkIndex model open currentRoute index displayName =
+--     let
+--         isHighlighted =
+--             toPath currentRoute |> String.startsWith (toPath route)
+--
+--         hoverStyles =
+--             open
+--                 |> Maybe.map
+--                     (\( k, v ) ->
+--                         if k == displayName then
+--                             [ Font.color purple
+--                             , Background.color white
+--                             , Border.shadow { offset = ( 0, 4 ), size = 0, blur = 4, color = rgba 0 0 0 0.25 }
+--                             ]
+--
+--                         else
+--                             []
+--                     )
+--                 |> Maybe.withDefault []
+--
+--         styles =
+--             [ Font.size 14
+--             , padding 20
+--             , Font.semiBold
+--             , Border.roundEach { topLeft = 5, topRight = 5, bottomRight = 0, bottomLeft = 0 }
+--             ]
+--                 ++ hoverStyles
+--     in
+--     el
+--         [ Font.color charcoal
+--         , onMouseEnter <| ToggleNavItem displayName
+--         , onMouseLeave <| ClearNav
+--         , below <|
+--             dropdownDesktop model
+--                 open
+--                 displayName
+--                 [-- ( "Discover", itemsDiscover )
+--                 ]
+--         ]
+--     <|
+--         routeLinkBare
+--             (if isHighlighted then
+--                 styles ++ [ Font.color purple ]
+--
+--              else
+--                 styles
+--             )
+--             (String.toUpper displayName)
+--             route
+--
+-- itemsDiscover =
+--     ( [ groupItem (splat_ "placeholder") "Example" "Description"
+--       ]
+--     , [ groupItem (splat_ "placeholder") "Example" "Description"
+--       ]
+--     )
 
 
 externalLink : String -> String -> Element msg
@@ -346,23 +306,20 @@ externalLink displayName url =
 
 elmcraftLogo =
     link []
-        { url = "/"
-        , label = text "@TODO Pages.*"
-
-        -- image [ width (px 180) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
+        { url = toPath home
+        , label =
+            image [ width (px 100) ] { src = "/images/elmcraft-logo.png", description = "Elmcraft Logo" }
         }
 
 
 elmcraftLogoText =
     column [ spacing 5 ]
         [ link [ centerX ]
-            { url = "/"
-            , label = text "@TODO Pages.*"
-
-            -- image [ width (px 100) ] { src = Pages.ImagePath.toString Pages.images.elmcraftLogo, description = "Elmcraft Logo" }
+            { url = toPath home
+            , label = image [ width (px 100) ] { src = "/images/elmcraft-logo.png", description = "Elmcraft Logo" }
             }
         , link [ centerX, Font.letterSpacing 3 ]
-            { url = "/"
+            { url = toPath home
             , label =
                 el [ Font.size 18 ] (text "elmcraft")
             }

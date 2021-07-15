@@ -26,8 +26,9 @@ view x model static =
             column
                 [ width fill
                 ]
-                [ text <| Debug.toString x
-                , Templates.Navigation.navigation model "@TODO Pages.*"
+                [ Templates.Navigation.navigation model static.meta.route
+
+                -- , text <| Debug.toString x
                 , if static.meta.title == "Elmcraft" then
                     -- @TODO figure out how to properly match "is index page"
                     none
