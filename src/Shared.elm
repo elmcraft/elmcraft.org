@@ -13,6 +13,7 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Task
+import Theme
 import Types exposing (..)
 import View exposing (View)
 
@@ -155,5 +156,7 @@ view :
     -> { body : Html msg, title : String }
 view sharedData page model toMsg pageView =
     { title = pageView.title
-    , body = pageView.body
+    , body =
+        Theme.view { page = page, pageView = pageView } toMsg model pageView
+            |> Html.map toMsg
     }

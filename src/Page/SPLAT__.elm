@@ -265,6 +265,7 @@ view :
     -> StaticPayload Data RouteParams
     -> View Types.Msg
 view maybeUrl sharedModel static =
-    Theme.view { static = static }
-        sharedModel
-        static.data
+    { title = static.data.meta.title
+    , content = static.data.ui sharedModel
+    , route = static.data.meta.route
+    }
