@@ -17,14 +17,14 @@ import Templates.UI exposing (..)
 import Types exposing (..)
 
 
-topLevelMobile =
-    [ ( splat_ "index", "Home" )
+topLevelNavItems =
+    [ ( splat_ "", "Home" )
 
-    -- , ( splat "discover" [ "index" ], "Discover" )
-    , ( splat "build" [ "index" ], "Build" )
-    , ( splat "media" [ "index" ], "Media" )
-    , ( splat "community" [ "index" ], "Community" )
-    , ( splat "commercial" [ "index" ], "Commercial" )
+    -- , ( splat "discover" [], "Discover" )
+    , ( splat "build" [], "Build" )
+    , ( splat "media" [], "Media" )
+    , ( splat "community" [], "Community" )
+    , ( splat "commercial" [], "Commercial" )
     ]
 
 
@@ -96,7 +96,7 @@ navigationMobile model =
           in
           if model.navExpanded then
             column [ width fill, spacing 10, padding 20 ]
-                (topLevelMobile
+                (topLevelNavItems
                     |> List.map (\( route, name ) -> navItem name route)
                     |> List.intersperse (el [ width fill, height (px 1), Background.color charcoal ] none)
                 )
@@ -121,7 +121,7 @@ navigationDesktop model currentPath =
             , centerX
             ]
             [ elmcraftLogoText
-            , topLevelMobile
+            , topLevelNavItems
                 |> List.map
                     (\( route, title ) ->
                         highlightableLink currentPath route title
@@ -316,11 +316,10 @@ elmcraftLogoText =
     column [ spacing 5 ]
         [ link [ centerX ]
             { url = toPath home
-            , label = image [ width (px 100) ] { src = "/images/elmcraft-logo.png", description = "Elmcraft Logo" }
+            , label = image [ width (px 90) ] { src = "/images/elmcraft-logo.png", description = "Elmcraft Logo" }
             }
         , link [ centerX, Font.letterSpacing 3 ]
             { url = toPath home
-            , label =
-                el [ Font.size 18 ] (text "elmcraft")
+            , label = el [ Font.size 16 ] (text "elmcraft")
             }
         ]

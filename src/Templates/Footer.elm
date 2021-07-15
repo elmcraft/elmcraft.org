@@ -68,7 +68,7 @@ footerNav model =
                 [ item "Forums/Chat" (splat "community" [ "forumsChat" ])
                 , item "Meetups" (splat "community" [ "meetups" ])
                 , item "Conferences" (splat "community" [ "conferences" ])
-                , item "FAQs" (splat "faqs" [ "index" ])
+                , item "FAQs" (splat "faqs" [])
                 ]
             , footerGroup "Commercial"
                 [ item "Elm at work" (splat "commercial" [ "elmAtWork" ])

@@ -25,6 +25,7 @@ view x model static =
         <|
             column
                 [ width fill
+                , spacing 20
                 ]
                 [ Templates.Navigation.navigation model static.meta.route
 

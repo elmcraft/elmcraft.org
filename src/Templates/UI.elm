@@ -58,7 +58,6 @@ standardCenteredSection model background attrs children =
             [ centerX
             , width (fill |> maximum Templates.Layout.maxWidth)
             , paddingXY 30 0
-            , spacing 50
             ]
             children
         ]
