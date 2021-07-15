@@ -2,19 +2,21 @@ module Theme exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
-import Element.Background as Background
-import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
 import Helpers exposing (..)
-import Html
+import Html exposing (Html)
+import Route
 import Templates.Footer
 import Templates.Layout
 import Templates.Navigation
 import Templates.UI exposing (..)
+import Types
+import View
 
 
-view x toMsg model static =
+view : a -> (Types.Msg -> wrapperMsg) -> Types.Model -> View.View wrapperMsg -> Html wrapperMsg
+view x toWrapperMsg model static =
     layout
         [ width fill
         , Font.size 18
@@ -28,10 +30,9 @@ view x toMsg model static =
             , spacing 20
             ]
             [ Templates.Navigation.navigation model static.route
-
-            -- , text <| Debug.toString x
-            , if static.route == splat_ "" then
-                -- @TODO figure out how to properly match "is index page"
+                |> Element.map toWrapperMsg
+            -- , el [ width fill ] <| html <| Html.pre [] [ Html.text <| Debug.toString x ]
+            , if static.route == Route.SPLAT__ { splat = [] } then
                 none
 
               else
@@ -42,11 +43,12 @@ view x toMsg model static =
                     []
                     [ heading1 static.title
                     ]
+                    |> Element.map toWrapperMsg
             , standardCenteredSection
                 model
                 white
                 [ Region.mainContent ]
-                -- [ text "" ]
                 static.content
             , Templates.Footer.view model
+                |> Element.map toWrapperMsg
             ]

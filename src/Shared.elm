@@ -158,5 +158,6 @@ view sharedData page model toMsg pageView =
     { title = pageView.title
     , body =
         Theme.view { page = page, pageView = pageView } toMsg model pageView
-            |> Html.map toMsg
+
+
     }
