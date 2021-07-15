@@ -2,20 +2,23 @@ module Types exposing (..)
 
 import Dict exposing (Dict)
 import Path exposing (Path)
+import Route exposing (Route)
 import Time
 
 
 type alias Model =
     { window : { width : Int, height : Int }
+    , isDev : Bool
     , cookieConsent : Consent
     , navExpanded : Bool
     , navItemExpanded : Dict String Bool
     }
 
 
-initTemporary : Model
-initTemporary =
+init : { isDev : Bool } -> Model
+init { isDev } =
     { window = { width = 600, height = 800 }
+    , isDev = isDev
     , cookieConsent = ConsentApproved
     , navExpanded = False
     , navItemExpanded = Dict.empty

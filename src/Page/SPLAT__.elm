@@ -116,8 +116,30 @@ content =
 data : RouteParams -> DataSource Data
 data routeParams =
     let
-        model =
-            Types.initTemporary
+        markdownRenderer rawMarkdown path =
+            rawMarkdown
+                |> Markdown.Parser.parse
+                |> Result.mapError
+                    (\errs ->
+                        errs
+                            |> List.map parserDeadEndToString
+                            |> String.join "\n"
+                            |> (++) ("Failure in path " ++ ": ")
+                    )
+                |> Result.andThen
+                    (\blocks ->
+                        Ok
+                            (\model_ ->
+                                case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
+                                    Ok ui ->
+                                        ui
+
+                                    Err err ->
+                                        [ text <| "Failure in path " ++ path ++ ": " ++ err ]
+                            )
+                    )
+                |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ ": "))
+                |> Decode.fromResult
     in
     case routeParams.splat of
         parts ->
@@ -129,30 +151,9 @@ data routeParams =
                             |> DataSource.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
                                     Decode.map2
-                                        (\meta renderedMarkdown ->
-                                            { ui = renderedMarkdown
-                                            , meta = meta
-                                            }
-                                        )
+                                        (\meta ui -> { ui = ui, meta = meta })
                                         (decodeMeta routeParams.splat)
-                                        (rawMarkdown
-                                            |> Markdown.Parser.parse
-                                            |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ ": "))
-                                            |> Result.andThen
-                                                (\blocks ->
-                                                    Ok
-                                                        (\model_ ->
-                                                            case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
-                                                                Ok ui ->
-                                                                    ui
-
-                                                                Err err ->
-                                                                    [ text <| "Failure in path " ++ ": " ++ err ]
-                                                        )
-                                                )
-                                            |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ ": "))
-                                            |> Decode.fromResult
-                                        )
+                                        (markdownRenderer rawMarkdown path)
                                 )
                     )
 

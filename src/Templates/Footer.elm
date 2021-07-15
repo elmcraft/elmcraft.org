@@ -53,7 +53,7 @@ footerNav model =
               footerGroup "Build"
                 [ item "Packages" (splat "build" [ "packages" ])
                 , item "Tooling" (splat "build" [ "tooling" ])
-                , item "Design patterns" (splat "build" [ "designPatterns" ])
+                , item "Design patterns" (splat "build" [ "design-patterns" ])
                 , item "Examples" (splat "build" [ "examples" ])
                 , item "Contributing" (splat "build" [ "contributing" ])
                 ]
@@ -65,14 +65,14 @@ footerNav model =
                 , item "Books" (splat "media" [ "books" ])
                 ]
             , footerGroup "Community"
-                [ item "Forums/Chat" (splat "community" [ "forumsChat" ])
+                [ item "Forums/Chat" (splat "community" [ "forums-chat" ])
                 , item "Meetups" (splat "community" [ "meetups" ])
                 , item "Conferences" (splat "community" [ "conferences" ])
                 , item "FAQs" (splat "faqs" [])
                 ]
             , footerGroup "Commercial"
-                [ item "Elm at work" (splat "commercial" [ "elmAtWork" ])
-                , item "Succcess stories" (splat "commercial" [ "successStories" ])
+                [ item "Elm at work" (splat "commercial" [ "elm-at-work" ])
+                , item "Succcess stories" (splat "commercial" [ "success-stories" ])
                 , item "Hiring" (splat "commercial" [ "hiring" ])
                 , item "Jobs" (splat "commercial" [ "jobs" ])
                 , item "Support" (splat "commercial" [ "support" ])

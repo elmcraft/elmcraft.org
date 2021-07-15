@@ -32,7 +32,7 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
     column
         ([ Background.color background
          , width fill
-         , paddingEach { bottom = 0, left = 0, right = 0, top = 60 }
+         , paddingEach { bottom = 0, left = 0, right = 0, top = 0 }
          ]
             ++ attrs
         )
@@ -65,7 +65,7 @@ standardCenteredSection model background attrs children =
 
 buttonPrimary attrs msg label =
     el
-        ([ Background.color elmTeal
+        ([ Background.color purple
          , width shrink
          , paddingXY 20 12
          , Border.rounded 4
@@ -83,13 +83,13 @@ buttonPrimary attrs msg label =
 
 buttonLinkPrimary attrs url label =
     prefetchLink
-        ([ Background.color elmTeal
+        ([ Background.color purple
          , width shrink
          , paddingXY 20 12
          , Border.rounded 4
          , Font.medium
          , Font.color white
-         , mouseOver [ Background.color <| alpha80 elmTeal ]
+         , mouseOver [ Background.color <| alpha80 purple ]
          ]
             ++ attrs
         )
@@ -106,7 +106,7 @@ buttonSecondary attrs msg label =
          , Border.width 1
 
          -- , Border.color grey
-         , mouseOver [ Background.color elmTeal ]
+         , mouseOver [ Background.color purple, Font.color white ]
          , onClick msg
          , pointer
          ]
@@ -120,17 +120,25 @@ buttonSecondary attrs msg label =
 buttonLinkSecondary attrs url label =
     prefetchLink
         ([ width shrink
-         , paddingXY 20 12
          , Border.rounded 4
          , Border.width 1
 
          -- , Border.color grey
-         , mouseOver [ Background.color elmTeal ]
+         , mouseOver [ Background.color purple ]
          ]
             ++ attrs
         )
         { url = url
-        , label = el [ Font.color charcoal, Font.medium, Font.center, width fill ] (text <| String.toUpper label)
+        , label =
+            el
+                [ Font.color charcoal
+                , Font.medium
+                , Font.center
+                , width fill
+                , paddingXY 10 6
+                , mouseOver [ Font.color white ]
+                ]
+                (text <| String.toUpper label)
         }
 
 
@@ -142,7 +150,7 @@ buttonLinkSmall attrs url label =
          , Border.width 1
 
          -- , Border.color grey
-         , mouseOver [ Background.color elmTeal ]
+         , mouseOver [ Background.color purple ]
          ]
             ++ attrs
         )
@@ -158,7 +166,7 @@ badge color label =
         , Border.rounded 4
         , Border.width 1
         , Border.color color
-        , mouseOver [ Background.color elmTeal ]
+        , mouseOver [ Background.color purple ]
         ]
     <|
         el [ Font.color charcoal, Font.medium, Font.center, width fill ] (text label)
@@ -177,14 +185,14 @@ heading { level, rawText, children } =
     paragraph
         ((case headingLevelToInt level of
             1 ->
-                [ Font.size 48
+                [ Font.size 35
                 , Font.bold
                 , Font.color charcoal
                 , paddingXY 0 20
                 ]
 
             2 ->
-                [ Font.color elmTeal
+                [ Font.color purple
                 , Font.size 24
                 , Font.bold
                 , paddingEach { top = 50, right = 0, bottom = 20, left = 0 }
@@ -231,9 +239,8 @@ heading1 label =
 
 headingLargest attrs children =
     paragraph
-        ([ Font.size 48
-         , Font.medium
-         , Font.color elmTeal
+        ([ Font.medium
+         , Font.color purple
          , class "headingLargest"
          ]
             ++ attrs
@@ -253,11 +260,11 @@ heading2 attrs label =
 
 
 littleTitle attrs label =
-    paragraph ([ Font.color elmTeal, Font.size 14, Font.bold ] ++ attrs) [ text <| String.toUpper label ]
+    paragraph ([ Font.color purple, Font.size 14, Font.bold ] ++ attrs) [ text <| String.toUpper label ]
 
 
 externalLink attrs label url =
-    link [ Font.underline, mouseOver [ Font.color elmTeal ] ] { url = url, label = text label }
+    link [ Font.underline, mouseOver [ Font.color purple ] ] { url = url, label = text label }
 
 
 routeLinkBare : List (Attribute msg) -> String -> Route -> Element msg

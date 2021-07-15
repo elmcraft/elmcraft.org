@@ -52,12 +52,12 @@ init :
     ->
         Maybe
             { path : { path : Path, query : Maybe String, fragment : Maybe String }
-            , metadata : route
+            , metadata : Maybe Route
             , pageUrl : Maybe PageUrl
             }
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
-    ( Types.initTemporary
+    ( Types.init { isDev = False }
     , Cmd.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
         ]
@@ -158,6 +158,4 @@ view sharedData page model toMsg pageView =
     { title = pageView.title
     , body =
         Theme.view { page = page, pageView = pageView } toMsg model pageView
-
-
     }

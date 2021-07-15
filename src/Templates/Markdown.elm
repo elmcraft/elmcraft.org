@@ -30,19 +30,22 @@ import Types exposing (..)
 renderer : Model -> Markdown.Renderer.Renderer (Element msg)
 renderer model =
     { heading = \data -> row [] [ heading data ]
-    , paragraph = \children -> paragraph [ paddingXY 0 10 ] children
+    , paragraph = \children -> paragraph [ paddingXY 0 15, spacing 15 ] children
     , blockQuote =
         \children ->
             -- fromHtml <| Html.blockquote [] (asHtml children)
-            column
-                [ Font.size 20
-                , Font.italic
-                , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
-                , Border.color grey
-                , Font.color charcoal
-                , padding 10
+            column [ paddingXY 0 20 ]
+                [ column
+                    [ Font.size 20
+                    , Font.italic
+                    , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
+                    , Border.color grey
+                    , Font.color charcoal
+                    , paddingXY 15 0
+                    , width fill
+                    ]
+                    children
                 ]
-                children
     , html = Templates.All.htmlMapping model
 
     -- @TODO preserve newlines on... new lines?
@@ -79,7 +82,7 @@ renderer model =
     , unorderedList =
         \items ->
             --     none
-            column [ spacing 15, width fill ]
+            column [ spacing 15, width fill, paddingXY 0 20 ]
                 (items
                     |> List.map
                         (\listItem ->
@@ -98,7 +101,7 @@ renderer model =
                 )
     , orderedList =
         \startingIndex items ->
-            column [ spacing 15, width fill ]
+            column [ spacing 15, width fill, paddingXY 0 20 ]
                 (items
                     |> List.indexedMap
                         (\index itemBlocks ->
