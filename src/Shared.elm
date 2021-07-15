@@ -10,6 +10,7 @@ import Html exposing (Html)
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
 import Path exposing (Path)
+import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Task
 import Types exposing (..)
@@ -147,7 +148,7 @@ data =
 
 view :
     Data
-    -> { path : Path, frontmatter : route }
+    -> { path : Path, frontmatter : Maybe Route }
     -> Model
     -> (Msg -> msg)
     -> View msg
