@@ -83,7 +83,7 @@ buttonPrimary attrs msg label =
 
 
 buttonLinkPrimary attrs url label =
-    link
+    prefetchLink
         ([ Background.color elmTeal
          , width shrink
          , paddingXY 20 12
@@ -119,7 +119,7 @@ buttonSecondary attrs msg label =
 
 
 buttonLinkSecondary attrs url label =
-    link
+    prefetchLink
         ([ width shrink
          , paddingXY 20 12
          , Border.rounded 4
@@ -136,7 +136,7 @@ buttonLinkSecondary attrs url label =
 
 
 buttonLinkSmall attrs url label =
-    link
+    prefetchLink
         ([ width shrink
          , paddingXY 5 5
          , Border.rounded 4
@@ -275,6 +275,17 @@ routeLinkBare attrs label route =
 
 routeLink attrs label route =
     routeLinkBare (attrs ++ [ Font.underline ]) label route
+
+
+prefetchLink attrs { url, label } =
+    let
+        elmPagesAttrs =
+            [ Html.Attributes.href url
+            , Html.Attributes.attribute "elm-pages:prefetch" ""
+            ]
+                |> List.map htmlAttribute
+    in
+    link (elmPagesAttrs ++ attrs) { url = url, label = label }
 
 
 spacer h =

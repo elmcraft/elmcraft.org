@@ -46,3 +46,4 @@ Use this category when you want to show off something you’ve made.
 - Discord: Incremental Elm – for Elm makers
 - Discord: Elm-in-Elm – for the [Elm-in-Elm project](https://github.com/elm-in-elm/compiler)
 - Discord: Lamdera – for the [Lamdera platform](https://lamdera.com)
+- Discord: [Elmcraft](/discuss)
