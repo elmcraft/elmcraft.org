@@ -29,7 +29,7 @@ data =
 
 head : Data -> List Head.Tag
 head static =
-    [ Head.sitemapLink "/sitemap.xml"
+    [-- Head.sitemapLink "/sitemap.xml"
     ]
 
 
