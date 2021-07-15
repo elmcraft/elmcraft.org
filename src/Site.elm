@@ -38,6 +38,6 @@ manifest static =
     Manifest.init
         { name = "Elmcraft"
         , description = "The place for all things Elm"
-        , startUrl = splat_ "index" |> Route.toPath
+        , startUrl = Route.SPLAT__ { splat = [] } |> Route.toPath
         , icons = []
         }

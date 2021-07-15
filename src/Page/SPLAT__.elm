@@ -1,4 +1,4 @@
-module Page.SPLAT_ exposing (Data, Model, Msg, page)
+module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
 import DataSource.File
@@ -35,7 +35,7 @@ type alias Msg =
 
 
 type alias RouteParams =
-    { splat : ( String, List String ) }
+    { splat : List String }
 
 
 type alias Data =
@@ -52,13 +52,13 @@ type alias Meta =
     }
 
 
-decodeMeta : ( String, List String ) -> Decode.Decoder Meta
+decodeMeta : List String -> Decode.Decoder Meta
 decodeMeta splat =
     Decode.succeed Meta
         |> required "title" Decode.string
         |> required "description" Decode.string
         |> required "published" Decode.bool
-        |> hardcoded (Route.SPLAT_ { splat = splat })
+        |> hardcoded (Route.SPLAT__ { splat = splat })
 
 
 page : PageWithState RouteParams Data () Types.Msg
@@ -95,13 +95,15 @@ routes =
             )
 
 
-content : DataSource (List ( String, List String ))
+content : DataSource (List (List String))
 content =
     Glob.succeed
         (\leadingPath last ->
-            (leadingPath ++ [ last ])
-                |> List.NonEmpty.fromList
-                |> Maybe.withDefault (List.NonEmpty.singleton last)
+            if last == "index" then
+                leadingPath
+
+            else
+                leadingPath ++ [ last ]
         )
         |> Glob.match (Glob.literal "content/")
         |> Glob.capture Glob.recursiveWildcard
@@ -118,40 +120,56 @@ data routeParams =
             Types.initTemporary
     in
     case routeParams.splat of
-        ( root, parts ) ->
-            let
-                path =
-                    ([ "content", root ] ++ parts |> String.join "/") ++ ".md"
-            in
-            DataSource.File.bodyWithFrontmatter
-                (\rawMarkdown ->
-                    Decode.map2
-                        (\meta renderedMarkdown ->
-                            { ui = renderedMarkdown
-                            , meta = meta
-                            }
-                        )
-                        (decodeMeta routeParams.splat)
-                        (rawMarkdown
-                            |> Markdown.Parser.parse
-                            |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ root ++ ": "))
-                            |> Result.andThen
-                                (\blocks ->
-                                    Ok
-                                        (\model_ ->
-                                            case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
-                                                Ok ui ->
-                                                    ui
+        parts ->
+            parts
+                |> withOrWithoutIndexSegment
+                |> DataSource.andThen
+                    (\path ->
+                        path
+                            |> DataSource.File.bodyWithFrontmatter
+                                (\rawMarkdown ->
+                                    Decode.map2
+                                        (\meta renderedMarkdown ->
+                                            { ui = renderedMarkdown
+                                            , meta = meta
+                                            }
+                                        )
+                                        (decodeMeta routeParams.splat)
+                                        (rawMarkdown
+                                            |> Markdown.Parser.parse
+                                            |> Result.mapError (\errs -> errs |> List.map parserDeadEndToString |> String.join "\n" |> (++) ("Failure in path " ++ ": "))
+                                            |> Result.andThen
+                                                (\blocks ->
+                                                    Ok
+                                                        (\model_ ->
+                                                            case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
+                                                                Ok ui ->
+                                                                    ui
 
-                                                Err err ->
-                                                    [ text <| "Failure in path " ++ root ++ ": " ++ err ]
+                                                                Err err ->
+                                                                    [ text <| "Failure in path " ++ ": " ++ err ]
+                                                        )
+                                                )
+                                            |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ ": "))
+                                            |> Decode.fromResult
                                         )
                                 )
-                            |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ root ++ ": "))
-                            |> Decode.fromResult
-                        )
+                    )
+
+
+withOrWithoutIndexSegment : List String -> DataSource String
+withOrWithoutIndexSegment parts =
+    Glob.succeed identity
+        |> Glob.match (Glob.literal ("content" :: parts |> String.join "/"))
+        |> Glob.match
+            (Glob.oneOf
+                ( ( "/index", () )
+                , [ ( "", () ) ]
                 )
-                path
+            )
+        |> Glob.match (Glob.literal ".md")
+        |> Glob.captureFilePath
+        |> Glob.expectUniqueMatch
 
 
 parserDeadEndToString err =
