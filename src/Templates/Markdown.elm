@@ -1,7 +1,8 @@
 module Templates.Markdown exposing (..)
 
--- import Templates.All
--- import Templates.UI exposing (..)
+-- import Feed
+-- import Palette
+-- import Time
 
 import Browser.Dom
 import Browser.Events
@@ -12,7 +13,6 @@ import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
-import Feed
 import Head
 import Head.Seo as Seo
 import Html exposing (Html)
@@ -22,29 +22,30 @@ import Markdown.Block exposing (ListItem(..))
 import Markdown.Html
 import Markdown.Parser
 import Markdown.Renderer
-import Palette
 import Templates.All
 import Templates.UI exposing (..)
-import Time
 import Types exposing (..)
 
 
 renderer : Model -> Markdown.Renderer.Renderer (Element msg)
 renderer model =
     { heading = \data -> row [] [ heading data ]
-    , paragraph = \children -> paragraph [ paddingXY 0 10 ] children
+    , paragraph = \children -> paragraph [ paddingXY 0 15, spacing 15 ] children
     , blockQuote =
         \children ->
             -- fromHtml <| Html.blockquote [] (asHtml children)
-            column
-                [ Font.size 20
-                , Font.italic
-                , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
-                , Border.color grey
-                , Font.color charcoal
-                , padding 10
+            column [ paddingXY 0 20 ]
+                [ column
+                    [ Font.size 20
+                    , Font.italic
+                    , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
+                    , Border.color grey
+                    , Font.color charcoal
+                    , paddingXY 15 0
+                    , width fill
+                    ]
+                    children
                 ]
-                children
     , html = Templates.All.htmlMapping model
 
     -- @TODO preserve newlines on... new lines?
@@ -81,7 +82,7 @@ renderer model =
     , unorderedList =
         \items ->
             --     none
-            column [ spacing 15, width fill ]
+            column [ spacing 15, width fill, paddingXY 0 20 ]
                 (items
                     |> List.map
                         (\listItem ->
@@ -100,7 +101,7 @@ renderer model =
                 )
     , orderedList =
         \startingIndex items ->
-            column [ spacing 15, width fill ]
+            column [ spacing 15, width fill, paddingXY 0 20 ]
                 (items
                     |> List.indexedMap
                         (\index itemBlocks ->
@@ -125,13 +126,14 @@ renderer model =
                 , width fill
                 ]
                 [ paragraph [] [ text body ] ]
-    , thematicBreak = text "[UNIMPLEMENTED:thematicBreak]"
-    , table = \list -> text "[UNIMPLEMENTED:table]"
-    , tableHeader = \list -> text "[UNIMPLEMENTED:tableHeader]"
-    , tableBody = \list -> text "[UNIMPLEMENTED:tableBody]"
-    , tableRow = \list -> text "[UNIMPLEMENTED:tableRow]"
-    , tableCell = \list -> text "[UNIMPLEMENTED:tableCell]"
-    , tableHeaderCell = \alignmentM list -> text "[UNIMPLEMENTED:tableHeaderCell]"
+    , thematicBreak = none
+    , table = \children -> column [ width fill ] children
+    , tableHeader = \children -> column [] children
+    , tableBody = \children -> column [] children
+    , tableRow = \children -> row [ width fill ] children
+    , tableCell = \alignment children -> column [ width fill ] children
+    , tableHeaderCell = \alignmentM children -> column [ width fill ] children
+    , strikethrough = \children -> paragraph [ Font.strike ] children
     }
 
 

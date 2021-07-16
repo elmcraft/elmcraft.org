@@ -48,6 +48,7 @@ leftRaw model src bordered children =
     in
     standardCenteredSection model
         transparent_
+        []
         [ if model.window.width > 1000 then
             row [ width fill, height (shrink |> minimum 535), paddingXY 0 80, spacing 50 ]
                 [ contentCol, imageCol ]
@@ -94,6 +95,7 @@ rightRaw model src bordered children =
     in
     standardCenteredSection model
         transparent_
+        []
         [ if model.window.width > 1000 then
             row [ width fill, height (shrink |> minimum 535), paddingXY 0 80, spacing 50 ]
                 [ imageCol, contentCol ]

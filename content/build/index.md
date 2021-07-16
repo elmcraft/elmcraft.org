@@ -1,6 +1,6 @@
 ---
 type: page
-title: Build
+title: Build with Elm
 description: Packages, Tooling, Design Patterns, Examples & Contributing.
 published: false
 ---

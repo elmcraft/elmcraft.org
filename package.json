@@ -3,20 +3,16 @@
   "version": "1.0.0",
   "description": "Elmcraft.org Website",
   "scripts": {
-    "start": "elm-pages develop",
-    "serve": "npm run build && http-server ./dist -a localhost -p 3000 -c-1",
-    "build": "elm-pages build && cp _redirects dist/ && cp dist/404/index.html dist/404.html && mv public/* dist/"
+    "start": "elm-pages dev",
+    "build": "elm-pages build && cp dist/404/index.html dist/404.html"
   },
   "author": "Mario Rogic",
   "license": "BSD-3",
   "dependencies": {
-    "elm-pages": "1.5.5",
-    "node-sass": "^5.0.0",
-    "sharp": "github:lovell/sharp#v0.28.0-alpha1"
+    "elm-pages": "file:elm-pages"
   },
   "devDependencies": {
     "elm": "latest-0.19.1",
-    "elm-format": "^0.8.5",
-    "http-server": "^0.12.3"
+    "elm-format": "^0.8.5"
   }
 }

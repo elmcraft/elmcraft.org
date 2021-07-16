@@ -19,21 +19,37 @@ import Templates.QuizIsElmForMe
 import Templates.Testimonial
 import Templates.UI exposing (..)
 import Templates.Videos
+import Types
 
 
+htmlMapping : Types.Model -> Markdown.Html.Renderer (List (Element msg) -> Element msg)
 htmlMapping model =
     Markdown.Html.oneOf
         [ Markdown.Html.tag "img"
-            (\src width_ content ->
+            (\src width_ maxWidth_ content ->
                 let
                     attrs =
-                        [ width_ |> Maybe.andThen String.toInt |> Maybe.map (\w -> width (px w)) ]
-                            |> justs
+                        case maxWidth_ of
+                            Just maxWidth ->
+                                [ maxWidth
+                                    |> String.toInt
+                                    |> Maybe.map (\w -> width (fill |> maximum w))
+                                    |> Maybe.withDefault (width fill)
+                                , centerX
+                                ]
+
+                            Nothing ->
+                                [ width_
+                                    |> Maybe.andThen String.toInt
+                                    |> Maybe.map (\w -> width (px w))
+                                    |> Maybe.withDefault (width fill)
+                                ]
                 in
                 image attrs { src = src, description = "" }
             )
             |> Markdown.Html.withAttribute "src"
             |> Markdown.Html.withOptionalAttribute "width"
+            |> Markdown.Html.withOptionalAttribute "maxwidth"
         , Markdown.Html.tag "header"
             (\src description content ->
                 Templates.Header.view model src description content
@@ -73,15 +89,17 @@ htmlMapping model =
             |> Markdown.Html.withAttribute "url"
         , Markdown.Html.tag "buttonsecondary"
             (\label url content ->
-                buttonLinkSecondary [ Font.size 16, paddingXY 19 11 ] url label
+                buttonLinkSecondary [ Font.size 16 ] url label
             )
             |> Markdown.Html.withAttribute "label"
             |> Markdown.Html.withAttribute "url"
         , Markdown.Html.tag "title" (\content -> headingLargest [] content)
+        , Markdown.Html.tag "small" (\content -> paragraph [ Font.size 14 ] content)
         , Markdown.Html.tag "row" (\content -> row [ spacing 20 ] content)
+        , Markdown.Html.tag "center" (\content -> column [ centerX, paddingXY 0 20 ] content)
         , Markdown.Html.tag "arrowlink"
             (\href label _ ->
-                wrappedRow [ Font.color charcoal, Font.underline, mouseOver [ Font.color elmTeal ], centerX ]
+                wrappedRow [ Font.color charcoal, Font.underline, mouseOver [ Font.color purple ], centerX ]
                     [ paragraph [] [ link [] { url = href, label = text label } ]
                     , spacer 8
                     , image [ height (px 15), centerX ]
@@ -141,15 +159,18 @@ htmlMapping model =
             )
         , Markdown.Html.tag "paragraph"
             (\children ->
-                paragraph [] children
+                paragraph [ spacing 5 ] children
             )
         , Markdown.Html.tag "internal"
             (\children ->
-                -- @TODO hide internal nodes in prod build dynamically?
-                column [ Background.color grey, padding 20, spacing 10 ]
-                    [ el [ Font.bold ] <| text "Internal note:"
-                    , column [] children
-                    ]
+                if model.isDev then
+                    column [ Background.color grey, padding 20, spacing 10 ]
+                        [ el [ Font.bold ] <| text "Internal note:"
+                        , column [] children
+                        ]
+
+                else
+                    none
             )
         , Markdown.Html.tag "articles"
             (\tagged mLimit children ->

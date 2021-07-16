@@ -5,7 +5,6 @@ description: A collection of videos on Elm
 published: false
 ---
 
-# Elm Videos
 
 ## Popular videos
 

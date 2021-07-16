@@ -1,9 +1,6 @@
 node_modules/
 elm-stuff/
 dist/
-.cache/
-gen/
-.DS_Store
-lamdera-stuff
 .elm-pages/
+functions/render/elm-pages-cli.js
 browser-elm.js

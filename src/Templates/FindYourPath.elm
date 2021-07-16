@@ -16,23 +16,26 @@ view model =
             [ box "Elm Curious"
                 "Curious what Elm is about? Whether you're a Developer, Manager, or just generally interested, start here!"
                 [ wrappedRow [ width fill, spacing 10 ]
-                    [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I'm new to code"
-                    , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code"
-                    , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code JS"
-                    , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I don't code"
-                    ]
+                    -- [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I'm new to code"
+                    -- , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code"
+                    -- , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code JS"
+                    -- , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I don't code"
+                    -- ]
+                    [ none ]
                 ]
             , box "Elm Beginner"
                 "Starting out with Elm? Find all the resources and support here!"
                 [ wrappedRow [ width fill, spacing 10 ]
-                    [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I'm new to code"
-                    , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code"
-                    , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code JS"
-                    ]
+                    -- [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I'm new to code"
+                    -- , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code"
+                    -- , buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "I code JS"
+                    -- ]
+                    [ none ]
                 ]
-            , box "Elm Developer"
-                "Already familiar with Elm? Delve deeper into the world of Elmcraft here!"
-                [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "Let's go!" ]
+
+            -- , box "Elm Developer"
+            --     "Already familiar with Elm? Delve deeper into the world of Elmcraft here!"
+            --     [ buttonLinkSmall [ Font.size 16 ] (asPath Pages.pages.discover.beginner) "Let's go!" ]
             ]
         ]
 

@@ -14,16 +14,9 @@ import Json.Decode as D
 import Markdown.Block exposing (HeadingLevel(..), ListItem(..), headingLevelToInt)
 import Markdown.Parser
 import Markdown.Renderer
-import Pages.PagePath
+import Route exposing (Route)
 import Templates.Layout
 import Types exposing (Msg(..))
-
-
-asPath page =
-    page
-        |> Pages.PagePath.toPath
-        |> String.join "/"
-        |> (++) "/"
 
 
 
@@ -39,7 +32,7 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
     column
         ([ Background.color background
          , width fill
-         , paddingEach { bottom = 0, left = 0, right = 0, top = 60 }
+         , paddingEach { bottom = 0, left = 0, right = 0, top = 0 }
          ]
             ++ attrs
         )
@@ -54,16 +47,17 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
         ]
 
 
-standardCenteredSection model background children =
+standardCenteredSection model background attrs children =
     column
-        [ Background.color background
-        , width fill
-        ]
+        ([ Background.color background
+         , width fill
+         ]
+            ++ attrs
+        )
         [ column
             [ centerX
             , width (fill |> maximum Templates.Layout.maxWidth)
             , paddingXY 30 0
-            , spacing 50
             ]
             children
         ]
@@ -71,7 +65,7 @@ standardCenteredSection model background children =
 
 buttonPrimary attrs msg label =
     el
-        ([ Background.color elmTeal
+        ([ Background.color purple
          , width shrink
          , paddingXY 20 12
          , Border.rounded 4
@@ -88,14 +82,14 @@ buttonPrimary attrs msg label =
 
 
 buttonLinkPrimary attrs url label =
-    link
-        ([ Background.color elmTeal
+    prefetchLink
+        ([ Background.color purple
          , width shrink
          , paddingXY 20 12
          , Border.rounded 4
          , Font.medium
          , Font.color white
-         , mouseOver [ Background.color <| alpha80 elmTeal ]
+         , mouseOver [ Background.color <| alpha80 purple ]
          ]
             ++ attrs
         )
@@ -112,7 +106,7 @@ buttonSecondary attrs msg label =
          , Border.width 1
 
          -- , Border.color grey
-         , mouseOver [ Background.color elmTeal ]
+         , mouseOver [ Background.color purple, Font.color white ]
          , onClick msg
          , pointer
          ]
@@ -124,31 +118,39 @@ buttonSecondary attrs msg label =
 
 
 buttonLinkSecondary attrs url label =
-    link
+    prefetchLink
         ([ width shrink
-         , paddingXY 20 12
          , Border.rounded 4
          , Border.width 1
 
          -- , Border.color grey
-         , mouseOver [ Background.color elmTeal ]
+         , mouseOver [ Background.color purple ]
          ]
             ++ attrs
         )
         { url = url
-        , label = el [ Font.color charcoal, Font.medium, Font.center, width fill ] (text <| String.toUpper label)
+        , label =
+            el
+                [ Font.color charcoal
+                , Font.medium
+                , Font.center
+                , width fill
+                , paddingXY 10 6
+                , mouseOver [ Font.color white ]
+                ]
+                (text <| String.toUpper label)
         }
 
 
 buttonLinkSmall attrs url label =
-    link
+    prefetchLink
         ([ width shrink
          , paddingXY 5 5
          , Border.rounded 4
          , Border.width 1
 
          -- , Border.color grey
-         , mouseOver [ Background.color elmTeal ]
+         , mouseOver [ Background.color purple ]
          ]
             ++ attrs
         )
@@ -164,7 +166,7 @@ badge color label =
         , Border.rounded 4
         , Border.width 1
         , Border.color color
-        , mouseOver [ Background.color elmTeal ]
+        , mouseOver [ Background.color purple ]
         ]
     <|
         el [ Font.color charcoal, Font.medium, Font.center, width fill ] (text label)
@@ -183,14 +185,14 @@ heading { level, rawText, children } =
     paragraph
         ((case headingLevelToInt level of
             1 ->
-                [ Font.size 48
+                [ Font.size 35
                 , Font.bold
                 , Font.color charcoal
                 , paddingXY 0 20
                 ]
 
             2 ->
-                [ Font.color elmTeal
+                [ Font.color purple
                 , Font.size 24
                 , Font.bold
                 , paddingEach { top = 50, right = 0, bottom = 20, left = 0 }
@@ -237,9 +239,8 @@ heading1 label =
 
 headingLargest attrs children =
     paragraph
-        ([ Font.size 48
-         , Font.medium
-         , Font.color elmTeal
+        ([ Font.medium
+         , Font.color purple
          , class "headingLargest"
          ]
             ++ attrs
@@ -259,15 +260,38 @@ heading2 attrs label =
 
 
 littleTitle attrs label =
-    paragraph ([ Font.color elmTeal, Font.size 14, Font.bold ] ++ attrs) [ text <| String.toUpper label ]
+    paragraph ([ Font.color purple, Font.size 14, Font.bold ] ++ attrs) [ text <| String.toUpper label ]
 
 
-linkHover attrs label url =
-    link [ Font.underline, mouseOver [ Font.color elmTeal ] ] { url = url, label = text label }
+externalLink attrs label url =
+    link [ Font.underline, mouseOver [ Font.color purple ] ] { url = url, label = text label }
 
 
-pageHover attrs label page =
-    link [ Font.underline, mouseOver [ Font.color elmTeal ] ] { url = asPath page, label = text label }
+routeLinkBare : List (Attribute msg) -> String -> Route -> Element msg
+routeLinkBare attrs label route =
+    let
+        elmPagesAttrs =
+            route |> Route.toLink (List.map htmlAttribute)
+
+        url =
+            Route.routeToPath route |> String.join "/"
+    in
+    link ([ mouseOver [ Font.color purple ] ] ++ elmPagesAttrs ++ attrs) { url = url, label = text label }
+
+
+routeLink attrs label route =
+    routeLinkBare (attrs ++ [ Font.underline ]) label route
+
+
+prefetchLink attrs { url, label } =
+    let
+        elmPagesAttrs =
+            [ Html.Attributes.href url
+            , Html.Attributes.attribute "elm-pages:prefetch" ""
+            ]
+                |> List.map htmlAttribute
+    in
+    link (elmPagesAttrs ++ attrs) { url = url, label = label }
 
 
 spacer h =

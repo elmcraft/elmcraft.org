@@ -28,11 +28,11 @@ view model _ =
             -- , column
             --     [ width fill, spacing 20 ]
             --     [ heading2 [] "Elm ❤️'s"
-            --     , linkHover [] "Elm ❤️ Engineering" "/elm-loves/engineering"
-            --     , linkHover [] "Elm ❤️ Testing" "/elm-loves/testing"
-            --     , linkHover [] "Elm ❤️ Humans" "/elm-loves/humans"
-            --     , linkHover [] "Elm ❤️ Community" "/elm-loves/community"
-            --     , linkHover [] "Elm ❤️ Hiring" "/elm-loves/hiring"
+            --     , externalLink [] "Elm ❤️ Engineering" "/elm-loves/engineering"
+            --     , externalLink [] "Elm ❤️ Testing" "/elm-loves/testing"
+            --     , externalLink [] "Elm ❤️ Humans" "/elm-loves/humans"
+            --     , externalLink [] "Elm ❤️ Community" "/elm-loves/community"
+            --     , externalLink [] "Elm ❤️ Hiring" "/elm-loves/hiring"
             --     ]
             ]
         ]
@@ -45,7 +45,8 @@ view_old model _ =
 
             -- , heading1 "World of Elmcraft"
             , heading2 [] "A place for all things Elm"
-            , paragraph [] [ text "Welcome! We're just getting started here. Something missing? Got ideas? ", pageHover [] "Discuss them with us!" Pages.pages.discuss ]
+
+            -- , paragraph [] [ text "Welcome! We're just getting started here. Something missing? Got ideas? ", pageHover [] "Discuss them with us!" Pages.pages.discuss ]
             , spacer 20
             , column
                 [ width fill, spacing 20 ]
