@@ -2,23 +2,33 @@
 
 Built with [elm-pages](https://elm-pages.com/).
 
-The entrypoint file is `index.js`. That file imports `src/Main.elm`. The `content` folder is turned into static pages. The rest is mostly determined by logic in the Elm code! Learn more with the resources below.
+The entrypoint file is `index.js`. That file imports the generated elm-pages harness.
+
+The `content` folder markdown files are currently turned into static pages entirely via the single `Page.SPLAT__.elm` page mapping.
+
+Pretty much everything else about the site, from theming to functionality, is done from Elm.
+
 
 ## Development
 
+We're currently on the elm-pages v2 pre-release via a submodule.
+
 ```
+git submodule init
+git submodule update
 npm install
-npm start # starts a local dev server using `elm-pages develop`
+npx elm-pages build
+npm start # starts a local live-reloading dev server
 ```
 
-From there you can tweak the `content` folder or change the `src/Main.elm` file.
+From there you can tweak the `content` folder or change the Elm code.
 
 
 ## Pages
 
 To make a new page, simply add a new `your-path/your-page.md` in `content/`.
 
-The 'frontmatter' (bits between `---` at the top of the markdown file) drives other static gen config i.e. SEO, and can be extended if desired (see `src/Metadata.elm` for the mappings).
+The 'frontmatter' (bits between `---` at the top of the markdown file) drives other static gen config i.e. SEO, and can be extended if desired (follow from [`decodeMeta`](https://github.com/elmcraft/elmcraft.org/blob/main/src/Page/SPLAT__.elm#L55)).
 
 `elm-pages` will pick up new pages, compile them and type check them.
 
@@ -36,6 +46,4 @@ The UI on the Elm side is built with the [`elm-ui`](https://package.elm-lang.org
 
 ## Static files
 
-Images should go into `images/` – elm-pages picks these up and generates optimised versions in final build.
-
-Also anything static placed inside `public` will be [copied to in root](package.json#L8) at deploy.
+All static files including images should go into `public/`.
