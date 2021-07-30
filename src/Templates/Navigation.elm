@@ -213,7 +213,12 @@ groupItem route title description =
 highlightableLink currentRoute route displayName =
     let
         isHighlighted =
-            toPath currentRoute |> String.startsWith (toPath route)
+            case toPath route of
+                "/" ->
+                    toPath currentRoute == "/"
+
+                _ ->
+                    String.startsWith (toPath route) (toPath currentRoute)
     in
     routeLinkBare
         [ Font.semiBold
