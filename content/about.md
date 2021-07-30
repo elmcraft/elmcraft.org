@@ -3,6 +3,7 @@ type: page
 title: "About Elmcraft"
 description: A place for all things Elm
 published: false
+status: budding
 ---
 
 Elmcraft is an unofficial endeavour, curated by a bunch of people who love and use Elm <img width="20" src="/images/elmcraft-heart-transparent.png" />.
@@ -24,7 +25,10 @@ Elmcraft.org is a curated set of content using a [Digital Garden](https://maggie
 
 "Gardens are imperfect by design. They don't hide their rough edges or claim to be a permanent source of truth." Though we are striving towards a beautiful and well tended garden!
 
-Elmcraft uses the following  markers on content pages to help with context:
+
+### Markers
+
+Elmcraft uses the following markers on certain content pages to help with context:
 
 - 🌱 **Seedling**: rough and early content
 - 🪴 **Budding**: content that's mostly cleaned up and clarified

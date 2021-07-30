@@ -3,6 +3,7 @@
     "source-directories": [
         "src",
         "elm-pages/src",
+        "elm-pages/plugins",
         ".elm-pages"
     ],
     "elm-version": "0.19.1",
@@ -24,10 +25,12 @@
             "elm/url": "1.0.0",
             "elm-community/dict-extra": "2.4.0",
             "elm-community/list-extra": "8.3.0",
+            "elm-community/result-extra": "2.4.0",
             "mdgriffith/elm-ui": "1.1.8",
             "miniBill/elm-codec": "2.0.0",
             "noahzgordon/elm-color-extra": "1.0.2",
             "robinheghan/murmur3": "1.0.0",
+            "ryannhg/date-format": "2.3.0",
             "tripokey/elm-fuzzy": "5.2.1",
             "turboMaCk/non-empty-list-alias": "1.1.0",
             "vito/elm-ansi": "10.0.1",

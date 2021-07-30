@@ -28,9 +28,9 @@ view model =
                         ]
                     ]
                 , row [ spacing 10, alignRight ]
-                    [ -- routeLink [] "Terms" (splat_ "placeholder")
-                      -- , routeLink [] "Privacy" (splat_ "placeholder")
-                      externalLink [] "Github" "https://github.com/elmcraft/elmcraft.org"
+                    [-- routeLink [] "Terms" (splat_ "placeholder")
+                     -- , routeLink [] "Privacy" (splat_ "placeholder")
+                     -- externalLink [] "Github" "https://github.com/elmcraft/elmcraft.org"
                     ]
                 ]
             ]

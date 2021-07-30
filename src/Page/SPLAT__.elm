@@ -12,7 +12,7 @@ import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
 import OptimizedDecoder as Decode
-import OptimizedDecoder.Pipeline exposing (hardcoded, required)
+import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
@@ -22,8 +22,9 @@ import Route
 import Shared
 import Templates.Markdown
 import Theme
+import Timestamps exposing (Timestamps)
 import Types
-import View exposing (View)
+import View exposing (..)
 
 
 type alias Model =
@@ -41,6 +42,7 @@ type alias RouteParams =
 type alias Data =
     { ui : Types.Model -> List (Element Types.Msg)
     , meta : Meta
+    , timestamps : Timestamps
     }
 
 
@@ -48,8 +50,29 @@ type alias Meta =
     { title : String
     , description : String
     , published : Bool
+    , status : Maybe Status
     , route : Route.Route
     }
+
+
+decodeStatus : Decode.Decoder Status
+decodeStatus =
+    Decode.string
+        |> Decode.andThen
+            (\s ->
+                case s of
+                    "budding" ->
+                        Decode.succeed Budding
+
+                    "seedling" ->
+                        Decode.succeed Seedling
+
+                    "evergreen" ->
+                        Decode.succeed Evergreen
+
+                    _ ->
+                        Decode.fail ("Was expecting a Status of evergreen|seedling|budding but got: " ++ s)
+            )
 
 
 decodeMeta : List String -> Decode.Decoder Meta
@@ -58,6 +81,7 @@ decodeMeta splat =
         |> required "title" Decode.string
         |> required "description" Decode.string
         |> required "published" Decode.bool
+        |> optional "status" (Decode.maybe decodeStatus) Nothing
         |> hardcoded (Route.SPLAT__ { splat = splat })
 
 
@@ -155,6 +179,9 @@ data routeParams =
                                         (decodeMeta routeParams.splat)
                                         (markdownRenderer rawMarkdown path)
                                 )
+                            |> DataSource.map2
+                                (\ts d -> { ui = d.ui, meta = d.meta, timestamps = ts })
+                                (Timestamps.data path)
                     )
 
 
@@ -269,4 +296,6 @@ view maybeUrl sharedModel static =
     { title = static.data.meta.title
     , content = static.data.ui sharedModel
     , route = static.data.meta.route
+    , timestamps = static.data.timestamps
+    , status = static.data.meta.status
     }

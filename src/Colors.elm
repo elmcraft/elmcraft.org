@@ -17,6 +17,10 @@ purple =
     fromHex "#5b5cf1"
 
 
+purpleLight =
+    fromHex "#8485D6"
+
+
 yellow =
     fromHex "#E9A702"
 
@@ -27,6 +31,10 @@ green =
 
 charcoal =
     fromHex "#333"
+
+
+charcoalLight =
+    fromHex "#666"
 
 
 white =

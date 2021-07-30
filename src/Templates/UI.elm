@@ -36,12 +36,10 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
          ]
             ++ attrs
         )
-        [ rowToColumnWhen breakpoint
-            model
+        [ column
             [ centerX
             , width (fill |> maximum Templates.Layout.maxWidth)
             , paddingXY 30 0
-            , spacing 50
             ]
             children
         ]
@@ -188,7 +186,7 @@ heading { level, rawText, children } =
                 [ Font.size 35
                 , Font.bold
                 , Font.color charcoal
-                , paddingXY 0 20
+                , paddingXY 0 40
                 ]
 
             2 ->
@@ -199,7 +197,7 @@ heading { level, rawText, children } =
                 ]
 
             3 ->
-                [ Font.color charcoal
+                [ Font.color purpleLight
                 , Font.size 20
                 , Font.bold
                 , paddingXY 0 20
