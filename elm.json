@@ -2,7 +2,6 @@
     "type": "application",
     "source-directories": [
         "src",
-        "elm-pages/src",
         "elm-pages/plugins",
         ".elm-pages"
     ],
@@ -14,6 +13,7 @@
             "danyx23/elm-mimetype": "4.0.1",
             "dillonkearns/elm-bcp47-language-tag": "1.0.1",
             "dillonkearns/elm-markdown": "6.0.1",
+            "dillonkearns/elm-pages": "8.0.0",
             "elm/browser": "1.0.2",
             "elm/core": "1.0.5",
             "elm/html": "1.0.0",
@@ -24,7 +24,7 @@
             "elm/time": "1.0.0",
             "elm/url": "1.0.0",
             "elm-community/dict-extra": "2.4.0",
-            "elm-community/list-extra": "8.3.0",
+            "elm-community/list-extra": "8.3.1",
             "elm-community/result-extra": "2.4.0",
             "mdgriffith/elm-ui": "1.1.8",
             "miniBill/elm-codec": "2.0.0",
@@ -44,7 +44,7 @@
             "elm/random": "1.0.0",
             "elm/virtual-dom": "1.0.2",
             "fredcy/elm-parseint": "2.0.1",
-            "mgold/elm-nonempty-list": "4.1.0",
+            "mgold/elm-nonempty-list": "4.2.0",
             "rtfeldman/elm-hex": "1.0.0"
         }
     },
