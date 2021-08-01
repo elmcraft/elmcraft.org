@@ -5,9 +5,6 @@ description: Frequently asked questions about Elm
 published: false
 ---
 
-
-# Elm FAQs
-
 These are some frequently asked questions, particularly by newcomers to the Elm community.
 
 - What is Elm's roadmap? See: [Elm Roadmap](/faqs/elm-roadmap)

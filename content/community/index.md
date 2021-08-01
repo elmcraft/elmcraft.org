@@ -8,12 +8,12 @@ published: false
 
 ## [Forums / Chat](/community/forums-chat)
 
-Online spaces.
+Online spaces for Elm.
 
 ## [Meetups](/community/meetups)
 
-Meetups around the world.
+Elm Meetups around the world.
 
 ## [Conferences](/community/conferences)
 
-Conferences and larger events.
+Elm conferences and larger events.

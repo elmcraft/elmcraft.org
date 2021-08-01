@@ -21,10 +21,11 @@ topLevelNavItems =
     [ ( splat_ "", "Home" )
 
     -- , ( splat "discover" [], "Discover" )
-    , ( splat "build" [], "Build" )
+    -- , ( splat "build" [], "Build" )
     , ( splat "media" [], "Media" )
     , ( splat "community" [], "Community" )
-    , ( splat "commercial" [], "Commercial" )
+
+    -- , ( splat "commercial" [], "Commercial" )
     ]
 
 

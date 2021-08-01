@@ -49,6 +49,10 @@ red =
     Element.rgb 255 0 0
 
 
+pink =
+    fromHex "#f9eceb"
+
+
 grey =
     fromHex "#eee"
 

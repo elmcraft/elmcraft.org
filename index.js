@@ -8,4 +8,5 @@ pagesInit({
   mainElmModule: Elm.Main
 }).then(app => {
   // post-load
+  app.ports.setDev.send(window.location.hostname == "localhost")
 })

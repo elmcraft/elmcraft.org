@@ -61,11 +61,11 @@ decodeStatus =
         |> Decode.andThen
             (\s ->
                 case s of
-                    "budding" ->
-                        Decode.succeed Budding
-
                     "seedling" ->
                         Decode.succeed Seedling
+
+                    "budding" ->
+                        Decode.succeed Budding
 
                     "evergreen" ->
                         Decode.succeed Evergreen
@@ -81,7 +81,7 @@ decodeMeta splat =
         |> required "title" Decode.string
         |> required "description" Decode.string
         |> required "published" Decode.bool
-        |> optional "status" (Decode.maybe decodeStatus) Nothing
+        |> optional "status" (decodeStatus |> Decode.andThen (\v -> Decode.succeed <| Just v)) Nothing
         |> hardcoded (Route.SPLAT__ { splat = splat })
 
 

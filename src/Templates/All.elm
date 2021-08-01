@@ -26,7 +26,7 @@ htmlMapping : Types.Model -> Markdown.Html.Renderer (List (Element msg) -> Eleme
 htmlMapping model =
     Markdown.Html.oneOf
         [ Markdown.Html.tag "img"
-            (\src width_ maxWidth_ content ->
+            (\src width_ maxWidth_ bg_ content ->
                 let
                     attrs =
                         case maxWidth_ of
@@ -45,11 +45,17 @@ htmlMapping model =
                                     |> Maybe.withDefault (width fill)
                                 ]
                 in
-                image attrs { src = src, description = "" }
+                case bg_ of
+                    Just bg ->
+                        el [ Background.color <| fromHex bg, Border.rounded 10, padding 20 ] <| image attrs { src = src, description = "" }
+
+                    Nothing ->
+                        image attrs { src = src, description = "" }
             )
             |> Markdown.Html.withAttribute "src"
             |> Markdown.Html.withOptionalAttribute "width"
             |> Markdown.Html.withOptionalAttribute "maxwidth"
+            |> Markdown.Html.withOptionalAttribute "bg"
         , Markdown.Html.tag "header"
             (\src description content ->
                 Templates.Header.view model src description content
@@ -83,7 +89,7 @@ htmlMapping model =
             |> Markdown.Html.withAttribute "image"
         , Markdown.Html.tag "button"
             (\label url content ->
-                buttonLinkPrimary [ Font.size 16, paddingXY 19 11 ] url label
+                el [ paddingXY 0 20 ] <| buttonLinkPrimary [ Font.size 16, paddingXY 19 11 ] url label
             )
             |> Markdown.Html.withAttribute "label"
             |> Markdown.Html.withAttribute "url"
@@ -95,7 +101,9 @@ htmlMapping model =
             |> Markdown.Html.withAttribute "url"
         , Markdown.Html.tag "title" (\content -> headingLargest [] content)
         , Markdown.Html.tag "small" (\content -> paragraph [ Font.size 14 ] content)
-        , Markdown.Html.tag "row" (\content -> row [ spacing 20 ] content)
+        , Markdown.Html.tag "row" (\content -> row [ spacing 20, width fill ] content)
+        , Markdown.Html.tag "column" (\children -> column [ width fill ] children)
+        , Markdown.Html.tag "rowtocolumnwhensmall" (\content -> rowToColumnWhenSmall model [ spacing 20, width fill ] content)
         , Markdown.Html.tag "center" (\content -> column [ centerX, paddingXY 0 20 ] content)
         , Markdown.Html.tag "arrowlink"
             (\href label _ ->
@@ -153,13 +161,24 @@ htmlMapping model =
             (\children ->
                 row [ width fill, spacing 20 ] children
             )
-        , Markdown.Html.tag "column"
-            (\children ->
-                column [ width fill ] children
-            )
         , Markdown.Html.tag "paragraph"
             (\children ->
                 paragraph [ spacing 5 ] children
+            )
+        , Markdown.Html.tag "box"
+            (\children ->
+                column
+                    [ paddingEach { top = 0, right = 20, bottom = 5, left = 20 }
+                    , Background.color white
+                    , Border.shadow { offset = ( 0, 1 ), size = 0, blur = 2, color = rgba 0 0 0 0.1 }
+                    , Border.color grey
+                    , Border.width 1
+                    , Border.rounded 5
+                    , width fill
+                    , height fill
+                    , alignTop
+                    ]
+                    children
             )
         , Markdown.Html.tag "internal"
             (\children ->
@@ -168,6 +187,30 @@ htmlMapping model =
                         [ el [ Font.bold ] <| text "Internal note:"
                         , column [] children
                         ]
+
+                else
+                    none
+            )
+        , Markdown.Html.tag "wip"
+            (\children ->
+                if model.isDev then
+                    column
+                        [ Background.color pink
+                        , width fill
+                        , inFront <|
+                            el [ padding 5, alignRight ] <|
+                                el
+                                    [ Background.color red
+                                    , Border.rounded 10
+                                    , alignRight
+                                    , padding 5
+                                    , Font.size 10
+                                    , Font.color white
+                                    ]
+                                <|
+                                    text "WIP"
+                        ]
+                        children
 
                 else
                     none

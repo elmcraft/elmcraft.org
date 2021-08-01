@@ -1,4 +1,4 @@
-module Shared exposing (..)
+port module Shared exposing (..)
 
 import Browser.Dom
 import Browser.Events
@@ -15,7 +15,11 @@ import SharedTemplate exposing (SharedTemplate)
 import Task
 import Theme
 import Types exposing (..)
+import Url
 import View exposing (View)
+
+
+port setDev : (Bool -> msg) -> Sub msg
 
 
 template : SharedTemplate Msg Model Data msg
@@ -74,6 +78,9 @@ update msg model =
 
         WindowResized width height ->
             ( { model | window = { width = width, height = height } }, Cmd.none )
+
+        SetDev bool ->
+            ( { model | isDev = bool }, Cmd.none )
 
         NewTime newTime ->
             -- ( { model | currentTime = newTime }, Cmd.none )
@@ -138,7 +145,10 @@ update msg model =
 
 subscriptions : Path -> Model -> Sub Msg
 subscriptions _ _ =
-    Sub.batch [ Browser.Events.onResize Types.WindowResized ]
+    Sub.batch
+        [ Browser.Events.onResize Types.WindowResized
+        , setDev SetDev
+        ]
 
 
 data : DataSource.DataSource Data

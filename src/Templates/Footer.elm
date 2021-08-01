@@ -24,7 +24,7 @@ view model =
                 [ row [ alignLeft, width fill ]
                     [ paragraph []
                         [ text " © elmcraft.org "
-                        , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "Creative Commons Attribution-ShareAlike 4.0 International License" } }
+                        , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "CC BY-SA Icon" } }
                         ]
                     ]
                 , row [ spacing 10, alignRight ]
@@ -42,47 +42,53 @@ footerNav model =
         item title route =
             routeLink [] title route
     in
-    whenMoreThan 800 model <|
-        row [ width fill, spacing 20 ]
-            [ -- footerGroup "Discover"
-              --     [ item "Curious" (splat "discover" [ "curious" ])
-              --     , item "Beginner" (splat "discover" [ "beginner" ])
-              --     , item "Developer" (splat "discover" [ "developer" ])
-              --     , item "Manager/CTO" (splat "discover" [ "manager" ])
-              --     ]
-              footerGroup "Build"
-                [ item "Packages" (splat "build" [ "packages" ])
-                , item "Tooling" (splat "build" [ "tooling" ])
-                , item "Design patterns" (splat "build" [ "design-patterns" ])
-                , item "Examples" (splat "build" [ "examples" ])
-                , item "Contributing" (splat "build" [ "contributing" ])
-                ]
-            , footerGroup "Media"
-                [ item "Newsletters" (splat "media" [ "newsletters" ])
-                , item "Articles" (splat "media" [ "articles" ])
-                , item "Podcasts" (splat "media" [ "podcasts" ])
-                , item "Videos" (splat "media" [ "videos" ])
-                , item "Books" (splat "media" [ "books" ])
-                ]
-            , footerGroup "Community"
-                [ item "Forums/Chat" (splat "community" [ "forums-chat" ])
-                , item "Meetups" (splat "community" [ "meetups" ])
-                , item "Conferences" (splat "community" [ "conferences" ])
-                , item "FAQs" (splat "faqs" [])
-                ]
-            , footerGroup "Commercial"
-                [ item "Elm at work" (splat "commercial" [ "elm-at-work" ])
-                , item "Succcess stories" (splat "commercial" [ "success-stories" ])
-                , item "Hiring" (splat "commercial" [ "hiring" ])
-                , item "Jobs" (splat "commercial" [ "jobs" ])
-                , item "Support" (splat "commercial" [ "support" ])
-                ]
-            , footerGroup "Elmcraft"
-                [ item "About" (splat_ "about")
-                , item "Discuss" (splat_ "discuss")
-                , externalLink [] "Github" "https://github.com/elmcraft/elmcraft.org"
-                ]
+    rowToColumnWhen 800
+        model
+        [ width fill, spacing 20 ]
+        [ -- footerGroup "Discover"
+          --     [ item "Curious" (splat "discover" [ "curious" ])
+          --     , item "Beginner" (splat "discover" [ "beginner" ])
+          --     , item "Developer" (splat "discover" [ "developer" ])
+          --     , item "Manager/CTO" (splat "discover" [ "manager" ])
+          --     ]
+          -- footerGroup "Build"
+          --   [ item "Packages" (splat "build" [ "packages" ])
+          --   , item "Tooling" (splat "build" [ "tooling" ])
+          --   , item "Design patterns" (splat "build" [ "design-patterns" ])
+          --   , item "Examples" (splat "build" [ "examples" ])
+          --   , item "Contributing" (splat "build" [ "contributing" ])
+          --   ]
+          footerGroup "Media"
+            [ item "Newsletters" (splat "media" [ "newsletters" ])
+
+            -- , item "Articles" (splat "media" [ "articles" ])
+            , item "Podcasts" (splat "media" [ "podcasts" ])
+
+            -- , item "Videos" (splat "media" [ "videos" ])
+            -- , item "Books" (splat "media" [ "books" ])
             ]
+        , footerGroup "Community"
+            [ item "Forums/Chat" (splat "community" [ "forums-chat" ])
+            , item "Meetups" (splat "community" [ "meetups" ])
+            , item "Conferences" (splat "community" [ "conferences" ])
+
+            -- , item "FAQs" (splat "faqs" [])
+            ]
+
+        -- , footerGroup "Commercial"
+        --     [ item "Elm at work" (splat "commercial" [ "elm-at-work" ])
+        --     , item "Succcess stories" (splat "commercial" [ "success-stories" ])
+        --     , item "Hiring" (splat "commercial" [ "hiring" ])
+        --     , item "Jobs" (splat "commercial" [ "jobs" ])
+        --     , item "Support" (splat "commercial" [ "support" ])
+        --     ]
+        , footerGroup "Elmcraft"
+            [ item "About" (splat_ "about")
+            , item "Discuss" (splat_ "discuss")
+
+            -- , externalLink [] "Github" "https://github.com/elmcraft/elmcraft.org"
+            ]
+        ]
 
 
 footerGroup title items =

@@ -178,13 +178,20 @@ rowToColumnWhen width model attrs children =
         column attrs children
 
 
+rowToColumnWhenSmall model attrs children =
+    if model.window.width > 700 then
+        row attrs children
+
+    else
+        column attrs children
+
+
 heading : { level : HeadingLevel, rawText : String, children : List (Element msg) } -> Element msg
 heading { level, rawText, children } =
     paragraph
         ((case headingLevelToInt level of
             1 ->
                 [ Font.size 35
-                , Font.bold
                 , Font.color charcoal
                 , paddingXY 0 40
                 ]

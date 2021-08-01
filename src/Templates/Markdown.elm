@@ -34,7 +34,7 @@ renderer model =
     , blockQuote =
         \children ->
             -- fromHtml <| Html.blockquote [] (asHtml children)
-            column [ paddingXY 0 20 ]
+            column [ paddingXY 0 20, width fill ]
                 [ column
                     [ Font.size 20
                     , Font.italic
@@ -126,7 +126,7 @@ renderer model =
                 , width fill
                 ]
                 [ paragraph [] [ text body ] ]
-    , thematicBreak = none
+    , thematicBreak = el [ Background.color grey, height (px 2), width fill ] none
     , table = \children -> column [ width fill ] children
     , tableHeader = \children -> column [] children
     , tableBody = \children -> column [] children

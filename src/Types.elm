@@ -40,6 +40,7 @@ type Msg
         }
     | SharedMsg SharedMsg
     | WindowResized Int Int
+    | SetDev Bool
     | NewTime Time.Posix
     | CookieConsentValueReceived (Maybe Bool)
     | CookieConsentSet Bool

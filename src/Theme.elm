@@ -51,10 +51,10 @@ view x toWrapperMsg model static =
                     , let
                         statusToString status =
                             case status of
-                                Budding ->
+                                Seedling ->
                                     "Seedling 🌱"
 
-                                Seedling ->
+                                Budding ->
                                     "Budding \u{1FAB4}"
 
                                 Evergreen ->
@@ -64,7 +64,7 @@ view x toWrapperMsg model static =
                         Just status ->
                             el [ paddingXY 0 10 ] <|
                                 paragraph [ Font.color charcoalLight, Font.size 14 ] <|
-                                    [ el [ Font.color <| fromHex "#98B68F" ] <| text <| statusToString status
+                                    [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
                                     , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
                                     ]
 
