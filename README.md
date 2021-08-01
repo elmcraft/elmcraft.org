@@ -11,7 +11,7 @@ Pretty much everything else about the site, from theming to functionality, is do
 
 ## Development
 
-We're currently on the elm-pages v2 pre-release via a submodule.
+We're currently using some elm-pages v2 pre-release plug-ins via a submodule.
 
 ```
 git submodule init
