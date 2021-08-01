@@ -72,9 +72,9 @@ status: budding
 ### Discord
 
 - [Elmcraft](/discuss) - for anyone who wants to discuss crafting with Elm!
-- Elm-in-Elm – for the [Elm-in-Elm project](https://github.com/elm-in-elm/compiler)
--  [Incremental Elm](https://incrementalelm.com/chat/) – The Incremental Elm Community Chat is a place for Elm Open Source creators and contributors to coordinate, collaborate, share, and celebrate work to further the Elm ecosystem.
-- Lamdera – for the [Lamdera platform](https://lamdera.com)
+- [Incremental Elm](https://incrementalelm.com/chat/) – The Incremental Elm Community Chat is a place for Elm Open Source creators and contributors to coordinate, collaborate, share, and celebrate work to further the Elm ecosystem.
+- [Elm-in-Elm](https://github.com/elm-in-elm/compiler#contributing) – for the [Elm-in-Elm project](https://github.com/elm-in-elm/compiler)
+- [Lamdera](https://dashboard.lamdera.app/docs/discuss) – for the [Lamdera platform](https://lamdera.com)
 
 
 ### Other

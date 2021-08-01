@@ -24,4 +24,4 @@ See the upcoming meetups at [https://meetdown.app/group/10561/Elm-Online-Meetup]
 
 Many regular Elm meetups were hosted on Meetup.com.
 
-You can find most of them by [searching for "Elm"](@TODO).
+You can find most of them via the [Meetup.com Elm topic](https://www.meetup.com/topics/elm/).
