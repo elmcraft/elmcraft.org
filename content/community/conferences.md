@@ -13,6 +13,7 @@ Due to Covid, there are currently no upcoming conferences.
 
 ## Past conferences
 
+- Elm Conf 2016
 - Elm Conf 2017
 - Elm Conf 2018
 - Elm Conf 2019
