@@ -19,6 +19,7 @@ import Types exposing (..)
 
 topLevelNavItems =
     [ ( splat_ "", "Home" )
+    , ( splat "learn" [], "Learn" )
 
     -- , ( splat "discover" [], "Discover" )
     -- , ( splat "build" [], "Build" )

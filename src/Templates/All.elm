@@ -127,6 +127,7 @@ htmlMapping model =
             )
             |> Markdown.Html.withOptionalAttribute "size"
         , Markdown.Html.tag "nospacing" (\content -> column [] content)
+        , Markdown.Html.tag "br" (\content -> fromHtml <| Html.br [] [])
         , Markdown.Html.tag "pill"
             (\color children ->
                 row [ Background.color <| translateColloquialNames color, paddingXY 10 5, Border.rounded 5 ] children
@@ -179,6 +180,11 @@ htmlMapping model =
                     , alignTop
                     ]
                     children
+            )
+        , Markdown.Html.tag "teaser"
+            (\children ->
+                column [ padding 20, spacing 10, Font.size 11, Font.italic ]
+                    [ paragraph [ spacing 3 ] children ]
             )
         , Markdown.Html.tag "internal"
             (\children ->

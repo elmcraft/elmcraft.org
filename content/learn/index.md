@@ -11,6 +11,8 @@ There are lots of learning materials for Elm, but sometimes it's hard to find th
 
 Here's our guide to help you on your way!
 
+Looking to learn something more specific? Ask in one of the [Community forums](/community/forums-chat).
+
 
 ## Common starting points
 
