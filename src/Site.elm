@@ -14,12 +14,11 @@ type alias Data =
 
 config : SiteConfig Data
 config =
-    \_ ->
-        { data = data
-        , canonicalUrl = "https://elmcraft.org"
-        , manifest = manifest
-        , head = head
-        }
+    { data = data
+    , canonicalUrl = "https://elmcraft.org"
+    , manifest = manifest
+    , head = head
+    }
 
 
 data : DataSource.DataSource Data
