@@ -11,6 +11,7 @@
   "devDependencies": {
     "elm": "latest-0.19.1",
     "elm-format": "^0.8.5",
+    "elm-optimize-level-2": "^0.1.5",
     "elm-pages": "^2.1.7"
   }
 }
