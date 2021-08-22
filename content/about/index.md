@@ -34,7 +34,7 @@ Though we are striving towards a beautiful and well tended garden!
 
 Elmcraft uses the following markers on certain content pages to help with context:
 
-- 🌱 **Seedling**: rough and early content
+- 🌱 **Seedling**: rough and early content, draft or notes
 - 🪴 **Budding**: content that's mostly cleaned up and clarified
 - 🌳 **Evergreen**: content that's reasonably complete, and tended to over time
 

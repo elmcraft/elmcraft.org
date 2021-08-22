@@ -43,26 +43,29 @@ Check out a list of recent package updates at [https://elm-greenwood.com/](https
 
 There are many active and excited contributors to the Elm ecosystem.
 
-Here are some of the more ambitious projects:
+Here are some of the more ambitious and highly active projects:
 
 - [elm-pages](https://elm-pages.com/) by Dillon
 - [elm-ui](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/) by Matthew
 - [elm-spa](https://www.elm-spa.dev/) by Ryan
-- [ren](https://ren-lang.github.io/) by Hayleigh
+- [elm-review](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) by Jeroen
 - [Elm Language Server](https://github.com/elm-tooling/elm-language-server) by Kolja
+- [ren lang](https://ren-lang.github.io/) by Hayleigh
 
 See also the list of some Elm contributors with sponsorship options at [awesome-elm-sponsorship](https://github.com/jfmengels/awesome-elm-sponsorship).
 
 
-## Why is this question still frequent?
+## Why is this question frequent?
 
-There are a number of reasons:
+There are a number of reasons, but in brief;
 
-- Success in Elm is measured differently to some other languages, in particular not by popularity. Lots of folks coming from Javascript bring across these expectations and then ask questions when they don't see the same indicators in Elm.
+- Success in Elm is not measured in popularity or Github activity.
+  - Elm's core release cycle works in batches, so a lack of frequent updates is not an indicator of inactivity.
+- Sometimes folks coming from Javascript or other languages bring across these expectations and then ask questions when they don't see the same indicators in the Elm ecosystem.
 
-- Elm's core release cycle works in batches, so a lack of frequent updates is not an indicator of inactivity.
-
-- These differences have created a fatigue in the Elm community over the years:
+- Elm's core development is not done by committee, but by trust.
+- Elm's [design philosophy](/todo) means certain things aren't available by design (like inline JS FFI from Elm).
+- These differences and the recurring questions have created a fatigue in the Elm community over the years:
 
 > Honestly I think the main reason for this perception is that people in the Elm community have gotten increasingly tired of correcting inaccuracies people like to post about Elm on Hacker News.
 >

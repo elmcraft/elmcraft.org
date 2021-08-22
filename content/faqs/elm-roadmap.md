@@ -1,11 +1,10 @@
 ---
 type: page
 title: Elm's Roadmap
-description: A deeper look at a common question
+description: What is Elm's roadmap?
 published: false
+status: seedling
 ---
-
-# What is Elm's roadmap?
 
 > If you like what you see now, that's pretty much what Elm is going to be for a while.
 
