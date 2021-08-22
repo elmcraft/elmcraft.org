@@ -1,4 +1,4 @@
-module Database.Companies exposing (..)
+module Data.Companies exposing (..)
 
 
 companies =
