@@ -43,3 +43,21 @@ Prefer listening on the go? There are plenty of Elm podcast episodes to keep you
 </rowToColumnWhenSmall>
 
 > A podcast about the people making and using the Elm language, and the things that they do.
+
+
+## Implementing Elm
+
+
+<rowToColumnWhenSmall>
+  <img src="/images/logos/implementing-elm.png" bg="#0B1317" width="120" />
+
+  <column>
+
+  5 Episodes
+
+  [https://www.implementingelm.com/](https://www.implementingelm.com/)
+
+  </column>
+</rowToColumnWhenSmall>
+
+> Implementing Elm will dive deep into specific problems to help the Elm community get better together by listening to real implementation stories from the Elm community.
