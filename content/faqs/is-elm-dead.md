@@ -31,6 +31,10 @@ Elm has a active and vibrant community, with over 20,000 members on Slack, an ac
 
 There are also [Meetups](/community) and [Conferences](/community/conferences), though less active due to Covid same as everyone.
 
+## Elm Core
+
+Elm's core release cycle works in batches, so a lack of frequent updates is not an indicator of inactivity.
+
 
 ## Elm Packages
 
