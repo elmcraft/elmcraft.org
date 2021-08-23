@@ -33,18 +33,15 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 
 #### Paid Books
 
-These books all go into more details for real-world Elm usage on projects.
+These books all go into more detail for real-world Elm usage on projects.
 
-- [Elm in Action](https://www.manning.com/books/elm-in-action) (eBook/print) - Richard Feldman (USD$39.99)
-
-- [Practical Elm for a Busy Developer](https://korban.net/elm/) (eBook) - Alex Korban - (USD$39)
-
-- [Programming Elm](https://pragprog.com/titles/jfelm/programming-elm/) (eBook) - Jeremy Fairbank - (USD$21.95)
-
+- [Elm in Action](https://www.manning.com/books/elm-in-action) (eBook/print) - Richard Feldman
+- [Practical Elm for a Busy Developer](https://korban.net/elm/) (eBook) - Alex Korban
+- [Programming Elm](https://pragprog.com/titles/jfelm/programming-elm/) (eBook) - Jeremy Fairbank
 
 Other books:
 
-- [Why Elm?](https://www.oreilly.com/library/view/why-elm/9781491990728/) - Matthew Griffith - (O’Reilly subscription, 10 day free trial)
+- [Why Elm?](https://www.oreilly.com/library/view/why-elm/9781491990728/) - Matthew Griffith
 
 
 ### With no programming experience:
@@ -59,7 +56,10 @@ Other "Learn Elm" collections:
 - [https://github.com/dwyl/learn-elm](https://github.com/dwyl/learn-elm)
 
 
+
+<wip>
 ## Known unfinished guides
 
 - [Learn You an Elm](https://learnyouanelm.github.io/)<br/>
   - Based on [Learn You a Haskell for a Great Good](http://learnyouahaskell.com/chapters). Some TODO's and not updated for 0.19 yet.
+</wip>
