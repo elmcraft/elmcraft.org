@@ -3,10 +3,12 @@ port module Shared exposing (..)
 import Browser.Dom
 import Browser.Events
 import Browser.Navigation
+import Data.Videos
 import DataSource
 import Dict
 import Element exposing (..)
 import Html exposing (Html)
+import Notion
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
 import Path exposing (Path)
@@ -38,7 +40,7 @@ type alias Msg =
 
 
 type alias Data =
-    ()
+    { videos : List Data.Videos.Video }
 
 
 type alias SharedMsg =
@@ -153,7 +155,8 @@ subscriptions _ _ =
 
 data : DataSource.DataSource Data
 data =
-    DataSource.succeed ()
+    Notion.getVideos
+        |> DataSource.map (\videos -> { videos = videos })
 
 
 view :
@@ -169,5 +172,6 @@ view :
 view sharedData page model toMsg pageView =
     { title = pageView.title
     , body =
-        Theme.view { page = page, pageView = pageView } toMsg model pageView
+        -- @NOTE: the sharedData is not helpful here, as pageView already contains rendered page
+        Theme.view { page = page, pageView = pageView, sharedData = sharedData } toMsg model pageView
     }

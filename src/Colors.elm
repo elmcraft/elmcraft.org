@@ -53,8 +53,16 @@ pink =
     fromHex "#f9eceb"
 
 
+pinkDarker =
+    fromHex "#e7b0c8"
+
+
 grey =
     fromHex "#eee"
+
+
+greyDark =
+    fromHex "#ccc"
 
 
 fromHex : String -> Color

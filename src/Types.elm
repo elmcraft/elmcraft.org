@@ -1,5 +1,6 @@
 module Types exposing (..)
 
+import Data.Videos
 import Dict exposing (Dict)
 import Path exposing (Path)
 import Route exposing (Route)
@@ -13,6 +14,10 @@ type alias Model =
     , navExpanded : Bool
     , navItemExpanded : Dict String Bool
     }
+
+
+type alias GlobalData =
+    { videos : List Data.Videos.Video }
 
 
 init : { isDev : Bool } -> Model

@@ -1,5 +1,6 @@
 module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
+import Data.Videos
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
@@ -11,6 +12,7 @@ import Html
 import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
+import Notion
 import OptimizedDecoder as Decode
 import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Page exposing (Page, PageWithState, StaticPayload)
@@ -40,9 +42,10 @@ type alias RouteParams =
 
 
 type alias Data =
-    { ui : Types.Model -> List (Element Types.Msg)
+    { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
     , meta : Meta
     , timestamps : Timestamps
+    , global : { videos : List Data.Videos.Video }
     }
 
 
@@ -153,8 +156,8 @@ data routeParams =
                 |> Result.andThen
                     (\blocks ->
                         Ok
-                            (\model_ ->
-                                case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
+                            (\model_ global_ ->
+                                case Markdown.Renderer.render (Templates.Markdown.renderer model_ global_) blocks of
                                     Ok ui ->
                                         ui
 
@@ -179,9 +182,10 @@ data routeParams =
                                         (decodeMeta routeParams.splat)
                                         (markdownRenderer rawMarkdown path)
                                 )
-                            |> DataSource.map2
-                                (\ts d -> { ui = d.ui, meta = d.meta, timestamps = ts })
+                            |> DataSource.map3
+                                (\ts videos d -> { ui = d.ui, meta = d.meta, timestamps = ts, global = { videos = videos } })
                                 (Timestamps.data path)
+                                Notion.getVideos
                     )
 
 
@@ -294,7 +298,7 @@ view :
     -> View Types.Msg
 view maybeUrl sharedModel static =
     { title = static.data.meta.title
-    , content = static.data.ui sharedModel
+    , content = static.data.ui sharedModel static.data.global
     , route = static.data.meta.route
     , timestamps = static.data.timestamps
     , status = static.data.meta.status
