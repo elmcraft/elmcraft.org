@@ -77,7 +77,12 @@ test =
 
 embed : Video -> Element msg
 embed video =
-    column [ width fill, spacing 4 ]
+    column
+        [ width fill
+        , spacing 4
+        , Background.color grey
+        , padding 10
+        ]
         [ videoThumbnail video
         , el [ Font.bold ] <| text video.name
         , el [] <| text video.speaker
@@ -112,6 +117,7 @@ categoryPill mCount category =
                 , Background.color <| categoryToBackground category
                 , paddingXY 6 4
                 , Font.size 13
+                , Font.color white
                 ]
             <|
                 text <|
@@ -452,101 +458,101 @@ categoryFromString s =
 
 categoryToBackground c =
     case c of
-        Acesssibility ->
-            pinkDarker
-
-        Animation ->
-            red
-
         Art ->
-            red
-
-        Audio ->
-            red
-
-        Charts ->
-            red
-
-        Commercial ->
-            red
-
-        Community ->
-            elmTeal
-
-        Concept ->
-            red
-
-        DatesTime ->
-            red
+            colourCategory1
 
         Design ->
-            red
-
-        ElmPhilosophy ->
-            elmTeal
-
-        ExperienceReport ->
-            red
-
-        Games ->
-            red
-
-        Graphics ->
-            pinkDarker
-
-        Graphs ->
-            pinkDarker
-
-        Guide ->
-            green
-
-        Hobby ->
-            red
-
-        Interop ->
-            red
-
-        Keynote ->
-            elmTeal
-
-        Learn ->
-            green
-
-        Maps ->
-            red
-
-        Media ->
-            red
-
-        Meta ->
-            red
-
-        PannelDiscussion ->
-            green
-
-        Product ->
-            red
-
-        Project ->
-            red
-
-        Robotics ->
-            red
-
-        Teaching ->
-            red
-
-        Testing ->
-            red
+            colourCategory1
 
         UI ->
-            pinkDarker
+            colourCategory2
 
-        Unknown ->
-            greyDark
+        Acesssibility ->
+            colourCategory2
+
+        Charts ->
+            colourCategory3
+
+        Graphs ->
+            colourCategory3
 
         Visualisation ->
-            pinkDarker
+            colourCategory3
+
+        Maps ->
+            colourCategory3
+
+        Animation ->
+            colourCategory4
+
+        Graphics ->
+            colourCategory4
 
         WebGL ->
-            pinkDarker
+            colourCategory4
+
+        Media ->
+            colourCategory4
+
+        Audio ->
+            colourCategory4
+
+        Games ->
+            colourCategory4
+
+        DatesTime ->
+            colourCategory5
+
+        ElmPhilosophy ->
+            colourCategory6
+
+        Community ->
+            colourCategory6
+
+        Meta ->
+            colourCategory6
+
+        PannelDiscussion ->
+            colourCategory6
+
+        Keynote ->
+            colourCategory6
+
+        Learn ->
+            colourCategory7
+
+        Guide ->
+            colourCategory7
+
+        Concept ->
+            colourCategory7
+
+        Interop ->
+            colourCategory7
+
+        Testing ->
+            colourCategory7
+
+        Teaching ->
+            colourCategory7
+
+        ExperienceReport ->
+            colourCategory8
+
+        Hobby ->
+            colourCategory8
+
+        Product ->
+            colourCategory8
+
+        Project ->
+            colourCategory8
+
+        Robotics ->
+            colourCategory8
+
+        Commercial ->
+            colourCategory8
+
+        Unknown ->
+            colourCategory9

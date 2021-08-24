@@ -49,6 +49,42 @@ red =
     Element.rgb 255 0 0
 
 
+elmcraftNude =
+    rgb 235 142 139
+
+
+elmcraftPink =
+    rgb 208 113 165
+
+
+elmcraftMauve =
+    rgb 167 72 201
+
+
+elmcraftPurple2 =
+    rgb 135 43 231
+
+
+elmcraftPurple =
+    rgb 131 75 242
+
+
+elmcraftViolet =
+    rgb 108 41 238
+
+
+elmcraftBluePurple =
+    rgb 72 67 238
+
+
+elmcraftElectricBlue =
+    rgb 75 118 244
+
+
+elmcraftTurquoise =
+    rgb 78 169 244
+
+
 pink =
     fromHex "#f9eceb"
 
@@ -63,6 +99,42 @@ grey =
 
 greyDark =
     fromHex "#ccc"
+
+
+colourCategory1 =
+    elmcraftNude
+
+
+colourCategory2 =
+    elmcraftPink
+
+
+colourCategory3 =
+    elmcraftMauve
+
+
+colourCategory4 =
+    elmcraftPurple2
+
+
+colourCategory5 =
+    elmcraftViolet
+
+
+colourCategory6 =
+    elmcraftBluePurple
+
+
+colourCategory7 =
+    elmcraftElectricBlue
+
+
+colourCategory8 =
+    elmcraftTurquoise
+
+
+colourCategory9 =
+    greyDark
 
 
 fromHex : String -> Color
@@ -82,3 +154,7 @@ fromHex str =
 alpha80 : Color -> Color
 alpha80 c =
     c |> Element.toRgb |> (\c_ -> { c_ | alpha = 0.8 }) |> Element.fromRgb
+
+
+rgb =
+    Element.rgb255
