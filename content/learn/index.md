@@ -48,6 +48,16 @@ Other books:
 
 There is unfortunately no known material in this area! We hope there will be soon. Know of something? [Let us know](/discuss).
 
+## Exercises
+
+- Join [Exercism's Elm Track](https://exercism.org/tracks/elm/) for access to 54 exercises grouped into 8 Elm Concepts, with automatic analysis of your code and personal mentoring. (Free)
+
+
+## References
+
+- [Elm Cookbook](https://orasund.gitbook.io/elm-cookbook/) - Jeremy Fairbank, the author of the Book Programming Elm, noticed that there is no Elm cookbook, that would serve as a follow-up to a beginners book. This book aims to fill this empty spot.
+- [Elm Types Glossary](https://gist.github.com/JoelQ/6b303d9ad450537163b6f8f6cf8a4ed8) - There's a lot of type terminology and jargon going around when discussing types in Elm. This glossary attempts to list some of the most common type terms along with synonyms, terms from other language communities, examples, and links to more detailed articles on each topic.
+
 
 ## Meta guides
 
