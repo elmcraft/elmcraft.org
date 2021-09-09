@@ -93,9 +93,20 @@ renderer model =
                                         , paddingEach { top = 0, right = 0, bottom = 0, left = 20 }
                                         , width fill
                                         ]
-                                        [ paragraph
-                                            [ alignTop ]
-                                            (text " • " :: children)
+                                        [ column
+                                            [ alignTop, width fill, spacing 5 ]
+                                            (case children of
+                                                [] ->
+                                                    [ none ]
+
+                                                el :: [] ->
+                                                    [ paragraph [] [ text <| " • ", el ] ]
+
+                                                el :: nested ->
+                                                    [ paragraph [] [ text <| " • ", el ]
+                                                    ]
+                                                        ++ nested
+                                            )
                                         ]
                         )
                 )

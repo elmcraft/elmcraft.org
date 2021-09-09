@@ -26,5 +26,5 @@ A lot of the content Joel has created aims to make core concepts more accessible
 - 2-part series introducing working with custom types
   - [Booleans and Enums](https://thoughtbot.com/blog/booleans-and-enums)
   - [Modeling with Union Types](https://thoughtbot.com/blog/modeling-with-union-types)
-- [5 Common JSON Decoders](https://thoughtbot.com/blog/5-common-json-decoders) - Solutions to common decoder problems beyond the standard tutorial examples (e.g. how to decode a custom type)
-- [Modeling Currency in Elm using Phantom Types](https://thoughtbot.com/blog/modeling-currency-in-elm-using-phantom-types) - Practical introduction to phantom types (this is a bit beyond beginner level)
+- [5 Common JSON Decoders](https://thoughtbot.com/blog/5-common-json-decoders) Solutions to common decoder problems beyond the standard tutorial examples (e.g. how to decode a custom type)
+- [Modeling Currency in Elm using Phantom Types](https://thoughtbot.com/blog/modeling-currency-in-elm-using-phantom-types) Practical introduction to phantom types (this is a bit beyond beginner level)
