@@ -1,7 +1,7 @@
 ---
 type: page
 title: Elm Forums/Chat
-description: Elm community forums/chat, online spaaces for Elm
+description: Elm community forums/chat, online spaces for Elm
 published: true
 status: budding
 ---
