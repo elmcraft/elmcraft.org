@@ -163,8 +163,10 @@ subscriptions _ _ =
 
 data : DataSource.DataSource Data
 data =
-    Notion.getVideos
-        |> DataSource.map (\videos -> { videos = videos })
+    -- @TODO figure out how we can use this globally and swap for SPLAT__ usage of Notion.getVideos
+    -- Notion.getVideos
+    --     |> DataSource.map (\videos -> { videos = videos })
+    DataSource.succeed { videos = [] }
 
 
 view :

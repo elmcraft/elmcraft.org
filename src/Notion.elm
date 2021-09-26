@@ -5,6 +5,7 @@ module Notion exposing (..)
 
 import Data.Conferences exposing (..)
 import Data.Videos exposing (..)
+import DataSource
 import DataSource.Http
 import Json.Encode as E
 import OptimizedDecoder exposing (..)
@@ -13,6 +14,7 @@ import Pages.Secrets as Secrets
 import Types exposing (..)
 
 
+getVideos : DataSource.DataSource (List Video)
 getVideos =
     DataSource.Http.request
         (Secrets.succeed

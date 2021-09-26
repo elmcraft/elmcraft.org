@@ -179,14 +179,27 @@ data routeParams =
                             |> DataSource.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
                                     Decode.map2
-                                        (\meta ui -> { ui = ui, meta = meta })
+                                        (\meta ui -> { ui = ui, meta = meta, markdown = rawMarkdown })
                                         (decodeMeta routeParams.splat)
                                         (markdownRenderer rawMarkdown path)
                                 )
-                            |> DataSource.map3
-                                (\ts videos d -> { ui = d.ui, meta = d.meta, timestamps = ts, global = { videos = videos } })
-                                (Timestamps.data path)
-                                Notion.getVideos
+                            |> DataSource.andThen
+                                (\d ->
+                                    let
+                                        getVideos =
+                                            if d.markdown |> String.contains "<video" then
+                                                Notion.getVideos
+
+                                            else
+                                                DataSource.succeed []
+                                    in
+                                    DataSource.map2
+                                        (\ts videos ->
+                                            { ui = d.ui, meta = d.meta, timestamps = ts, global = { videos = videos } }
+                                        )
+                                        (Timestamps.data path)
+                                        getVideos
+                                )
                     )
 
 
