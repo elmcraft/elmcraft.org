@@ -8,6 +8,7 @@ import DataSource
 import Dict
 import Element exposing (..)
 import Html exposing (Html)
+import List.Extra as List
 import Notion
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
@@ -40,7 +41,7 @@ type alias Msg =
 
 
 type alias Data =
-    { videos : List Data.Videos.Video }
+    { videos : List Video }
 
 
 type alias SharedMsg =
@@ -140,6 +141,13 @@ update msg model =
               }
             , Cmd.none
             )
+
+        -- Videos
+        VideosAddCategoryFilter category ->
+            ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
+
+        VideosRemoveCategoryFilter category ->
+            ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
 
         Noop ->
             ( model, Cmd.none )

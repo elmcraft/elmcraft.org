@@ -25,7 +25,7 @@ import Shared
 import Templates.Markdown
 import Theme
 import Timestamps exposing (Timestamps)
-import Types
+import Types exposing (..)
 import View exposing (..)
 
 
@@ -45,7 +45,7 @@ type alias Data =
     { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
     , meta : Meta
     , timestamps : Timestamps
-    , global : { videos : List Data.Videos.Video }
+    , global : { videos : List Video }
     }
 
 
@@ -104,7 +104,8 @@ page =
                     ( (), Cmd.none )
             , update =
                 \pageUrl keyNavigationBrowserMaybe modelShared static templateMsg templateModel ->
-                    ( (), Cmd.none, Nothing )
+                    -- SPLAT__ uses Types.Msg same as shared, so just route all handling up to shared.
+                    ( (), Cmd.none, Just templateMsg )
             , subscriptions =
                 \pageUrlMaybe routeParams path templateModel modelShared ->
                     Sub.none

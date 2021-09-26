@@ -1,28 +1,56 @@
 module Data.Videos exposing (..)
 
 import Colors exposing (..)
-import Data.Conferences exposing (Conference)
+import Data.Conferences
 import Dict exposing (..)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
+import Element.Events exposing (onClick)
 import Element.Font as Font
 import Html exposing (Html)
 import Html.Attributes as Html
+import Set
+import Types exposing (..)
 
 
-type Event
-    = Conf Conference
-    | OnlineMeetup String
-    | EventUnknown String
-
-
-index videos =
+index : Model -> List Video -> String -> Maybe String -> Element Msg
+index model videos tagged mLimit =
     column [ width fill, spacing 20 ]
         [ text <| String.fromInt (List.length videos) ++ " Elm Videos"
         , videos |> categoryView
-        , videos |> List.map embed |> wrappedRow [ spacing 30 ]
+        , if List.length model.appliedVideoFilters > 0 then
+            wrappedRow [ width fill, spacing 10 ]
+                ([ text "Applied filters:"
+                 ]
+                    ++ (model.appliedVideoFilters
+                            |> List.map
+                                (\category ->
+                                    categoryPillFilter category
+                                )
+                       )
+                )
+
+          else
+            none
+        , videos
+            |> applyFilters model
+            |> List.map embed
+            |> wrappedRow [ spacing 30 ]
         ]
+
+
+applyFilters model videos =
+    if List.length model.appliedVideoFilters > 0 then
+        videos
+            |> List.filter
+                (\video ->
+                    video.categories
+                        |> List.any (\category -> List.member category model.appliedVideoFilters)
+                )
+
+    else
+        videos
 
 
 categoryView videos =
@@ -75,23 +103,25 @@ test =
         }
 
 
-embed : Video -> Element msg
+embed : Video -> Element Msg
 embed video =
     column
         [ width (px 250)
         , spacing 4
-        , Background.color grey
-        , padding 10
+
+        -- , Background.color grey
+        -- , padding 10
         , Border.roundEach
             { topLeft = 10
             , topRight = 10
             , bottomLeft = 10
             , bottomRight = 10
             }
+        , alignTop
         ]
         [ videoThumbnail video
-        , paragraph [ Font.bold, Font.size 10 ] [ text video.name ]
-        , el [ Font.size 10 ] <| text video.speaker
+        , paragraph [ Font.bold, Font.size 14 ] [ text video.name ]
+        , el [ Font.size 12 ] <| text video.speaker
         , el [ Font.size 10 ] <| text <| eventToString video.event
         , video.categories
             |> List.map (categoryPill Nothing)
@@ -99,32 +129,18 @@ embed video =
         ]
 
 
-
---
--- element [ attribute, attribute ]
---     [ element [ attribute, attribute ]
---         [ element [ attribute, attribute ]
---             [ element [ attribute, attribute ] []
---             ]
---         ]
---     , element [ attribute, attribute ] []
---     ]
-
-
 categoryPill mCount category =
-    let
-        pill x =
-            ""
-    in
     case mCount of
         Just count ->
             row
                 [ Border.rounded 8
                 , Background.color <| categoryToBackground category
                 , paddingXY 6 4
-                , Font.size 10
+                , Font.size 12
                 , spacing 4
                 , Font.color white
+                , onClick (VideosAddCategoryFilter category)
+                , pointer
                 ]
                 [ text <|
                     categoryToString category
@@ -136,12 +152,38 @@ categoryPill mCount category =
                 [ Border.rounded 10
                 , Background.color <| categoryToBackground category
                 , paddingXY 6 4
-                , Font.size 10
+                , Font.size 12
                 , Font.color white
+                , onClick (VideosAddCategoryFilter category)
+                , pointer
                 ]
             <|
                 text <|
                     categoryToString category
+
+
+categoryPillFilter category =
+    row
+        [ Border.rounded 8
+        , Background.color <| categoryToBackground category
+        , paddingXY 6 4
+        , Font.size 12
+        , spacing 4
+        , Font.color white
+        ]
+        [ text <|
+            categoryToString category
+        , el
+            [ Border.rounded 10
+            , Background.color white
+            , paddingXY 5 2
+            , Font.color charcoal
+            , onClick (VideosRemoveCategoryFilter category)
+            , pointer
+            ]
+          <|
+            text "x"
+        ]
 
 
 eventToString event =
@@ -184,7 +226,7 @@ videoThumbnail video =
                 "unknown"
 
         thumbnail =
-            "https://i.ytimg.com/vi/" ++ youtubeId ++ "/maxresdefault.jpg"
+            "https://i.ytimg.com/vi/" ++ youtubeId ++ "/hqdefault.jpg"
     in
     newTabLink [ width fill ]
         { url = video.url
@@ -220,53 +262,6 @@ safeObject =
 --   <param name="movie" value="https://www.youtube-nocookie.com/embed/Sdg0ef2PpBw">
 --   <embed src="https://www.youtube-nocookie.com/embed/Sdg0ef2PpBw" width="100%" height="333">
 -- </object>
-
-
-type alias Video =
-    { name : String
-    , url : String
-    , speaker : String
-    , event : Event
-    , year : String
-    , categories : List Category
-    , description : String
-    }
-
-
-type Category
-    = ElmPhilosophy
-    | Keynote
-    | PannelDiscussion
-    | Guide
-    | Learn
-    | Community
-    | Meta
-    | Commercial
-    | Hobby
-    | ExperienceReport
-    | Interop
-    | Project
-    | UI
-    | Animation
-    | Visualisation
-    | Charts
-    | Graphics
-    | Games
-    | WebGL
-    | Graphs
-    | Maps
-    | DatesTime
-    | Robotics
-    | Acesssibility
-    | Audio
-    | Media
-    | Art
-    | Design
-    | Concept
-    | Unknown
-    | Product
-    | Teaching
-    | Testing
 
 
 categoryToString c =

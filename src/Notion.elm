@@ -10,6 +10,7 @@ import Json.Encode as E
 import OptimizedDecoder exposing (..)
 import OptimizedDecoder.Pipeline exposing (..)
 import Pages.Secrets as Secrets
+import Types exposing (..)
 
 
 getVideos =

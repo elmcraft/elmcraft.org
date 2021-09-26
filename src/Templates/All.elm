@@ -20,10 +20,10 @@ import Templates.QuizIsElmForMe
 import Templates.Testimonial
 import Templates.UI exposing (..)
 import Templates.Videos
-import Types
+import Types exposing (..)
 
 
-htmlMapping : Types.Model -> Types.GlobalData -> Markdown.Html.Renderer (List (Element msg) -> Element msg)
+htmlMapping : Types.Model -> Types.GlobalData -> Markdown.Html.Renderer (List (Element Msg) -> Element Msg)
 htmlMapping model global =
     Markdown.Html.oneOf
         [ Markdown.Html.tag "img"
@@ -230,9 +230,10 @@ htmlMapping model global =
             |> Markdown.Html.withOptionalAttribute "limit"
         , Markdown.Html.tag "videos"
             (\tagged mLimit children ->
-                -- Templates.Videos.list model tagged mLimit
-                -- Data.Videos.test
-                Data.Videos.index global.videos
+                Data.Videos.index model
+                    (global.videos |> List.filter (\v -> v.name /= ""))
+                    tagged
+                    mLimit
             )
             |> Markdown.Html.withAttribute "tagged"
             |> Markdown.Html.withOptionalAttribute "limit"

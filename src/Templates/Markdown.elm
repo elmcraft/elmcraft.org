@@ -27,7 +27,7 @@ import Templates.UI exposing (..)
 import Types exposing (..)
 
 
-renderer : Model -> GlobalData -> Markdown.Renderer.Renderer (Element msg)
+renderer : Model -> GlobalData -> Markdown.Renderer.Renderer (Element Msg)
 renderer model global =
     { heading = \data -> row [] [ heading data ]
     , paragraph = \children -> paragraph [ paddingXY 0 15, spacing 15 ] children

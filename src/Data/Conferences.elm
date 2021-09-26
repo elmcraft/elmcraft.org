@@ -1,28 +1,6 @@
 module Data.Conferences exposing (..)
 
-
-type Conference
-    = ElmConf2016
-    | ElmEurope2017
-    | ElmConf2017
-    | OsloElmDay2017
-    | ElmEurope2018
-    | ElmConf2018
-    | OsloElmDay2019
-    | ElmintheSpring2019
-    | ElmEurope2019
-    | ElmConf2019
-    | ElmJapan2020
-    | ElmConf2020
-    | ElmintheSpring2020
-
-
-type alias ConferenceDetails =
-    { locationFlag : String
-    , name : String
-    , url : String
-    , date : String
-    }
+import Types exposing (..)
 
 
 conferenceDetails : Conference -> ConferenceDetails
