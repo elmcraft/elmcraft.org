@@ -39,6 +39,10 @@ These books all go into more detail for real-world Elm usage on projects.
 - [Practical Elm for a Busy Developer](https://korban.net/elm/) (eBook) - Alex Korban
 - [Programming Elm](https://pragprog.com/titles/jfelm/programming-elm/) (eBook) - Jeremy Fairbank
 
+In French:
+
+- [Elm par la pratique](https://leanpub.com/elmparlapratique) (eBook) - Pascal Le Merrer
+
 Other books:
 
 - [Why Elm?](https://www.oreilly.com/library/view/why-elm/9781491990728/) - Matthew Griffith
