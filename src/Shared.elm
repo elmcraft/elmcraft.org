@@ -3,10 +3,13 @@ port module Shared exposing (..)
 import Browser.Dom
 import Browser.Events
 import Browser.Navigation
+import Data.Videos
 import DataSource
 import Dict
 import Element exposing (..)
 import Html exposing (Html)
+import List.Extra as List
+import Notion
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
 import Path exposing (Path)
@@ -38,7 +41,7 @@ type alias Msg =
 
 
 type alias Data =
-    ()
+    { videos : List Video }
 
 
 type alias SharedMsg =
@@ -139,6 +142,13 @@ update msg model =
             , Cmd.none
             )
 
+        -- Videos
+        VideosAddCategoryFilter category ->
+            ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
+
+        VideosRemoveCategoryFilter category ->
+            ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
+
         Noop ->
             ( model, Cmd.none )
 
@@ -153,7 +163,10 @@ subscriptions _ _ =
 
 data : DataSource.DataSource Data
 data =
-    DataSource.succeed ()
+    -- @TODO figure out how we can use this globally and swap for SPLAT__ usage of Notion.getVideos
+    -- Notion.getVideos
+    --     |> DataSource.map (\videos -> { videos = videos })
+    DataSource.succeed { videos = [] }
 
 
 view :
@@ -169,5 +182,6 @@ view :
 view sharedData page model toMsg pageView =
     { title = pageView.title
     , body =
-        Theme.view { page = page, pageView = pageView } toMsg model pageView
+        -- @NOTE: the sharedData is not helpful here, as pageView already contains rendered page
+        Theme.view { page = page, pageView = pageView, sharedData = sharedData } toMsg model pageView
     }

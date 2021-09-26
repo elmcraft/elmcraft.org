@@ -1,6 +1,7 @@
 module Templates.All exposing (..)
 
 import Colors exposing (..)
+import Data.Videos
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -19,11 +20,11 @@ import Templates.QuizIsElmForMe
 import Templates.Testimonial
 import Templates.UI exposing (..)
 import Templates.Videos
-import Types
+import Types exposing (..)
 
 
-htmlMapping : Types.Model -> Markdown.Html.Renderer (List (Element msg) -> Element msg)
-htmlMapping model =
+htmlMapping : Types.Model -> Types.GlobalData -> Markdown.Html.Renderer (List (Element Msg) -> Element Msg)
+htmlMapping model global =
     Markdown.Html.oneOf
         [ Markdown.Html.tag "img"
             (\src width_ maxWidth_ bg_ content ->
@@ -229,7 +230,10 @@ htmlMapping model =
             |> Markdown.Html.withOptionalAttribute "limit"
         , Markdown.Html.tag "videos"
             (\tagged mLimit children ->
-                Templates.Videos.list model tagged mLimit
+                Data.Videos.index model
+                    (global.videos |> List.filter (\v -> v.name /= ""))
+                    tagged
+                    mLimit
             )
             |> Markdown.Html.withAttribute "tagged"
             |> Markdown.Html.withOptionalAttribute "limit"

@@ -27,8 +27,8 @@ import Templates.UI exposing (..)
 import Types exposing (..)
 
 
-renderer : Model -> Markdown.Renderer.Renderer (Element msg)
-renderer model =
+renderer : Model -> GlobalData -> Markdown.Renderer.Renderer (Element Msg)
+renderer model global =
     { heading = \data -> row [] [ heading data ]
     , paragraph = \children -> paragraph [ paddingXY 0 15, spacing 15 ] children
     , blockQuote =
@@ -46,7 +46,7 @@ renderer model =
                     ]
                     children
                 ]
-    , html = Templates.All.htmlMapping model
+    , html = Templates.All.htmlMapping model global
 
     -- @TODO preserve newlines on... new lines?
     , text = \s -> el [] <| text s

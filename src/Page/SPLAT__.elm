@@ -1,5 +1,6 @@
 module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
+import Data.Videos
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
@@ -11,6 +12,7 @@ import Html
 import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
+import Notion
 import OptimizedDecoder as Decode
 import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Page exposing (Page, PageWithState, StaticPayload)
@@ -23,7 +25,7 @@ import Shared
 import Templates.Markdown
 import Theme
 import Timestamps exposing (Timestamps)
-import Types
+import Types exposing (..)
 import View exposing (..)
 
 
@@ -40,9 +42,10 @@ type alias RouteParams =
 
 
 type alias Data =
-    { ui : Types.Model -> List (Element Types.Msg)
+    { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
     , meta : Meta
     , timestamps : Timestamps
+    , global : { videos : List Video }
     }
 
 
@@ -101,7 +104,8 @@ page =
                     ( (), Cmd.none )
             , update =
                 \pageUrl keyNavigationBrowserMaybe modelShared static templateMsg templateModel ->
-                    ( (), Cmd.none, Nothing )
+                    -- SPLAT__ uses Types.Msg same as shared, so just route all handling up to shared.
+                    ( (), Cmd.none, Just templateMsg )
             , subscriptions =
                 \pageUrlMaybe routeParams path templateModel modelShared ->
                     Sub.none
@@ -153,8 +157,8 @@ data routeParams =
                 |> Result.andThen
                     (\blocks ->
                         Ok
-                            (\model_ ->
-                                case Markdown.Renderer.render (Templates.Markdown.renderer model_) blocks of
+                            (\model_ global_ ->
+                                case Markdown.Renderer.render (Templates.Markdown.renderer model_ global_) blocks of
                                     Ok ui ->
                                         ui
 
@@ -175,13 +179,27 @@ data routeParams =
                             |> DataSource.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
                                     Decode.map2
-                                        (\meta ui -> { ui = ui, meta = meta })
+                                        (\meta ui -> { ui = ui, meta = meta, markdown = rawMarkdown })
                                         (decodeMeta routeParams.splat)
                                         (markdownRenderer rawMarkdown path)
                                 )
-                            |> DataSource.map2
-                                (\ts d -> { ui = d.ui, meta = d.meta, timestamps = ts })
-                                (Timestamps.data path)
+                            |> DataSource.andThen
+                                (\d ->
+                                    let
+                                        getVideos =
+                                            if d.markdown |> String.contains "<video" then
+                                                Notion.getVideos
+
+                                            else
+                                                DataSource.succeed []
+                                    in
+                                    DataSource.map2
+                                        (\ts videos ->
+                                            { ui = d.ui, meta = d.meta, timestamps = ts, global = { videos = videos } }
+                                        )
+                                        (Timestamps.data path)
+                                        getVideos
+                                )
                     )
 
 
@@ -294,7 +312,7 @@ view :
     -> View Types.Msg
 view maybeUrl sharedModel static =
     { title = static.data.meta.title
-    , content = static.data.ui sharedModel
+    , content = static.data.ui sharedModel static.data.global
     , route = static.data.meta.route
     , timestamps = static.data.timestamps
     , status = static.data.meta.status
