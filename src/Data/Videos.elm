@@ -78,17 +78,37 @@ test =
 embed : Video -> Element msg
 embed video =
     column
-        [ width fill
+        [ width (px 250)
         , spacing 4
         , Background.color grey
         , padding 10
+        , Border.roundEach
+            { topLeft = 10
+            , topRight = 10
+            , bottomLeft = 10
+            , bottomRight = 10
+            }
         ]
         [ videoThumbnail video
-        , el [ Font.bold ] <| text video.name
-        , el [] <| text video.speaker
-        , el [] <| text <| eventToString video.event
-        , video.categories |> List.map (categoryPill Nothing) |> row [ spacing 5, width fill ]
+        , paragraph [ Font.bold, Font.size 10 ] [ text video.name ]
+        , el [ Font.size 10 ] <| text video.speaker
+        , el [ Font.size 10 ] <| text <| eventToString video.event
+        , video.categories
+            |> List.map (categoryPill Nothing)
+            |> row [ spacing 5, width fill ]
         ]
+
+
+
+--
+-- element [ attribute, attribute ]
+--     [ element [ attribute, attribute ]
+--         [ element [ attribute, attribute ]
+--             [ element [ attribute, attribute ] []
+--             ]
+--         ]
+--     , element [ attribute, attribute ] []
+--     ]
 
 
 categoryPill mCount category =
@@ -99,10 +119,10 @@ categoryPill mCount category =
     case mCount of
         Just count ->
             row
-                [ Border.rounded 10
+                [ Border.rounded 8
                 , Background.color <| categoryToBackground category
                 , paddingXY 6 4
-                , Font.size 13
+                , Font.size 10
                 , spacing 4
                 , Font.color white
                 ]
@@ -116,7 +136,7 @@ categoryPill mCount category =
                 [ Border.rounded 10
                 , Background.color <| categoryToBackground category
                 , paddingXY 6 4
-                , Font.size 13
+                , Font.size 10
                 , Font.color white
                 ]
             <|
