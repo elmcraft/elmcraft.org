@@ -21,14 +21,13 @@ Browse the library of articles and blog posts on Elm.
 
 Prefer listening on the go? There are plenty of Elm podcast episodes to keep your ears happy!
 
-<wip>
-## [Videos](/media/videos)
 
+## [Videos](/media/videos)
 
 From conferences to meetups, check out the hundreds of Elm talks and presentations about Elm and the people who use it.
 
 
-
+<wip>
 ## [Books](/media/books)
 
 Prefer longer form and deeper references and guides? There are a number of Elm books that may fit what you're after.
