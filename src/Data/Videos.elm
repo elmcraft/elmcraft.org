@@ -14,8 +14,8 @@ import Set
 import Types exposing (..)
 
 
-index : Model -> List Video -> String -> Maybe String -> Element Msg
-index model videos tagged mLimit =
+index : Model -> List Video -> Maybe String -> Maybe String -> Element Msg
+index model videos mTagged mLimit =
     column [ width fill, spacing 20 ]
         [ text <| String.fromInt (List.length videos) ++ " Elm Videos"
         , videos |> categoryView
@@ -226,7 +226,8 @@ videoThumbnail video =
                 "unknown"
 
         thumbnail =
-            "https://i.ytimg.com/vi/" ++ youtubeId ++ "/hqdefault.jpg"
+            -- "https://i.ytimg.com/vi/" ++ youtubeId ++ "/hqdefault.jpg"
+            "http://img.youtube.com/vi/" ++ youtubeId ++ "/mqdefault.jpg"
     in
     newTabLink [ width fill ]
         { url = video.url

@@ -235,7 +235,7 @@ htmlMapping model global =
                     tagged
                     mLimit
             )
-            |> Markdown.Html.withAttribute "tagged"
+            |> Markdown.Html.withOptionalAttribute "tagged"
             |> Markdown.Html.withOptionalAttribute "limit"
         ]
 

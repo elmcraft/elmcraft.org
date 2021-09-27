@@ -6,4 +6,4 @@ published: false
 status: budding
 ---
 
-<videos tagged="blah" limit="3"></videos>
+<videos limit="3"></videos>
