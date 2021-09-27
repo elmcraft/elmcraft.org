@@ -378,6 +378,9 @@ categoryFromString s =
         "Elm Philosophy" ->
             ElmPhilosophy
 
+        "Iconic" ->
+            Iconic
+
         "Keynote" ->
             Keynote
 
@@ -461,6 +464,9 @@ categoryFromString s =
 
         "Concept" ->
             Concept
+
+        "Technique" ->
+            Technique
 
         "Unknown" ->
             Unknown
