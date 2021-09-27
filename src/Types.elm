@@ -86,6 +86,7 @@ type Category
     | Keynote
     | PannelDiscussion
     | Guide
+    | Introduction
     | Learn
     | Community
     | Meta

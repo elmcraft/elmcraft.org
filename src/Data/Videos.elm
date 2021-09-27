@@ -110,7 +110,7 @@ embed video =
         , spacing 4
 
         -- , Background.color grey
-        -- , padding 10
+        -- , padding 5
         , Border.roundEach
             { topLeft = 10
             , topRight = 10
@@ -125,7 +125,7 @@ embed video =
         , el [ Font.size 10 ] <| text <| eventToString video.event
         , video.categories
             |> List.map (categoryPill Nothing)
-            |> row [ spacing 5, width fill ]
+            |> wrappedRow [ spacing 5, width fill ]
         ]
 
 
@@ -229,7 +229,11 @@ videoThumbnail video =
             -- "https://i.ytimg.com/vi/" ++ youtubeId ++ "/hqdefault.jpg"
             "http://img.youtube.com/vi/" ++ youtubeId ++ "/mqdefault.jpg"
     in
-    newTabLink [ width fill ]
+    newTabLink
+        [ width fill
+        , Background.color grey
+        , padding 3
+        ]
         { url = video.url
         , label =
             image [ width fill, centerX ]
@@ -281,6 +285,9 @@ categoryToString c =
 
         Guide ->
             "Guide"
+
+        Introduction ->
+            "Introduction"
 
         Learn ->
             "Learn"
@@ -389,6 +396,9 @@ categoryFromString s =
 
         "Guide" ->
             Guide
+
+        "Introduction" ->
+            Introduction
 
         "Learn" ->
             Learn
@@ -550,6 +560,9 @@ categoryToBackground c =
             colourCategory6
 
         Learn ->
+            colourCategory7
+
+        Introduction ->
             colourCategory7
 
         Guide ->
