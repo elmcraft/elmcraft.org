@@ -270,6 +270,9 @@ categoryToString c =
         ElmPhilosophy ->
             "Elm Philosophy"
 
+        Iconic ->
+            "Iconic"
+
         Keynote ->
             "Keynote"
 
@@ -353,6 +356,9 @@ categoryToString c =
 
         Concept ->
             "Concept"
+
+        Technique ->
+            "Technique"
 
         Unknown ->
             "Unknown"
@@ -522,6 +528,9 @@ categoryToBackground c =
         ElmPhilosophy ->
             colourCategory6
 
+        Iconic ->
+            colourCategory6
+
         Community ->
             colourCategory6
 
@@ -541,6 +550,9 @@ categoryToBackground c =
             colourCategory7
 
         Concept ->
+            colourCategory7
+
+        Technique ->
             colourCategory7
 
         Interop ->

@@ -82,6 +82,7 @@ type alias Video =
 
 type Category
     = ElmPhilosophy
+    | Iconic
     | Keynote
     | PannelDiscussion
     | Guide
@@ -110,6 +111,7 @@ type Category
     | Art
     | Design
     | Concept
+    | Technique
     | Unknown
     | Product
     | Teaching
