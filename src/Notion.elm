@@ -1,33 +1,78 @@
 module Notion exposing (..)
 
--- import Json.Decode exposing (..)
--- import Json.Decode.Pipeline exposing (..)
+-- import OptimizedDecoder exposing (..)
+-- import OptimizedDecoder.Pipeline exposing (..)
 
 import Data.Conferences exposing (..)
 import Data.Videos exposing (..)
 import DataSource
 import DataSource.Http
+import Json.Decode exposing (..)
+import Json.Decode.Pipeline exposing (..)
 import Json.Encode as E
-import OptimizedDecoder exposing (..)
-import OptimizedDecoder.Pipeline exposing (..)
 import Pages.Secrets as Secrets
 import Types exposing (..)
 
 
-getVideos : DataSource.DataSource (List Video)
-getVideos =
-    DataSource.Http.request
-        (Secrets.succeed
+
+-- curl 'https://api.notion.com/v1/databases/22332946dc144ade9cf97174ea0ecdea/query' \
+--   -H 'Authorization: Bearer secret_OXpMW30Ddljjh5sarOqFUnZkj2kyQ4qQjol7DR5INB8' \
+--   -H 'Notion-Version: 2021-08-16' | jq
+
+
+videosDbQueryReq body =
+    Secrets.succeed
+        (\bearer ->
             { url = "https://api.notion.com/v1/databases/22332946dc144ade9cf97174ea0ecdea/query"
             , method = "POST"
             , headers =
-                [ ( "Authorization", "Bearer secret_OXpMW30Ddljjh5sarOqFUnZkj2kyQ4qQjol7DR5INB8" )
+                [ ( "Authorization", bearer )
                 , ( "Notion-Version", "2021-08-16" )
                 ]
-            , body = DataSource.Http.jsonBody (E.object [])
+            , body = DataSource.Http.jsonBody body
             }
         )
-        decodeNotionVideos
+        |> Secrets.with "NOTION_TOKEN"
+
+
+getVideos : DataSource.DataSource (List Video)
+getVideos =
+    -- DataSource.Http.request
+    DataSource.Http.unoptimizedRequest
+        (videosDbQueryReq <| E.object [])
+        -- decodeNotionVideos
+        (DataSource.Http.expectUnoptimizedJson decodeNotionVideos)
+
+
+getVideosResponse : Maybe String -> DataSource.DataSource VideosResponse
+getVideosResponse startCursor =
+    -- DataSource.Http.request
+    DataSource.Http.unoptimizedRequest
+        (videosDbQueryReq <|
+            case startCursor of
+                Just cursor ->
+                    E.object [ ( "start_cursor", E.string cursor ) ]
+
+                Nothing ->
+                    E.object []
+        )
+        -- decodeNotionVideosResponse
+        (DataSource.Http.expectUnoptimizedJson decodeNotionVideosResponse)
+
+
+recursiveGetVideos : Maybe String -> DataSource.DataSource (List Video)
+recursiveGetVideos startCursor =
+    getVideosResponse startCursor
+        |> DataSource.andThen
+            (\response ->
+                case response.nextCursor of
+                    Just nextCursor ->
+                        recursiveGetVideos (Just nextCursor)
+                            |> DataSource.map (List.append response.videos)
+
+                    Nothing ->
+                        DataSource.succeed response.videos
+            )
 
 
 decodeNotionVideos : Decoder (List Video)
@@ -35,10 +80,20 @@ decodeNotionVideos =
     field "results" (list decodeVideo)
 
 
+decodeNotionVideosResponse : Decoder VideosResponse
+decodeNotionVideosResponse =
+    succeed VideosResponse
+        |> required "results" (list decodeVideo)
+        |> optional "next_cursor" (maybe string) Nothing
 
--- curl 'https://api.notion.com/v1/databases/668d797c-76fa-4934-9b05-ad288df2d136' \
---   -H 'Authorization: Bearer '"$NOTION_API_KEY"'' \
---   -H 'Notion-Version: 2021-05-13'
+
+type alias VideosResponse =
+    { videos : List Video
+    , nextCursor : Maybe String
+    }
+
+
+
 --
 -- Fusion
 -- https://api.notion.com/v1/databases/22332946dc144ade9cf97174ea0ecdea/query
@@ -66,7 +121,7 @@ decodeRichText =
 
 decodeSelectText : Decoder String
 decodeSelectText =
-    optionalField "name" (nullable string)
+    maybe (field "name" (nullable string))
         |> map (Maybe.withDefault Nothing >> Maybe.withDefault "")
 
 

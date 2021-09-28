@@ -188,7 +188,7 @@ data routeParams =
                                     let
                                         getVideos =
                                             if d.markdown |> String.contains "<video" then
-                                                Notion.getVideos
+                                                Notion.recursiveGetVideos Nothing
 
                                             else
                                                 DataSource.succeed []
