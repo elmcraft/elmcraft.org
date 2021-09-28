@@ -41,11 +41,6 @@ Elmcraft uses the following markers on certain content pages to help with contex
 If you find a content page without a marker, assume it is a rough draft that's not been tagged yet.
 
 
-## Advertising/promotions
-
-Elmcraft does not contain any paid advertising or promotional content.
-
-
 ## People
 
 Here are the current Elm lovers behind Elmcraft!
