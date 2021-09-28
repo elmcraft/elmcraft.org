@@ -144,7 +144,8 @@ update msg model =
 
         -- Videos
         VideosAddCategoryFilter category ->
-            ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
+            -- ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
+            ( { model | appliedVideoFilters = [ category ] }, Cmd.none )
 
         VideosRemoveCategoryFilter category ->
             ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
