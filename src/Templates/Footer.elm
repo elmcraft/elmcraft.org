@@ -63,8 +63,8 @@ footerNav model =
 
             -- , item "Articles" (splat "media" [ "articles" ])
             , item "Podcasts" (splat "media" [ "podcasts" ])
+            , item "Videos" (splat "media" [ "videos" ])
 
-            -- , item "Videos" (splat "media" [ "videos" ])
             -- , item "Books" (splat "media" [ "books" ])
             ]
         , footerGroup "Community"
