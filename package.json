@@ -4,14 +4,14 @@
   "description": "Elmcraft.org Website",
   "scripts": {
     "start": "elm-pages dev",
-    "build": "elm-pages build && cp dist/404/index.html dist/404.html"
+    "build": "NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/404/index.html dist/404.html"
   },
   "author": "Mario Rogic",
   "license": "BSD-3",
   "devDependencies": {
     "elm": "latest-0.19.1",
     "elm-format": "^0.8.5",
-    "elm-optimize-level-2": "^0.1.5",
-    "elm-pages": "^2.1.7"
+    "elm-optimize-level-2": "^0.2.3",
+    "elm-pages": "^2.1.9"
   }
 }
