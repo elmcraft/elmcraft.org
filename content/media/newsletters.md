@@ -13,7 +13,7 @@ Prefer slower content delivered to your inbox? Check out these Elm newsletters.
 
 > Bringing the best Elm content to your inbox since 2016
 
-Alex Korban puts out out a weekly newsletter on all things Elm.
+Wolfgang Schuster puts out out a weekly newsletter on all things Elm. Originally run by Alex Korban.
 
 [https://www.elmweekly.nl/](https://www.elmweekly.nl/)
 
