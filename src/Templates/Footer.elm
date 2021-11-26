@@ -22,7 +22,7 @@ view model =
             , footerNav model
             , row [ width fill ]
                 [ row [ alignLeft, width fill ]
-                    [ paragraph []
+                    [ paragraph [ Font.center ]
                         [ text " © elmcraft.org "
                         , link [] { url = "http://creativecommons.org/licenses/by-sa/4.0/", label = image [ width (px 50), moveDown 3 ] { src = "https://licensebuttons.net/l/by-sa/4.0/88x31.png", description = "CC BY-SA Icon" } }
                         ]
@@ -40,7 +40,7 @@ view model =
 footerNav model =
     let
         item title route =
-            routeLink [] title route
+            routeLink [ centerX ] title route
     in
     rowToColumnWhen 800
         model
@@ -93,6 +93,6 @@ footerNav model =
 
 footerGroup title items =
     column [ alignTop, width fill, spacing 10 ] <|
-        [ paragraph [ Font.color charcoal, Font.bold, paddingXY 0 10 ] [ text title ]
+        [ paragraph [ Font.color charcoal, Font.bold, paddingXY 0 10, Font.center ] [ text title ]
         ]
             ++ items
