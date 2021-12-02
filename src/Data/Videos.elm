@@ -105,28 +105,27 @@ test =
 
 embed : Video -> Element Msg
 embed video =
-    column
-        [ width (px 250)
-        , spacing 4
-
-        -- , Background.color grey
-        -- , padding 5
-        , Border.roundEach
-            { topLeft = 10
-            , topRight = 10
-            , bottomLeft = 10
-            , bottomRight = 10
-            }
-        , alignTop
-        ]
-        [ videoThumbnail video
-        , paragraph [ Font.bold, Font.size 14 ] [ text video.name ]
-        , el [ Font.size 12 ] <| text video.speaker
-        , el [ Font.size 10 ] <| text <| eventToString video.event
-        , video.categories
-            |> List.map (categoryPill Nothing)
-            |> wrappedRow [ spacing 5, width fill ]
-        ]
+    el [ alignTop, width fill ] <|
+        column
+            [ spacing 4
+            , width (px 250)
+            , centerX
+            , Border.roundEach
+                { topLeft = 10
+                , topRight = 10
+                , bottomLeft = 10
+                , bottomRight = 10
+                }
+            , alignTop
+            ]
+            [ videoThumbnail video
+            , paragraph [ Font.bold, Font.size 14 ] [ text video.name ]
+            , el [ Font.size 12 ] <| text video.speaker
+            , el [ Font.size 10 ] <| text <| eventToString video.event
+            , video.categories
+                |> List.map (categoryPill Nothing)
+                |> wrappedRow [ spacing 5, width fill ]
+            ]
 
 
 categoryPill mCount category =

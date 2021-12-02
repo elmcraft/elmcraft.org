@@ -35,11 +35,11 @@ videosDbQueryReq body =
         |> Secrets.with "NOTION_TOKEN"
 
 
-getVideos : DataSource.DataSource (List Video)
-getVideos =
+getVideos : Int -> DataSource.DataSource (List Video)
+getVideos number =
     -- DataSource.Http.request
     DataSource.Http.unoptimizedRequest
-        (videosDbQueryReq <| E.object [])
+        (videosDbQueryReq <| E.object [ ( "page_size", E.int number ) ])
         -- decodeNotionVideos
         (DataSource.Http.expectUnoptimizedJson decodeNotionVideos)
 

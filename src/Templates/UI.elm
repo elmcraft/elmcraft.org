@@ -264,6 +264,10 @@ heading2 attrs label =
     paragraph ([ Font.color charcoal, Font.size 26, Font.bold ] ++ attrs) [ text label ]
 
 
+heading3 attrs label =
+    paragraph ([ Font.color charcoal, Font.size 20, Font.bold ] ++ attrs) [ text label ]
+
+
 littleTitle attrs label =
     paragraph ([ Font.color purple, Font.size 14, Font.bold ] ++ attrs) [ text <| String.toUpper label ]
 

@@ -1,11 +1,13 @@
 module Pages.Homepage exposing (..)
 
 import Colors exposing (..)
+import Data.Videos as Videos
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
+import Helpers exposing (..)
 import Html exposing (Html)
 import Html.Attributes
 import Pages
@@ -13,17 +15,35 @@ import Templates.Feature
 import Templates.FindYourPath
 import Templates.Footer
 import Templates.UI exposing (..)
+import Types exposing (..)
 
 
-view model _ =
+view : Model -> List Video -> List (Element Msg) -> Element Msg
+view model videos _ =
     column [ width fill ]
         [ column [ width fill, spacing 20 ]
             [ none
 
             -- , heading1 "World of Elmcraft"
-            , heading2 [] "A place for all things Elm"
-            , paragraph [] [ text "Welcome! We're just getting started here." ]
+            , heading2 [ Font.center ] "A place for all things Elm"
+            , paragraph [ Font.center ]
+                [ text "Welcome! We're just getting started here. "
+                , image [ height (px 20) ] { src = "/images/elmcraft-heart-transparent.png", description = "Elmcraft Heart" }
+                ]
             , spacer 20
+            , column [ width fill, spacing 30 ]
+                [ row [ width fill ]
+                    [ heading3 [] "Latest videos"
+                    , routeLink [] "See all" (splat "media" [ "videos" ])
+                    ]
+                , videos
+                    |> List.take 3
+                    |> List.map
+                        (\v ->
+                            Videos.embed v
+                        )
+                    |> wrappedRow [ spacing 30, width fill ]
+                ]
 
             -- , column
             --     [ width fill, spacing 20 ]

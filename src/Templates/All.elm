@@ -117,7 +117,7 @@ htmlMapping model global =
             )
             |> Markdown.Html.withAttribute "href"
             |> Markdown.Html.withAttribute "text"
-        , Markdown.Html.tag "homepagecontent" <| Pages.Homepage.view model
+        , Markdown.Html.tag "homepagecontent" <| Pages.Homepage.view model global.videos
         , Markdown.Html.tag "space"
             (\sizeM _ ->
                 let

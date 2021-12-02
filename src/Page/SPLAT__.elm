@@ -190,6 +190,9 @@ data routeParams =
                                             if d.markdown |> String.contains "<video" then
                                                 Notion.recursiveGetVideos Nothing
 
+                                            else if path == "content/index.md" then
+                                                Notion.getVideos 3
+
                                             else
                                                 DataSource.succeed []
                                     in
