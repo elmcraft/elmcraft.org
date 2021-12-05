@@ -20,6 +20,6 @@ Wolfgang Schuster puts out out a weekly newsletter on all things Elm. Originally
 
 ## Incremental Elm
 
-Dillon Kearns (author of [`elm-pages`](https://elm-pages.com/) and [`elm-graphql`](https://package.elm-lang.org/packages/dillonkearns/elm-graphql/latest)) sends out weekly tips on Elm.
+Dillon Kearns (co-host of [elm-radio](https://elm-radio.com/) and author of [`elm-pages`](https://elm-pages.com/)) sends out weekly tips on Elm.
 
 [https://incrementalelm.com/tips](https://incrementalelm.com/tips)
