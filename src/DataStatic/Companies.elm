@@ -1,4 +1,4 @@
-module Data.Companies exposing (..)
+module DataStatic.Companies exposing (..)
 
 
 companies =

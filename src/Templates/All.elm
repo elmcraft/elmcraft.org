@@ -1,7 +1,6 @@
 module Templates.All exposing (..)
 
 import Colors exposing (..)
-import Data.Videos
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -230,7 +229,7 @@ htmlMapping model global =
             |> Markdown.Html.withOptionalAttribute "limit"
         , Markdown.Html.tag "videos"
             (\tagged mLimit children ->
-                Data.Videos.index model
+                Templates.Videos.index model
                     (global.videos |> List.filter (\v -> v.name /= ""))
                     tagged
                     mLimit

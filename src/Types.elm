@@ -57,6 +57,7 @@ type Msg
     | VideosAddCategoryFilter Category
     | VideosRemoveCategoryFilter Category
     | Noop
+    | Debug
 
 
 type SharedMsg

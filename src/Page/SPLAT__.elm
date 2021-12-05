@@ -1,6 +1,5 @@
 module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
-import Data.Videos
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
@@ -23,6 +22,7 @@ import Path
 import Route
 import Shared
 import Templates.Markdown
+import Templates.Videos
 import Theme
 import Timestamps exposing (Timestamps)
 import Types exposing (..)

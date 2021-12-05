@@ -17,6 +17,7 @@ We're currently using some elm-pages v2 pre-release plug-ins via a submodule.
 git submodule init
 git submodule update
 npm install
+NOTION_TOKEN="<ask mario for token>"
 npx elm-pages build
 npm start # starts a local live-reloading dev server
 ```
@@ -42,6 +43,13 @@ Navigation UI can be updated in `src/Templates/Navigation.elm`.
 See `src/Templates/All.elm` for which markdown/html tags end up being rendered by which components.
 
 The UI on the Elm side is built with the [`elm-ui`](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/) library.
+
+## Data Sources
+
+- `src/DataSource` contains elm-pages data sources
+- `src/DataStatic` contains hardcoded data in Elm format
+
+Generally err towards static data and if it becomes high churn then we can move it to Notion or elsewhere
 
 
 ## Static files

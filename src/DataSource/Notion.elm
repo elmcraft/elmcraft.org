@@ -3,14 +3,14 @@ module DataSource.Notion exposing (..)
 -- import OptimizedDecoder exposing (..)
 -- import OptimizedDecoder.Pipeline exposing (..)
 
-import Data.Conferences exposing (..)
-import Data.Videos exposing (..)
 import DataSource
 import DataSource.Http
+import DataStatic.Conferences exposing (..)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as E
 import Pages.Secrets as Secrets
+import Templates.Videos exposing (..)
 import Types exposing (..)
 
 

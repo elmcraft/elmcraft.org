@@ -1,7 +1,6 @@
 module Pages.Homepage exposing (..)
 
 import Colors exposing (..)
-import Data.Videos as Videos
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -15,6 +14,7 @@ import Templates.Feature
 import Templates.FindYourPath
 import Templates.Footer
 import Templates.UI exposing (..)
+import Templates.Videos as Videos
 import Types exposing (..)
 
 

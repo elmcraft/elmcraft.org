@@ -3,7 +3,6 @@ port module Shared exposing (..)
 import Browser.Dom
 import Browser.Events
 import Browser.Navigation
-import Data.Videos
 import DataSource
 import DataSource.Notion
 import Dict
@@ -16,6 +15,7 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Task
+import Templates.Videos
 import Theme
 import Types exposing (..)
 import Url

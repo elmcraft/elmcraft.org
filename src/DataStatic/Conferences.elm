@@ -1,4 +1,4 @@
-module Data.Conferences exposing (..)
+module DataStatic.Conferences exposing (..)
 
 import Types exposing (..)
 
