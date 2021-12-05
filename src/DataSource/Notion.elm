@@ -1,4 +1,4 @@
-module Notion exposing (..)
+module DataSource.Notion exposing (..)
 
 -- import OptimizedDecoder exposing (..)
 -- import OptimizedDecoder.Pipeline exposing (..)
@@ -23,7 +23,7 @@ import Types exposing (..)
 videosDbQueryReq body =
     Secrets.succeed
         (\bearer ->
-            { url = "https://api.notion.com/v1/databases/22332946dc144ade9cf97174ea0ecdea/query"
+            { url = "https://api.notion.com/v1/databases/edeac665f6f8436e89aacc6482a0690e/query"
             , method = "POST"
             , headers =
                 [ ( "Authorization", bearer )
@@ -39,7 +39,19 @@ getVideos : Int -> DataSource.DataSource (List Video)
 getVideos number =
     -- DataSource.Http.request
     DataSource.Http.unoptimizedRequest
-        (videosDbQueryReq <| E.object [ ( "page_size", E.int number ) ])
+        (videosDbQueryReq <|
+            E.object
+                [ ( "page_size", E.int number )
+                , ( "sorts"
+                  , E.list identity
+                        [ E.object
+                            [ ( "property", E.string "Year" )
+                            , ( "direction", E.string "descending" )
+                            ]
+                        ]
+                  )
+                ]
+        )
         -- decodeNotionVideos
         (DataSource.Http.expectUnoptimizedJson decodeNotionVideos)
 

@@ -4,6 +4,7 @@ import Data.Videos
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
+import DataSource.Notion as Notion
 import Dict
 import Element exposing (..)
 import Head
@@ -12,7 +13,6 @@ import Html
 import List.NonEmpty
 import Markdown.Parser
 import Markdown.Renderer
-import Notion
 import OptimizedDecoder as Decode
 import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Page exposing (Page, PageWithState, StaticPayload)

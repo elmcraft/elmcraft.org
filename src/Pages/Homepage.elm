@@ -33,7 +33,7 @@ view model videos _ =
             , spacer 20
             , column [ width fill, spacing 30 ]
                 [ row [ width fill ]
-                    [ heading3 [] "Latest videos"
+                    [ heading3 [] "Latest Elm videos"
                     , routeLink [] "See all" (splat "media" [ "videos" ])
                     ]
                 , videos

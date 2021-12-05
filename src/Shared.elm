@@ -5,11 +5,11 @@ import Browser.Events
 import Browser.Navigation
 import Data.Videos
 import DataSource
+import DataSource.Notion
 import Dict
 import Element exposing (..)
 import Html exposing (Html)
 import List.Extra as List
-import Notion
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
 import Path exposing (Path)
