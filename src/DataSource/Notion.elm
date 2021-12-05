@@ -42,14 +42,7 @@ getVideos number =
         (videosDbQueryReq <|
             E.object
                 [ ( "page_size", E.int number )
-                , ( "sorts"
-                  , E.list identity
-                        [ E.object
-                            [ ( "property", E.string "Year" )
-                            , ( "direction", E.string "descending" )
-                            ]
-                        ]
-                  )
+                , defaultSort
                 ]
         )
         -- decodeNotionVideos
@@ -63,13 +56,28 @@ getVideosResponse startCursor =
         (videosDbQueryReq <|
             case startCursor of
                 Just cursor ->
-                    E.object [ ( "start_cursor", E.string cursor ) ]
+                    E.object
+                        [ ( "start_cursor", E.string cursor )
+                        , defaultSort
+                        ]
 
                 Nothing ->
                     E.object []
         )
         -- decodeNotionVideosResponse
         (DataSource.Http.expectUnoptimizedJson decodeNotionVideosResponse)
+
+
+defaultSort : ( String, E.Value )
+defaultSort =
+    ( "sorts"
+    , E.list identity
+        [ E.object
+            [ ( "property", E.string "Year" )
+            , ( "direction", E.string "descending" )
+            ]
+        ]
+    )
 
 
 recursiveGetVideos : Maybe String -> DataSource.DataSource (List Video)
