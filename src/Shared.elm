@@ -153,6 +153,9 @@ update msg model =
         Noop ->
             ( model, Cmd.none )
 
+        Debug ->
+            ( model, Cmd.none )
+
 
 subscriptions : Path -> Model -> Sub Msg
 subscriptions _ _ =
