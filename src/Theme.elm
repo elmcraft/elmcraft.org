@@ -62,15 +62,21 @@ view x toWrapperMsg model static =
                       in
                       case static.status of
                         Just status ->
-                            el [ paddingXY 0 10 ] <|
-                                paragraph [ Font.color charcoalLight, Font.size 14 ] <|
-                                    [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
-                                    , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
-                                    ]
+                            row [ width fill ]
+                                [ el [ paddingXY 0 10, width fill ] <|
+                                    paragraph [ Font.color charcoalLight, Font.size 14 ] <|
+                                        [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
+                                        , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
+                                        ]
+                                , if not static.published && model.isDev then
+                                    el [ Background.color elmcraftNude ] <| text "not published"
+
+                                  else
+                                    none
+                                ]
 
                         Nothing ->
                             -- For now, if we don't have a status, don't show dates either (covers us for pages like indexes where it's a bit odd?)
-                            -- [ text <| "Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated ]
                             none
                     ]
                     |> Element.map toWrapperMsg

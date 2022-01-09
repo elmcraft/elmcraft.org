@@ -2,7 +2,7 @@
 type: page
 title: Programming language theory & development in Elm
 description: Resources for PL development in ELm
-published: true
+published: false
 status: seedling
 ---
 

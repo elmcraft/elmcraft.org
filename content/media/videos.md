@@ -2,7 +2,7 @@
 type: page
 title: Elm Videos
 description: A collection of videos on Elm
-published: false
+published: true
 status: budding
 ---
 

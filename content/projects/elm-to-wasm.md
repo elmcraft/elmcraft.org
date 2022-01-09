@@ -2,7 +2,7 @@
 type: page
 title: Elm to WASM
 description: Implementing Elm in Wasm via C
-published: true
+published: false
 status: seedling
 ---
 

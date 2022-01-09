@@ -13,6 +13,7 @@ type alias View msg =
     , content : List (Element msg)
     , route : Route
     , timestamps : Timestamps
+    , published : Bool
     }
 
 
@@ -29,6 +30,7 @@ map fn doc =
     , content = List.map (Element.map fn) doc.content
     , route = doc.route
     , timestamps = doc.timestamps
+    , published = doc.published
     }
 
 
@@ -42,4 +44,5 @@ placeholder moduleName =
         { updated = Time.millisToPosix 0
         , created = Time.millisToPosix 0
         }
+    , published = False
     }

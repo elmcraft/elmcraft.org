@@ -37,6 +37,7 @@
             "tripokey/elm-fuzzy": "5.2.1",
             "turboMaCk/non-empty-list-alias": "1.1.0",
             "vito/elm-ansi": "10.0.1",
+            "ymtszw/elm-xml-decode": "3.2.1",
             "zwilias/json-decode-exploration": "6.0.0"
         },
         "indirect": {
@@ -48,6 +49,7 @@
             "elm/random": "1.0.0",
             "elm/virtual-dom": "1.0.2",
             "fredcy/elm-parseint": "2.0.1",
+            "jinjor/elm-xml-parser": "2.0.0",
             "mgold/elm-nonempty-list": "4.2.0",
             "rtfeldman/elm-hex": "1.0.0"
         }
