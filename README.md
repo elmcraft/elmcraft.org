@@ -29,7 +29,7 @@ From there you can tweak the `content` folder or change the Elm code.
 
 To make a new page, simply add a new `your-path/your-page.md` in `content/`.
 
-The 'frontmatter' (bits between `---` at the top of the markdown file) drives other static gen config i.e. SEO, and can be extended if desired (follow from [`decodeMeta`](https://github.com/elmcraft/elmcraft.org/blob/main/src/Page/SPLAT__.elm#L55)).
+The 'frontmatter' (bits between `---` at the top of the markdown file) drives other static gen config i.e. SEO, and can be extended if desired (see [`DataSource.Markdown`](https://github.com/elmcraft/elmcraft.org/blob/main/src/DataSource/Markdown.elm)).
 
 `elm-pages` will pick up new pages, compile them and type check them.
 
