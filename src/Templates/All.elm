@@ -236,6 +236,13 @@ htmlMapping model global =
             )
             |> Markdown.Html.withOptionalAttribute "tagged"
             |> Markdown.Html.withOptionalAttribute "limit"
+        , Markdown.Html.tag "discord"
+            (\children ->
+                textHtml
+                    """
+                    <iframe src="https://discord.com/widget?id=810480359791132702" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    """
+            )
         ]
 
 

@@ -10,6 +10,8 @@ import Element.Region as Region
 import Html
 import Html.Attributes
 import Html.Events
+import Html.Parser
+import Html.Parser.Util
 import Json.Decode as D
 import Markdown.Block exposing (HeadingLevel(..), ListItem(..), headingLevelToInt)
 import Markdown.Parser
@@ -394,3 +396,13 @@ responsiveStyle ref name default brackets =
         in
         fn (attrs ++ [ inFront styleNode ]) children
     )
+
+
+textHtml : String -> Element msg
+textHtml t =
+    case Html.Parser.run t of
+        Ok nodes ->
+            html <| Html.div [] <| Html.Parser.Util.toVirtualDom nodes
+
+        Err _ ->
+            none

@@ -28,6 +28,7 @@
             "elm-community/dict-extra": "2.4.0",
             "elm-community/list-extra": "8.5.1",
             "elm-community/result-extra": "2.4.0",
+            "hecrj/html-parser": "2.4.0",
             "mdgriffith/elm-ui": "1.1.8",
             "miniBill/elm-codec": "2.0.0",
             "noahzgordon/elm-color-extra": "1.0.2",
