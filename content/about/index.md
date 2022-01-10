@@ -2,7 +2,7 @@
 type: page
 title: "About Elmcraft"
 description: A place for all things Elm
-published: false
+published: true
 status: budding
 ---
 
