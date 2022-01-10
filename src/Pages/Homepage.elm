@@ -21,16 +21,34 @@ import Types exposing (..)
 view : Model -> List Video -> List (Element Msg) -> Element Msg
 view model videos _ =
     column [ width fill ]
-        [ column [ width fill, spacing 20 ]
+        [ column [ width fill, spacing 50 ]
             [ none
 
             -- , heading1 "World of Elmcraft"
-            , heading2 [ Font.center ] "A place for all things Elm"
-            , paragraph [ Font.center ]
-                [ text "Welcome! We're just getting started here. "
-                , image [ height (px 20) ] { src = "/images/elmcraft-heart-transparent.png", description = "Elmcraft Heart" }
+            , column [ width fill, spacing 15 ]
+                [ heading2 [ Font.center ] "A place for all things Elm"
+                , paragraph [ Font.center ]
+                    [ text "Welcome! We're just getting started here. "
+                    , image [ height (px 20) ] { src = "/images/elmcraft-heart-transparent.png", description = "Elmcraft Heart" }
+                    ]
                 ]
-            , spacer 20
+            , spacer 0
+            , column [ spacing 10 ]
+                [ heading3 [] "Featured article"
+                , box
+                    [ rowToColumnWhen 600
+                        model
+                        [ width fill, spacing 20, padding_ 20 0 15 0 ]
+                        [ el [ centerX, width (fillPortion 1) ] <| link [] { url = "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho", label = image [ width fill ] { src = "/articles/2021-in-review.webp", description = "2021 in review mosaic" } }
+                        , column [ spacing 10, width (fillPortion 2) ]
+                            [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2021, a year in review" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
+
+                            -- , text "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho"
+                            , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "252 things that happened in Elm in 2021!" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
+                            ]
+                        ]
+                    ]
+                ]
             , column [ width fill, spacing 30 ]
                 [ row [ width fill ]
                     [ heading3 [] "Latest Elm videos"

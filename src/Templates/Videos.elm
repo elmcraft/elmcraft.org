@@ -110,12 +110,6 @@ embed video =
             [ spacing 4
             , width (px 250)
             , centerX
-            , Border.roundEach
-                { topLeft = 10
-                , topRight = 10
-                , bottomLeft = 10
-                , bottomRight = 10
-                }
             , alignTop
             ]
             [ videoThumbnail video
