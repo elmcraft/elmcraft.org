@@ -70,6 +70,12 @@ Other "Learn Elm" collections:
 - [https://github.com/dwyl/learn-elm](https://github.com/dwyl/learn-elm)
 
 
+## Help from real people
+
+The `#beginners` channel in the [Elm Slack](https://elmcraft.org/community/forums-chat#official) is full of notoriously helpful people!
+
+
+
 
 <wip>
 ## Known unfinished guides
