@@ -41,6 +41,11 @@ Elmcraft uses the following markers on certain content pages to help with contex
 If you find a content page without a marker, assume it is a rough draft that's not been tagged yet.
 
 
+## Logo
+
+The logo is a remix of the classic Elm tangram as a brick / building block, representing the craft of Elm. The gradient is a shoutout to the Elm blue as an origin, graduating into different shades representing the vibrancy of community projects built on top of it. It was designed by [Carla Kuchel](https://dribbble.com/carlakuchel).
+
+
 ## People
 
 Here are the current Elm lovers behind Elmcraft!
