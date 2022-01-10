@@ -24,6 +24,7 @@ import Markdown.Parser
 import Markdown.Renderer
 import Templates.All
 import Templates.UI exposing (..)
+import Theme.Code
 import Types exposing (..)
 
 
@@ -116,14 +117,22 @@ renderer model global =
                 )
     , codeBlock =
         \{ body, language } ->
-            column
-                [ Font.family [ Font.monospace ]
-                , Background.color grey
-                , Border.rounded 5
-                , padding 10
-                , width fill
-                ]
-                [ paragraph [] [ text body ] ]
+            case language of
+                Nothing ->
+                    Theme.Code.elmCodeBlock body
+
+                Just "elm" ->
+                    Theme.Code.elmCodeBlock body
+
+                Just other ->
+                    column
+                        [ Font.family [ Font.monospace ]
+                        , Background.color grey
+                        , Border.rounded 5
+                        , padding 10
+                        , width fill
+                        ]
+                        [ paragraph [] [ text body ] ]
     , thematicBreak = el [ Background.color grey, height (px 2), width fill ] none
     , table = \children -> column [ width fill ] children
     , tableHeader = \children -> column [] children

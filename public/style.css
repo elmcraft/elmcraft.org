@@ -85,3 +85,90 @@ hr {
      half as far down as the superscript moved up */
   bottom: -0.25em;
 }
+
+
+
+
+/* Syntax hilighting */
+pre.elmsh {
+  padding: 10px;
+  margin-top: 10px;
+  text-align: left;
+  overflow: auto;
+  width: calc(100% - 20px);
+}
+code.elmsh {
+  padding: 0;
+}
+.elmsh-line:before {
+  content: attr(data-elmsh-lc);
+  display: inline-block;
+  text-align: right;
+  width: 40px;
+  padding: 0 20px 0 0;
+  opacity: 0.3;
+}
+
+.elmsh {
+  background: #282c34;
+  color: #abb2bf;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.elmsh-hl {
+  background: rgba(229,231,235, 0.1);
+}
+
+.elmsh-add {
+  background: rgba(40,124,82, 0.4);
+}
+
+.elmsh-del {
+  background: rgba(136,64,67, 0.4);
+}
+
+.elmsh-strong {
+  font-weight: bold;
+}
+
+.elmsh-emphasis {
+  font-style: italic;
+}
+
+.elmsh1 {
+  color: #5c6370;
+  font-style: italic
+}
+.elmsh2 {
+  color: #98c379;
+}
+
+.elmsh3 {
+  color: #c678dd;
+}
+
+.elmsh4 {
+  color: #c678dd;
+}
+
+.elmsh5 {
+  color: #61aeee;
+}
+
+.elmsh6 {
+  color: #c678dd;
+}
+
+.elmsh7 {
+  color: #abb2bf;
+}
+
+/* Additions */
+.elmsh-elm-c {
+  color: #d19a66;
+}
+.elmsh-elm-n {
+  color: #d19a66;
+  font-style: normal;
+}
