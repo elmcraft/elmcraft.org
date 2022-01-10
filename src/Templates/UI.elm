@@ -421,3 +421,17 @@ box children =
         , alignTop
         ]
         children
+
+
+boxNoPadding children =
+    column
+        [ Background.color white
+        , Border.shadow { offset = ( 0, 1 ), size = 0, blur = 2, color = rgba 0 0 0 0.1 }
+        , Border.color grey
+        , Border.width 1
+        , Border.rounded 10
+        , width fill
+        , height fill
+        , alignTop
+        ]
+        children

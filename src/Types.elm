@@ -1,5 +1,7 @@
 module Types exposing (..)
 
+import Browser.Navigation
+import DataSource.PodcastRSS
 import Dict exposing (Dict)
 import Path exposing (Path)
 import Route exposing (Route)
@@ -8,6 +10,7 @@ import Time
 
 type alias Model =
     { window : { width : Int, height : Int }
+    , key : Maybe Browser.Navigation.Key
     , isDev : Bool
     , cookieConsent : Consent
     , navExpanded : Bool
@@ -17,12 +20,15 @@ type alias Model =
 
 
 type alias GlobalData =
-    { videos : List Video }
+    { videos : List Video
+    , latestPodcast : Maybe DataSource.PodcastRSS.Episode
+    }
 
 
-init : { isDev : Bool } -> Model
-init { isDev } =
+init : { isDev : Bool, key : Maybe Browser.Navigation.Key } -> Model
+init { isDev, key } =
     { window = { width = 600, height = 800 }
+    , key = key
     , isDev = isDev
     , cookieConsent = ConsentApproved
     , navExpanded = False

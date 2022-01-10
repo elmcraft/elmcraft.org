@@ -2,28 +2,28 @@ module DataSource.PodcastRSS exposing (..)
 
 import DataSource
 import DataSource.Http
+import OptimizedDecoder as Optimized
 import Pages.Secrets as Secrets
-import Types exposing (..)
 import Xml.Decode exposing (..)
 
 
 elmRadioPodcasts : DataSource.DataSource (List Episode)
 elmRadioPodcasts =
-    withElmRadioPodcasts podcastEpisodesDecoder
+    withElmRadioPodcastsUnoptimized podcastEpisodesDecoder
 
 
 elmRadioPodcastsEpisodesTotal : DataSource.DataSource Int
 elmRadioPodcastsEpisodesTotal =
-    withElmRadioPodcasts podcastEpisodesTotalDecoder
+    withElmRadioPodcastsUnoptimized podcastEpisodesTotalDecoder
 
 
 elmRadioPodcastsEpisodeLatest : DataSource.DataSource Episode
 elmRadioPodcastsEpisodeLatest =
-    withElmRadioPodcasts postcastEpisodeLatestDecoder
+    withElmRadioPodcastsUnoptimized postcastEpisodeLatestDecoder
 
 
-withElmRadioPodcasts : Decoder a -> DataSource.DataSource a
-withElmRadioPodcasts decoder =
+withElmRadioPodcastsUnoptimized : Decoder a -> DataSource.DataSource a
+withElmRadioPodcastsUnoptimized decoder =
     DataSource.Http.unoptimizedRequest
         (Secrets.succeed
             { url = "https://elm-radio.com/feed.xml"
@@ -33,6 +33,34 @@ withElmRadioPodcasts decoder =
             }
         )
         (DataSource.Http.expectString (decodeString decoder))
+
+
+withElmRadioPodcasts : Decoder a -> DataSource.DataSource a
+withElmRadioPodcasts decoder =
+    DataSource.Http.request
+        (Secrets.succeed
+            { url = "https://elm-radio.com/feed.xml"
+            , method = "GET"
+            , headers = []
+            , body = DataSource.Http.emptyBody
+            }
+        )
+        (asOptimizedDecoder decoder)
+
+
+asOptimizedDecoder : Decoder a -> Optimized.Decoder a
+asOptimizedDecoder decoder =
+    -- @TODO this doesn't do what we want it to do, as it always expects JSON but we have a string.
+    Optimized.string
+        |> Optimized.andThen
+            (\s ->
+                case decodeString decoder s of
+                    Ok value ->
+                        Optimized.succeed value
+
+                    Err err ->
+                        Optimized.fail err
+            )
 
 
 type alias Episode =

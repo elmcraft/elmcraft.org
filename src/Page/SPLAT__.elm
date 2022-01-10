@@ -5,6 +5,7 @@ import DataSource.File
 import DataSource.Glob as Glob
 import DataSource.Markdown
 import DataSource.Notion as Notion
+import DataSource.PodcastRSS
 import Dict
 import Element exposing (..)
 import Head
@@ -43,7 +44,7 @@ type alias Data =
     { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
     , meta : DataSource.Markdown.Meta
     , timestamps : Timestamps
-    , global : { videos : List Video }
+    , global : Types.GlobalData
     }
 
 
@@ -114,13 +115,29 @@ data routeParams =
 
                     else
                         DataSource.succeed []
+
+                getLatestElmRadioPodcast =
+                    if path == "content/index.md" then
+                        DataSource.PodcastRSS.elmRadioPodcastsEpisodeLatest
+                            |> DataSource.map Just
+
+                    else
+                        DataSource.succeed Nothing
             in
-            DataSource.map2
-                (\ts videos ->
-                    { ui = d.ui, meta = d.meta, timestamps = ts, global = { videos = videos } }
+            DataSource.map3
+                (\ts videos podcastM ->
+                    { ui = d.ui
+                    , meta = d.meta
+                    , timestamps = ts
+                    , global =
+                        { videos = videos
+                        , latestPodcast = podcastM
+                        }
+                    }
                 )
                 (Timestamps.data path)
                 getVideos
+                getLatestElmRadioPodcast
         )
 
 

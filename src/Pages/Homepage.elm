@@ -15,11 +15,12 @@ import Templates.FindYourPath
 import Templates.Footer
 import Templates.UI exposing (..)
 import Templates.Videos as Videos
+import Theme
 import Types exposing (..)
 
 
-view : Model -> List Video -> List (Element Msg) -> Element Msg
-view model videos _ =
+view : Model -> GlobalData -> List (Element Msg) -> Element Msg
+view model global _ =
     column [ width fill ]
         [ column [ width fill, spacing 50 ]
             [ none
@@ -33,17 +34,23 @@ view model videos _ =
                     ]
                 ]
             , spacer 0
-            , column [ spacing 10 ]
+            , column [ spacing 30 ]
                 [ heading3 [] "Featured article"
-                , box
+                , boxNoPadding
                     [ rowToColumnWhen 600
                         model
-                        [ width fill, spacing 20, padding_ 20 0 15 0 ]
-                        [ el [ centerX, width (fillPortion 1) ] <| link [] { url = "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho", label = image [ width fill ] { src = "/articles/2021-in-review.webp", description = "2021 in review mosaic" } }
-                        , column [ spacing 10, width (fillPortion 2) ]
+                        [ width fill, spacing 20 ]
+                        [ el
+                            [ centerX
+                            , width (fillPortion 1)
+                            , height fill
+                            , Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+                            , clip
+                            ]
+                          <|
+                            link [] { url = "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho", label = image [ width fill ] { src = "/articles/2021-in-review.webp", description = "2021 in review mosaic" } }
+                        , column [ spacing 10, width (fillPortion 3) ]
                             [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2021, a year in review" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
-
-                            -- , text "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho"
                             , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "252 things that happened in Elm in 2021!" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
                             ]
                         ]
@@ -54,7 +61,7 @@ view model videos _ =
                     [ heading3 [] "Latest Elm videos"
                     , routeLink [] "See all" (splat "media" [ "videos" ])
                     ]
-                , videos
+                , global.videos
                     |> List.take 3
                     |> List.map
                         (\v ->
@@ -62,6 +69,57 @@ view model videos _ =
                         )
                     |> wrappedRow [ spacing 30, width fill ]
                 ]
+            , case global.latestPodcast of
+                Nothing ->
+                    none
+
+                Just episode ->
+                    column [ width fill, spacing 30 ]
+                        [ row [ width fill ]
+                            [ heading3 [] "Latest Podcast"
+                            , routeLink [] "See all" (splat "media" [ "videos" ])
+                            ]
+                        , let
+                            url =
+                                episode.link
+                          in
+                          boxNoPadding
+                            [ rowToColumnWhen 500
+                                model
+                                [ width fill, spacing 20 ]
+                                [ el
+                                    [ centerX
+                                    , width (fillPortion 1)
+                                    , height fill
+                                    , Background.color <| fromHex "#002329"
+                                    , padding 20
+                                    , Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+                                    ]
+                                  <|
+                                    link [ centerY, centerX ]
+                                        { url = url
+                                        , label =
+                                            image [ width fill, centerY ]
+                                                { src = "/images/logos/elm-radio.png", description = "Elm Radio Logo" }
+                                        }
+                                , column [ spacing 10, width (fillPortion 3) ]
+                                    [ heading3 [] "Elm Radio"
+                                    , paragraph [ Font.size 20, Font.bold ] [ externalLink [] episode.title url ]
+
+                                    -- , paragraph [] [ text <| Theme.format episode.published ]
+                                    -- @TODO parse and format the odd time format nicely
+                                    , paragraph []
+                                        [ episode.published
+                                            |> String.split " "
+                                            |> List.take 4
+                                            |> String.join " "
+                                            |> text
+                                        ]
+                                    , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
+                                    ]
+                                ]
+                            ]
+                        ]
 
             -- , column
             --     [ width fill, spacing 20 ]

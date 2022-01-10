@@ -63,7 +63,8 @@ init :
             }
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
-    ( Types.init { isDev = False }
+    -- @TODO need a better way to inject this isDev var...
+    ( Types.init { isDev = False, key = navigationKey }
     , Cmd.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
         ]
@@ -145,7 +146,9 @@ update msg model =
         -- Videos
         VideosAddCategoryFilter category ->
             -- ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
-            ( { model | appliedVideoFilters = [ category ] }, Cmd.none )
+            ( { model | appliedVideoFilters = [ category ] }
+            , model.key |> Maybe.map (\key -> Browser.Navigation.pushUrl key "/media/videos") |> Maybe.withDefault Cmd.none
+            )
 
         VideosRemoveCategoryFilter category ->
             ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
