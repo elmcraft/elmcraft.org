@@ -10,12 +10,12 @@ import Helpers exposing (..)
 import Html exposing (Html)
 import Html.Attributes
 import Pages
+import Theme
 import Theme.Feature
 import Theme.FindYourPath
 import Theme.Footer
 import Theme.UI exposing (..)
 import Theme.Videos as Videos
-import Theme
 import Types exposing (..)
 
 
@@ -36,25 +36,40 @@ view model global _ =
             , spacer 0
             , column [ spacing 30 ]
                 [ heading3 [] "Featured article"
-                , boxNoPadding
-                    [ rowToColumnWhen 600
-                        model
-                        [ width fill, spacing 20 ]
-                        [ el
-                            [ centerX
-                            , width (fillPortion 1)
-                            , height fill
-                            , Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
-                            , clip
+                , let
+                    v opts =
+                        boxNoPadding
+                            [ rowToColumnWhen 650
+                                model
+                                [ width fill, spacing 10 ]
+                                [ el
+                                    [ centerX
+                                    , width (fillPortion 1)
+                                    , height opts.height
+                                    , opts.border
+                                    , clip
+                                    ]
+                                  <|
+                                    link [] { url = "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho", label = image [ width fill ] { src = "/articles/2021-in-review.webp", description = "2021 in review mosaic" } }
+                                , column [ spacing 10, width (fillPortion 1), padding 20 ]
+                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2021, a year in review" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
+                                    , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "252 things that happened in Elm in 2021!" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
+                                    ]
+                                ]
                             ]
-                          <|
-                            link [] { url = "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho", label = image [ width fill ] { src = "/articles/2021-in-review.webp", description = "2021 in review mosaic" } }
-                        , column [ spacing 10, width (fillPortion 3) ]
-                            [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2021, a year in review" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
-                            , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "252 things that happened in Elm in 2021!" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
-                            ]
-                        ]
-                    ]
+                  in
+                  adaptiveAt 650
+                    model
+                    (v
+                        { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+                        , height = fill
+                        }
+                    )
+                    (v
+                        { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
+                        , height = fill |> minimum 160
+                        }
+                    )
                 ]
             , column [ width fill, spacing 30 ]
                 [ row [ width fill ]
@@ -82,43 +97,57 @@ view model global _ =
                         , let
                             url =
                                 episode.link
-                          in
-                          boxNoPadding
-                            [ rowToColumnWhen 500
-                                model
-                                [ width fill, spacing 20 ]
-                                [ el
-                                    [ centerX
-                                    , width (fillPortion 1)
-                                    , height fill
-                                    , Background.color <| fromHex "#002329"
-                                    , padding 20
-                                    , Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
-                                    ]
-                                  <|
-                                    link [ centerY, centerX ]
-                                        { url = url
-                                        , label =
-                                            image [ width fill, centerY ]
-                                                { src = "/images/logos/elm-radio.png", description = "Elm Radio Logo" }
-                                        }
-                                , column [ spacing 10, width (fillPortion 3) ]
-                                    [ heading3 [] "Elm Radio"
-                                    , paragraph [ Font.size 20, Font.bold ] [ externalLink [] episode.title url ]
 
-                                    -- , paragraph [] [ text <| Theme.format episode.published ]
-                                    -- @TODO parse and format the odd time format nicely
-                                    , paragraph []
-                                        [ episode.published
-                                            |> String.split " "
-                                            |> List.take 4
-                                            |> String.join " "
-                                            |> text
+                            v opts =
+                                boxNoPadding
+                                    [ rowToColumnWhen 500
+                                        model
+                                        [ width fill, spacing 10 ]
+                                        [ el
+                                            [ centerX
+                                            , width (fillPortion 1)
+                                            , height fill
+                                            , Background.color <| fromHex "#002329"
+                                            , padding 20
+                                            , opts.border
+                                            ]
+                                          <|
+                                            link [ centerY, centerX ]
+                                                { url = url
+                                                , label =
+                                                    image [ width fill, centerY ]
+                                                        { src = "/images/logos/elm-radio.png", description = "Elm Radio Logo" }
+                                                }
+                                        , column [ spacing 10, width (fillPortion 3), padding 20 ]
+                                            [ heading3 [] "Elm Radio"
+                                            , paragraph [ Font.size 20, Font.bold ] [ externalLink [] episode.title url ]
+
+                                            -- , paragraph [] [ text <| Theme.format episode.published ]
+                                            -- @TODO parse and format the odd time format nicely
+                                            , paragraph []
+                                                [ episode.published
+                                                    |> String.split " "
+                                                    |> List.take 4
+                                                    |> String.join " "
+                                                    |> text
+                                                ]
+                                            , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
+                                            ]
                                         ]
-                                    , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
                                     ]
-                                ]
-                            ]
+                          in
+                          adaptiveAt 500
+                            model
+                            (v
+                                { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+                                , height = fill
+                                }
+                            )
+                            (v
+                                { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
+                                , height = fill |> minimum 160
+                                }
+                            )
                         ]
 
             -- , column

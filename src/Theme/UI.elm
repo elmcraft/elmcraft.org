@@ -188,6 +188,14 @@ rowToColumnWhenSmall model attrs children =
         column attrs children
 
 
+adaptiveAt width model wide narrow =
+    if model.window.width > width then
+        wide
+
+    else
+        narrow
+
+
 heading : { level : HeadingLevel, rawText : String, children : List (Element msg) } -> Element msg
 heading { level, rawText, children } =
     paragraph
