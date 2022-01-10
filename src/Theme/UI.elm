@@ -295,7 +295,7 @@ routeLinkBare attrs label route =
         url =
             Route.routeToPath route |> String.join "/"
     in
-    link ([ mouseOver [ Font.color purple ] ] ++ elmPagesAttrs ++ attrs) { url = url, label = text label }
+    prefetchLink ([ mouseOver [ Font.color purple ] ] ++ elmPagesAttrs ++ attrs) { url = url, label = text label }
 
 
 routeLink attrs label route =

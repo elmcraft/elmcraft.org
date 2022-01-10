@@ -92,7 +92,7 @@ view model global _ =
                     column [ width fill, spacing 30 ]
                         [ row [ width fill ]
                             [ heading3 [] "Latest Podcast"
-                            , routeLink [] "See all" (splat "media" [ "videos" ])
+                            , routeLink [] "See all" (splat "media" [ "podcasts" ])
                             ]
                         , let
                             url =
