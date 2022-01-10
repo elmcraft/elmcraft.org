@@ -1,8 +1,8 @@
-module Templates.Header exposing (..)
+module Theme.Header exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
-import Templates.UI exposing (..)
+import Theme.UI exposing (..)
 
 
 view model src description content =

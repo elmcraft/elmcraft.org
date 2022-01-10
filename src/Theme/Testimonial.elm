@@ -1,4 +1,4 @@
-module Templates.Testimonial exposing (..)
+module Theme.Testimonial exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)

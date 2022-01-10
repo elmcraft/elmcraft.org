@@ -1,10 +1,10 @@
-module Templates.QuizIsElmForMe exposing (..)
+module Theme.QuizIsElmForMe exposing (..)
 
 import Element exposing (..)
 import Element.Font as Font
 import MarkdownPlain
 import Pages
-import Templates.UI exposing (..)
+import Theme.UI exposing (..)
 
 
 view model =

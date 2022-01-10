@@ -9,10 +9,10 @@ import Element.Region as Region
 import Helpers exposing (..)
 import Html exposing (Html)
 import Route
-import Templates.Footer
-import Templates.Layout
-import Templates.Navigation
-import Templates.UI exposing (..)
+import Theme.Footer
+import Theme.Layout
+import Theme.Navigation
+import Theme.UI exposing (..)
 import Time
 import Timestamps
 import Types
@@ -24,7 +24,7 @@ view x toWrapperMsg model static =
     layout
         [ width fill
         , Font.size 18
-        , Font.family [ Font.typeface Templates.Layout.fontFace ]
+        , Font.family [ Font.typeface Theme.Layout.fontFace ]
         , Font.color charcoal
         , width fill
         ]
@@ -33,7 +33,7 @@ view x toWrapperMsg model static =
             [ width fill
             , spacing 20
             ]
-            [ Templates.Navigation.navigation model static.route
+            [ Theme.Navigation.navigation model static.route
                 |> Element.map toWrapperMsg
 
             -- , el [ width fill ] <| html <| Html.pre [] [ Html.text <| Debug.toString x ]
@@ -42,7 +42,7 @@ view x toWrapperMsg model static =
 
               else
                 standardCenteredSectionAdaptiveAt
-                    Templates.Layout.maxWidth
+                    Theme.Layout.maxWidth
                     model
                     white
                     []
@@ -85,7 +85,7 @@ view x toWrapperMsg model static =
                 white
                 [ Region.mainContent ]
                 static.content
-            , Templates.Footer.view model
+            , Theme.Footer.view model
                 |> Element.map toWrapperMsg
             ]
 

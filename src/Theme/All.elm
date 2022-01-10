@@ -1,4 +1,4 @@
-module Templates.All exposing (..)
+module Theme.All exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
@@ -10,15 +10,15 @@ import Html exposing (Html)
 import Html.Attributes
 import Markdown.Html
 import Pages.Homepage
-import Templates.Articles
-import Templates.CuratedBy
-import Templates.Feature
-import Templates.FindYourPath
-import Templates.Header
-import Templates.QuizIsElmForMe
-import Templates.Testimonial
-import Templates.UI exposing (..)
-import Templates.Videos
+import Theme.Articles
+import Theme.CuratedBy
+import Theme.Feature
+import Theme.FindYourPath
+import Theme.Header
+import Theme.QuizIsElmForMe
+import Theme.Testimonial
+import Theme.UI exposing (..)
+import Theme.Videos
 import Types exposing (..)
 
 
@@ -58,7 +58,7 @@ htmlMapping model global =
             |> Markdown.Html.withOptionalAttribute "bg"
         , Markdown.Html.tag "header"
             (\src description content ->
-                Templates.Header.view model src description content
+                Theme.Header.view model src description content
             )
             |> Markdown.Html.withAttribute "image"
             |> Markdown.Html.withAttribute "imagedescription"
@@ -76,16 +76,16 @@ htmlMapping model global =
                     ]
             )
         , Markdown.Html.tag "featureleft"
-            (\src content -> Templates.Feature.leftRaw model src False content)
+            (\src content -> Theme.Feature.leftRaw model src False content)
             |> Markdown.Html.withAttribute "image"
         , Markdown.Html.tag "featureleftbordered"
-            (\src content -> Templates.Feature.leftRaw model src True content)
+            (\src content -> Theme.Feature.leftRaw model src True content)
             |> Markdown.Html.withAttribute "image"
         , Markdown.Html.tag "featureright"
-            (\src content -> Templates.Feature.rightRaw model src False content)
+            (\src content -> Theme.Feature.rightRaw model src False content)
             |> Markdown.Html.withAttribute "image"
         , Markdown.Html.tag "featurerightbordered"
-            (\src content -> Templates.Feature.rightRaw model src True content)
+            (\src content -> Theme.Feature.rightRaw model src True content)
             |> Markdown.Html.withAttribute "image"
         , Markdown.Html.tag "button"
             (\label url content ->
@@ -136,11 +136,11 @@ htmlMapping model global =
         , Markdown.Html.tag "view"
             (\module_ children ->
                 case module_ of
-                    "Templates.FindYourPath" ->
-                        Templates.FindYourPath.view model
+                    "Theme.FindYourPath" ->
+                        Theme.FindYourPath.view model
 
-                    "Templates.QuizIsElmForMe" ->
-                        Templates.QuizIsElmForMe.view model
+                    "Theme.QuizIsElmForMe" ->
+                        Theme.QuizIsElmForMe.view model
 
                     _ ->
                         text <| "Oops! View for '" ++ module_ ++ "' not mapped!"
@@ -149,12 +149,12 @@ htmlMapping model global =
         , Markdown.Html.tag "sup" (\content -> row [ htmlAttribute <| Html.Attributes.class "sup" ] content)
         , Markdown.Html.tag "curatedby"
             (\authors children ->
-                Templates.CuratedBy.view model authors
+                Theme.CuratedBy.view model authors
             )
             |> Markdown.Html.withAttribute "authors"
         , Markdown.Html.tag "testimonial"
             (\name pic children ->
-                Templates.Testimonial.view model name pic children
+                Theme.Testimonial.view model name pic children
             )
             |> Markdown.Html.withAttribute "name"
             |> Markdown.Html.withAttribute "pic"
@@ -212,13 +212,13 @@ htmlMapping model global =
             )
         , Markdown.Html.tag "articles"
             (\tagged mLimit children ->
-                Templates.Articles.list model tagged mLimit
+                Theme.Articles.list model tagged mLimit
             )
             |> Markdown.Html.withAttribute "tagged"
             |> Markdown.Html.withOptionalAttribute "limit"
         , Markdown.Html.tag "videos"
             (\tagged mLimit children ->
-                Templates.Videos.index model
+                Theme.Videos.index model
                     (global.videos |> List.filter (\v -> v.name /= ""))
                     tagged
                     mLimit

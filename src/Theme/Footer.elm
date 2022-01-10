@@ -1,4 +1,4 @@
-module Templates.Footer exposing (..)
+module Theme.Footer exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
@@ -9,15 +9,15 @@ import Element.Region as Region
 import Helpers exposing (..)
 import Html exposing (Html)
 import Html.Attributes
-import Templates.Layout
-import Templates.UI exposing (..)
+import Theme.Layout
+import Theme.UI exposing (..)
 
 
 view model =
     column
         [ Background.color white, width fill, Font.color charcoal ]
         [ column
-            [ centerX, width (fill |> maximum Templates.Layout.maxWidth), padding_ 60 30 20 30, spacing 50 ]
+            [ centerX, width (fill |> maximum Theme.Layout.maxWidth), padding_ 60 30 20 30, spacing 50 ]
             [ none
             , footerNav model
             , row [ width fill ]

@@ -15,7 +15,7 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Task
-import Templates.Videos
+import Theme.Videos
 import Theme
 import Types exposing (..)
 import Url

@@ -10,7 +10,7 @@ import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as E
 import Pages.Secrets as Secrets
-import Templates.Videos exposing (..)
+import Theme.Videos exposing (..)
 import Types exposing (..)
 
 

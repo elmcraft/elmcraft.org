@@ -1,4 +1,4 @@
-module Templates.UI exposing (..)
+module Theme.UI exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
@@ -17,7 +17,7 @@ import Markdown.Block exposing (HeadingLevel(..), ListItem(..), headingLevelToIn
 import Markdown.Parser
 import Markdown.Renderer
 import Route exposing (Route)
-import Templates.Layout
+import Theme.Layout
 import Types exposing (Msg(..))
 
 
@@ -40,7 +40,7 @@ standardCenteredSectionAdaptiveAt breakpoint model background attrs children =
         )
         [ column
             [ centerX
-            , width (fill |> maximum Templates.Layout.maxWidth)
+            , width (fill |> maximum Theme.Layout.maxWidth)
             , paddingXY 30 0
             ]
             children
@@ -56,7 +56,7 @@ standardCenteredSection model background attrs children =
         )
         [ column
             [ centerX
-            , width (fill |> maximum Templates.Layout.maxWidth)
+            , width (fill |> maximum Theme.Layout.maxWidth)
             , paddingXY 30 0
             ]
             children

@@ -1,4 +1,4 @@
-module Templates.Feature exposing (..)
+module Theme.Feature exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
@@ -7,7 +7,7 @@ import Element.Border as Border
 import Element.Font as Font
 import Html exposing (Html)
 import Html.Attributes
-import Templates.UI exposing (..)
+import Theme.UI exposing (..)
 import Types exposing (Model)
 
 

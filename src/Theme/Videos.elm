@@ -1,4 +1,4 @@
-module Templates.Videos exposing (..)
+module Theme.Videos exposing (..)
 
 import Colors exposing (..)
 import DataStatic.Conferences

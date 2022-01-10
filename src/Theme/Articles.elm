@@ -1,4 +1,4 @@
-module Templates.Articles exposing (..)
+module Theme.Articles exposing (..)
 
 import Element exposing (..)
 

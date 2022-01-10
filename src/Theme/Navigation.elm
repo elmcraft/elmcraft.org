@@ -1,4 +1,4 @@
-module Templates.Navigation exposing (..)
+module Theme.Navigation exposing (..)
 
 import Colors exposing (..)
 import Dict
@@ -12,8 +12,8 @@ import Element.Region as Region
 import Helpers exposing (..)
 import List.Extra as List
 import Route exposing (Route)
-import Templates.Layout
-import Templates.UI exposing (..)
+import Theme.Layout
+import Theme.UI exposing (..)
 import Types exposing (..)
 
 
@@ -119,7 +119,7 @@ navigationDesktop model currentPath =
             [ padding 30
             , spaceEvenly
             , Region.navigation
-            , width (fill |> maximum Templates.Layout.maxWidth)
+            , width (fill |> maximum Theme.Layout.maxWidth)
             , centerX
             ]
             [ elmcraftLogoText

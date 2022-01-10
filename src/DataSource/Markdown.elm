@@ -10,7 +10,7 @@ import OptimizedDecoder as Decode
 import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Parser
 import Route
-import Templates.Markdown
+import Theme.Markdown
 import View exposing (..)
 
 
@@ -101,7 +101,7 @@ markdownRenderer rawMarkdown path =
             (\blocks ->
                 Ok
                     (\model_ global_ ->
-                        case Markdown.Renderer.render (Templates.Markdown.renderer model_ global_) blocks of
+                        case Markdown.Renderer.render (Theme.Markdown.renderer model_ global_) blocks of
                             Ok ui ->
                                 ui
 

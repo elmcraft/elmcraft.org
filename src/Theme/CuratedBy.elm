@@ -1,4 +1,4 @@
-module Templates.CuratedBy exposing (..)
+module Theme.CuratedBy exposing (..)
 
 import Colors exposing (..)
 import Element exposing (..)
@@ -7,7 +7,7 @@ import Element.Border as Border
 import Element.Font as Font
 import MarkdownPlain
 import Pages
-import Templates.UI exposing (..)
+import Theme.UI exposing (..)
 
 
 view model authors_ =

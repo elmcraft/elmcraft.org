@@ -1,4 +1,4 @@
-module Templates.Markdown exposing (..)
+module Theme.Markdown exposing (..)
 
 -- import Feed
 -- import Palette
@@ -22,8 +22,8 @@ import Markdown.Block exposing (ListItem(..))
 import Markdown.Html
 import Markdown.Parser
 import Markdown.Renderer
-import Templates.All
-import Templates.UI exposing (..)
+import Theme.All
+import Theme.UI exposing (..)
 import Theme.Code
 import Types exposing (..)
 
@@ -47,7 +47,7 @@ renderer model global =
                     ]
                     children
                 ]
-    , html = Templates.All.htmlMapping model global
+    , html = Theme.All.htmlMapping model global
 
     -- @TODO preserve newlines on... new lines?
     , text = \s -> el [] <| text s

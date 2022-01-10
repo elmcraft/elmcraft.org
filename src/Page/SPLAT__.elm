@@ -20,8 +20,8 @@ import Pages.Url
 import Path
 import Route
 import Shared
-import Templates.Markdown
-import Templates.Videos
+import Theme.Markdown
+import Theme.Videos
 import Theme
 import Timestamps exposing (Timestamps)
 import Types exposing (..)

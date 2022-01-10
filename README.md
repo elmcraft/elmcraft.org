@@ -33,16 +33,16 @@ The 'frontmatter' (bits between `---` at the top of the markdown file) drives ot
 
 `elm-pages` will pick up new pages, compile them and type check them.
 
-Navigation UI can be updated in `src/Templates/Navigation.elm`.
+Navigation UI can be updated in `src/Theme/Navigation.elm`.
 
 
-## Templates
+## Theme
 
-`src/Templates/*` has most of the UI components split up.
+`src/Theme/*` has most of the UI components split up.
 
-See `src/Templates/All.elm` for which markdown/html tags end up being rendered by which components.
+See `src/Theme/All.elm` for which markdown/html tags end up being rendered by which components.
 
-The UI on the Elm side is built with the [`elm-ui`](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/) library.
+All the UI is built with [`elm-ui`](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/).
 
 ## Data Sources
 

@@ -1,4 +1,4 @@
-module Templates.Layout exposing (..)
+module Theme.Layout exposing (..)
 
 
 fontFace =

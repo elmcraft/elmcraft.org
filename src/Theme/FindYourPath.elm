@@ -1,9 +1,9 @@
-module Templates.FindYourPath exposing (..)
+module Theme.FindYourPath exposing (..)
 
 import Element exposing (..)
 import Element.Font as Font
 import Pages
-import Templates.UI exposing (..)
+import Theme.UI exposing (..)
 
 
 view model =

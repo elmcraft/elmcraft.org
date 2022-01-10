@@ -10,11 +10,11 @@ import Helpers exposing (..)
 import Html exposing (Html)
 import Html.Attributes
 import Pages
-import Templates.Feature
-import Templates.FindYourPath
-import Templates.Footer
-import Templates.UI exposing (..)
-import Templates.Videos as Videos
+import Theme.Feature
+import Theme.FindYourPath
+import Theme.Footer
+import Theme.UI exposing (..)
+import Theme.Videos as Videos
 import Theme
 import Types exposing (..)
 
@@ -164,7 +164,7 @@ view_old model _ =
                     ]
                 ]
             , spacer 20
-            , Templates.FindYourPath.view model
+            , Theme.FindYourPath.view model
             , spacer 20
             , column [ Border.width 1, Border.color elmTeal, padding 20, Border.rounded 10, width fill, spacing 20 ]
                 [ paragraph [ Font.center, Font.size 18, Font.bold ] [ text "Is Elm for me?" ]
