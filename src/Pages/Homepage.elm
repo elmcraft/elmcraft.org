@@ -91,7 +91,7 @@ view model global _ =
                 Just episode ->
                     column [ width fill, spacing 30 ]
                         [ row [ width fill ]
-                            [ heading3 [] "Latest Podcast"
+                            [ heading3 [] "Latest Elm Podcast"
                             , routeLink [] "See all" (splat "media" [ "podcasts" ])
                             ]
                         , let

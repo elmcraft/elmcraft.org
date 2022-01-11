@@ -18,10 +18,10 @@ Here are some before/after refactoring examples in moving from a Tuple with 3 fi
 
 ```
 type alias Coords = ( Int, Int, Int )
-type alias Coords = { x: Int, y: Int, z: Int, q: Int )
+type alias Coords = { x: Int, y: Int, z: Int, q: Int }
 ```
 
-The main change is we now explicitly label the values.
+The main change is we now explicitly label the values, and `()` changed to `{}`.
 
 #### Creating a value
 
@@ -32,7 +32,7 @@ myCoord = ( x, y, z )
 myCoord = Coords x y z q
 ```
 
-Instead of `( .. , .. , ..)` we use `AliasName .. .. .. ..`.
+Instead of `( .. , .. , ..)` we use `RecordAliasName .. .. .. ..`.
 
 
 #### De-structuring a value
@@ -47,15 +47,11 @@ someFn { x, y, z, q } = ...
 The main difference is now `x/y/z/q` must be used (as they are the specified names).
 
 ```
-let
-  ( x1, y1, z1 ) = ...
-  ( x2, y2, z2 ) = ...
-  newCoords = (x1 + x2, y1 + y2, z1 + z2)
+someFn ( x1, y1, z1 ) ( x2, y2, z2 ) =
+  (x1 + x2, y1 + y2, z1 + z2)
 
-let
-  c1 = ...                                                         -- -12 chars
-  c2 = ...                                                         -- -12 chars
-  newCoords = (c1.x + c2.x, c1.y + c2.y, c1.z + c2.z, c1.q + c1.q) -- +25 chars
+someFn c1 c2 =                                         -- minus 24 chars
+  (c1.x + c2.x, c1.y + c2.y, c1.z + c2.z, c1.q + c1.q) -- plus  25 chars
 ```
 
-Note that overall the record version ends up with 1 char more than the tuple version... but we added another field!
+The record version ends up with 1 char more than the tuple version... but we added another field!
