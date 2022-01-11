@@ -74,7 +74,7 @@ view model global _ =
             , column [ width fill, spacing 30 ]
                 [ row [ width fill ]
                     [ heading3 [] "Latest Elm videos"
-                    , routeLink [] "See all" (splat "media" [ "videos" ])
+                    , routeLink [] ("See all (" ++ String.fromInt global.videosCount ++ ")") (splat "media" [ "videos" ])
                     ]
                 , global.videos
                     |> List.take 3

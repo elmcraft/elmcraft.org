@@ -3,7 +3,8 @@ module DataSource.Notion exposing (..)
 -- import OptimizedDecoder exposing (..)
 -- import OptimizedDecoder.Pipeline exposing (..)
 
-import DataSource
+import DataSource exposing (DataSource)
+import DataSource.Helpers
 import DataSource.Http
 import DataStatic.Conferences exposing (..)
 import Json.Decode exposing (..)
@@ -35,7 +36,7 @@ videosDbQueryReq body =
         |> Secrets.with "NOTION_TOKEN"
 
 
-getVideos : Int -> DataSource.DataSource (List Video)
+getVideos : Int -> DataSource (List Video)
 getVideos number =
     -- DataSource.Http.request
     DataSource.Http.unoptimizedRequest
@@ -49,7 +50,42 @@ getVideos number =
         (DataSource.Http.expectUnoptimizedJson decodeNotionVideos)
 
 
-getVideosResponse : Maybe String -> DataSource.DataSource VideosResponse
+defaultSort : ( String, E.Value )
+defaultSort =
+    ( "sorts"
+    , E.list identity
+        [ E.object
+            [ ( "property", E.string "Year" )
+            , ( "direction", E.string "descending" )
+            ]
+        ]
+    )
+
+
+getVideosCount : DataSource Int
+getVideosCount =
+    recursiveGetVideos Nothing
+        |> DataSource.map List.length
+        |> DataSource.Helpers.distillInt "getVideosCount"
+
+
+recursiveGetVideos : Maybe String -> DataSource (List Video)
+recursiveGetVideos startCursor =
+    getVideosResponse startCursor
+        |> DataSource.andThen
+            (\response ->
+                case response.nextCursor of
+                    Just nextCursor ->
+                        recursiveGetVideos (Just nextCursor)
+                            |> DataSource.map (List.append response.videos)
+
+                    Nothing ->
+                        DataSource.succeed response.videos
+            )
+        |> DataSource.map (List.filter (\v -> v.name /= ""))
+
+
+getVideosResponse : Maybe String -> DataSource VideosResponse
 getVideosResponse startCursor =
     -- DataSource.Http.request
     DataSource.Http.unoptimizedRequest
@@ -66,33 +102,6 @@ getVideosResponse startCursor =
         )
         -- decodeNotionVideosResponse
         (DataSource.Http.expectUnoptimizedJson decodeNotionVideosResponse)
-
-
-defaultSort : ( String, E.Value )
-defaultSort =
-    ( "sorts"
-    , E.list identity
-        [ E.object
-            [ ( "property", E.string "Year" )
-            , ( "direction", E.string "descending" )
-            ]
-        ]
-    )
-
-
-recursiveGetVideos : Maybe String -> DataSource.DataSource (List Video)
-recursiveGetVideos startCursor =
-    getVideosResponse startCursor
-        |> DataSource.andThen
-            (\response ->
-                case response.nextCursor of
-                    Just nextCursor ->
-                        recursiveGetVideos (Just nextCursor)
-                            |> DataSource.map (List.append response.videos)
-
-                    Nothing ->
-                        DataSource.succeed response.videos
-            )
 
 
 decodeNotionVideos : Decoder (List Video)

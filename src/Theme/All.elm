@@ -219,7 +219,7 @@ htmlMapping model global =
         , Markdown.Html.tag "videos"
             (\tagged mLimit children ->
                 Theme.Videos.index model
-                    (global.videos |> List.filter (\v -> v.name /= ""))
+                    global.videos
                     tagged
                     mLimit
             )

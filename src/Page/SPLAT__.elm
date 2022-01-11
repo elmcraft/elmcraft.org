@@ -20,9 +20,9 @@ import Pages.Url
 import Path
 import Route
 import Shared
+import Theme
 import Theme.Markdown
 import Theme.Videos
-import Theme
 import Timestamps exposing (Timestamps)
 import Types exposing (..)
 import View exposing (..)
@@ -116,6 +116,13 @@ data routeParams =
                     else
                         DataSource.succeed []
 
+                getVideosCount =
+                    if path == "content/index.md" then
+                        Notion.getVideosCount
+
+                    else
+                        DataSource.succeed 0
+
                 getLatestElmRadioPodcast =
                     if path == "content/index.md" then
                         DataSource.PodcastRSS.elmRadioPodcastsEpisodeLatest
@@ -124,19 +131,21 @@ data routeParams =
                     else
                         DataSource.succeed Nothing
             in
-            DataSource.map3
-                (\ts videos podcastM ->
+            DataSource.map4
+                (\ts videos videosCount podcastM ->
                     { ui = d.ui
                     , meta = d.meta
                     , timestamps = ts
                     , global =
                         { videos = videos
+                        , videosCount = videosCount
                         , latestPodcast = podcastM
                         }
                     }
                 )
                 (Timestamps.data path)
                 getVideos
+                getVideosCount
                 getLatestElmRadioPodcast
         )
 

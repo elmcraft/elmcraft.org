@@ -21,6 +21,7 @@ type alias Model =
 
 type alias GlobalData =
     { videos : List Video
+    , videosCount : Int
     , latestPodcast : Maybe DataSource.PodcastRSS.Episode
     }
 

@@ -1,28 +1,30 @@
 module DataSource.PodcastRSS exposing (..)
 
-import DataSource
+import DataSource exposing (DataSource)
+import DataSource.Helpers
 import DataSource.Http
 import OptimizedDecoder as Optimized
 import Pages.Secrets as Secrets
 import Xml.Decode exposing (..)
 
 
-elmRadioPodcasts : DataSource.DataSource (List Episode)
+elmRadioPodcasts : DataSource (List Episode)
 elmRadioPodcasts =
     withElmRadioPodcastsUnoptimized podcastEpisodesDecoder
 
 
-elmRadioPodcastsEpisodesTotal : DataSource.DataSource Int
+elmRadioPodcastsEpisodesTotal : DataSource Int
 elmRadioPodcastsEpisodesTotal =
     withElmRadioPodcastsUnoptimized podcastEpisodesTotalDecoder
+        |> DataSource.Helpers.distillInt "elmRadioPodcastsEpisodesTotal"
 
 
-elmRadioPodcastsEpisodeLatest : DataSource.DataSource Episode
+elmRadioPodcastsEpisodeLatest : DataSource Episode
 elmRadioPodcastsEpisodeLatest =
     withElmRadioPodcastsUnoptimized postcastEpisodeLatestDecoder
 
 
-withElmRadioPodcastsUnoptimized : Decoder a -> DataSource.DataSource a
+withElmRadioPodcastsUnoptimized : Decoder a -> DataSource a
 withElmRadioPodcastsUnoptimized decoder =
     DataSource.Http.unoptimizedRequest
         (Secrets.succeed
@@ -35,7 +37,7 @@ withElmRadioPodcastsUnoptimized decoder =
         (DataSource.Http.expectString (decodeString decoder))
 
 
-withElmRadioPodcasts : Decoder a -> DataSource.DataSource a
+withElmRadioPodcasts : Decoder a -> DataSource a
 withElmRadioPodcasts decoder =
     DataSource.Http.request
         (Secrets.succeed
