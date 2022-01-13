@@ -11,6 +11,8 @@ These are some frequently asked questions, particularly by newcomers to the Elm 
 - Is Elm actively developed? Yes! See: [Elm's Design Process](/faqs/elm-design-process)
 - What happens if Evan disappears? See: [Bus Factor](/faqs/bus-factor)
 
+https://faq.elm-community.org/
+
 
 ### TODO
 
