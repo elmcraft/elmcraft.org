@@ -74,6 +74,9 @@ Other "Learn Elm" collections:
 
 The `#beginners` channel in the [Elm Slack](https://elmcraft.org/community/forums-chat#official) is full of notoriously helpful people!
 
+Be kind, ask questions, and try to recognize [XY problems](https://en.wikipedia.org/wiki/XY_problem).
+
+Read the full [Elm Code of Conduct](https://github.com/elm-community/discussions/blob/master/code-of-conduct.md) as well!
 
 
 

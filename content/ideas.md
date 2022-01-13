@@ -6,9 +6,6 @@ draft: true
 published: false
 ---
 
-
-@TODO how do we do draft pages that don't appear in the final build? Maybe Dillon has an idea :)
-
 Ideas that need a home:
 
 ## Learning Elm
