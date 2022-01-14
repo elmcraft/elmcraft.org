@@ -1,16 +1,13 @@
 module DataSource.Notion exposing (..)
 
--- import OptimizedDecoder exposing (..)
--- import OptimizedDecoder.Pipeline exposing (..)
-
 import DataSource exposing (DataSource)
-import DataSource.Helpers
 import DataSource.Http
 import DataStatic.Conferences exposing (..)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as E
 import Pages.Secrets as Secrets
+import Serialize as S
 import Theme.Videos exposing (..)
 import Types exposing (..)
 
@@ -66,7 +63,7 @@ getVideosCount : DataSource Int
 getVideosCount =
     recursiveGetVideos Nothing
         |> DataSource.map List.length
-        |> DataSource.Helpers.distillInt "getVideosCount"
+        |> DataSource.distillSerializeCodec "getVideosCount" S.int
 
 
 recursiveGetVideos : Maybe String -> DataSource (List Video)

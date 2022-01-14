@@ -1,6 +1,7 @@
 module Types exposing (..)
 
 import Browser.Navigation
+import DataSource.ElmWeeklyRSS
 import DataSource.PodcastRSS
 import Dict exposing (Dict)
 import Path exposing (Path)
@@ -23,6 +24,7 @@ type alias GlobalData =
     { videos : List Video
     , videosCount : Int
     , latestPodcast : Maybe DataSource.PodcastRSS.Episode
+    , latestNewsletter : Maybe DataSource.ElmWeeklyRSS.Newsletter
     }
 
 

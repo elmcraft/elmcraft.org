@@ -1,6 +1,7 @@
 module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
+import DataSource.ElmWeeklyRSS
 import DataSource.File
 import DataSource.Glob as Glob
 import DataSource.Markdown
@@ -116,37 +117,36 @@ data routeParams =
                     else
                         DataSource.succeed []
 
-                getVideosCount =
-                    if path == "content/index.md" then
-                        Notion.getVideosCount
+                onlyOn p datasource default =
+                    if path == p then
+                        datasource
 
                     else
-                        DataSource.succeed 0
-
-                getLatestElmRadioPodcast =
-                    if path == "content/index.md" then
-                        DataSource.PodcastRSS.elmRadioPodcastsEpisodeLatest
-                            |> DataSource.map Just
-
-                    else
-                        DataSource.succeed Nothing
+                        DataSource.succeed default
             in
-            DataSource.map4
-                (\ts videos videosCount podcastM ->
-                    { ui = d.ui
-                    , meta = d.meta
-                    , timestamps = ts
-                    , global =
-                        { videos = videos
-                        , videosCount = videosCount
-                        , latestPodcast = podcastM
-                        }
-                    }
+            DataSource.map5
+                (\ts videos videosCount podcastM newsletterM ->
+                    let
+                        data_ : Data
+                        data_ =
+                            { ui = d.ui
+                            , meta = d.meta
+                            , timestamps = ts
+                            , global =
+                                { videos = videos
+                                , videosCount = videosCount
+                                , latestPodcast = podcastM
+                                , latestNewsletter = newsletterM
+                                }
+                            }
+                    in
+                    data_
                 )
                 (Timestamps.data path)
                 getVideos
-                getVideosCount
-                getLatestElmRadioPodcast
+                (onlyOn "content/index.md" Notion.getVideosCount 0)
+                (onlyOn "content/index.md" (DataSource.PodcastRSS.episodeLatest |> DataSource.map Just) Nothing)
+                (onlyOn "content/index.md" (DataSource.ElmWeeklyRSS.newsletterLatest |> DataSource.map Just) Nothing)
         )
 
 
