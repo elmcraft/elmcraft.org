@@ -1,9 +1,4 @@
 
-@import url('https://rsms.me/inter/inter.css');
-html, body { font-family: 'Inter', system-ui, sans-serif; width: 100%; }
-@supports (font-variation-settings: normal) {
-  html, body { font-family: 'Inter var', system-ui, sans-serif; }
-}
 
 .childJustifyCenter > div {
   justify-content: center !important;
