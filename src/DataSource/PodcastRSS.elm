@@ -10,24 +10,24 @@ import Xml.Decode exposing (..)
 
 episodes : DataSource (List Episode)
 episodes =
-    withElmRadioPodcastsUnoptimized podcastEpisodesDecoder
-        |> DataSource.distillSerializeCodec "elmRadioEpisodeLatest" (S.list episodeCodec)
+    withElmRadioPodcasts podcastEpisodesDecoder
+        |> DataSource.distillSerializeCodec "elmRadioEpisodes" (S.list episodeCodec)
 
 
 episodesTotal : DataSource Int
 episodesTotal =
-    withElmRadioPodcastsUnoptimized podcastEpisodesTotalDecoder
+    withElmRadioPodcasts podcastEpisodesTotalDecoder
         |> DataSource.distillSerializeCodec "elmRadioPodcastsEpisodesTotal" S.int
 
 
 episodeLatest : DataSource Episode
 episodeLatest =
-    withElmRadioPodcastsUnoptimized postcastEpisodeLatestDecoder
+    withElmRadioPodcasts postcastEpisodeLatestDecoder
         |> DataSource.distillSerializeCodec "elmRadioEpisodeLatest" episodeCodec
 
 
-withElmRadioPodcastsUnoptimized : Decoder a -> DataSource a
-withElmRadioPodcastsUnoptimized decoder =
+withElmRadioPodcasts : Decoder a -> DataSource a
+withElmRadioPodcasts decoder =
     DataSource.Http.unoptimizedRequest
         (Secrets.succeed
             { url = "https://elm-radio.com/feed.xml"
