@@ -9,6 +9,7 @@ import Element.Font as Font
 import Element.Region as Region
 import Helpers exposing (..)
 import Html exposing (Html)
+import Html.Attributes as Html
 import Route
 import Theme.Footer
 import Theme.Layout
@@ -31,7 +32,8 @@ view x toWrapperMsg model static =
         ]
     <|
         column [ width fill ]
-            [ manualCss
+            [ fontPreload
+            , manualCss
             , column
                 [ width fill
                 , spacing 20
@@ -95,18 +97,43 @@ view x toWrapperMsg model static =
 
 
 manualCss =
+    let
+        old =
+            """
+    @import url('https://rsms.me/inter/inter.css');
+    html, body { font-family: 'Inter', system-ui, sans-serif; width: 100%; }
+    @supports (font-variation-settings: normal) {
+      html, body { font-family: 'Inter var', system-ui, sans-serif; }
+    }
+    """
+    in
     html <|
         Html.node "style"
             []
             [ Html.text <|
                 """
-            @import url('https://rsms.me/inter/inter.css');
-            html, body { font-family: 'Inter', system-ui, sans-serif; width: 100%; }
-            @supports (font-variation-settings: normal) {
-              html, body { font-family: 'Inter var', system-ui, sans-serif; }
+            @font-face {
+              font-family: "Inter var";
+              src: url("/fonts/inter-var.woff2") format('woff2');
             }
+
+            html, body { font-family: 'Inter var', system-ui, sans-serif; width: 100%; }
             """
             ]
+
+
+fontPreload : Element msg
+fontPreload =
+    -- <link rel="preload" href="/assets/Pacifico-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    Html.node "link"
+        [ Html.attribute "rel" "preload"
+        , Html.attribute "href" "/fonts/inter-var.woff2"
+        , Html.attribute "as" "font"
+        , Html.attribute "type" "font/woff2"
+        , Html.attribute "crossorigin" ""
+        ]
+        []
+        |> html
 
 
 format : Time.Posix -> String
