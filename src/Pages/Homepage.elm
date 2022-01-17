@@ -116,7 +116,7 @@ view model global _ =
                                                 { url = url
                                                 , label =
                                                     image [ width fill, centerY ]
-                                                        { src = "/images/logos/elm-radio.png", description = "Elm Radio Logo" }
+                                                        { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
                                                 }
                                         , column [ spacing 10, width (fillPortion 3), padding 20 ]
                                             [ heading3 [] "Elm Radio"

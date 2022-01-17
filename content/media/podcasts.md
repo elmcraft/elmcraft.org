@@ -12,7 +12,7 @@ Prefer listening on the go? There are plenty of Elm podcast episodes to keep you
 ## Elm Radio
 
 <rowToColumnWhenSmall>
-  <img src="/images/logos/elm-radio.png" bg="#002329" width="120" />
+  <img src="/images/logos/elm-radio.svg" bg="#002329" width="120" />
 
   <column>
   Hosted by Dillon and Jeroen
