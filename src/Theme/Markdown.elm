@@ -23,8 +23,8 @@ import Markdown.Html
 import Markdown.Parser
 import Markdown.Renderer
 import Theme.All
-import Theme.UI exposing (..)
 import Theme.Code
+import Theme.UI exposing (..)
 import Types exposing (..)
 
 
@@ -37,7 +37,7 @@ renderer model global =
             -- fromHtml <| Html.blockquote [] (asHtml children)
             column [ paddingXY 0 20, width fill ]
                 [ column
-                    [ Font.size 20
+                    [ Font.size 18
                     , Font.italic
                     , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
                     , Border.color grey
@@ -52,7 +52,15 @@ renderer model global =
     -- @TODO preserve newlines on... new lines?
     , text = \s -> el [] <| text s
     , codeSpan =
-        \content -> fromHtml <| Html.code [] [ Html.text content ]
+        \content ->
+            el
+                [ Background.color grey
+                , Border.rounded 5
+                , paddingEach { top = 0, right = 4, bottom = 4, left = 4 }
+                ]
+            <|
+                fromHtml <|
+                    Html.code [] [ Html.text content ]
     , strong = \list -> paragraph [ Font.bold ] list
     , emphasis = \list -> paragraph [ Font.italic ] list
     , hardLineBreak = fromHtml <| Html.br [] []

@@ -92,6 +92,7 @@ pre.elmsh {
   overflow: auto;
   width: calc(100% - 20px);
   line-height: 24px;
+  font-size: 16px;
 }
 code.elmsh {
   padding: 0;

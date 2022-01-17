@@ -4,6 +4,7 @@ import Colors exposing (..)
 import DateFormat
 import Element exposing (..)
 import Element.Background as Background
+import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
 import Helpers exposing (..)
@@ -71,7 +72,7 @@ view x toWrapperMsg model static =
                                             , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
                                             ]
                                     , if not static.published && model.isDev then
-                                        el [ Background.color elmcraftNude ] <| text "not published"
+                                        el [ Background.color elmcraftNude, padding 4, Border.rounded 5 ] <| text "not published"
 
                                       else
                                         none
