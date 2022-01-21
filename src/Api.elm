@@ -22,34 +22,38 @@ routes getStaticRoutes htmlToString =
                             DataSource.succeed ( path, d, route )
                         )
     in
-    [ ApiRoute.succeed
-        (getStaticRoutes
-            |> DataSource.andThen
-                (\allRoutes ->
-                    allRoutes
-                        |> List.map routeToEntry
-                        |> DataSource.succeed
-                        |> DataSource.resolve
-                        |> DataSource.map
-                            (\pages ->
-                                let
-                                    entries =
-                                        pages
-                                            |> List.filter
-                                                (\( path, d, route ) ->
-                                                    d.meta.published
-                                                )
-                                            |> List.map
-                                                (\( path, d, route ) ->
-                                                    { path = Route.routeToPath route |> String.join "/"
-                                                    , lastMod = Nothing
-                                                    }
-                                                )
-                                in
-                                { body = Sitemap.build { siteUrl = "https://elmcraft.org" } entries }
-                            )
-                )
-        )
-        |> ApiRoute.literal "sitemap.xml"
-        |> ApiRoute.single
-    ]
+    []
+
+
+
+-- [ ApiRoute.succeed
+--     (getStaticRoutes
+--         |> DataSource.andThen
+--             (\allRoutes ->
+--                 allRoutes
+--                     |> List.map routeToEntry
+--                     |> DataSource.succeed
+--                     |> DataSource.resolve
+--                     |> DataSource.map
+--                         (\pages ->
+--                             let
+--                                 entries =
+--                                     pages
+--                                         |> List.filter
+--                                             (\( path, d, route ) ->
+--                                                 d.meta.published
+--                                             )
+--                                         |> List.map
+--                                             (\( path, d, route ) ->
+--                                                 { path = Route.routeToPath route |> String.join "/"
+--                                                 , lastMod = Nothing
+--                                                 }
+--                                             )
+--                             in
+--                             { body = Sitemap.build { siteUrl = "https://elmcraft.org" } entries }
+--                         )
+--             )
+--     )
+--     |> ApiRoute.literal "sitemap.xml"
+--     |> ApiRoute.single
+-- ]

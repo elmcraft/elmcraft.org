@@ -8,6 +8,14 @@ import Serialize as S
 import Xml.Decode exposing (..)
 
 
+type alias Newsletter =
+    { title : String
+    , description : String
+    , published : String
+    , link : String
+    }
+
+
 newsletters : DataSource (List Newsletter)
 newsletters =
     withNewsletters itemsDecoder
@@ -39,14 +47,6 @@ withNewsletters decoder =
             }
         )
         (DataSource.Http.expectString (decodeString decoder))
-
-
-type alias Newsletter =
-    { title : String
-    , description : String
-    , published : String
-    , link : String
-    }
 
 
 totalDecoder : Decoder Int
