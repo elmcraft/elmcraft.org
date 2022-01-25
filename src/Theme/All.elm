@@ -13,6 +13,7 @@ import Markdown.Html
 import Pages.Homepage
 import Theme.Articles
 import Theme.CuratedBy
+import Theme.ESLintRules
 import Theme.Feature
 import Theme.FindYourPath
 import Theme.Header

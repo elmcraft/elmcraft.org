@@ -1,6 +1,14 @@
 module DataStatic.ESLintRules exposing (..)
 
 
+type alias EslintRule =
+    { eslintTags : String
+    , eslintName : String
+    , eslintDescription : String
+    , elmAdvice : String
+    }
+
+
 all =
     [ possibleProblems, suggestions, layoutAndFormatting ]
 
