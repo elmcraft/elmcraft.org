@@ -26,3 +26,10 @@ Covered by `elm-format`, the de-facto standard for formatting Elm code.
 ### Additional linting / custom rules:
 
 Covered by `elm-review`, which analyzes Elm projects to help find mistakes before your users find them.
+
+
+### Converting from eslint
+
+Here's the [core set of ESLint rules](https://eslint.org/docs/rules/) and how they translate to Elm.
+
+<eslint></eslint>

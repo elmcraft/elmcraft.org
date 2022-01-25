@@ -8,7 +8,7 @@ import Pages
 import Theme.UI exposing (..)
 
 
-view model =
+view =
     DataStatic.ESLintRules.all
         |> List.map showRuleSection
             column

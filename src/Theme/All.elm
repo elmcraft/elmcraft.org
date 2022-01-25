@@ -254,6 +254,10 @@ htmlMapping model global =
                         ++ children
                     )
             )
+        , Markdown.Html.tag "eslint"
+            (\children ->
+                Theme.ESLintRules.view
+            )
         ]
 
 
