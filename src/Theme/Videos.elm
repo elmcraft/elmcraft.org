@@ -11,7 +11,7 @@ import Element.Font as Font
 import Html exposing (Html)
 import Html.Attributes as Html
 import Set
-import Types exposing (..)
+import Types_ exposing (..)
 
 
 index : Model -> List Video -> Maybe String -> Maybe String -> Element Msg

@@ -20,10 +20,10 @@ import Theme.QuizIsElmForMe
 import Theme.Testimonial
 import Theme.UI exposing (..)
 import Theme.Videos
-import Types exposing (..)
+import Types_ exposing (..)
 
 
-htmlMapping : Types.Model -> Types.GlobalData -> Markdown.Html.Renderer (List (Element Msg) -> Element Msg)
+htmlMapping : Types_.Model -> Types_.GlobalData -> Markdown.Html.Renderer (List (Element Msg) -> Element Msg)
 htmlMapping model global =
     Markdown.Html.oneOf
         [ Markdown.Html.tag "img"

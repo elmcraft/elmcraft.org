@@ -18,7 +18,7 @@ import Markdown.Parser
 import Markdown.Renderer
 import Route exposing (Route)
 import Theme.Layout
-import Types exposing (Msg(..))
+import Types_ exposing (Msg(..))
 
 
 

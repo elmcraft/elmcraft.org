@@ -16,7 +16,7 @@ import Theme.FindYourPath
 import Theme.Footer
 import Theme.UI exposing (..)
 import Theme.Videos as Videos
-import Types exposing (..)
+import Types_ exposing (..)
 
 
 view : Model -> GlobalData -> List (Element Msg) -> Element Msg

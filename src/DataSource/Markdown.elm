@@ -34,12 +34,15 @@ routeAsLoadedPageAndThen routeParams fn =
                         path
                             |> DataSource.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
-                                    decodeMeta routeParams.splat
-                                        |> Decode.andThen
-                                            (\meta ->
-                                                markdownRenderer rawMarkdown path meta
-                                                    |> Decode.map (\ui -> { ui = ui, meta = meta, markdown = rawMarkdown })
-                                            )
+                                    Decode.map2
+                                        (\meta ui ->
+                                            { meta = meta
+                                            , rawMarkdown = rawMarkdown
+                                            , path = path
+                                            }
+                                        )
+                                        (decodeMeta routeParams.splat)
+                                        (markdownRenderer rawMarkdown path)
                                 )
                             |> DataSource.andThen (fn path)
                     )
@@ -118,6 +121,30 @@ markdownRenderer rawMarkdown path meta =
             )
         |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ ": "))
         |> Json.Decode.Extra.fromResult
+
+
+markdownRendererDirect rawMarkdown path model global =
+    rawMarkdown
+        |> Markdown.Parser.parse
+        |> Result.mapError
+            (\errs ->
+                errs
+                    |> List.map parserDeadEndToString
+                    |> String.join "\n"
+                    |> (++) ("Failure in path " ++ ": ")
+            )
+        |> Result.andThen
+            (\blocks ->
+                Markdown.Renderer.render (Theme.Markdown.renderer model global) blocks
+            )
+        |> (\res ->
+                case res of
+                    Ok ui ->
+                        ui
+
+                    Err err ->
+                        [ text <| "Failure in path " ++ path ++ ": " ++ err ]
+           )
 
 
 parserDeadEndToString err =

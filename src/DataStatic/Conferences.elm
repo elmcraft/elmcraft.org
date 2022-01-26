@@ -1,6 +1,6 @@
 module DataStatic.Conferences exposing (..)
 
-import Types exposing (..)
+import Types_ exposing (..)
 
 
 conferenceDetails : Conference -> ConferenceDetails

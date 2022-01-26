@@ -25,7 +25,7 @@ import Markdown.Renderer
 import Theme.All
 import Theme.Code
 import Theme.UI exposing (..)
-import Types exposing (..)
+import Types_ exposing (..)
 
 
 renderer : Model -> GlobalData -> Markdown.Renderer.Renderer (Element Msg)

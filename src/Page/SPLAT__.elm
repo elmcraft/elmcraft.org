@@ -27,7 +27,7 @@ import Theme
 import Theme.Markdown
 import Theme.Videos
 import Timestamps exposing (Timestamps)
-import Types exposing (..)
+import Types_ exposing (..)
 import View exposing (..)
 
 
@@ -36,7 +36,7 @@ type alias Model =
 
 
 type alias Msg =
-    Types.Msg
+    Types_.Msg
 
 
 type alias RouteParams =
@@ -44,14 +44,16 @@ type alias RouteParams =
 
 
 type alias Data =
-    { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
-    , meta : DataSource.Markdown.Meta
+    -- { ui : Types_.Model -> Types_.GlobalData -> List (Element Types_.Msg)
+    { meta : DataSource.Markdown.Meta
     , timestamps : Timestamps
-    , global : Types.GlobalData
+    , global : Types_.GlobalData
+    , rawMarkdown : String
+    , path : String
     }
 
 
-page : PageWithState RouteParams Data () Types.Msg
+page : PageWithState RouteParams Data () Types_.Msg
 page =
     Page.preRender
         { head = head
@@ -67,7 +69,7 @@ page =
                     ( (), Cmd.none )
             , update =
                 \pageUrl keyNavigationBrowserMaybe modelShared static templateMsg templateModel ->
-                    -- SPLAT__ uses Types.Msg same as shared, so just route all handling up to shared.
+                    -- SPLAT__ uses Types_.Msg same as shared, so just route all handling up to shared.
                     ( (), Cmd.none, Just templateMsg )
             , subscriptions =
                 \pageUrlMaybe routeParams path templateModel modelShared ->
@@ -110,7 +112,7 @@ data routeParams =
         (\path d ->
             let
                 getVideos =
-                    if d.markdown |> String.contains "<video" then
+                    if d.rawMarkdown |> String.contains "<video" then
                         Notion.recursiveGetVideos Nothing
 
                     else if path == "content/index.md" then
@@ -131,9 +133,10 @@ data routeParams =
                     let
                         data_ : Data
                         data_ =
-                            { ui = d.ui
-                            , meta = d.meta
+                            { meta = d.meta
                             , timestamps = ts
+                            , rawMarkdown = d.rawMarkdown
+                            , path = d.path
                             , global =
                                 { videos = videos
                                 , videosCount = videosCount
@@ -177,10 +180,10 @@ view :
     Maybe PageUrl
     -> Shared.Model
     -> StaticPayload Data RouteParams
-    -> View Types.Msg
+    -> View Types_.Msg
 view maybeUrl sharedModel static =
     { title = static.data.meta.title
-    , content = static.data.ui sharedModel static.data.global
+    , content = DataSource.Markdown.markdownRendererDirect static.data.rawMarkdown static.data.path sharedModel static.data.global
     , route = static.data.meta.route
     , timestamps = static.data.timestamps
     , status = static.data.meta.status

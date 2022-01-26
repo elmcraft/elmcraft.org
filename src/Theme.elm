@@ -17,11 +17,11 @@ import Theme.Navigation
 import Theme.UI exposing (..)
 import Time
 import Timestamps
-import Types
+import Types_
 import View exposing (..)
 
 
-view : a -> (Types.Msg -> wrapperMsg) -> Types.Model -> View.View wrapperMsg -> Html wrapperMsg
+view : a -> (Types_.Msg -> wrapperMsg) -> Types_.Model -> View.View wrapperMsg -> Html wrapperMsg
 view x toWrapperMsg model static =
     layout
         [ width fill

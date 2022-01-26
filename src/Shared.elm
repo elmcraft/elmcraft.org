@@ -17,7 +17,7 @@ import SharedTemplate exposing (SharedTemplate)
 import Task
 import Theme
 import Theme.Videos
-import Types exposing (..)
+import Types_ exposing (..)
 import Url
 import View exposing (View)
 
@@ -37,7 +37,7 @@ template =
 
 
 type alias Msg =
-    Types.Msg
+    Types_.Msg
 
 
 type alias Data =
@@ -45,11 +45,11 @@ type alias Data =
 
 
 type alias SharedMsg =
-    Types.SharedMsg
+    Types_.SharedMsg
 
 
 type alias Model =
-    Types.Model
+    Types_.Model
 
 
 init :
@@ -64,7 +64,7 @@ init :
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
     -- @TODO need a better way to inject this isDev var...
-    ( Types.init { isDev = False, key = navigationKey }
+    ( Types_.init { isDev = False, key = navigationKey }
     , Cmd.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
         ]
@@ -163,7 +163,7 @@ update msg model =
 subscriptions : Path -> Model -> Sub Msg
 subscriptions _ _ =
     Sub.batch
-        [ Browser.Events.onResize Types.WindowResized
+        [ Browser.Events.onResize Types_.WindowResized
         , setDev SetDev
         ]
 

@@ -8,7 +8,7 @@ import Element.Font as Font
 import Html exposing (Html)
 import Html.Attributes
 import Theme.UI exposing (..)
-import Types exposing (Model)
+import Types_ exposing (Model)
 
 
 leftRaw model src bordered children =

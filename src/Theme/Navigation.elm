@@ -14,7 +14,7 @@ import List.Extra as List
 import Route exposing (Route)
 import Theme.Layout
 import Theme.UI exposing (..)
-import Types exposing (..)
+import Types_ exposing (..)
 
 
 topLevelNavItems =
