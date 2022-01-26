@@ -1,7 +1,5 @@
 module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
-import Bytes.Decode
-import Bytes.Encode
 import DataSource exposing (DataSource)
 import DataSource.ElmRadio
 import DataSource.ElmWeeklyRSS
@@ -152,9 +150,6 @@ data routeParams =
                 (onlyOn "content/index.md" Notion.getVideosCount 0)
                 (onlyOn "content/index.md" (DataSource.ElmRadio.episodeLatest |> DataSource.map Just) Nothing)
                 (onlyOn "content/index.md" (DataSource.ElmWeeklyRSS.newsletterLatest |> DataSource.map Just) Nothing)
-                |> DataSource.distillBytes path
-                    (Bytes.Encode.encode << w3_encode_Data)
-                    (Bytes.Decode.decode w3_decode_Data >> Result.fromMaybe "Wire decoding failed.")
         )
 
 
