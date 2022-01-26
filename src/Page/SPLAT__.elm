@@ -14,9 +14,9 @@ import Element exposing (..)
 import Head
 import Head.Seo as Seo
 import Html
+import Json.Decode as Decode
+import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import List.NonEmpty
-import OptimizedDecoder as Decode
-import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url

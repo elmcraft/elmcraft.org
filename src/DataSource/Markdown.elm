@@ -4,10 +4,11 @@ import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
 import Element exposing (..)
+import Json.Decode as Decode
+import Json.Decode.Extra
+import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import Markdown.Parser
 import Markdown.Renderer
-import OptimizedDecoder as Decode
-import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Parser
 import Route
 import Theme.Markdown
@@ -116,7 +117,7 @@ markdownRenderer rawMarkdown path meta =
                     )
             )
         |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ ": "))
-        |> Decode.fromResult
+        |> Json.Decode.Extra.fromResult
 
 
 parserDeadEndToString err =

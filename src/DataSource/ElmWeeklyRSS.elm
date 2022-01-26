@@ -2,9 +2,8 @@ module DataSource.ElmWeeklyRSS exposing (..)
 
 import DataSource exposing (DataSource)
 import DataSource.Http
-import OptimizedDecoder as Optimized
+import Json.Decode as Optimized
 import Pages.Secrets as Secrets
-import Serialize as S
 import Xml.Decode exposing (..)
 
 
@@ -19,19 +18,16 @@ type alias Newsletter =
 newsletters : DataSource (List Newsletter)
 newsletters =
     withNewsletters itemsDecoder
-        |> DataSource.distillSerializeCodec "elmWeeklyNewsletters" (S.list newsletterCodec)
 
 
 newslettersTotal : DataSource Int
 newslettersTotal =
     withNewsletters totalDecoder
-        |> DataSource.distillSerializeCodec "elmWeeklyNewslettersTotal" S.int
 
 
 newsletterLatest : DataSource Newsletter
 newsletterLatest =
     withNewsletters latestNewsletterDecoder
-        |> DataSource.distillSerializeCodec "elmWeeklyNewsletterLatest" newsletterCodec
 
 
 withNewsletters : Decoder a -> DataSource a
@@ -79,12 +75,3 @@ newsletterDecoder =
         (path [ "description" ] (single string))
         (path [ "pubDate" ] (single string))
         (path [ "link" ] (single string))
-
-
-newsletterCodec =
-    S.record Newsletter
-        |> S.field .title S.string
-        |> S.field .description S.string
-        |> S.field .published S.string
-        |> S.field .link S.string
-        |> S.finishRecord
