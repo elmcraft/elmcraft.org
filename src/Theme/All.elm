@@ -8,6 +8,7 @@ import Element.Font as Font
 import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes
+import Icon
 import Markdown.Html
 import Pages.Homepage
 import Theme.Articles
@@ -102,7 +103,15 @@ htmlMapping model global =
         , Markdown.Html.tag "title" (\content -> headingLargest [] content)
         , Markdown.Html.tag "small" (\content -> paragraph [ Font.size 14 ] content)
         , Markdown.Html.tag "row" (\content -> row [ spacing 20, width fill ] content)
-        , Markdown.Html.tag "column" (\children -> column [ width fill ] children)
+        , Markdown.Html.tag "column"
+            (\spacingM children ->
+                let
+                    spacing_ =
+                        spacingM |> Maybe.andThen String.toInt |> Maybe.withDefault 20
+                in
+                column [ width fill, spacing spacing_ ] children
+            )
+            |> Markdown.Html.withOptionalAttribute "spacing"
         , Markdown.Html.tag "rowtocolumnwhensmall" (\content -> rowToColumnWhenSmall model [ spacing 20, width fill ] content)
         , Markdown.Html.tag "center" (\content -> column [ centerX, paddingXY 0 20 ] content)
         , Markdown.Html.tag "arrowlink"
@@ -232,6 +241,11 @@ htmlMapping model global =
                     <iframe src="https://discord.com/widget?id=810480359791132702" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                     """
             )
+        , Markdown.Html.tag "icon"
+            (\type_ children ->
+                Icon.fromString type_
+            )
+            |> Markdown.Html.withAttribute "type"
         ]
 
 

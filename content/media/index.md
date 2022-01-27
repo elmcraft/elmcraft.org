@@ -5,30 +5,37 @@ description: Elm Newsletters, Videos, Podcasts and Books!
 published: true
 ---
 
-## [Newsletters](/media/newsletters)
 
+
+
+
+<column>
+<box>
+
+<row>
+   <icon type="mail"/>
+   ### [Newsletters](/media/newsletters)
+</row>
 Periodic updates about what's happening in the Elm world, straight to your inbox.
+</box>
 
+<box>
 
-<wip>
-## [Articles](/media/articles)
-
-Browse the library of articles and blog posts on Elm.
-</wip>
-
-
-## [Podcasts](/media/podcasts)
+<row>
+   <icon type="mic"/>
+   ### [Podcasts](/media/podcasts)
+</row>
 
 Prefer listening on the go? There are plenty of Elm podcast episodes to keep your ears happy!
+</box>
 
+<box>
 
-## [Videos](/media/videos)
+<row>
+   <icon type="video"/>
+   ### [Videos](/media/videos)
+</row>
 
 From conferences to meetups, check out the hundreds of Elm talks and presentations about Elm and the people who use it.
-
-
-<wip>
-## [Books](/media/books)
-
-Prefer longer form and deeper references and guides? There are a number of Elm books that may fit what you're after.
-</wip>
+</box>
+</column>
