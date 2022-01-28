@@ -27,27 +27,27 @@ possibleProblems =
         [ { eslintTags = ""
           , eslintName = "array-callback-return"
           , eslintDescription = "enforce `return` statements in callbacks of array methods"
-          , elmAdvice = ""
+          , elmAdvice = "All Elm functions return a value."
           }
         , { eslintTags = "recommended"
           , eslintName = "constructor-super"
           , eslintDescription = "require `super()` calls in constructors"
-          , elmAdvice = ""
+          , elmAdvice = "There are no classes in Elm."
           }
         , { eslintTags = "recommended"
           , eslintName = "for-direction"
           , eslintDescription = "enforce \" for \" loop update clause moving the counter in the right direction."
-          , elmAdvice = ""
+          , elmAdvice = "There are no loops in Elm"
           }
         , { eslintTags = "recommended"
           , eslintName = "getter-return"
           , eslintDescription = "enforce `return` statements in getters"
-          , elmAdvice = ""
+          , elmAdvice = "All Elm functions return a value there are no getters in Elm."
           }
         , { eslintTags = "recommended"
           , eslintName = "no-async-promise-executor"
           , eslintDescription = "disallow using an async function as a Promise executor"
-          , elmAdvice = ""
+          , elmAdvice = "There are no async functions in Elm."
           }
         , { eslintTags = ""
           , eslintName = "no-await-in-loop"
