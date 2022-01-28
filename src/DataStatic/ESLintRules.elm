@@ -13,6 +13,13 @@ all =
     [ possibleProblems, suggestions, layoutAndFormatting ]
 
 
+type Advice
+    = NotApplicable String
+    | CompilerError String
+    | HandledByElmFormat
+    | NoAdvice
+
+
 possibleProblems =
     { name = "Possible problems"
     , description = "These rules relate to possible logic errors in code:"
