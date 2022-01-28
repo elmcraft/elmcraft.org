@@ -44,7 +44,26 @@ viewRules rules =
               , width = fill
               , view =
                     \rule ->
-                        text rule.elmAdvice
+                        viewAdvice rule.elmAdvice
               }
             ]
         }
+
+
+viewAdvice : DataStatic.ESLintRules.Advice -> Element msg
+viewAdvice advice =
+    case advice of
+        DataStatic.ESLintRules.NotApplicable string ->
+            text string
+
+        DataStatic.ESLintRules.NotPartOfTheLanguage string ->
+            text string
+
+        DataStatic.ESLintRules.CompilerError string ->
+            text string
+
+        DataStatic.ESLintRules.HandledByElmFormat ->
+            text "This is automatically handled by elm-format."
+
+        DataStatic.ESLintRules.NoAdvice ->
+            text "???"
