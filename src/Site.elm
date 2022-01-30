@@ -3,7 +3,10 @@ module Site exposing (config)
 import DataSource
 import Head
 import Helpers exposing (..)
+import MimeType
 import Pages.Manifest as Manifest
+import Pages.Url
+import Path
 import Route
 import SiteConfig exposing (SiteConfig)
 
@@ -28,7 +31,8 @@ data =
 
 head : Data -> List Head.Tag
 head static =
-    [-- Head.sitemapLink "/sitemap.xml"
+    [ Head.icon [ ( 512, 512 ) ] MimeType.Png (Pages.Url.fromPath <| Path.fromString "images/favicon.png")
+    , Head.sitemapLink "/sitemap.xml"
     ]
 
 
@@ -38,5 +42,11 @@ manifest static =
         { name = "Elmcraft"
         , description = "The place for all things Elm"
         , startUrl = Route.SPLAT__ { splat = [] } |> Route.toPath
-        , icons = []
+        , icons =
+            [ { src = Pages.Url.fromPath <| Path.fromString "images/favicon.png"
+              , sizes = [ ( 512, 512 ) ]
+              , mimeType = Just MimeType.Png
+              , purposes = [ Manifest.IconPurposeAny ]
+              }
+            ]
         }
