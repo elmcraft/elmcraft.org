@@ -26,7 +26,6 @@ view x toWrapperMsg model static =
     layout
         [ width fill
         , Font.size 18
-        , Font.family [ Font.typeface Theme.Layout.fontFace ]
         , Font.color charcoal
         , width fill
         ]
@@ -124,7 +123,6 @@ manualCss =
 
 fontPreload : Element msg
 fontPreload =
-    -- <link rel="preload" href="/assets/Pacifico-Bold.woff2" as="font" type="font/woff2" crossorigin>
     Html.node "link"
         [ Html.attribute "rel" "preload"
         , Html.attribute "href" "/fonts/inter-var.woff2"
