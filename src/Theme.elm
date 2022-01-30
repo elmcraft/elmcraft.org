@@ -27,6 +27,7 @@ view x toWrapperMsg model static =
         [ width fill
         , Font.size 18
         , Font.color charcoal
+        , Font.family [ Font.typeface "Inter var" ]
         , width fill
         ]
     <|
@@ -96,16 +97,6 @@ view x toWrapperMsg model static =
 
 
 manualCss =
-    let
-        old =
-            """
-    @import url('https://rsms.me/inter/inter.css');
-    html, body { font-family: 'Inter', system-ui, sans-serif; width: 100%; }
-    @supports (font-variation-settings: normal) {
-      html, body { font-family: 'Inter var', system-ui, sans-serif; }
-    }
-    """
-    in
     html <|
         Html.node "style"
             []
@@ -114,6 +105,7 @@ manualCss =
             @font-face {
               font-family: "Inter var";
               src: url("/fonts/inter-var.woff2") format('woff2');
+              font-weight: 100 1000;
             }
 
             html, body { font-family: 'Inter var', system-ui, sans-serif; width: 100%; }
