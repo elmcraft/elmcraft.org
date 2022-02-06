@@ -1,12 +1,12 @@
 module DataSource.Notion exposing (..)
 
 import DataSource exposing (DataSource)
+import DataSource.Env
 import DataSource.Http
 import DataStatic.Conferences exposing (..)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as E
-import Pages.Secrets as Secrets
 import Theme.Videos exposing (..)
 import Types_ exposing (..)
 
@@ -17,33 +17,35 @@ import Types_ exposing (..)
 --   -H 'Notion-Version: 2021-08-16' | jq
 
 
+videosDbQueryReq : E.Value -> DataSource { url : String, method : String, headers : List ( String, String ), body : DataSource.Http.Body }
 videosDbQueryReq body =
-    Secrets.succeed
-        (\bearer ->
-            { url = "https://api.notion.com/v1/databases/edeac665f6f8436e89aacc6482a0690e/query"
-            , method = "POST"
-            , headers =
-                [ ( "Authorization", bearer )
-                , ( "Notion-Version", "2021-08-16" )
-                ]
-            , body = DataSource.Http.jsonBody body
-            }
-        )
-        |> Secrets.with "NOTION_TOKEN"
+    DataSource.Env.expect "NOTION_TOKEN"
+        |> DataSource.map
+            (\bearer ->
+                { url = "https://api.notion.com/v1/databases/edeac665f6f8436e89aacc6482a0690e/query"
+                , method = "POST"
+                , headers =
+                    [ ( "Authorization", bearer )
+                    , ( "Notion-Version", "2021-08-16" )
+                    ]
+                , body = DataSource.Http.jsonBody body
+                }
+            )
 
 
 getVideos : Int -> DataSource (List Video)
 getVideos number =
-    -- DataSource.Http.request
-    DataSource.Http.unoptimizedRequest
-        (videosDbQueryReq <|
-            E.object
-                [ ( "page_size", E.int number )
-                , defaultSort
-                ]
-        )
-        -- decodeNotionVideos
-        (DataSource.Http.expectUnoptimizedJson decodeNotionVideos)
+    (videosDbQueryReq <|
+        E.object
+            [ ( "page_size", E.int number )
+            , defaultSort
+            ]
+    )
+        |> DataSource.andThen
+            (\req ->
+                DataSource.Http.request req
+                    (DataSource.Http.expectJson decodeNotionVideos)
+            )
 
 
 defaultSort : ( String, E.Value )
@@ -82,24 +84,22 @@ recursiveGetVideos startCursor =
 
 getVideosResponse : Maybe String -> DataSource VideosResponse
 getVideosResponse startCursor =
-    -- DataSource.Http.request
-    DataSource.Http.unoptimizedRequest
-        (videosDbQueryReq <|
-            case startCursor of
-                Just cursor ->
-                    E.object
-                        [ ( "start_cursor", E.string cursor )
-                        , ( "page_size", E.int 100 ) -- The maximum page size
-                        , defaultSort
-                        ]
+    (videosDbQueryReq <|
+        case startCursor of
+            Just cursor ->
+                E.object
+                    [ ( "start_cursor", E.string cursor )
+                    , defaultSort
+                    ]
 
-                Nothing ->
-                    E.object
-                        [ ( "page_size", E.int 100 ) -- The maximum page size
-                        ]
-        )
-        -- decodeNotionVideosResponse
-        (DataSource.Http.expectUnoptimizedJson decodeNotionVideosResponse)
+            Nothing ->
+                E.object []
+    )
+        |> DataSource.andThen
+            (\reqBody ->
+                DataSource.Http.request reqBody
+                    (DataSource.Http.expectJson decodeNotionVideosResponse)
+            )
 
 
 decodeNotionVideos : Decoder (List Video)

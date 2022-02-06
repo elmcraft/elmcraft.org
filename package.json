@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Elmcraft.org Website",
   "scripts": {
-    "start": "elm-pages dev",
+    "start": "elm-pages dev --keep-cache",
     "build": "NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/404/index.html dist/404.html",
     "postinstall": "elm-tooling install"
   },
@@ -15,6 +15,6 @@
     "elm-tooling": "^1.6.0"
   },
   "dependencies": {
-    "elm-pages": "^2.1.11"
+    "elm-pages": "file:elm-pages"
   }
 }
