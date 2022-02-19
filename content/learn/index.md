@@ -22,7 +22,7 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 #### Free
 
 - The [official Elm guide](https://guide.elm-lang.org/), the best starting place for most people for concepts and syntax
-- [Beggining Elm](https://elmprogramming.com/) - Pawan Poudel
+- [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
 
 
 #### Paid Online Courses
