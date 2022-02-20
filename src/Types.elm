@@ -123,7 +123,7 @@ type Category
     | Design
     | Concept
     | Technique
-    | Unknown
+    | Unknown String
     | Product
     | Teaching
     | Testing

@@ -360,8 +360,8 @@ categoryToString c =
         Technique ->
             "Technique"
 
-        Unknown ->
-            "Unknown"
+        Unknown s ->
+            "Unknown: " ++ s
 
         Product ->
             "Product"
@@ -472,7 +472,7 @@ categoryFromString s =
             Technique
 
         "Unknown" ->
-            Unknown
+            Unknown ""
 
         "Product" ->
             Product
@@ -484,7 +484,7 @@ categoryFromString s =
             Testing
 
         _ ->
-            Unknown
+            Unknown s
 
 
 categoryToBackground c =
@@ -594,5 +594,5 @@ categoryToBackground c =
         Commercial ->
             colourCategory8
 
-        Unknown ->
+        Unknown s ->
             colourCategory9

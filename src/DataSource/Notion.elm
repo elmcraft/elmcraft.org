@@ -92,11 +92,14 @@ getVideosResponse startCursor =
                 Just cursor ->
                     E.object
                         [ ( "start_cursor", E.string cursor )
+                        , ( "page_size", E.int 100 ) -- The maximum page size
                         , defaultSort
                         ]
 
                 Nothing ->
-                    E.object []
+                    E.object
+                        [ ( "page_size", E.int 100 ) -- The maximum page size
+                        ]
         )
         -- decodeNotionVideosResponse
         (DataSource.Http.expectUnoptimizedJson decodeNotionVideosResponse)
@@ -313,8 +316,8 @@ categoryCodec =
                 Technique ->
                     technique
 
-                Unknown ->
-                    unknown
+                Unknown s ->
+                    unknown s
 
                 Product ->
                     product
@@ -357,7 +360,7 @@ categoryCodec =
         |> S.variant0 Design
         |> S.variant0 Concept
         |> S.variant0 Technique
-        |> S.variant0 Unknown
+        |> S.variant1 Unknown S.string
         |> S.variant0 Product
         |> S.variant0 Teaching
         |> S.variant0 Testing
