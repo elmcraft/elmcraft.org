@@ -1,11 +1,12 @@
-module DataSource.PodcastRSS exposing (..)
+module DataSource.ElmRadio exposing (..)
 
 import DataSource exposing (DataSource)
 import DataSource.Http
-import OptimizedDecoder as Optimized
+import OptimizedDecoder exposing (..)
+import OptimizedDecoder.Pipeline exposing (required)
 import Pages.Secrets as Secrets
 import Serialize as S
-import Xml.Decode exposing (..)
+import Time
 
 
 episodes : DataSource (List Episode)
@@ -28,21 +29,23 @@ episodeLatest =
 
 withElmRadioPodcasts : Decoder a -> DataSource a
 withElmRadioPodcasts decoder =
-    DataSource.Http.unoptimizedRequest
+    DataSource.Http.request
         (Secrets.succeed
-            { url = "https://elm-radio.com/feed.xml"
+            { url = "https://elm-radio.com/episodes.json"
             , method = "GET"
             , headers = []
             , body = DataSource.Http.emptyBody
             }
         )
-        (DataSource.Http.expectString (decodeString decoder))
+        decoder
 
 
 type alias Episode =
     { title : String
-    , published : String
-    , link : String
+    , description : String
+    , url : String
+    , number : Int
+    , published : Time.Posix
     }
 
 
@@ -67,19 +70,35 @@ postcastEpisodeLatestDecoder =
 
 podcastEpisodesDecoder : Decoder (List Episode)
 podcastEpisodesDecoder =
-    path [ "channel", "item" ] (list episodeDecoder)
-
-
-episodeDecoder =
-    map3 Episode
-        (path [ "title" ] (single string))
-        (path [ "pubDate" ] (single string))
-        (path [ "link" ] (single string))
+    list episodeDecoder
 
 
 episodeCodec =
     S.record Episode
         |> S.field .title S.string
-        |> S.field .published S.string
-        |> S.field .link S.string
+        |> S.field .description S.string
+        |> S.field .url S.string
+        |> S.field .number S.int
+        |> S.field .published timeCodec
         |> S.finishRecord
+
+
+timeCodec : S.Codec String Time.Posix
+timeCodec =
+    S.int
+        |> S.mapValid
+            (\i -> Ok <| Time.millisToPosix i)
+            Time.posixToMillis
+
+
+
+-- New
+
+
+episodeDecoder =
+    succeed Episode
+        |> required "title" string
+        |> required "description" string
+        |> required "url" string
+        |> required "number" int
+        |> required "published" (int |> map Time.millisToPosix)

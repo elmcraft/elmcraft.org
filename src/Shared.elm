@@ -15,8 +15,8 @@ import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Task
-import Theme.Videos
 import Theme
+import Theme.Videos
 import Types exposing (..)
 import Url
 import View exposing (View)
@@ -64,7 +64,7 @@ init :
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
     -- @TODO need a better way to inject this isDev var...
-    ( Types.init { isDev = False, key = navigationKey }
+    ( Types.init { isDev = True, key = navigationKey }
     , Cmd.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
         ]

@@ -96,7 +96,7 @@ view model global _ =
                             ]
                         , let
                             url =
-                                episode.link
+                                episode.url
 
                             v opts =
                                 boxNoPadding
@@ -119,16 +119,14 @@ view model global _ =
                                                         { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
                                                 }
                                         , column [ spacing 10, width (fillPortion 3), padding 20 ]
-                                            [ heading3 [] "Elm Radio"
+                                            [ heading3 [] <| "Elm Radio - Episode " ++ String.fromInt episode.number
                                             , paragraph [ Font.size 20, Font.bold ] [ externalLink [] episode.title url ]
 
                                             -- , paragraph [] [ text <| Theme.format episode.published ]
                                             -- @TODO parse and format the odd time format nicely
                                             , paragraph []
                                                 [ episode.published
-                                                    |> String.split " "
-                                                    |> List.take 4
-                                                    |> String.join " "
+                                                    |> Theme.format
                                                     |> text
                                                 ]
                                             , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]

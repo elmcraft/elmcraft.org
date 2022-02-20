@@ -1,12 +1,12 @@
 module Page.SPLAT__ exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
+import DataSource.ElmRadio
 import DataSource.ElmWeeklyRSS
 import DataSource.File
 import DataSource.Glob as Glob
 import DataSource.Markdown
 import DataSource.Notion as Notion
-import DataSource.PodcastRSS
 import Dict
 import Element exposing (..)
 import Head
@@ -145,7 +145,7 @@ data routeParams =
                 (Timestamps.data path)
                 getVideos
                 (onlyOn "content/index.md" Notion.getVideosCount 0)
-                (onlyOn "content/index.md" (DataSource.PodcastRSS.episodeLatest |> DataSource.map Just) Nothing)
+                (onlyOn "content/index.md" (DataSource.ElmRadio.episodeLatest |> DataSource.map Just) Nothing)
                 (onlyOn "content/index.md" (DataSource.ElmWeeklyRSS.newsletterLatest |> DataSource.map Just) Nothing)
         )
 
