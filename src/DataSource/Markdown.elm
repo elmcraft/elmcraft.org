@@ -33,10 +33,12 @@ routeAsLoadedPageAndThen routeParams fn =
                         path
                             |> DataSource.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
-                                    Decode.map2
-                                        (\meta ui -> { ui = ui, meta = meta, markdown = rawMarkdown })
-                                        (decodeMeta routeParams.splat)
-                                        (markdownRenderer rawMarkdown path)
+                                    decodeMeta routeParams.splat
+                                        |> Decode.andThen
+                                            (\meta ->
+                                                markdownRenderer rawMarkdown path meta
+                                                    |> Decode.map (\ui -> { ui = ui, meta = meta, markdown = rawMarkdown })
+                                            )
                                 )
                             |> DataSource.andThen (fn path)
                     )
@@ -87,7 +89,7 @@ decodeStatus =
             )
 
 
-markdownRenderer rawMarkdown path =
+markdownRenderer rawMarkdown path meta =
     rawMarkdown
         |> Markdown.Parser.parse
         |> Result.mapError
@@ -103,7 +105,11 @@ markdownRenderer rawMarkdown path =
                     (\model_ global_ ->
                         case Markdown.Renderer.render (Theme.Markdown.renderer model_ global_) blocks of
                             Ok ui ->
-                                ui
+                                if meta.published then
+                                    ui
+
+                                else
+                                    [ text "Oops! This page isn't ready for prime-time yet! Check in again soon." ]
 
                             Err err ->
                                 [ text <| "Failure in path " ++ path ++ ": " ++ err ]
