@@ -64,7 +64,7 @@ init :
     -> ( Model, Cmd Msg )
 init navigationKey flags maybePagePath =
     -- @TODO need a better way to inject this isDev var...
-    ( Types.init { isDev = True, key = navigationKey }
+    ( Types.init { isDev = False, key = navigationKey }
     , Cmd.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
         ]
