@@ -74,7 +74,7 @@ view x toWrapperMsg model static =
                                             , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
                                             ]
                                     , if not static.published && model.isDev then
-                                        el [ Background.color elmcraftNude, padding 4, Border.rounded 5 ] <| text "not published"
+                                        el [ Background.color elmcraftNude, padding 4, Border.rounded 5, Font.size 12 ] <| text "not published"
 
                                       else
                                         none

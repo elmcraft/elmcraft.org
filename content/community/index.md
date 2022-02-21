@@ -2,7 +2,7 @@
 type: page
 title: Elm Community
 description: Intro to Elm community spaces
-published: false
+published: true
 ---
 
 
