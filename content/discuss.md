@@ -2,7 +2,7 @@
 type: page
 title: Discuss
 description: Elmcraft Discord
-published: false
+published: true
 ---
 
 You can find the Elmcraft team on Discord.
