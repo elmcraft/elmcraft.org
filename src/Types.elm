@@ -94,7 +94,7 @@ type Category
     = ElmPhilosophy
     | Iconic
     | Keynote
-    | PannelDiscussion
+    | PanelDiscussion
     | Guide
     | Introduction
     | Learn

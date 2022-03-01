@@ -218,7 +218,7 @@ conferenceCodec =
 categoryCodec : S.Codec e Category
 categoryCodec =
     S.customType
-        (\elmPhilosophy iconic keynote pannelDiscussion guide introduction learn community meta commercial hobby experienceReport interop project uI animation visualisation charts graphics games webGL graphs maps datesTime robotics acesssibility audio media art design concept technique unknown product teaching testing value ->
+        (\elmPhilosophy iconic keynote panelDiscussion guide introduction learn community meta commercial hobby experienceReport interop project uI animation visualisation charts graphics games webGL graphs maps datesTime robotics acesssibility audio media art design concept technique unknown product teaching testing value ->
             case value of
                 ElmPhilosophy ->
                     elmPhilosophy
@@ -229,8 +229,8 @@ categoryCodec =
                 Keynote ->
                     keynote
 
-                PannelDiscussion ->
-                    pannelDiscussion
+                PanelDiscussion ->
+                    panelDiscussion
 
                 Guide ->
                     guide
@@ -331,7 +331,7 @@ categoryCodec =
         |> S.variant0 ElmPhilosophy
         |> S.variant0 Iconic
         |> S.variant0 Keynote
-        |> S.variant0 PannelDiscussion
+        |> S.variant0 PanelDiscussion
         |> S.variant0 Guide
         |> S.variant0 Introduction
         |> S.variant0 Learn

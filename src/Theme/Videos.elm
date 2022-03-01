@@ -273,8 +273,8 @@ categoryToString c =
         Keynote ->
             "Keynote"
 
-        PannelDiscussion ->
-            "Pannel Discussion"
+        PanelDiscussion ->
+            "Panel Discussion"
 
         Guide ->
             "Guide"
@@ -384,8 +384,8 @@ categoryFromString s =
         "Keynote" ->
             Keynote
 
-        "Pannel Discussion" ->
-            PannelDiscussion
+        "Panel Discussion" ->
+            PanelDiscussion
 
         "Guide" ->
             Guide
@@ -546,7 +546,7 @@ categoryToBackground c =
         Meta ->
             colourCategory6
 
-        PannelDiscussion ->
+        PanelDiscussion ->
             colourCategory6
 
         Keynote ->
