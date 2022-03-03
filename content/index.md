@@ -1,7 +1,7 @@
 ---
 type: homepage
 title: Elmcraft
-description: All things Elm
+description: All place for all things Elm
 published: true
 ---
 
