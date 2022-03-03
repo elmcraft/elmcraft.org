@@ -105,11 +105,11 @@ markdownRenderer rawMarkdown path meta =
                     (\model_ global_ ->
                         case Markdown.Renderer.render (Theme.Markdown.renderer model_ global_) blocks of
                             Ok ui ->
-                                if meta.published then
-                                    ui
+                                if not meta.published && not model_.isDev then
+                                    [ text "Oops! This page isn't ready for prime-time yet! Check in again soon." ]
 
                                 else
-                                    [ text "Oops! This page isn't ready for prime-time yet! Check in again soon." ]
+                                    ui
 
                             Err err ->
                                 [ text <| "Failure in path " ++ path ++ ": " ++ err ]
