@@ -15,6 +15,6 @@
     "elm-tooling": "^1.6.0"
   },
   "dependencies": {
-    "elm-pages": "^2.1.9"
+    "elm-pages": "^2.1.11"
   }
 }
