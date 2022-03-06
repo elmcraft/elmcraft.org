@@ -4,7 +4,6 @@ title: Learn Elm
 description: Elm tutorials, guides, explanations and references
 published: true
 status: seedling
-contributors: @novid
 ---
 
 
