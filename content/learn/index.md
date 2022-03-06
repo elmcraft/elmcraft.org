@@ -4,6 +4,7 @@ title: Learn Elm
 description: Elm tutorials, guides, explanations and references
 published: true
 status: seedling
+contributors: @novid
 ---
 
 
@@ -23,13 +24,14 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 
 - The [official Elm guide](https://guide.elm-lang.org/), the best starting place for most people for concepts and syntax
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
-
+- [Start Using Elm to Build Web Applications](https://egghead.io/courses/start-using-elm-to-build-web-applications) - Murphy Randle (egghead.io)
 
 #### Paid Online Courses
 
 - [Introduction to Elm, v2](https://frontendmasters.com/courses/intro-elm/) - Richard Feldman - ([Frontend Masters](https://frontendmasters.com/) subscription)
 - [Advanced Elm](https://frontendmasters.com/courses/advanced-elm/) - Richard Feldman - ([Frontend Masters](https://frontendmasters.com/) subscription)
-
+- [Building Web Apps with Elm](https://pragmaticstudio.com/elm) - Pragmatic Studio
+- [Declarative UIs without CSS with elm-ui](https://egghead.io/courses/declarative-uis-without-css-with-elm-ui-93bd) - Flavio Corpa (egghead.io)
 
 #### Paid Books
 
@@ -38,6 +40,7 @@ These books all go into more detail for real-world Elm usage on projects.
 - [Elm in Action](https://www.manning.com/books/elm-in-action) (eBook/print) - Richard Feldman
 - [Practical Elm for a Busy Developer](https://korban.net/elm/) (eBook) - Alex Korban
 - [Programming Elm](https://pragprog.com/titles/jfelm/programming-elm/) (eBook) - Jeremy Fairbank
+- [Web Applications with Elm](https://link.springer.com/book/10.1007/978-1-4842-2610-0) (eBook) - Wolfgang Loder
 
 In French:
 
@@ -46,6 +49,7 @@ In French:
 Other books:
 
 - [Why Elm?](https://www.oreilly.com/library/view/why-elm/9781491990728/) - Matthew Griffith
+- [elm-ui: The CSS Escape Plan](https://korban.net/elm/elm-ui-guide/) (eBook) - Alex Korban
 
 
 ### With no programming experience:
