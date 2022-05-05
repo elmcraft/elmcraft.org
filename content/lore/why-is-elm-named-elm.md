@@ -2,7 +2,7 @@
 type: page
 title: Why is Elm named Elm?
 description: The origins of the Elm programming language name
-published: false
+published: true
 status: seedling
 ---
 
