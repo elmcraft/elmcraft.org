@@ -53,9 +53,9 @@ type alias Data =
 
 page : PageWithState RouteParams Data () Types_.Msg
 page =
-    Page.preRender
+    Page.prerender
         { head = head
-        , pages = routes
+        , routes = routes
         , data = data
         }
         |> Page.buildWithSharedState

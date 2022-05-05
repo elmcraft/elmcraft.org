@@ -3,7 +3,7 @@ module DataSource.ElmWeeklyRSS exposing (..)
 import DataSource exposing (DataSource)
 import DataSource.Http
 import Json.Decode as Optimized
-import Xml.Decode exposing (..)
+import Xml.Decode as Xml
 
 
 type alias Newsletter =
@@ -29,7 +29,7 @@ newsletterLatest =
     withNewsletters latestNewsletterDecoder
 
 
-withNewsletters : Decoder a -> DataSource a
+withNewsletters : Xml.Decoder a -> DataSource a
 withNewsletters decoder =
     DataSource.Http.request
         -- This is the canonical URL but it does a redirect that shows HTML and confuses our decoder...
@@ -39,36 +39,37 @@ withNewsletters decoder =
         , headers = []
         , body = DataSource.Http.emptyBody
         }
-        (DataSource.Http.expectString (decodeString decoder))
+        DataSource.Http.expectString
+        |> DataSource.andThen (Xml.decodeString decoder >> DataSource.fromResult)
 
 
-totalDecoder : Decoder Int
+totalDecoder : Xml.Decoder Int
 totalDecoder =
-    itemsDecoder |> map (\episodes -> List.length episodes)
+    itemsDecoder |> Xml.map (\episodes -> List.length episodes)
 
 
-latestNewsletterDecoder : Decoder Newsletter
+latestNewsletterDecoder : Xml.Decoder Newsletter
 latestNewsletterDecoder =
     itemsDecoder
-        |> andThen
+        |> Xml.andThen
             (\episodes ->
                 case List.head episodes of
                     Just episode ->
-                        succeed episode
+                        Xml.succeed episode
 
                     Nothing ->
-                        fail "latestNewsletterDecoder expects at least one item in the feed, found none"
+                        Xml.fail "latestNewsletterDecoder expects at least one item in the feed, found none"
             )
 
 
-itemsDecoder : Decoder (List Newsletter)
+itemsDecoder : Xml.Decoder (List Newsletter)
 itemsDecoder =
-    path [ "channel", "item" ] (list newsletterDecoder)
+    Xml.path [ "channel", "item" ] (Xml.list newsletterDecoder)
 
 
 newsletterDecoder =
-    map4 Newsletter
-        (path [ "title" ] (single string))
-        (path [ "description" ] (single string))
-        (path [ "pubDate" ] (single string))
-        (path [ "link" ] (single string))
+    Xml.map4 Newsletter
+        (Xml.path [ "title" ] (Xml.single Xml.string))
+        (Xml.path [ "description" ] (Xml.single Xml.string))
+        (Xml.path [ "pubDate" ] (Xml.single Xml.string))
+        (Xml.path [ "link" ] (Xml.single Xml.string))
