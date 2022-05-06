@@ -3,6 +3,7 @@ type: page
 title: How to use a modified Elm package in your app
 description: There are a number of ways to use a modified Elm package in your app
 published: true
+status: budding
 ---
 
 There are a number of ways to use a modified Elm package in your app.
@@ -33,7 +34,8 @@ I.e. move all the package source code directly into your project. You can do thi
     - I.e. `source-directories: [src/, ../../../that_lib/src]`
     - This approach also works with `git submodule`s if you'd like to ensure the included source is also under git control.
 
-This approach requires you to also install the package's sub-dependencies into your project
+Note: This approach requires you to also install the package's sub-dependency packages directly into your project.
+
 
 ### 2. Use [`elm-git-install`](https://github.com/robinheghan/elm-git-install)
 
