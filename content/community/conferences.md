@@ -8,7 +8,7 @@ status: budding
 
 ## Upcoming conferences
 
-Due to Covid, there are currently no upcoming conferences. In the meantime, check out the [Elm meetups](//community/meetups)!
+Due to Covid, there are currently no upcoming conferences. In the meantime, check out the [Elm meetups](/community/meetups)!
 
 
 ## Past conferences
