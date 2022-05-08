@@ -6,6 +6,7 @@ import Browser.Navigation
 import DataSource
 import DataSource.Notion
 import Dict
+import Effect exposing (Effect)
 import Element exposing (..)
 import Html exposing (Html)
 import List.Extra as List
@@ -53,25 +54,28 @@ type alias Model =
 
 
 init :
-    Maybe Browser.Navigation.Key
-    -> Pages.Flags.Flags
+    Pages.Flags.Flags
     ->
         Maybe
-            { path : { path : Path, query : Maybe String, fragment : Maybe String }
-            , metadata : Maybe Route
+            { path :
+                { path : Path
+                , query : Maybe String
+                , fragment : Maybe String
+                }
+            , metadata : route
             , pageUrl : Maybe PageUrl
             }
-    -> ( Model, Cmd Msg )
-init navigationKey flags maybePagePath =
+    -> ( Model, Effect Msg )
+init flags maybePagePath =
     -- @TODO need a better way to inject this isDev var...
-    ( Types_.init { isDev = False, key = navigationKey }
+    ( Types_.init { isDev = False }
     , Cmd.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
         ]
     )
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( Model, Effect Msg )
 update msg model =
     case msg of
         OnPageChange _ ->
@@ -147,7 +151,7 @@ update msg model =
         VideosAddCategoryFilter category ->
             -- ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
             ( { model | appliedVideoFilters = [ category ] }
-            , model.key |> Maybe.map (\key -> Browser.Navigation.pushUrl key "/media/videos") |> Maybe.withDefault Cmd.none
+            , Effect.pushUrl "/media/videos"
             )
 
         VideosRemoveCategoryFilter category ->

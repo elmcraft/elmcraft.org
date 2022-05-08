@@ -1,4 +1,6 @@
-module Page.SPLAT__ exposing (Data, Model, Msg, page)
+module Route.SPLAT__ exposing (Data, Model, Msg, route)
+
+-- import Page exposing (Page, PageWithState, StaticPayload)
 
 import DataSource exposing (DataSource)
 import DataSource.ElmRadio
@@ -8,6 +10,7 @@ import DataSource.Glob as Glob
 import DataSource.Markdown
 import DataSource.Notion as Notion
 import Dict
+import Effect
 import Element exposing (..)
 import Head
 import Head.Seo as Seo
@@ -15,11 +18,11 @@ import Html
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import List.NonEmpty
-import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Path
 import Route
+import RouteBuilder exposing (StatefulRoute, StaticPayload)
 import Shared
 import Theme
 import Theme.Markdown
@@ -51,14 +54,14 @@ type alias Data =
     }
 
 
-page : PageWithState RouteParams Data () Types_.Msg
-page =
-    Page.prerender
+route : StatefulRoute RouteParams Data () Types_.Msg
+route =
+    RouteBuilder.preRender
         { head = head
-        , routes = routes
+        , pages = routes
         , data = data
         }
-        |> Page.buildWithSharedState
+        |> RouteBuilder.buildWithSharedState
             { view =
                 \pageUrlMaybe modelShared templateModel static ->
                     view pageUrlMaybe modelShared static
@@ -66,9 +69,12 @@ page =
                 \pageUrlMaybe modelShared static ->
                     ( (), Cmd.none )
             , update =
-                \pageUrl keyNavigationBrowserMaybe modelShared static templateMsg templateModel ->
+                -- , update : PageUrl -> StaticPayload data routeParams -> msg -> model -> Shared.Model -> ( model, Effect msg, Maybe Shared.Msg )
+                \pageUrl staticPayload templateMsg templateModel modelShared ->
                     -- SPLAT__ uses Types_.Msg same as shared, so just route all handling up to shared.
-                    ( (), Cmd.none, Just templateMsg )
+                    -- @TODO fix this after type checking....
+                    -- ( (), Effect.none, Just templateMsg )
+                    ( (), Effect.none, Just Types_.Noop )
             , subscriptions =
                 \pageUrlMaybe routeParams path templateModel modelShared ->
                     Sub.none

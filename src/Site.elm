@@ -15,38 +15,33 @@ type alias Data =
     ()
 
 
-config : SiteConfig Data
+
+-- type alias SiteConfig =
+--     { canonicalUrl : String
+--     , head : DataSource (List Head.Tag)
+--     }
+
+
+config : SiteConfig
 config =
-    { data = data
-    , canonicalUrl = "https://elmcraft.org"
-    , manifest = manifest
+    { canonicalUrl = "https://elmcraft.org"
     , head = head
     }
 
 
-data : DataSource.DataSource Data
-data =
-    DataSource.succeed ()
+head : DataSource.DataSource (List Head.Tag)
+head =
+    DataSource.succeed
+        [-- Head.sitemapLink "/sitemap.xml"
+        ]
 
 
-head : Data -> List Head.Tag
-head static =
-    [ Head.icon [ ( 512, 512 ) ] MimeType.Png (Pages.Url.fromPath <| Path.fromString "images/favicon.png")
-    , Head.sitemapLink "/sitemap.xml"
-    ]
 
-
-manifest : Data -> Manifest.Config
-manifest static =
-    Manifest.init
-        { name = "Elmcraft"
-        , description = "The place for all things Elm"
-        , startUrl = Route.SPLAT__ { splat = [] } |> Route.toPath
-        , icons =
-            [ { src = Pages.Url.fromPath <| Path.fromString "images/favicon.png"
-              , sizes = [ ( 512, 512 ) ]
-              , mimeType = Just MimeType.Png
-              , purposes = [ Manifest.IconPurposeAny ]
-              }
-            ]
-        }
+-- manifest : Data -> Manifest.Config
+-- manifest static =
+--     Manifest.init
+--         { name = "Elmcraft"
+--         , description = "The place for all things Elm"
+--         , startUrl = Route.SPLAT__ { splat = [] } |> Route.toPath
+--         , icons = []
+--         }
