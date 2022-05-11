@@ -12,6 +12,7 @@ import Markdown.Renderer
 import Parser
 import Route
 import Theme.Markdown
+import Types_
 import View exposing (..)
 
 
@@ -34,15 +35,28 @@ routeAsLoadedPageAndThen routeParams fn =
                         path
                             |> DataSource.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
-                                    Decode.map2
-                                        (\meta ui ->
-                                            { meta = meta
-                                            , rawMarkdown = rawMarkdown
-                                            , path = path
-                                            }
-                                        )
-                                        (decodeMeta routeParams.splat)
-                                        (markdownRenderer rawMarkdown path)
+                                    -- Decode.map2
+                                    --     (\meta ui ->
+                                    --         { meta = meta
+                                    --         , rawMarkdown = rawMarkdown
+                                    --         , path = path
+                                    --         }
+                                    --     )
+                                    --     (decodeMeta routeParams.splat)
+                                    --     (markdownRenderer rawMarkdown path)
+                                    decodeMeta routeParams.splat
+                                        |> Decode.andThen
+                                            (\meta ->
+                                                markdownRenderer rawMarkdown path meta
+                                                    |> Decode.map
+                                                        (\ui ->
+                                                            { ui = ui
+                                                            , meta = meta
+                                                            , path = path
+                                                            , rawMarkdown = rawMarkdown
+                                                            }
+                                                        )
+                                            )
                                 )
                             |> DataSource.andThen (fn path)
                     )
@@ -93,6 +107,7 @@ decodeStatus =
             )
 
 
+markdownRenderer : String -> String -> Meta -> Decode.Decoder (Types_.Model -> Types_.GlobalData -> List (Element Types_.Msg))
 markdownRenderer rawMarkdown path meta =
     rawMarkdown
         |> Markdown.Parser.parse

@@ -1,8 +1,8 @@
 module Types_ exposing (..)
 
 import Browser.Navigation
+import DataSource.ElmRadio
 import DataSource.ElmWeeklyRSS
-import DataSource.PodcastRSS
 import Dict exposing (Dict)
 import Path exposing (Path)
 import Route exposing (Route)
@@ -22,7 +22,7 @@ type alias Model =
 type alias GlobalData =
     { videos : List Video
     , videosCount : Int
-    , latestPodcast : Maybe DataSource.PodcastRSS.Episode
+    , latestPodcast : Maybe DataSource.ElmRadio.Episode
     , latestNewsletter : Maybe DataSource.ElmWeeklyRSS.Newsletter
     }
 
@@ -92,7 +92,7 @@ type Category
     = ElmPhilosophy
     | Iconic
     | Keynote
-    | PannelDiscussion
+    | PanelDiscussion
     | Guide
     | Introduction
     | Learn
@@ -121,7 +121,7 @@ type Category
     | Design
     | Concept
     | Technique
-    | Unknown
+    | Unknown String
     | Product
     | Teaching
     | Testing

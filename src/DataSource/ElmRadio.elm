@@ -2,8 +2,9 @@ module DataSource.ElmRadio exposing (..)
 
 import DataSource exposing (DataSource)
 import DataSource.Http
-import Json.Decode as Optimized
-import Xml.Decode exposing (..)
+import Json.Decode exposing (..)
+import Json.Decode.Pipeline exposing (required)
+import Time
 
 
 episodes : DataSource (List Episode)
@@ -23,15 +24,7 @@ episodeLatest =
 
 withElmRadioPodcasts : Decoder a -> DataSource a
 withElmRadioPodcasts decoder =
-    DataSource.Http.request
-        (Secrets.succeed
-            { url = "https://elm-radio.com/episodes.json"
-            , method = "GET"
-            , headers = []
-            , body = DataSource.Http.emptyBody
-            }
-        )
-        decoder
+    DataSource.Http.get "https://elm-radio.com/episodes.json" decoder
 
 
 type alias Episode =
@@ -64,11 +57,17 @@ postcastEpisodeLatestDecoder =
 
 podcastEpisodesDecoder : Decoder (List Episode)
 podcastEpisodesDecoder =
-    path [ "channel", "item" ] (list episodeDecoder)
+    list episodeDecoder
+
+
+
+-- New
 
 
 episodeDecoder =
-    map3 Episode
-        (path [ "title" ] (single string))
-        (path [ "pubDate" ] (single string))
-        (path [ "link" ] (single string))
+    succeed Episode
+        |> required "title" string
+        |> required "description" string
+        |> required "url" string
+        |> required "number" int
+        |> required "published" (int |> map Time.millisToPosix)
