@@ -22,6 +22,8 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 #### Free
 
 - The [official Elm guide](https://guide.elm-lang.org/), the best starting place for most people for concepts and syntax
+  - 🇫🇷 [Une introduction à Elm](https://guide.elm-france.fr/) - French community translation
+
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
 - [Start Using Elm to Build Web Applications](https://egghead.io/courses/start-using-elm-to-build-web-applications) - Murphy Randle (egghead.io)
 
