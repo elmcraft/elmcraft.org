@@ -129,6 +129,7 @@ view model global _ =
                                                     |> Theme.format
                                                     |> text
                                                 ]
+                                            , paragraph [] [ text episode.description ]
                                             , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
                                             ]
                                         ]
