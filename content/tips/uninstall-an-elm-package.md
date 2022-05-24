@@ -2,12 +2,14 @@
 type: page
 title: How to uninstall a package in Elm
 description: The elm-json tool can do this for us!
-published: false
+published: true
 ---
 
 Currently the Elm compiler doesn't have a package uninstall command.
 
-However, the [`elm-json`](https://github.com/zwilias/elm-json) tool can do this for us!
+### Option 1: `elm-json`
+
+The [`elm-json`](https://github.com/zwilias/elm-json) tool can help:
 
 ```
 npm install --global elm-json
@@ -29,3 +31,12 @@ Saved updated elm.json!
 ```
 
 Check out the [`elm-json` Usage](https://github.com/zwilias/elm-json#usage) for other helpful things it can do!
+
+
+### Option 2: `elm-review-unused`
+
+For extra style, and the ability to remove much more than just unused packages, [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) can help with the [`elm-review-unused`](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/) rules:
+
+```
+elm-review --template jfmengels/elm-review-unused/example
+```
