@@ -6,6 +6,7 @@ import DataStatic.Conferences exposing (..)
 import Json.Decode exposing (..)
 import Json.Decode.Pipeline exposing (..)
 import Json.Encode as E
+import List.Extra as List
 import Pages.Secrets as Secrets
 import Serialize as S
 import Theme.Videos exposing (..)
@@ -80,7 +81,12 @@ recursiveGetVideos startCursor =
                     Nothing ->
                         DataSource.succeed response.videos
             )
-        |> DataSource.map (List.filter (\v -> v.name /= ""))
+        |> DataSource.map
+            (\videos ->
+                videos
+                    |> List.filter (\v -> v.name /= "")
+                    |> List.uniqueBy .url
+            )
 
 
 getVideosResponse : Maybe String -> DataSource VideosResponse
