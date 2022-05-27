@@ -246,6 +246,10 @@ htmlMapping model global =
                 Icon.fromString type_
             )
             |> Markdown.Html.withAttribute "type"
+        , Markdown.Html.tag "tldr"
+            (\children ->
+                image [ width (px 50), height (px 50) ] { src = "/images/tldr-teal-deer.png", description = "TLDR Teal Deer: Deer by Iconic from NounProject.com" }
+            )
         ]
 
 

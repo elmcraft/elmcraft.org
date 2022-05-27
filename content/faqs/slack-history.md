@@ -9,13 +9,11 @@ status: budding
 
 # The history of the Elm Slack History question
 
+At least a couple times a year folks ask similar questions around Slack History and the history of what’s been considered – ironically, because the history of those conversations is not visible in Slack!
 
-Every now and then some folks ask the same questions around Slack History and the history of what’s been considered.
+This page outlines some of the common questions that seem to recur and some of the history around Slack History.
 
-This outlines some of the common questions that seem to recur and some of the history around history.
-
-The current status is simply that there is a better place for more permanent discussions: https://discourse.elm-lang.org.
-
+<tldr/> The current status is simply that there is a better place for more permanent discussions: https://discourse.elm-lang.org.
 
 
 ### Why don’t we upgrade to a paid Slack?
@@ -68,6 +66,6 @@ Any migration potentially just trades off one aspect (it’s annoying I don’t 
 
 ### Why don’t we have some service / addon that keeps history?
 
-There were some folks that used to have something setup for this, however Slack T&Cs as well as API changes mean it’s no longer possible to do so.
+The continuity of Slack's ephemeral nature is preferred now that we have precedence for it. It encourages fresh conversation and the movement of interesting information into other formats (Discourse posts, blog posts, etc) which are ultimately better for discoverability in the long run.
 
-Since then, some community members (most recently @janiczek and @supermario) started exploring the possibility of a bestpoke hosted slack history archive, but after speaking with Evan they decided to not continue with it – in some ways the continuity of Slack's ephemeral nature is preferred now that we have precedence for it, as it encourages fresh conversation and the movement of interesting information into other formats (Discourse posts, blog posts, etc) which are ultimately better for discoverability in the long run.
+In the past there were some folks that had setup 3rd party history services with Slack, however those services broke Slack's terms of use, and combined with Slack API changes meant they disappeared. Recently there appear to be some new services for this again, but given the past issues and prior mentioned points, its unlikely these will be added to Slack.
