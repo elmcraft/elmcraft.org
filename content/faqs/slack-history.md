@@ -48,20 +48,20 @@ The combination of these two items warrants the question as to whether the histo
 
 ### Why don’t we just switch to something else?
 
-There are close to 15,000 members on Slack now, so a move anywhere is not trivial.
+There are over 20,000 members on Slack now, so a move anywhere is not trivial.
 
 More than 80% of our message traffic is in high volume channels #beginners and #general which don’t particularly benefit from history.
 
 
 ### Okay, but have you considered <some alternative service>?
 
-Lots of other services have been suggested. More suggestions is not going to help switching to some other service.
+Lots of other services have been suggested.
 
 The migration issue remains regardless of which service it is, which brings the question as to whether history is worth a migration.
 
 Slack seems to work great in most respects and many folks seem to like it just fine. We never see folks suggesting a service move because of Slack functions at large, it only ever seems to recur around the history question.
 
-Any migration potentially just trades off one aspect (it’s annoying I don’t have history) for another set (this isn’t Slack).
+Any migration potentially just trades off one problem (it’s annoying I don’t have history) for a different set of problems (this isn’t Slack).
 
 
 ### Why don’t we have some service / addon that keeps history?
