@@ -248,7 +248,11 @@ htmlMapping model global =
             |> Markdown.Html.withAttribute "type"
         , Markdown.Html.tag "tldr"
             (\children ->
-                image [ width (px 50), height (px 50) ] { src = "/images/tldr-teal-deer.png", description = "TLDR Teal Deer: Deer by Iconic from NounProject.com" }
+                row [ paddingXY 0 20, width fill, spacing 10 ]
+                    ([ image [ width (px 50), height (px 50), centerX, centerY ] { src = "/images/tldr-teal-deer.png", description = "TLDR Teal Deer: Deer by Iconic from NounProject.com" }
+                     ]
+                        ++ children
+                    )
             )
         ]
 

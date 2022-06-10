@@ -10,7 +10,7 @@ At least a couple times a year folks ask similar questions around Slack History 
 
 This page outlines some of the common questions that seem to recur and some of the history around Slack History.
 
-<tldr/> The current status is simply that there is a better place for more permanent discussions: https://discourse.elm-lang.org.
+<tldr>TLDR: The current status is simply that there is a better place for more permanent discussions: https://discourse.elm-lang.org.</tldr>
 
 
 ### Why don’t we upgrade to a paid Slack?
