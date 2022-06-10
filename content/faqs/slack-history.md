@@ -6,9 +6,6 @@ published: true
 status: budding
 ---
 
-
-# The history of the Elm Slack History question
-
 At least a couple times a year folks ask similar questions around Slack History and the history of what’s been considered – ironically, because the history of those conversations is not visible in Slack!
 
 This page outlines some of the common questions that seem to recur and some of the history around Slack History.
