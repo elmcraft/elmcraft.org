@@ -60,6 +60,6 @@ Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) 
 
 Thanks to the following people for their contributions and support:
 
-[@katjam](https://github.com/katjam), [@dillonkearns](https://github.com/dillonkearns), [@mdgriffith](https://github.com/mdgriffith), [@georgesboris](https://github.com/georgesboris), [@louiseahart](https://github.com/louiseahart), [@jfmengels](https://github.com/jfmengels)
+[@katjam](https://github.com/katjam), [@dillonkearns](https://github.com/dillonkearns), [@mdgriffith](https://github.com/mdgriffith), [@georgesboris](https://github.com/georgesboris), [@louiseahart](https://github.com/louiseahart), [@jfmengels](https://github.com/jfmengels), [@janiczek](https://github.com/Janiczek)
 
 If you're interested in contributing, join the [#contribute channel on Discord](/discuss).
