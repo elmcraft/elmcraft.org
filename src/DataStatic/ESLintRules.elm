@@ -101,7 +101,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-compare-neg-zero"
           , eslintDescription = "disallow comparing against -0"
-          , elmAdvice = PotentialIdea "Not sure whether this is a problem in practice?"
+          , elmAdvice = HandledByElmFormat
           }
         , { eslintTags = "recommended"
           , eslintName = "no-cond-assign"
@@ -151,7 +151,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-dupe-keys"
           , eslintDescription = "disallow duplicate keys in object literals"
-          , elmAdvice = CompilerError "Duplicate keys are reported by the compiler error."
+          , elmAdvice = CompilerError "The compiler will report duplicate keys."
           }
         , { eslintTags = "recommended"
           , eslintName = "no-duplicate-case"
@@ -245,7 +245,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-self-assign"
           , eslintDescription = "disallow assignments where both sides are exactly the same"
-          , elmAdvice = CompilerError "Can't define a variable based on itself, and can't re-assign variables."
+          , elmAdvice = CompilerError "The compiler will report variable definitions that depend on themselves, and there is no syntax for re-assigning variables."
           }
         , { eslintTags = ""
           , eslintName = "no-self-compare"
@@ -275,7 +275,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-undef"
           , eslintDescription = "disallow the use of undeclared variables unless mentioned in `/*global */` comments"
-          , elmAdvice = CompilerError "Can't use variables not in scope."
+          , elmAdvice = CompilerError "The compiler will report usages of variables not in scope."
           }
         , { eslintTags = "recommended"
           , eslintName = "no-unexpected-multiline"
@@ -368,7 +368,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "block-scoped-var"
           , eslintDescription = "enforce the use of variables within the scope they are defined"
-          , elmAdvice = CompilerError "Can't use variables not in scope."
+          , elmAdvice = CompilerError "The compiler will report usages of variables not in scope."
           }
         , { eslintTags = ""
           , eslintName = "camelcase"
