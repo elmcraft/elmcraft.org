@@ -1,4 +1,4 @@
-module Theme.ESLintRules exposing (..)
+module Theme.ESLintRules exposing (view)
 
 import DataStatic.ESLintRules exposing (EslintRule)
 import Element exposing (..)
@@ -6,13 +6,14 @@ import MarkdownPlain
 import Theme.UI exposing (..)
 
 
+view : Element msg
 view =
-    DataStatic.ESLintRules.all
+    DataStatic.ESLintRules.rules
         |> List.map showRuleSection
         |> column [ width fill, spacing 20 ]
 
 
-showRuleSection : { a | name : String, description : String, rules : List EslintRule } -> Element msg
+showRuleSection : { name : String, description : String, rules : List EslintRule } -> Element msg
 showRuleSection section =
     column [ width fill ]
         [ heading3 [] section.name
@@ -28,21 +29,15 @@ viewRules rules =
         , columns =
             [ { header = text "ESLint rule"
               , width = fill
-              , view =
-                    \rule ->
-                        text rule.eslintName
+              , view = \rule -> text rule.eslintName
               }
             , { header = text "Description"
               , width = fill
-              , view =
-                    \rule ->
-                        text rule.eslintDescription
+              , view = \rule -> text rule.eslintDescription
               }
             , { header = text "Elm advice"
               , width = fill
-              , view =
-                    \rule ->
-                        MarkdownPlain.fromString (viewAdvice rule.elmAdvice)
+              , view = \rule -> MarkdownPlain.fromString (viewAdvice rule.elmAdvice)
               }
             ]
         }

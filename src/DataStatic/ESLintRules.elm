@@ -1,4 +1,10 @@
-module DataStatic.ESLintRules exposing (..)
+module DataStatic.ESLintRules exposing
+    ( Advice(..)
+    , EslintRule
+    , LanguageDesign(..)
+    , MissingFeature(..)
+    , rules
+    )
 
 
 type alias EslintRule =
@@ -9,8 +15,12 @@ type alias EslintRule =
     }
 
 
-all =
-    [ possibleProblems, suggestions, layoutAndFormatting ]
+rules : List { name : String, description : String, rules : List EslintRule }
+rules =
+    [ possibleProblems
+    , suggestions
+    , layoutAndFormatting
+    ]
 
 
 type Advice
@@ -59,6 +69,7 @@ type MissingFeature
     | CustomFeatureDescription String
 
 
+possibleProblems : { name : String, description : String, rules : List EslintRule }
 possibleProblems =
     { name = "Possible problems"
     , description = "These rules relate to possible logic errors in code:"
@@ -351,6 +362,7 @@ possibleProblems =
     }
 
 
+suggestions : { name : String, description : String, rules : List EslintRule }
 suggestions =
     { name = "Suggestions"
     , description = "These rules suggest alternate ways of doing things:"
@@ -1091,6 +1103,7 @@ suggestions =
     }
 
 
+layoutAndFormatting : { name : String, description : String, rules : List EslintRule }
 layoutAndFormatting =
     { name = "Layout & Formatting"
     , description = "These rules care about how the code looks rather than how it executes:"
