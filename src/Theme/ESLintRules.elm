@@ -62,7 +62,10 @@ viewAdvice advice =
                 )
 
         DataStatic.ESLintRules.PotentialIdea string ->
-            String.trimRight ("This could potentially be added as an `elm-review` rule." ++ string)
+            string
+
+        DataStatic.ESLintRules.NoEquivalent ->
+            "There is as of yet no equivalent to this rule in the Elm community."
 
 
 viewLanguageDesign : DataStatic.ESLintRules.LanguageDesign -> String

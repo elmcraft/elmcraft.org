@@ -29,6 +29,7 @@ type Advice
     | HandledByElmFormat
     | HasCorrespondingRules (List String)
     | PotentialIdea String
+    | NoEquivalent
 
 
 type LanguageDesign
@@ -154,7 +155,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-dupe-else-if"
           , eslintDescription = "disallow duplicate conditions in if-else-if chains"
-          , elmAdvice = PotentialIdea "Could be added to https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify"
+          , elmAdvice = PotentialIdea "Tracked in https://github.com/jfmengels/elm-review-simplify/issues/22"
           }
         , { eslintTags = "recommended"
           , eslintName = "no-dupe-keys"
@@ -203,7 +204,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-import-assign"
           , eslintDescription = "disallow assigning to imported bindings"
-          , elmAdvice = PotentialIdea "Partially covered by Elm forbidding shadowing and mutation, and by the [`NoUnused.Variables` rule](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Variables), but there can still be a few places where the name is being shadowed."
+          , elmAdvice = EnforcedByLanguageDesign NoMutation
           }
         , { eslintTags = "recommended"
           , eslintName = "no-inner-declarations"
@@ -387,7 +388,7 @@ suggestions =
         , { eslintTags = "fixable"
           , eslintName = "capitalized-comments"
           , eslintDescription = "enforce or disallow capitalization of the first letter of a comment"
-          , elmAdvice = PotentialIdea "COMMENTS"
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "class-methods-use-this"
@@ -467,12 +468,12 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "id-denylist"
           , eslintDescription = "disallow specified identifiers"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "id-length"
           , eslintDescription = "enforce minimum and maximum identifier lengths"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "id-match"
@@ -497,22 +498,22 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "max-lines"
           , eslintDescription = "enforce a maximum number of lines per file"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "max-lines-per-function"
           , eslintDescription = "enforce a maximum number of lines of code in a function"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "max-nested-callbacks"
           , eslintDescription = "enforce a maximum depth that callbacks can be nested"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "max-params"
           , eslintDescription = "enforce a maximum number of parameters in function definitions"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "max-statements"
@@ -522,7 +523,7 @@ suggestions =
         , { eslintTags = "fixable"
           , eslintName = "multiline-comment-style"
           , eslintDescription = "enforce a particular style for multiline comments"
-          , elmAdvice = PotentialIdea "COMMENTS"
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "new-cap"
@@ -697,7 +698,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-magic-numbers"
           , eslintDescription = "disallow magic numbers"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "no-mixed-operators"
@@ -717,7 +718,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-negated-condition"
           , eslintDescription = "disallow negated conditions"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "no-nested-ternary"
@@ -787,12 +788,12 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-restricted-exports"
           , eslintDescription = "disallow specified names in exports"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "no-restricted-globals"
           , eslintDescription = "disallow specified global variables"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "no-restricted-imports"
@@ -802,12 +803,12 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-restricted-properties"
           , eslintDescription = "disallow certain properties on certain objects"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "no-restricted-syntax"
           , eslintDescription = "disallow specified syntax"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "no-return-assign"
@@ -862,7 +863,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-underscore-dangle"
           , eslintDescription = "disallow dangling underscores in identifiers"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = "fixable"
           , eslintName = "no-unneeded-ternary"
@@ -972,7 +973,7 @@ suggestions =
         , { eslintTags = "fixable"
           , eslintName = "prefer-destructuring"
           , eslintDescription = "require destructuring from arrays and/or objects"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = "fixable"
           , eslintName = "prefer-exponentiation-operator"
@@ -1074,7 +1075,7 @@ suggestions =
         , { eslintTags = "fixable"
           , eslintName = "spaced-comment"
           , eslintDescription = "enforce consistent spacing after the `//` or `/*` in a comment"
-          , elmAdvice = PotentialIdea "COMMENTS"
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = "fixable"
           , eslintName = "strict"
@@ -1168,7 +1169,7 @@ layoutAndFormatting =
         , { eslintTags = "fixable"
           , eslintName = "eol-last"
           , eslintDescription = "require or disallow newline at the end of files"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = "fixable"
           , eslintName = "func-call-spacing"
@@ -1238,7 +1239,7 @@ layoutAndFormatting =
         , { eslintTags = ""
           , eslintName = "max-len"
           , eslintDescription = "enforce a maximum line length"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = NoEquivalent
           }
         , { eslintTags = ""
           , eslintName = "max-statements-per-line"
