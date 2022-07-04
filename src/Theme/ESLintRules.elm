@@ -49,12 +49,6 @@ viewAdvice advice =
         DataStatic.ESLintRules.NotPartOfTheLanguage missingFeature ->
             viewMissingFeature missingFeature
 
-        DataStatic.ESLintRules.CompilerError string ->
-            string
-
-        DataStatic.ESLintRules.SyntaxError ->
-            "This would be a syntax error in Elm."
-
         DataStatic.ESLintRules.HandledByElmFormat ->
             "This is automatically handled by elm-format."
 
@@ -101,6 +95,9 @@ viewLanguageDesign languageDesign =
         DataStatic.ESLintRules.NoCoercion ->
             "There is no syntax for coercion. Elm requires explicit type conversions."
 
+        DataStatic.ESLintRules.NoNullOrUndefined ->
+            "There is no `null` or `undefined` in Elm."
+
         DataStatic.ESLintRules.CustomRationale string ->
             string
 
@@ -137,9 +134,6 @@ viewMissingFeature missingFeature =
 
         DataStatic.ESLintRules.TemplateLiterals ->
             "There are no template literals in Elm."
-
-        DataStatic.ESLintRules.NullOrUndefined ->
-            "There is no `null` or `undefined` in Elm."
 
         DataStatic.ESLintRules.OctalOrBinary ->
             "There is no syntax for literal octal or binary in Elm."

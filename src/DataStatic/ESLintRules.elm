@@ -25,10 +25,7 @@ rules =
 
 type Advice
     = EnforcedByLanguageDesign LanguageDesign
-      -- TODO Move some of the missing feature to enforced by language design when they were purposefully not added to the language
     | NotPartOfTheLanguage MissingFeature
-    | CompilerError String
-    | SyntaxError
     | HandledByElmFormat
     | HasCorrespondingRules (List String)
     | PotentialIdea String
@@ -44,6 +41,7 @@ type LanguageDesign
     | ExhaustivePatternMatching
     | CantExtendTypes
     | NoCoercion
+    | NoNullOrUndefined
     | CustomRationale String
 
 
@@ -58,7 +56,6 @@ type MissingFeature
     | GetterSetters
     | DynamicProperties
     | TemplateLiterals
-    | NullOrUndefined
     | OctalOrBinary
     | Eval
     | FunctionsDontExist
@@ -142,7 +139,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-debugger"
           , eslintDescription = "disallow the use of `debugger`"
-          , elmAdvice = CompilerError "The compiler will report the usages of debugging functions in optimized mode."
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "The compiler will report the usages of debugging functions in optimized mode.")
           }
         , { eslintTags = "recommended"
           , eslintName = "no-dupe-args"
@@ -162,7 +159,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-dupe-keys"
           , eslintDescription = "disallow duplicate keys in object literals"
-          , elmAdvice = CompilerError "The compiler will report duplicate keys."
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "The compiler will report duplicate keys.")
           }
         , { eslintTags = "recommended"
           , eslintName = "no-duplicate-case"
@@ -256,7 +253,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-self-assign"
           , eslintDescription = "disallow assignments where both sides are exactly the same"
-          , elmAdvice = CompilerError "The compiler will report variable definitions that depend on themselves, and there is no syntax for re-assigning variables."
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "The compiler will report variable definitions that depend on themselves, and there is no syntax for re-assigning variables.")
           }
         , { eslintTags = ""
           , eslintName = "no-self-compare"
@@ -271,7 +268,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-sparse-arrays"
           , eslintDescription = "disallow sparse arrays"
-          , elmAdvice = SyntaxError
+          , elmAdvice = EnforcedByLanguageDesign (TypeChecking "All elements in a List must be of the same type in Elm, you can't have empty elements in a list.")
           }
         , { eslintTags = ""
           , eslintName = "no-template-curly-in-string"
@@ -286,7 +283,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-undef"
           , eslintDescription = "disallow the use of undeclared variables unless mentioned in `/*global */` comments"
-          , elmAdvice = CompilerError "The compiler will report usages of variables not in scope."
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "Can't use variables not in scope.")
           }
         , { eslintTags = "recommended"
           , eslintName = "no-unexpected-multiline"
@@ -321,7 +318,7 @@ possibleProblems =
         , { eslintTags = "recommended"
           , eslintName = "no-unsafe-optional-chaining"
           , eslintDescription = "disallow use of optional chaining in contexts where the `undefined` value is not allowed"
-          , elmAdvice = NotPartOfTheLanguage NullOrUndefined
+          , elmAdvice = EnforcedByLanguageDesign NoNullOrUndefined
           }
         , { eslintTags = ""
           , eslintName = "no-unused-private-class-members"
@@ -380,7 +377,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "block-scoped-var"
           , eslintDescription = "enforce the use of variables within the scope they are defined"
-          , elmAdvice = CompilerError "The compiler will report usages of variables not in scope."
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "Can't use variables not in scope.")
           }
         , { eslintTags = ""
           , eslintName = "camelcase"
@@ -430,7 +427,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "default-param-last"
           , eslintDescription = "enforce default parameters to be last"
-          , elmAdvice = NotPartOfTheLanguage (CustomFeatureDescription "There are no default parameters.")
+          , elmAdvice = EnforcedByLanguageDesign NoVariableNumberOfArguments
           }
         , { eslintTags = "fixable"
           , eslintName = "dot-notation"
@@ -480,7 +477,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "id-match"
           , eslintDescription = "require identifiers to match a specified regular expression"
-          , elmAdvice = PotentialIdea ""
+          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/sparksp/elm-review-camelcase/latest/UseCamelCase" ]
           }
         , { eslintTags = ""
           , eslintName = "init-declarations"
@@ -600,7 +597,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-eq-null"
           , eslintDescription = "disallow `null` comparisons without type-checking operators"
-          , elmAdvice = NotPartOfTheLanguage NullOrUndefined
+          , elmAdvice = EnforcedByLanguageDesign NoNullOrUndefined
           }
         , { eslintTags = ""
           , eslintName = "no-eval"
@@ -705,7 +702,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-mixed-operators"
           , eslintDescription = "disallow mixed binary operators"
-          , elmAdvice = PotentialIdea "elm-format"
+          , elmAdvice = PotentialIdea "This is a proposal for [`elm-format`](https://github.com/avh4/elm-format/issues/375)."
           }
         , { eslintTags = ""
           , eslintName = "no-multi-assign"
@@ -715,7 +712,7 @@ suggestions =
         , { eslintTags = ""
           , eslintName = "no-multi-str"
           , eslintDescription = "disallow multiline strings"
-          , elmAdvice = SyntaxError
+          , elmAdvice = NotPartOfTheLanguage (CustomFeatureDescription "This is not a valid way of writing strings in Elm.")
           }
         , { eslintTags = ""
           , eslintName = "no-negated-condition"
@@ -855,12 +852,12 @@ suggestions =
         , { eslintTags = "fixable"
           , eslintName = "no-undef-init"
           , eslintDescription = "disallow initializing variables to `undefined`"
-          , elmAdvice = NotPartOfTheLanguage NullOrUndefined
+          , elmAdvice = EnforcedByLanguageDesign NoNullOrUndefined
           }
         , { eslintTags = ""
           , eslintName = "no-undefined"
           , eslintDescription = "disallow the use of `undefined` as an identifier"
-          , elmAdvice = NotPartOfTheLanguage NullOrUndefined
+          , elmAdvice = EnforcedByLanguageDesign NoNullOrUndefined
           }
         , { eslintTags = ""
           , eslintName = "no-underscore-dangle"
@@ -1136,22 +1133,22 @@ layoutAndFormatting =
         , { eslintTags = "fixable"
           , eslintName = "block-spacing"
           , eslintDescription = "disallow or enforce spaces inside of blocks after opening block and before closing block"
-          , elmAdvice = SyntaxError
+          , elmAdvice = NotPartOfTheLanguage (CustomFeatureDescription "There are no blocks in Elm.")
           }
         , { eslintTags = "fixable"
           , eslintName = "brace-style"
           , eslintDescription = "enforce consistent brace style for blocks"
-          , elmAdvice = SyntaxError
+          , elmAdvice = NotPartOfTheLanguage (CustomFeatureDescription "There are no blocks in Elm.")
           }
         , { eslintTags = "fixable"
           , eslintName = "comma-dangle"
           , eslintDescription = "require or disallow trailing commas"
-          , elmAdvice = SyntaxError
+          , elmAdvice = NotPartOfTheLanguage (CustomFeatureDescription "There are no trailing commas in Elm.")
           }
         , { eslintTags = "fixable"
           , eslintName = "comma-spacing"
           , eslintDescription = "enforce consistent spacing before and after commas"
-          , elmAdvice = SyntaxError
+          , elmAdvice = HandledByElmFormat
           }
         , { eslintTags = "fixable"
           , eslintName = "comma-style"
@@ -1271,7 +1268,7 @@ layoutAndFormatting =
         , { eslintTags = "recommended"
           , eslintName = "no-mixed-spaces-and-tabs"
           , eslintDescription = "disallow mixed spaces and tabs for indentation"
-          , elmAdvice = SyntaxError
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "Tabs are forbidden in Elm.")
           }
         , { eslintTags = "fixable"
           , eslintName = "no-multi-spaces"
@@ -1286,7 +1283,7 @@ layoutAndFormatting =
         , { eslintTags = ""
           , eslintName = "no-tabs"
           , eslintDescription = "disallow all tabs"
-          , elmAdvice = SyntaxError
+          , elmAdvice = EnforcedByLanguageDesign (CustomRationale "Tabs are forbidden in Elm.")
           }
         , { eslintTags = "fixable"
           , eslintName = "no-trailing-spaces"
@@ -1336,7 +1333,7 @@ layoutAndFormatting =
         , { eslintTags = "fixable"
           , eslintName = "quotes"
           , eslintDescription = "enforce the consistent use of either backticks, double, or single quotes"
-          , elmAdvice = SyntaxError
+          , elmAdvice = HandledByElmFormat
           }
         , { eslintTags = "fixable"
           , eslintName = "rest-spread-spacing"
