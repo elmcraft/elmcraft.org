@@ -9,27 +9,17 @@ status: seedling
 
 If you're coming to Elm from the JavaScript world, you may be familiar with [ESLint](https://eslint.org/) which is a community standard for modern JS projects, and be looking for the equivalent in Elm.
 
-## Do I need to lint in Elm?
+When it comes to enforcing code style and formatting, the Elm community has widely adopted [`elm-format`](https://github.com/avh4/elm-format), the de-facto Elm code formatter. It is similar to [Prettier](https://prettier.io/) for JavaScript in that it rewrites your code in a very opinionated and predictable way, but it is a lot more widely adopted and it is not configurable at all.
 
-For modern JavaScript it may seem obvious a linter is needed.
+`elm-format` covers close to all stylistic rules that one would use ESLint for, therefore you don't really need a linter to enforce code style.
 
-However in Elm, simply compiling your Elm code will give you a very large portion of what ESLint does!
+When it comes to detecting bugs and problematic patterns, it may seem obvious a linter is needed for modern JavaScript. However in Elm, simply compiling your Elm code will give you a very large portion of what ESLint does! It is therefore not necessary to use a linter in your project, as we'll show in the next section
 
-
-## Further linting
-
-### Syntax linting / Code formatting:
-
-Covered by [`elm-format`](https://github.com/avh4/elm-format), the de-facto standard for formatting Elm code.
+It is however still a good idea to use a linter to raise the quality of your code and make it more maintainable. For that, we recommend using [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/).
 
 
-### Additional linting / custom rules:
+## Comparing with ESLint
 
-Covered by [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) , which analyzes Elm projects to help find mistakes before your users find them.
-
-
-### Converting from ESLint
-
-Here's the [core set of ESLint rules](https://eslint.org/docs/rules/) and how they translate to Elm.
+We claimed that you didn't need most of what ESLint provides. To explain why, we categorized all of the [core set of ESLint rules](https://eslint.org/docs/rules/) and how they translate to Elm.
 
 <eslint-compare-elm></eslint-compare-elm>

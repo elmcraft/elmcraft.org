@@ -25,29 +25,27 @@ view model =
 
         ( pointlessRules, applicableRules ) =
             List.partition isPointlessInElm allRules
+
+        ruleCountText : String
+        ruleCountText =
+            String.fromInt (List.length allRules)
+                ++ (if model.appliedEslintRecommendedFilter then
+                        " _recommended_"
+
+                    else
+                        ""
+                   )
     in
     column [ width fill, spacing 20 ]
-        [ paragraph []
-            [ text <|
-                "We've covered all "
-                    ++ String.fromInt (List.length allRules)
-                    ++ (if model.appliedEslintRecommendedFilter then
-                            " recommended"
+        [ buttonSecondary []
+            EslintToggleRecommendedFilter
+            (if model.appliedEslintRecommendedFilter then
+                "Show all rules"
 
-                        else
-                            ""
-                       )
-                    ++ " core ESLint rules."
-            , buttonSecondary []
-                EslintToggleRecommendedFilter
-                (if model.appliedEslintRecommendedFilter then
-                    "Show all rules"
-
-                 else
-                    "Show only recommended rules"
-                )
-            ]
-        , paragraph [] [ MarkdownPlain.fromString <| String.fromInt (List.length pointlessRules) ++ " of these ESLint rules **aren't necessary** in Elm:" ]
+             else
+                "Show only recommended rules"
+            )
+        , paragraph [] [ MarkdownPlain.fromString <| String.fromInt (List.length pointlessRules) ++ " of the " ++ ruleCountText ++ " core ESLint rules **aren't necessary** in Elm:" ]
         , summarise pointlessRules
             [ ( filterEnforcedByLanguageDesign, "rules are already enforced by either Elm's design, or the compiler." )
             , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
