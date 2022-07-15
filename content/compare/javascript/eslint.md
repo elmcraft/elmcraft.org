@@ -1,13 +1,13 @@
 ---
 type: page
-title: eslint equivalents in Elm
-description: Comparing eslint functionality and the equivalents in the Elm ecosystem
+title: ESLint equivalents in Elm
+description: Comparing ESLint functionality and the equivalents in the Elm ecosystem
 published: true
 status: seedling
 ---
 
 
-If you're coming to Elm from the Javascript world, you may be familiar with ESLint which is a community standard for modern JS projects, and be looking for the equivalent in Elm.
+If you're coming to Elm from the Javascript world, you may be familiar with [ESLint](https://eslint.org/) which is a community standard for modern JS projects, and be looking for the equivalent in Elm.
 
 ## Do I need to lint in Elm?
 
@@ -28,7 +28,7 @@ Covered by `elm-format`, the de-facto standard for formatting Elm code.
 Covered by `elm-review`, which analyzes Elm projects to help find mistakes before your users find them.
 
 
-### Converting from eslint
+### Converting from ESLint
 
 Here's the [core set of ESLint rules](https://eslint.org/docs/rules/) and how they translate to Elm.
 
