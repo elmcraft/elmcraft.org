@@ -153,6 +153,16 @@ update msg model =
         VideosRemoveCategoryFilter category ->
             ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
 
+        -- ESLint Rules
+        EslintAddCategoryFilter category ->
+            ( { model | appliedEslintFilter = Just category }
+              -- , model.key |> Maybe.map (\key -> Browser.Navigation.pushUrl key "/media/videos") |> Maybe.withDefault Cmd.none
+            , Cmd.none
+            )
+
+        EslintRemoveCategoryFilter ->
+            ( { model | appliedEslintFilter = Nothing }, Cmd.none )
+
         Noop ->
             ( model, Cmd.none )
 

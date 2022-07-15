@@ -255,9 +255,9 @@ htmlMapping model global =
                         ++ children
                     )
             )
-        , Markdown.Html.tag "eslint"
+        , Markdown.Html.tag "eslint-compare-elm"
             (\children ->
-                Theme.ESLintRules.view
+                Theme.ESLintRules.view model
             )
         ]
 

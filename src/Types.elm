@@ -3,6 +3,7 @@ module Types exposing (..)
 import Browser.Navigation
 import DataSource.ElmRadio
 import DataSource.ElmWeeklyRSS
+import DataStatic.ESLintRules
 import Dict exposing (Dict)
 import Path exposing (Path)
 import Route exposing (Route)
@@ -17,6 +18,7 @@ type alias Model =
     , navExpanded : Bool
     , navItemExpanded : Dict String Bool
     , appliedVideoFilters : List Category
+    , appliedEslintFilter : Maybe DataStatic.ESLintRules.Advice
     }
 
 
@@ -37,6 +39,7 @@ init { isDev, key } =
     , navExpanded = False
     , navItemExpanded = Dict.empty
     , appliedVideoFilters = []
+    , appliedEslintFilter = Nothing
     }
 
 
@@ -65,6 +68,8 @@ type Msg
       -- Videos
     | VideosAddCategoryFilter Category
     | VideosRemoveCategoryFilter Category
+    | EslintAddCategoryFilter DataStatic.ESLintRules.Advice
+    | EslintRemoveCategoryFilter
     | Noop
     | Debug
 

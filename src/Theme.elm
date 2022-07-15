@@ -109,6 +109,20 @@ manualCss =
             }
 
             html, body { font-family: 'Inter var', system-ui, sans-serif; width: 100%; }
+
+            .eslint-sticky {
+                position: relative;
+            }
+            /* hack but it'll have to do for now...! */
+            .eslint-sticky > :nth-child(1),
+            .eslint-sticky > :nth-child(2),
+            .eslint-sticky > :nth-child(3) {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+
             """
             ]
 

@@ -1,10 +1,4 @@
-module DataStatic.ESLintRules exposing
-    ( Advice(..)
-    , EslintRule
-    , LanguageDesign(..)
-    , MissingFeature(..)
-    , rules
-    )
+module DataStatic.ESLintRules exposing (..)
 
 
 type alias EslintRule =
@@ -21,6 +15,123 @@ rules =
     , suggestions
     , layoutAndFormatting
     ]
+
+
+rulesUngrouped =
+    rules |> List.map .rules |> List.concat
+
+
+rulesPointlessInElm =
+    rulesUngrouped
+        |> List.filter
+            (\rule ->
+                case rule.elmAdvice of
+                    EnforcedByLanguageDesign _ ->
+                        True
+
+                    NotPartOfTheLanguage _ ->
+                        True
+
+                    _ ->
+                        False
+            )
+
+
+rulesUsefulInElm =
+    rulesUngrouped
+        |> List.filter
+            (\rule ->
+                case rule.elmAdvice of
+                    HandledByElmFormat ->
+                        True
+
+                    HasCorrespondingRules _ ->
+                        True
+
+                    PotentialIdea _ ->
+                        True
+
+                    NoEquivalent ->
+                        True
+
+                    _ ->
+                        False
+            )
+
+
+filterEnforcedByLanguageDesign advice =
+    case advice of
+        EnforcedByLanguageDesign _ ->
+            True
+
+        _ ->
+            False
+
+
+filterNotPartOfTheLanguage advice =
+    case advice of
+        NotPartOfTheLanguage _ ->
+            True
+
+        _ ->
+            False
+
+
+filterHandledByElmFormat advice =
+    case advice of
+        HandledByElmFormat ->
+            True
+
+        _ ->
+            False
+
+
+filterHasCorrespondingRules advice =
+    case advice of
+        HasCorrespondingRules _ ->
+            True
+
+        _ ->
+            False
+
+
+filterPotentialIdea advice =
+    case advice of
+        PotentialIdea _ ->
+            True
+
+        _ ->
+            False
+
+
+filterNoEquivalent advice =
+    case advice of
+        NoEquivalent ->
+            True
+
+        _ ->
+            False
+
+
+filterByAdvice advice =
+    case advice of
+        EnforcedByLanguageDesign _ ->
+            filterEnforcedByLanguageDesign
+
+        NotPartOfTheLanguage _ ->
+            filterNotPartOfTheLanguage
+
+        HandledByElmFormat ->
+            filterHandledByElmFormat
+
+        HasCorrespondingRules _ ->
+            filterHasCorrespondingRules
+
+        PotentialIdea _ ->
+            filterPotentialIdea
+
+        NoEquivalent ->
+            filterNoEquivalent
 
 
 type Advice

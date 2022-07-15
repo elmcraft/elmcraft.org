@@ -1,21 +1,87 @@
 module Theme.ESLintRules exposing (view)
 
-import DataStatic.ESLintRules exposing (EslintRule)
+import Colors exposing (..)
+import DataStatic.ESLintRules exposing (..)
 import Element exposing (..)
+import Element.Background as Background
+import Element.Events exposing (onClick)
+import List.Extra as List
 import MarkdownPlain
 import Theme.UI exposing (..)
+import Types exposing (..)
 
 
-view : Element msg
-view =
-    DataStatic.ESLintRules.rules
-        |> List.map showRuleSection
-        |> column [ width fill, spacing 20 ]
+view : Model -> Element Msg
+view model =
+    column [ width fill, spacing 20 ]
+        [ paragraph [] [ text <| "We've covered all " ++ String.fromInt (List.length DataStatic.ESLintRules.rulesUngrouped) ++ " core ESLint rules." ]
+        , paragraph [] [ MarkdownPlain.fromString <| String.fromInt (List.length DataStatic.ESLintRules.rulesPointlessInElm) ++ " of these ESLint rules **aren't necessary** in Elm:" ]
+        , summarise rulesUngrouped
+            [ ( filterEnforcedByLanguageDesign, "rules are already enforced by either Elm's design, or the compiler." )
+            , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
+            , ( filterNotPartOfTheLanguage, "relate to features or probelms that are not part of the Elm language." )
+            ]
+        , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length DataStatic.ESLintRules.rulesUsefulInElm) ++ " static analysis rules that could make sense in Elm, of which:" ]
+        , summarise rulesUngrouped
+            [ ( filterHasCorrespondingRules, " are rules that exist in elm-review already." )
+            , ( filterPotentialIdea, " are rules that could be expressed as elm-review rules." )
+            , ( filterNoEquivalent, " are rules that could be expressed, but are probably bad ideas in Elm." )
+            ]
+        , DataStatic.ESLintRules.rules
+            |> List.map (filterRuleGroup model)
+            |> List.map showRuleSection
+            |> column [ width fill, spacing 20 ]
+        ]
+
+
+filterRuleGroup model ruleGroup =
+    case model.appliedEslintFilter of
+        Just advice ->
+            let
+                adviceFileter : DataStatic.ESLintRules.Advice -> Bool
+                adviceFileter =
+                    filterByAdvice advice
+            in
+            { ruleGroup | rules = ruleGroup.rules |> List.filter (.elmAdvice >> adviceFileter) }
+
+        Nothing ->
+            ruleGroup
+
+
+summarise rules filters =
+    let
+        advices =
+            rules |> List.map .elmAdvice
+    in
+    filters
+        |> List.map
+            (\( filter, label ) ->
+                let
+                    candidates =
+                        advices |> List.filter filter
+
+                    count =
+                        candidates |> List.length
+
+                    bgColor =
+                        candidates |> List.head |> Maybe.map adviceColor |> Maybe.withDefault (Background.color transparent_)
+
+                    filterCategory =
+                        case candidates |> List.head of
+                            Just advice ->
+                                onClick (EslintAddCategoryFilter advice)
+
+                            Nothing ->
+                                attrNone
+                in
+                paragraph [ bgColor, padding 10, filterCategory, pointer ] [ text <| String.fromInt count ++ " " ++ label ]
+            )
+        |> column []
 
 
 showRuleSection : { name : String, description : String, rules : List EslintRule } -> Element msg
 showRuleSection section =
-    column [ width fill ]
+    column [ width fill, spacing 10 ]
         [ heading3 [] section.name
         , paragraph [] [ text section.description ]
         , viewRules section.rules
@@ -24,48 +90,77 @@ showRuleSection section =
 
 viewRules : List EslintRule -> Element msg
 viewRules rules =
-    Element.table [ width fill ]
+    Element.table [ width fill, class "eslint-sticky" ]
         { data = rules
         , columns =
-            [ { header = text "ESLint rule"
+            [ { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "ESLint rule" ]
               , width = fill
-              , view = \rule -> text rule.eslintName
+              , view = \rule -> el [ padding 10 ] <| paragraph [] [ text rule.eslintName ]
               }
-            , { header = text "Description"
+            , { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "Description" ]
               , width = fill
-              , view = \rule -> text rule.eslintDescription
+              , view = \rule -> el [ padding 10 ] <| paragraph [] [ text rule.eslintDescription ]
               }
-            , { header = text "Elm advice"
+            , { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "Elm advice" ]
               , width = fill
-              , view = \rule -> MarkdownPlain.fromString (viewAdvice rule.elmAdvice)
+
+              --   @TODO What uses markdown? Drop this handler lower if important...
+              --   , view = \rule -> MarkdownPlain.fromString (viewAdvice rule.elmAdvice)
+              , view = \rule -> viewAdvice rule.elmAdvice
               }
             ]
         }
 
 
-viewAdvice : DataStatic.ESLintRules.Advice -> String
+adviceColor : DataStatic.ESLintRules.Advice -> Attribute msg
+adviceColor advice =
+    case advice of
+        DataStatic.ESLintRules.NotPartOfTheLanguage missingFeature ->
+            Background.color purpleLight
+
+        DataStatic.ESLintRules.HandledByElmFormat ->
+            Background.color green
+
+        DataStatic.ESLintRules.EnforcedByLanguageDesign languageDesign ->
+            Background.color green
+
+        DataStatic.ESLintRules.HasCorrespondingRules rules ->
+            Background.color elmTeal
+
+        DataStatic.ESLintRules.PotentialIdea string ->
+            Background.color yellow
+
+        DataStatic.ESLintRules.NoEquivalent ->
+            Background.color pinkDarker
+
+
+viewAdvice : DataStatic.ESLintRules.Advice -> Element msg
 viewAdvice advice =
     case advice of
         DataStatic.ESLintRules.NotPartOfTheLanguage missingFeature ->
-            viewMissingFeature missingFeature
+            el [ height fill, padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString <| viewMissingFeature missingFeature ]
 
         DataStatic.ESLintRules.HandledByElmFormat ->
-            "This is automatically handled by elm-format."
+            el [ height fill, padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString "\u{1FA84} This is automatically handled by elm-format." ]
 
         DataStatic.ESLintRules.EnforcedByLanguageDesign languageDesign ->
-            viewLanguageDesign languageDesign
+            el [ height fill, padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString <| viewLanguageDesign languageDesign ]
 
         DataStatic.ESLintRules.HasCorrespondingRules rules ->
-            String.join "\n"
-                ("There are corresponding rules for this:"
-                    :: List.map (\rule -> "- " ++ rule) rules
-                )
+            el [ height fill, padding 10, adviceColor advice ] <|
+                paragraph []
+                    [ MarkdownPlain.fromString <|
+                        String.join "\n"
+                            ("There are corresponding rules for this:"
+                                :: List.map (\rule -> "- " ++ rule) rules
+                            )
+                    ]
 
         DataStatic.ESLintRules.PotentialIdea string ->
-            string
+            el [ padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString string ]
 
         DataStatic.ESLintRules.NoEquivalent ->
-            "There is as of yet no equivalent to this rule in the Elm community."
+            el [ padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString "There is as of yet no equivalent to this rule in the Elm community." ]
 
 
 viewLanguageDesign : DataStatic.ESLintRules.LanguageDesign -> String

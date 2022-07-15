@@ -2,7 +2,7 @@
 type: page
 title: eslint equivalents in Elm
 description: Comparing eslint functionality and the equivalents in the Elm ecosystem
-published: false
+published: true
 status: seedling
 ---
 
@@ -32,4 +32,4 @@ Covered by `elm-review`, which analyzes Elm projects to help find mistakes befor
 
 Here's the [core set of ESLint rules](https://eslint.org/docs/rules/) and how they translate to Elm.
 
-<eslint></eslint>
+<eslint-compare-elm></eslint-compare-elm>
