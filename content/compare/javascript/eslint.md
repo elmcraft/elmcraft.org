@@ -20,12 +20,12 @@ However in Elm, simply compiling your Elm code will give you a very large portio
 
 ### Syntax linting / Code formatting:
 
-Covered by `elm-format`, the de-facto standard for formatting Elm code.
+Covered by [`elm-format`](https://github.com/avh4/elm-format), the de-facto standard for formatting Elm code.
 
 
 ### Additional linting / custom rules:
 
-Covered by `elm-review`, which analyzes Elm projects to help find mistakes before your users find them.
+Covered by [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) , which analyzes Elm projects to help find mistakes before your users find them.
 
 
 ### Converting from ESLint
