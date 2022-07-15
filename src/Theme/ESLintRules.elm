@@ -206,7 +206,7 @@ viewAdvice advice =
                 paragraph []
                     [ MarkdownPlain.fromString <|
                         String.join "\n"
-                            ("There are corresponding rules for this:"
+                            ("There are corresponding elm-review rules for this:"
                                 :: List.map (\rule -> "- " ++ rule) rules
                             )
                     ]

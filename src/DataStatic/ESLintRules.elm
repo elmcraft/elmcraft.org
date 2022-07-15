@@ -231,7 +231,7 @@ possibleProblems =
           }
         , { eslintName = "no-constant-condition"
           , eslintDescription = "disallow constant expressions in conditions"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify" ]
+          , elmAdvice = HasCorrespondingRules [ "[Simplify](https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify)" ]
           , recommended = True
           , fixable = False
           , hasSuggestions = False
@@ -273,7 +273,7 @@ possibleProblems =
           }
         , { eslintName = "no-dupe-else-if"
           , eslintDescription = "disallow duplicate conditions in if-else-if chains"
-          , elmAdvice = PotentialIdea "Tracked in https://github.com/jfmengels/elm-review-simplify/issues/22"
+          , elmAdvice = PotentialIdea "Tracked in [an issue](https://github.com/jfmengels/elm-review-simplify/issues/22)."
           , recommended = True
           , fixable = False
           , hasSuggestions = False
@@ -310,8 +310,8 @@ possibleProblems =
           , eslintDescription = "disallow empty destructuring patterns"
           , elmAdvice =
                 HasCorrespondingRules
-                    [ "https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Parameters"
-                    , "https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Patterns/"
+                    [ "[NoUnused.Parameters](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Parameters)"
+                    , "[NoUnused-Patterns](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Patterns)"
                     ]
           , recommended = True
           , fixable = False
@@ -417,7 +417,7 @@ possibleProblems =
           }
         , { eslintName = "no-self-compare"
           , eslintDescription = "disallow comparisons where both sides are exactly the same"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify" ]
+          , elmAdvice = HasCorrespondingRules [ "[Simplify](https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -515,7 +515,7 @@ possibleProblems =
           }
         , { eslintName = "no-unused-vars"
           , eslintDescription = "disallow unused variables"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Variables" ]
+          , elmAdvice = HasCorrespondingRules [ "[NoUnused.Variables](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Variables)" ]
           , recommended = True
           , fixable = False
           , hasSuggestions = False
@@ -587,7 +587,7 @@ suggestions =
           }
         , { eslintName = "camelcase"
           , eslintDescription = "enforce camelcase naming convention"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/sparksp/elm-review-camelcase/latest/UseCamelCase" ]
+          , elmAdvice = HasCorrespondingRules [ "[UseCamelCase](https://package.elm-lang.org/packages/sparksp/elm-review-camelcase/latest/UseCamelCase)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -608,7 +608,7 @@ suggestions =
           }
         , { eslintName = "complexity"
           , eslintDescription = "enforce a maximum cyclomatic complexity allowed in a program"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-cognitive-complexity/latest/CognitiveComplexity" ]
+          , elmAdvice = HasCorrespondingRules [ "[CognitiveComplexity](https://package.elm-lang.org/packages/jfmengels/elm-review-cognitive-complexity/latest/CognitiveComplexity)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -720,7 +720,7 @@ suggestions =
           }
         , { eslintName = "id-match"
           , eslintDescription = "require identifiers to match a specified regular expression"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/sparksp/elm-review-camelcase/latest/UseCamelCase" ]
+          , elmAdvice = HasCorrespondingRules [ "[UseCamelCase](https://package.elm-lang.org/packages/sparksp/elm-review-camelcase/latest/UseCamelCase)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -741,7 +741,7 @@ suggestions =
           }
         , { eslintName = "max-depth"
           , eslintDescription = "enforce a maximum depth that blocks can be nested"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-cognitive-complexity/latest/CognitiveComplexity" ]
+          , elmAdvice = HasCorrespondingRules [ "[CognitiveComplexity](https://package.elm-lang.org/packages/jfmengels/elm-review-cognitive-complexity/latest/CognitiveComplexity)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -916,7 +916,7 @@ suggestions =
           }
         , { eslintName = "no-extra-boolean-cast"
           , eslintDescription = "disallow unnecessary boolean casts"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify" ]
+          , elmAdvice = HasCorrespondingRules [ "[Simplify](https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify)" ]
           , recommended = True
           , fixable = True
           , hasSuggestions = False
@@ -1168,7 +1168,7 @@ suggestions =
           }
         , { eslintName = "no-restricted-imports"
           , eslintDescription = "disallow specified modules when loaded by `import`"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/webbhuset/elm-review-forbid-specific-imports/latest/ForbidSpecificImports" ]
+          , elmAdvice = HasCorrespondingRules [ "[ForbidSpecificImports](https://package.elm-lang.org/packages/webbhuset/elm-review-forbid-specific-imports/latest/ForbidSpecificImports)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -1308,7 +1308,7 @@ suggestions =
           }
         , { eslintName = "no-useless-concat"
           , eslintDescription = "disallow unnecessary concatenation of literals or template literals"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify" ]
+          , elmAdvice = HasCorrespondingRules [ "[Simplify](https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -1329,7 +1329,7 @@ suggestions =
           }
         , { eslintName = "no-useless-rename"
           , eslintDescription = "disallow renaming import, export, and destructured assignments to the same name"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Variables" ]
+          , elmAdvice = HasCorrespondingRules [ "[NoUnused.Variables](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Variables)" ]
           , recommended = False
           , fixable = True
           , hasSuggestions = False
@@ -1357,7 +1357,7 @@ suggestions =
           }
         , { eslintName = "no-warning-comments"
           , eslintDescription = "disallow specified warning terms in comments"
-          , elmAdvice = HasCorrespondingRules [ "https://package.elm-lang.org/packages/sparksp/elm-review-forbidden-words/latest/NoForbiddenWords" ]
+          , elmAdvice = HasCorrespondingRules [ "[NoForbiddenWords](https://package.elm-lang.org/packages/sparksp/elm-review-forbidden-words/latest/NoForbiddenWords)" ]
           , recommended = False
           , fixable = False
           , hasSuggestions = False
@@ -1534,8 +1534,8 @@ suggestions =
           , eslintDescription = "require object keys to be sorted"
           , elmAdvice =
                 HasCorrespondingRules
-                    [ "https://package.elm-lang.org/packages/SiriusStarr/elm-review-no-unsorted/latest/NoUnsortedRecords"
-                    , "https://package.elm-lang.org/packages/fysiweb/elm-review-sorted/latest/NoUnsortedRecordFields"
+                    [ "[NoUnsortedRecords](https://package.elm-lang.org/packages/SiriusStarr/elm-review-no-unsorted/latest/NoUnsortedRecords)"
+                    , "[NoUnsortedRecordFields](https://package.elm-lang.org/packages/fysiweb/elm-review-sorted/latest/NoUnsortedRecordFields)"
                     ]
           , recommended = False
           , fixable = False
@@ -1545,7 +1545,7 @@ suggestions =
           , eslintDescription = "require variables within the same declaration block to be sorted"
           , elmAdvice =
                 HasCorrespondingRules
-                    [ "https://package.elm-lang.org/packages/SiriusStarr/elm-review-no-unsorted/latest/NoUnsortedLetDeclarations"
+                    [ "[NoUnsortedLetDeclarations](https://package.elm-lang.org/packages/SiriusStarr/elm-review-no-unsorted/latest/NoUnsortedLetDeclarations)"
                     ]
           , recommended = False
           , fixable = True
