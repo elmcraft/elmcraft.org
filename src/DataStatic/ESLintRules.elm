@@ -19,49 +19,20 @@ rules =
     ]
 
 
-rulesUngrouped : List EslintRule
-rulesUngrouped =
-    List.concatMap .rules rules
+isPointlessInElm : EslintRule -> Bool
+isPointlessInElm rule =
+    case rule.elmAdvice of
+        EnforcedByLanguageDesign _ ->
+            True
 
+        HandledByElmFormat ->
+            True
 
-rulesPointlessInElm : List EslintRule
-rulesPointlessInElm =
-    rulesUngrouped
-        |> List.filter
-            (\rule ->
-                case rule.elmAdvice of
-                    EnforcedByLanguageDesign _ ->
-                        True
+        NotPartOfTheLanguage _ ->
+            True
 
-                    HandledByElmFormat ->
-                        True
-
-                    NotPartOfTheLanguage _ ->
-                        True
-
-                    _ ->
-                        False
-            )
-
-
-rulesUsefulInElm : List EslintRule
-rulesUsefulInElm =
-    rulesUngrouped
-        |> List.filter
-            (\rule ->
-                case rule.elmAdvice of
-                    HasCorrespondingRules _ ->
-                        True
-
-                    PotentialIdea _ ->
-                        True
-
-                    NoEquivalent ->
-                        True
-
-                    _ ->
-                        False
-            )
+        _ ->
+            False
 
 
 filterEnforcedByLanguageDesign advice =

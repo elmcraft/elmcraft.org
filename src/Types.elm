@@ -19,6 +19,7 @@ type alias Model =
     , navItemExpanded : Dict String Bool
     , appliedVideoFilters : List Category
     , appliedEslintFilter : Maybe DataStatic.ESLintRules.Advice
+    , appliedEslintRecommendedFilter : Bool
     }
 
 
@@ -40,6 +41,7 @@ init { isDev, key } =
     , navItemExpanded = Dict.empty
     , appliedVideoFilters = []
     , appliedEslintFilter = Nothing
+    , appliedEslintRecommendedFilter = False
     }
 
 
@@ -70,6 +72,7 @@ type Msg
     | VideosRemoveCategoryFilter Category
     | EslintToggleCategoryFilter DataStatic.ESLintRules.Advice
     | EslintRemoveCategoryFilter
+    | EslintToggleRecommendedFilter
     | Noop
     | Debug
 

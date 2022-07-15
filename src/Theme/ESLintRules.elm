@@ -5,6 +5,7 @@ import DataStatic.ESLintRules exposing (..)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Events exposing (onClick)
+import Element.Font as Font exposing (Font)
 import List.Extra as List
 import MarkdownPlain
 import Theme.UI exposing (..)
@@ -13,16 +14,47 @@ import Types exposing (..)
 
 view : Model -> Element Msg
 view model =
+    let
+        ruleGroups : List { name : String, description : String, rules : List EslintRule }
+        ruleGroups =
+            DataStatic.ESLintRules.rules
+
+        allRules : List EslintRule
+        allRules =
+            List.concatMap (.rules >> filterRecommended model) rules
+
+        ( pointlessRules, applicableRules ) =
+            List.partition isPointlessInElm allRules
+    in
     column [ width fill, spacing 20 ]
-        [ paragraph [] [ text <| "We've covered all " ++ String.fromInt (List.length DataStatic.ESLintRules.rulesUngrouped) ++ " core ESLint rules." ]
-        , paragraph [] [ MarkdownPlain.fromString <| String.fromInt (List.length DataStatic.ESLintRules.rulesPointlessInElm) ++ " of these ESLint rules **aren't necessary** in Elm:" ]
-        , summarise rulesUngrouped
+        [ paragraph []
+            [ text <|
+                "We've covered all "
+                    ++ String.fromInt (List.length allRules)
+                    ++ (if model.appliedEslintRecommendedFilter then
+                            " recommended"
+
+                        else
+                            ""
+                       )
+                    ++ " core ESLint rules."
+            , buttonSecondary []
+                EslintToggleRecommendedFilter
+                (if model.appliedEslintRecommendedFilter then
+                    "Show all rules"
+
+                 else
+                    "Show only recommended rules"
+                )
+            ]
+        , paragraph [] [ MarkdownPlain.fromString <| String.fromInt (List.length pointlessRules) ++ " of these ESLint rules **aren't necessary** in Elm:" ]
+        , summarise pointlessRules
             [ ( filterEnforcedByLanguageDesign, "rules are already enforced by either Elm's design, or the compiler." )
             , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
             , ( filterNotPartOfTheLanguage, "relate to features or problems that are not part of the Elm language." )
             ]
-        , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length DataStatic.ESLintRules.rulesUsefulInElm) ++ " static analysis rules that could make sense in Elm, of which:" ]
-        , summarise rulesUngrouped
+        , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length applicableRules) ++ " static analysis rules applicable in Elm, of which:" ]
+        , summarise applicableRules
             [ ( filterHasCorrespondingRules, " are rules that exist in elm-review already." )
             , ( filterPotentialIdea, " are rules that could be expressed as elm-review rules." )
             , ( filterNoEquivalent, " are rules that could be expressed, but are probably bad ideas in Elm." )
@@ -34,15 +66,29 @@ view model =
         ]
 
 
+filterRecommended : Model -> List EslintRule -> List EslintRule
+filterRecommended model rules =
+    if model.appliedEslintRecommendedFilter then
+        List.filter .recommended rules
+
+    else
+        rules
+
+
 filterRuleGroup model ruleGroup =
     case model.appliedEslintFilter of
         Just advice ->
             let
-                adviceFileter : DataStatic.ESLintRules.Advice -> Bool
-                adviceFileter =
+                adviceFilter : DataStatic.ESLintRules.Advice -> Bool
+                adviceFilter =
                     filterByAdvice advice
             in
-            { ruleGroup | rules = ruleGroup.rules |> List.filter (.elmAdvice >> adviceFileter) }
+            { ruleGroup
+                | rules =
+                    ruleGroup.rules
+                        |> List.filter (.elmAdvice >> adviceFilter)
+                        |> filterRecommended model
+            }
 
         Nothing ->
             ruleGroup
@@ -95,7 +141,7 @@ viewRules rules =
         , columns =
             [ { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "ESLint rule" ]
               , width = fill
-              , view = \rule -> el [ padding 10 ] <| paragraph [] [ text rule.eslintName ]
+              , view = \rule -> el [ padding 10 ] <| paragraph [] (viewRuleName rule)
               }
             , { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "Description" ]
               , width = fill
@@ -110,6 +156,17 @@ viewRules rules =
               }
             ]
         }
+
+
+viewRuleName : EslintRule -> List (Element msg)
+viewRuleName rule =
+    if rule.recommended then
+        [ el [ Font.bold ] <| text rule.eslintName
+        , text " (recommended)"
+        ]
+
+    else
+        [ text rule.eslintName ]
 
 
 adviceColor : DataStatic.ESLintRules.Advice -> Attribute msg

@@ -163,7 +163,11 @@ update msg model =
                     else
                         Just category
               }
-              -- , model.key |> Maybe.map (\key -> Browser.Navigation.pushUrl key "/media/videos") |> Maybe.withDefault Cmd.none
+            , Cmd.none
+            )
+
+        EslintToggleRecommendedFilter ->
+            ( { model | appliedEslintRecommendedFilter = not model.appliedEslintRecommendedFilter }
             , Cmd.none
             )
 
