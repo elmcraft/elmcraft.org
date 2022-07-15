@@ -8,7 +8,7 @@ published: false
 Developers want:
 
 - Quick references
-- "Elm for Javascript developers"
+- "Elm for JavaScript developers"
 - "Elm for Haskell developers"
 - Core concepts
 - Best resources

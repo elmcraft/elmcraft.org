@@ -7,11 +7,11 @@ status: seedling
 ---
 
 
-If you're coming to Elm from the Javascript world, you may be familiar with [ESLint](https://eslint.org/) which is a community standard for modern JS projects, and be looking for the equivalent in Elm.
+If you're coming to Elm from the JavaScript world, you may be familiar with [ESLint](https://eslint.org/) which is a community standard for modern JS projects, and be looking for the equivalent in Elm.
 
 ## Do I need to lint in Elm?
 
-For modern Javascript it may seem obvious a linter is needed.
+For modern JavaScript it may seem obvious a linter is needed.
 
 However in Elm, simply compiling your Elm code will give you a very large portion of what ESLint does!
 

@@ -28,7 +28,7 @@ Companies using Elm have consistently reported a great experience with hiring fo
 
 #### Hiring
 - [There are more people excited for an Elm role than there are Elm roles](/elm-loves/hiring#there-are-more-people-excited-for-an-elm-role-than-there-are-elm-roles)
-- [Candidates are often more excited to work on Elm than Javascript](/elm-loves/hiring#candidates-are-often-more-excited-to-work-on-elm-than-javascript)
+- [Candidates are often more excited to work on Elm than JavaScript](/elm-loves/hiring#candidates-are-often-more-excited-to-work-on-elm-than-javascript)
 
 #### Onboarding
 - [Candidates with Elm experience can usually become productive immediately](/elm-loves/hiring#candidates-with-elm-experience-can-usually-become-productive-immediately)
@@ -42,23 +42,23 @@ Companies using Elm have consistently reported a great experience with hiring fo
 
 ### There are more people excited for an Elm role than there are Elm roles
 
-This means a higher proportion of high quality candidates willing to swap from their current Javascript job because of Elm.
+This means a higher proportion of high quality candidates willing to swap from their current JavaScript job because of Elm.
 
 > Wrt. hiring, we are experiencing the Python paradox: the last time I posted a job in the #jobs channel in the Elm Slack, I had about 8 solid applicants reply in the matter of hours/days. From my perspective, people are absolutely eager to work with Elm full-time and we don't have the problem of having to sift through totally junior/beginner candidates.
 
 _mjaniczek on [HackerNews](https://news.ycombinator.com/item?id=26864689)_
 
 
-### Candidates are often more excited to work on Elm than Javascript.
+### Candidates are often more excited to work on Elm than JavaScript.
 
-This can be a great differentiation point for your company to attract the best candidates, instead of competing against the huge swathe of Javascript jobs.
+This can be a great differentiation point for your company to attract the best candidates, instead of competing against the huge swathe of JavaScript jobs.
 
 
 ### Candidates with Elm experience can usually become productive immediately
 
 Because of Elm’s single architecture, type inference, immutability and purity – all Elm projects have core similarities that allow developers to onboard extremely quickly re-using their existing familiarity.
 
-Candidates don’t have to carefully re-learn “Which combination-flavour of Javascript libraries and architecture does this project use?” – instead they can get going quickly, with the compiler guaranteeing they can’t accidentally cause major damage to existing code.
+Candidates don’t have to carefully re-learn “Which combination-flavour of JavaScript libraries and architecture does this project use?” – instead they can get going quickly, with the compiler guaranteeing they can’t accidentally cause major damage to existing code.
 
 > ... The best thing about Elm is I am never afraid of breaking the things because of refactoring something, I have complete trust that the compiler will tell me if I did something wrong. This is a huge advantage! Elm gives you a feeling of security and confidence - for new hires this is pretty big deal. You can make big changes and do code cleanups and be confident that everything will be fine. I can’t imagine giving that up. It’s a game-changer for large code bases.
 
