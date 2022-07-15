@@ -29,6 +29,9 @@ rulesPointlessInElm =
                     EnforcedByLanguageDesign _ ->
                         True
 
+                    HandledByElmFormat ->
+                        True
+
                     NotPartOfTheLanguage _ ->
                         True
 
@@ -42,9 +45,6 @@ rulesUsefulInElm =
         |> List.filter
             (\rule ->
                 case rule.elmAdvice of
-                    HandledByElmFormat ->
-                        True
-
                     HasCorrespondingRules _ ->
                         True
 

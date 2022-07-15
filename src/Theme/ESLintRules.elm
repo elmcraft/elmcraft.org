@@ -19,7 +19,7 @@ view model =
         , summarise rulesUngrouped
             [ ( filterEnforcedByLanguageDesign, "rules are already enforced by either Elm's design, or the compiler." )
             , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
-            , ( filterNotPartOfTheLanguage, "relate to features or probelms that are not part of the Elm language." )
+            , ( filterNotPartOfTheLanguage, "relate to features or problems that are not part of the Elm language." )
             ]
         , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length DataStatic.ESLintRules.rulesUsefulInElm) ++ " static analysis rules that could make sense in Elm, of which:" ]
         , summarise rulesUngrouped
