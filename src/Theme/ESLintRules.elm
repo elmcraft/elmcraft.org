@@ -216,7 +216,7 @@ viewMissingFeature missingFeature =
             "There are no loops in Elm."
 
         DataStatic.ESLintRules.AsyncAwait ->
-            "There are no async/await syntax in Elm."
+            "There is no async/await syntax in Elm."
 
         DataStatic.ESLintRules.Generators ->
             "There are no generators in Elm."
