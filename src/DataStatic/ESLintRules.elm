@@ -17,10 +17,12 @@ rules =
     ]
 
 
+rulesUngrouped : List EslintRule
 rulesUngrouped =
-    rules |> List.map .rules |> List.concat
+    List.concatMap .rules rules
 
 
+rulesPointlessInElm : List EslintRule
 rulesPointlessInElm =
     rulesUngrouped
         |> List.filter
@@ -40,6 +42,7 @@ rulesPointlessInElm =
             )
 
 
+rulesUsefulInElm : List EslintRule
 rulesUsefulInElm =
     rulesUngrouped
         |> List.filter
