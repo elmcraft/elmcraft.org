@@ -154,8 +154,15 @@ update msg model =
             ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
 
         -- ESLint Rules
-        EslintAddCategoryFilter category ->
-            ( { model | appliedEslintFilter = Just category }
+        EslintToggleCategoryFilter category ->
+            ( { model
+                | appliedEslintFilter =
+                    if Just category == model.appliedEslintFilter then
+                        Nothing
+
+                    else
+                        Just category
+              }
               -- , model.key |> Maybe.map (\key -> Browser.Navigation.pushUrl key "/media/videos") |> Maybe.withDefault Cmd.none
             , Cmd.none
             )

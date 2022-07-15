@@ -68,7 +68,7 @@ type Msg
       -- Videos
     | VideosAddCategoryFilter Category
     | VideosRemoveCategoryFilter Category
-    | EslintAddCategoryFilter DataStatic.ESLintRules.Advice
+    | EslintToggleCategoryFilter DataStatic.ESLintRules.Advice
     | EslintRemoveCategoryFilter
     | Noop
     | Debug

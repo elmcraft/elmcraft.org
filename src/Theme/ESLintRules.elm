@@ -69,7 +69,7 @@ summarise rules filters =
                     filterCategory =
                         case candidates |> List.head of
                             Just advice ->
-                                onClick (EslintAddCategoryFilter advice)
+                                onClick (EslintToggleCategoryFilter advice)
 
                             Nothing ->
                                 attrNone
