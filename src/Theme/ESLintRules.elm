@@ -53,9 +53,9 @@ view model =
             ]
         , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length applicableRules) ++ " static analysis rules applicable in Elm, of which:" ]
         , summarise applicableRules
-            [ ( filterHasCorrespondingRules, " are rules that exist in elm-review already." )
-            , ( filterPotentialIdea, " are rules that could be expressed as elm-review rules." )
-            , ( filterNoEquivalent, " are rules that could be expressed, but are probably bad ideas in Elm." )
+            [ ( filterHasCorrespondingRules, " exist in elm-review already." )
+            , ( filterPotentialIdea, " could be expressed as elm-review rules." )
+            , ( filterNoEquivalent, " could be expressed, but are probably bad ideas in Elm." )
             ]
         , DataStatic.ESLintRules.rules
             |> List.map (filterRuleGroup model)
