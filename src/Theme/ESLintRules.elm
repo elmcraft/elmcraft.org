@@ -98,7 +98,7 @@ summarise rules filters =
             rules |> List.map .elmAdvice
     in
     filters
-        |> List.map
+        |> List.filterMap
             (\( filter, label ) ->
                 let
                     candidates =
@@ -106,19 +106,28 @@ summarise rules filters =
 
                     count =
                         candidates |> List.length
-
-                    bgColor =
-                        candidates |> List.head |> Maybe.map adviceColor |> Maybe.withDefault (Background.color transparent_)
-
-                    filterCategory =
-                        case candidates |> List.head of
-                            Just advice ->
-                                onClick (EslintToggleCategoryFilter advice)
-
-                            Nothing ->
-                                attrNone
                 in
-                paragraph [ bgColor, padding 10, filterCategory, pointer ] [ text <| String.fromInt count ++ " " ++ label ]
+                if count == 0 then
+                    Nothing
+
+                else
+                    let
+                        bgColor =
+                            candidates |> List.head |> Maybe.map adviceColor |> Maybe.withDefault (Background.color transparent_)
+
+                        filterCategory =
+                            case candidates |> List.head of
+                                Just advice ->
+                                    onClick (EslintToggleCategoryFilter advice)
+
+                                Nothing ->
+                                    attrNone
+                    in
+                    Just
+                        (paragraph
+                            [ bgColor, padding 10, filterCategory, pointer ]
+                            [ text <| String.fromInt count ++ " " ++ label ]
+                        )
             )
         |> column []
 
