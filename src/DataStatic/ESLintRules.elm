@@ -311,7 +311,7 @@ possibleProblems =
           , elmAdvice =
                 HasCorrespondingRules
                     [ "[NoUnused.Parameters](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Parameters)"
-                    , "[NoUnused-Patterns](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Patterns)"
+                    , "[NoUnused.Patterns](https://package.elm-lang.org/packages/jfmengels/elm-review-unused/latest/NoUnused-Patterns)"
                     ]
           , recommended = True
           , fixable = False
