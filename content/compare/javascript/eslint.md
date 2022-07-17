@@ -9,7 +9,7 @@ status: seedling
 
 If you're coming to Elm from the JavaScript world, you may be familiar with [ESLint](https://eslint.org/) which is a community standard for modern JS projects, and be looking for the equivalent in Elm.
 
-When it comes to enforcing code style and formatting, the Elm community has widely adopted [`elm-format`](https://github.com/avh4/elm-format), the de-facto Elm code formatter. It is similar to [Prettier](https://prettier.io/) for JavaScript in that it rewrites your code in a very opinionated and predictable way, but it is a lot more widely adopted and it is not configurable at all.
+When it comes to enforcing code style and formatting, the Elm community uses [`elm-format`](https://github.com/avh4/elm-format), the de-facto Elm code formatter. It is similar to [Prettier](https://prettier.io/) for JavaScript in that it rewrites your code in a very opinionated and predictable way, but in Elm it is more widely adopted and is not configurable at all.
 
 `elm-format` covers close to all stylistic rules that one would use ESLint for, therefore you don't need a linter to enforce code style.
 
@@ -20,6 +20,6 @@ It is however still a good idea to use a linter to raise the quality of your cod
 
 ## Comparing with ESLint
 
-We claimed that you didn't need most of what ESLint provides. To explain why, we categorized all of the [core set of ESLint rules](https://eslint.org/docs/rules/) into how they translate to Elm.
+We claimed that you didn't need most of what ESLint provides. To explain why, we've categorized the how all of the [core set of ESLint rules](https://eslint.org/docs/rules/) translate to Elm.
 
 <eslint-compare-elm></eslint-compare-elm>

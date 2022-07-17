@@ -167,7 +167,11 @@ update msg model =
             )
 
         EslintToggleRecommendedFilter ->
-            ( { model | appliedEslintRecommendedFilter = not model.appliedEslintRecommendedFilter }
+            ( { model
+                | appliedEslintRecommendedFilter =
+                    not model.appliedEslintRecommendedFilter
+                , appliedEslintFilter = Nothing
+              }
             , Cmd.none
             )
 

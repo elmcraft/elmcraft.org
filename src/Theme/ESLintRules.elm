@@ -35,17 +35,29 @@ view model =
                     else
                         ""
                    )
+
+        percentPointless =
+            round ((toFloat (List.length pointlessRules) / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)
     in
     column [ width fill, spacing 20 ]
         [ buttonSecondary []
             EslintToggleRecommendedFilter
             (if model.appliedEslintRecommendedFilter then
-                "Show all rules"
+                "Show all ESLint rules"
 
              else
-                "Show only recommended rules"
+                "Show only recommended ESLint rules"
             )
-        , paragraph [] [ MarkdownPlain.fromString <| String.fromInt (List.length pointlessRules) ++ " of the " ++ ruleCountText ++ " core ESLint rules **aren't necessary** in Elm:" ]
+        , paragraph []
+            [ MarkdownPlain.fromString <|
+                String.fromInt (List.length pointlessRules)
+                    ++ " ("
+                    ++ String.fromInt percentPointless
+                    ++ "%)"
+                    ++ " of the "
+                    ++ ruleCountText
+                    ++ " core ESLint rules **aren't necessary** in Elm:"
+            ]
         , summarise pointlessRules
             [ ( filterEnforcedByLanguageDesign, "rules are already enforced by either Elm's design, or the compiler." )
             , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
@@ -129,7 +141,7 @@ summarise rules filters =
                             [ text <| String.fromInt count ++ " " ++ label ]
                         )
             )
-        |> column []
+        |> column [ width fill ]
 
 
 showRuleSection : { name : String, description : String, rules : List EslintRule } -> Element msg
@@ -156,9 +168,6 @@ viewRules rules =
               }
             , { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "Elm advice" ]
               , width = fill
-
-              --   @TODO What uses markdown? Drop this handler lower if important...
-              --   , view = \rule -> MarkdownPlain.fromString (viewAdvice rule.elmAdvice)
               , view = \rule -> viewAdvice rule.elmAdvice
               }
             ]
