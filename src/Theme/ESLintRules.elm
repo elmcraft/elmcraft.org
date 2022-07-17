@@ -42,18 +42,10 @@ view model =
             percentOfTotal_ (List.length x)
 
         percentOfTotal_ x =
-            String.fromInt (round ((toFloat x / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)) ++ "%"
+            String.fromInt (ceiling ((toFloat x / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)) ++ "%"
     in
     column [ width fill, spacing 20 ]
-        [ buttonSecondary []
-            EslintToggleRecommendedFilter
-            (if model.appliedEslintRecommendedFilter then
-                "Show all ESLint rules"
-
-             else
-                "Show only recommended ESLint rules"
-            )
-        , paragraph []
+        [ paragraph []
             [ MarkdownPlain.fromString <|
                 "**"
                     ++ String.fromInt (List.length pointlessRules)
@@ -64,7 +56,16 @@ view model =
                     ++ ruleCountText
                     ++ " core ESLint rules _aren't necessary_ in Elm**:"
             ]
+        , buttonSecondary []
+            EslintToggleRecommendedFilter
+            (if model.appliedEslintRecommendedFilter then
+                "Show all ESLint rules"
+
+             else
+                "Show only recommended ESLint rules"
+            )
         , summarise pointlessRules
+            model.appliedEslintFilter
             percentOfTotal_
             [ ( filterEnforcedByLanguageDesign, "are rules are already enforced by either Elm's design, or the compiler." )
             , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
@@ -72,6 +73,7 @@ view model =
             ]
         , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length applicableRules) ++ " (" ++ percentOfTotal applicableRules ++ ") static analysis rules applicable in Elm, of which:" ]
         , summarise applicableRules
+            model.appliedEslintFilter
             percentOfTotal_
             [ ( filterHasCorrespondingRules, "exist in elm-review already." )
             , ( filterPotentialIdea, "could be expressed as elm-review rules." )
@@ -79,7 +81,7 @@ view model =
             ]
         , ruleGroups
             |> List.map (filterRuleGroup model)
-            |> List.map showRuleSection
+            |> List.map (showRuleSection percentOfTotal)
             |> column [ width fill, spacing 20 ]
         ]
 
@@ -112,7 +114,7 @@ filterRuleGroup model ruleGroup =
             ruleGroup
 
 
-summarise rules percentOfTotal filters =
+summarise rules appliedEslintFilter percentOfTotal filters =
     let
         advices =
             rules |> List.map .elmAdvice
@@ -132,16 +134,22 @@ summarise rules percentOfTotal filters =
 
                 else
                     let
-                        bgColor =
-                            candidates |> List.head |> Maybe.map adviceColor |> Maybe.withDefault (Background.color transparent_)
-
-                        filterMsg =
+                        ( buttonLabel, bgColor, fontColor ) =
                             case candidates |> List.head of
-                                Just advice ->
-                                    EslintToggleCategoryFilter advice
+                                Just candidate ->
+                                    case appliedEslintFilter of
+                                        Just appliedFilter ->
+                                            if filterByAdvice candidate appliedFilter then
+                                                ( "Clear", adviceColor candidate, Font.color charcoal )
+
+                                            else
+                                                ( "Filter", Background.color grey, Font.color greyDark )
+
+                                        Nothing ->
+                                            ( "Filter", adviceColor candidate, Font.color charcoal )
 
                                 Nothing ->
-                                    Noop
+                                    ( "Filter", Background.color grey, Font.color greyDark )
 
                         filterCategory =
                             case candidates |> List.head of
@@ -153,7 +161,7 @@ summarise rules percentOfTotal filters =
                     in
                     Just
                         (paragraph
-                            [ bgColor, padding 10, filterCategory, pointer ]
+                            [ bgColor, padding 10, filterCategory, pointer, fontColor ]
                             [ buttonSecondaryPlain
                                 [ paddingXY 5 3
                                 , alignRight
@@ -162,7 +170,7 @@ summarise rules percentOfTotal filters =
                                 , Background.color greyDark
                                 ]
                                 Noop
-                                "Filter"
+                                buttonLabel
                             , text <| String.fromInt count ++ " (" ++ percentOfTotal count ++ ") " ++ label
                             ]
                         )
@@ -170,11 +178,11 @@ summarise rules percentOfTotal filters =
         |> column [ width fill ]
 
 
-showRuleSection : { name : String, description : String, rules : List EslintRule } -> Element msg
-showRuleSection section =
+showRuleSection : (List EslintRule -> String) -> { name : String, description : String, rules : List EslintRule } -> Element msg
+showRuleSection percentOfTotal section =
     column [ width fill, spacing 10 ]
-        [ heading3 [] section.name
-        , paragraph [] [ text section.description ]
+        [ heading3 [] (section.name ++ " - " ++ String.fromInt (List.length section.rules) ++ " (" ++ percentOfTotal section.rules ++ ")")
+        , paragraph [] [ text <| section.description ]
         , viewRules section.rules
         ]
 
