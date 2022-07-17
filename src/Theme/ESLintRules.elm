@@ -23,7 +23,7 @@ view model =
 
         allRules : List EslintRule
         allRules =
-            List.concatMap (.rules >> filterRecommended model) rules
+            List.concatMap .rules rules
 
         ( pointlessRules, applicableRules ) =
             List.partition isPointlessInElm allRules
