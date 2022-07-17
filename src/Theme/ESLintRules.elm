@@ -4,6 +4,7 @@ import Colors exposing (..)
 import DataStatic.ESLintRules exposing (..)
 import Element exposing (..)
 import Element.Background as Background
+import Element.Border as Border
 import Element.Events exposing (onClick)
 import Element.Font as Font exposing (Font)
 import List.Extra as List
@@ -18,6 +19,7 @@ view model =
         ruleGroups : List { name : String, description : String, rules : List EslintRule }
         ruleGroups =
             DataStatic.ESLintRules.rules
+                |> List.map (\ruleGroup -> { ruleGroup | rules = ruleGroup.rules |> filterRecommended model })
 
         allRules : List EslintRule
         allRules =
@@ -36,8 +38,11 @@ view model =
                         ""
                    )
 
-        percentPointless =
-            round ((toFloat (List.length pointlessRules) / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)
+        percentOfTotal x =
+            percentOfTotal_ (List.length x)
+
+        percentOfTotal_ x =
+            String.fromInt (round ((toFloat x / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)) ++ "%"
     in
     column [ width fill, spacing 20 ]
         [ buttonSecondary []
@@ -50,26 +55,29 @@ view model =
             )
         , paragraph []
             [ MarkdownPlain.fromString <|
-                String.fromInt (List.length pointlessRules)
+                "**"
+                    ++ String.fromInt (List.length pointlessRules)
                     ++ " ("
-                    ++ String.fromInt percentPointless
-                    ++ "%)"
+                    ++ percentOfTotal pointlessRules
+                    ++ ")"
                     ++ " of the "
                     ++ ruleCountText
-                    ++ " core ESLint rules **aren't necessary** in Elm:"
+                    ++ " core ESLint rules _aren't necessary_ in Elm**:"
             ]
         , summarise pointlessRules
-            [ ( filterEnforcedByLanguageDesign, "rules are already enforced by either Elm's design, or the compiler." )
+            percentOfTotal_
+            [ ( filterEnforcedByLanguageDesign, "are rules are already enforced by either Elm's design, or the compiler." )
             , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
             , ( filterNotPartOfTheLanguage, "relate to features or problems that are not part of the Elm language." )
             ]
-        , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length applicableRules) ++ " static analysis rules applicable in Elm, of which:" ]
+        , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length applicableRules) ++ " (" ++ percentOfTotal applicableRules ++ ") static analysis rules applicable in Elm, of which:" ]
         , summarise applicableRules
-            [ ( filterHasCorrespondingRules, " exist in elm-review already." )
-            , ( filterPotentialIdea, " could be expressed as elm-review rules." )
-            , ( filterNoEquivalent, " could be expressed, but are probably bad ideas in Elm." )
+            percentOfTotal_
+            [ ( filterHasCorrespondingRules, "exist in elm-review already." )
+            , ( filterPotentialIdea, "could be expressed as elm-review rules." )
+            , ( filterNoEquivalent, "could be expressed, but are probably bad ideas in Elm." )
             ]
-        , DataStatic.ESLintRules.rules
+        , ruleGroups
             |> List.map (filterRuleGroup model)
             |> List.map showRuleSection
             |> column [ width fill, spacing 20 ]
@@ -104,7 +112,7 @@ filterRuleGroup model ruleGroup =
             ruleGroup
 
 
-summarise rules filters =
+summarise rules percentOfTotal filters =
     let
         advices =
             rules |> List.map .elmAdvice
@@ -127,6 +135,14 @@ summarise rules filters =
                         bgColor =
                             candidates |> List.head |> Maybe.map adviceColor |> Maybe.withDefault (Background.color transparent_)
 
+                        filterMsg =
+                            case candidates |> List.head of
+                                Just advice ->
+                                    EslintToggleCategoryFilter advice
+
+                                Nothing ->
+                                    Noop
+
                         filterCategory =
                             case candidates |> List.head of
                                 Just advice ->
@@ -138,7 +154,17 @@ summarise rules filters =
                     Just
                         (paragraph
                             [ bgColor, padding 10, filterCategory, pointer ]
-                            [ text <| String.fromInt count ++ " " ++ label ]
+                            [ buttonSecondaryPlain
+                                [ paddingXY 5 3
+                                , alignRight
+                                , Font.color charcoal
+                                , Border.color charcoal
+                                , Background.color greyDark
+                                ]
+                                Noop
+                                "Filter"
+                            , text <| String.fromInt count ++ " (" ++ percentOfTotal count ++ ") " ++ label
+                            ]
                         )
             )
         |> column [ width fill ]
@@ -192,7 +218,7 @@ adviceColor advice =
             Background.color purpleLight
 
         DataStatic.ESLintRules.HandledByElmFormat ->
-            Background.color green
+            Background.color elmTealDark
 
         DataStatic.ESLintRules.EnforcedByLanguageDesign languageDesign ->
             Background.color green
