@@ -20,6 +20,6 @@ It is however still a good idea to use a linter to raise the quality of your cod
 
 ## Comparing with ESLint
 
-We claimed that you didn't need most of what ESLint provides. To explain why, we've categorized the how all of the [core set of ESLint rules](https://eslint.org/docs/rules/) translate to Elm.
+We claimed that you didn't need most of what ESLint provides. To explain why, we've categorized how all of the [core ESLint rules](https://eslint.org/docs/rules/) translate to Elm.
 
 <eslint-compare-elm></eslint-compare-elm>
