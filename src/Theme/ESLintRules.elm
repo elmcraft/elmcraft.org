@@ -42,7 +42,7 @@ view model =
             percentOfTotal_ (List.length x)
 
         percentOfTotal_ x =
-            String.fromInt (ceiling ((toFloat x / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)) ++ "%"
+            String.fromInt (round ((toFloat x / toFloat (List.length applicableRules + List.length pointlessRules)) * 100)) ++ "%"
     in
     column [ width fill, spacing 20 ]
         [ paragraph []
