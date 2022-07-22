@@ -182,7 +182,7 @@ possibleProblems =
           }
         , { eslintName = "getter-return"
           , eslintDescription = "enforce `return` statements in getters"
-          , elmAdvice = NotPartOfTheLanguage GetterSetters
+          , elmAdvice = EnforcedByLanguageDesign FunctionsAlwaysReturnValues
           , recommended = True
           , fixable = False
           , hasSuggestions = False
