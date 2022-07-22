@@ -211,7 +211,10 @@ viewRules rules =
 viewRuleName : EslintRule -> List (Element msg)
 viewRuleName rule =
     if rule.recommended then
-        [ el [ Font.bold ] <| text rule.eslintName
+        [ link [ Font.bold ]
+            { url = "https://eslint.org/docs/latest/rules/" ++ rule.eslintName
+            , label = text rule.eslintName
+            }
         , text " (recommended)"
         ]
 
