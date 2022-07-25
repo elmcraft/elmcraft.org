@@ -134,7 +134,7 @@ summarise rules appliedEslintFilter percentOfTotal filters =
 
                 else
                     let
-                        ( buttonLabel, bgColor, fontColor ) =
+                        ( buttonLabel, borderColor, fontColor ) =
                             case candidates |> List.head of
                                 Just candidate ->
                                     case appliedEslintFilter of
@@ -143,13 +143,13 @@ summarise rules appliedEslintFilter percentOfTotal filters =
                                                 ( "Clear", adviceColor candidate, Font.color charcoal )
 
                                             else
-                                                ( "Filter", Background.color grey, Font.color greyDark )
+                                                ( "Filter", transparent_, Font.color greyDark )
 
                                         Nothing ->
                                             ( "Filter", adviceColor candidate, Font.color charcoal )
 
                                 Nothing ->
-                                    ( "Filter", Background.color grey, Font.color greyDark )
+                                    ( "Filter", transparent_, Font.color greyDark )
 
                         filterCategory =
                             case candidates |> List.head of
@@ -158,24 +158,37 @@ summarise rules appliedEslintFilter percentOfTotal filters =
 
                                 Nothing ->
                                     attrNone
-                    in
-                    Just
-                        (paragraph
-                            [ bgColor, padding 10, filterCategory, pointer, fontColor ]
-                            [ buttonSecondaryPlain
-                                [ paddingXY 5 3
-                                , alignRight
-                                , Font.color charcoal
-                                , Border.color charcoal
-                                , Background.color greyDark
+
+                        pill =
+                            el
+                                [ width (px 10)
+                                , height fill
+                                , Background.color borderColor
+                                , Border.rounded 10
+                                , moveUp 1
                                 ]
-                                Noop
-                                buttonLabel
-                            , text <| String.fromInt count ++ " (" ++ percentOfTotal count ++ ") " ++ label
+                                none
+                    in
+                    Just <|
+                        row
+                            [ width fill ]
+                            [ pill
+                            , paragraph
+                                [ Border.rounded 10, Border.color borderColor, padding 10, filterCategory, pointer, fontColor ]
+                                [ buttonSecondaryPlain
+                                    [ paddingXY 5 3
+                                    , alignRight
+                                    , Font.color charcoal
+                                    , Border.color charcoal
+                                    ]
+                                    Noop
+                                    buttonLabel
+                                , text " "
+                                , text <| String.fromInt count ++ " (" ++ percentOfTotal count ++ ") " ++ label
+                                ]
                             ]
-                        )
             )
-        |> column [ width fill ]
+        |> column [ width fill, spacing 2 ]
 
 
 showRuleSection : (List EslintRule -> String) -> { name : String, description : String, rules : List EslintRule } -> Element msg
@@ -189,18 +202,18 @@ showRuleSection percentOfTotal section =
 
 viewRules : List EslintRule -> Element msg
 viewRules rules =
-    Element.table [ width fill, class "eslint-sticky" ]
+    Element.table [ width fill, class "eslint-sticky", spacing 1 ]
         { data = rules
         , columns =
-            [ { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "ESLint rule" ]
+            [ { header = el [ width fill, padding 10, Background.color grey ] <| paragraph [] [ text "ESLint rule" ]
               , width = fill
               , view = \rule -> el [ padding 10 ] <| paragraph [] (viewRuleName rule)
               }
-            , { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "Description" ]
+            , { header = el [ width fill, padding 10, Background.color grey ] <| paragraph [] [ text "Description" ]
               , width = fill
               , view = \rule -> el [ padding 10 ] <| paragraph [] [ text rule.eslintDescription ]
               }
-            , { header = el [ padding 10, Background.color grey ] <| paragraph [] [ text "Elm advice" ]
+            , { header = el [ width fill, padding 10, Background.color grey ] <| paragraph [] [ text "Elm advice" ]
               , width = fill
               , view = \rule -> viewAdvice rule.elmAdvice
               }
@@ -222,55 +235,77 @@ viewRuleName rule =
         [ text rule.eslintName ]
 
 
-adviceColor : DataStatic.ESLintRules.Advice -> Attribute msg
+
+-- adviceColor : DataStatic.ESLintRules.Advice -> Attribute msg
+
+
 adviceColor advice =
     case advice of
         DataStatic.ESLintRules.NotPartOfTheLanguage missingFeature ->
-            Background.color purpleLight
+            fromHex <| eslintCompareColors.purple
 
         DataStatic.ESLintRules.HandledByElmFormat ->
-            Background.color elmTealDark
+            fromHex <| eslintCompareColors.secondGreen
 
         DataStatic.ESLintRules.EnforcedByLanguageDesign languageDesign ->
-            Background.color green
+            fromHex <| eslintCompareColors.green
 
         DataStatic.ESLintRules.HasCorrespondingRules rules ->
-            Background.color elmTeal
+            fromHex <| eslintCompareColors.blue
 
         DataStatic.ESLintRules.PotentialIdea string ->
-            Background.color yellow
+            fromHex <| eslintCompareColors.amber
 
         DataStatic.ESLintRules.NoEquivalent ->
-            Background.color pinkDarker
+            fromHex <| eslintCompareColors.red
+
+
+border =
+    Border.widthEach { bottom = 0, left = 10, top = 0, right = 0 }
 
 
 viewAdvice : DataStatic.ESLintRules.Advice -> Element msg
 viewAdvice advice =
+    let
+        addPill x =
+            row [ width fill, height fill ]
+                [ el
+                    [ width (px 10)
+                    , height fill
+                    , Background.color (adviceColor advice)
+                    , Border.rounded 10
+                    , moveUp 1
+                    ]
+                    none
+                , x
+                ]
+    in
     case advice of
         DataStatic.ESLintRules.NotPartOfTheLanguage missingFeature ->
-            el [ height fill, padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString <| viewMissingFeature missingFeature ]
+            addPill <| el [ width fill, height fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString <| viewMissingFeature missingFeature ]
 
         DataStatic.ESLintRules.HandledByElmFormat ->
-            el [ height fill, padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString "\u{1FA84} This is automatically handled by elm-format." ]
+            addPill <| el [ width fill, height fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString "\u{1FA84} This is automatically handled by elm-format." ]
 
         DataStatic.ESLintRules.EnforcedByLanguageDesign languageDesign ->
-            el [ height fill, padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString <| viewLanguageDesign languageDesign ]
+            addPill <| el [ width fill, height fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString <| viewLanguageDesign languageDesign ]
 
         DataStatic.ESLintRules.HasCorrespondingRules rules ->
-            el [ height fill, padding 10, adviceColor advice ] <|
-                paragraph []
-                    [ MarkdownPlain.fromString <|
-                        String.join "\n"
-                            ("There are corresponding elm-review rules for this:"
-                                :: List.map (\rule -> "- " ++ rule) rules
-                            )
-                    ]
+            addPill <|
+                el [ width fill, height fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <|
+                    paragraph []
+                        [ MarkdownPlain.fromString <|
+                            String.join "\n"
+                                ("There are corresponding elm-review rules for this:"
+                                    :: List.map (\rule -> "- " ++ rule) rules
+                                )
+                        ]
 
         DataStatic.ESLintRules.PotentialIdea string ->
-            el [ padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString string ]
+            addPill <| el [ width fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString string ]
 
         DataStatic.ESLintRules.NoEquivalent ->
-            el [ padding 10, adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString "There is as of yet no equivalent to this rule in the Elm community." ]
+            addPill <| el [ width fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString "There is as of yet no equivalent to this rule in the Elm community." ]
 
 
 viewLanguageDesign : DataStatic.ESLintRules.LanguageDesign -> String
