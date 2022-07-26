@@ -68,7 +68,7 @@ view model =
             model.appliedEslintFilter
             percentOfTotal_
             [ ( filterEnforcedByLanguageDesign, "are rules are already enforced by either Elm's design, or the compiler." )
-            , ( filterHandledByElmFormat, "are related to code style issues that are handled by Elm's de-facto formatter, elm-format." )
+            , ( filterHandledByElmFormat, "are related to code style issues handled by elm-format." )
             , ( filterNotPartOfTheLanguage, "relate to features or problems that are not part of the Elm language." )
             ]
         , paragraph [] [ text <| "That leaves " ++ String.fromInt (List.length applicableRules) ++ " (" ++ percentOfTotal applicableRules ++ ") static analysis rules applicable in Elm, of which:" ]
