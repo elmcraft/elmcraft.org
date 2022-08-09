@@ -76,7 +76,7 @@ view model =
             model.appliedEslintFilter
             percentOfTotal_
             [ ( filterHasCorrespondingRules, "exist in elm-review already." )
-            , ( filterPotentialIdea, "could be expressed as elm-review rules." )
+            , ( filterPotentialIdea, "are ideas for elm-format." )
             , ( filterNoEquivalent, "could be expressed, but are probably bad ideas in Elm." )
             ]
         , ruleGroups
@@ -253,7 +253,7 @@ adviceColor advice =
         DataStatic.ESLintRules.HasCorrespondingRules rules ->
             fromHex <| eslintCompareColors.blue
 
-        DataStatic.ESLintRules.PotentialIdea string ->
+        DataStatic.ESLintRules.PotentialIdeaForElmFormat string ->
             fromHex <| eslintCompareColors.amber
 
         DataStatic.ESLintRules.NoEquivalent ->
@@ -301,7 +301,7 @@ viewAdvice advice =
                                 )
                         ]
 
-        DataStatic.ESLintRules.PotentialIdea string ->
+        DataStatic.ESLintRules.PotentialIdeaForElmFormat string ->
             addPill <| el [ width fill, padding 10, Border.rounded 10, Border.color <| adviceColor advice ] <| paragraph [] [ MarkdownPlain.fromString string ]
 
         DataStatic.ESLintRules.NoEquivalent ->

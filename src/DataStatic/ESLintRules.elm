@@ -73,7 +73,7 @@ filterHasCorrespondingRules advice =
 
 filterPotentialIdea advice =
     case advice of
-        PotentialIdea _ ->
+        PotentialIdeaForElmFormat _ ->
             True
 
         _ ->
@@ -103,7 +103,7 @@ filterByAdvice advice =
         HasCorrespondingRules _ ->
             filterHasCorrespondingRules
 
-        PotentialIdea _ ->
+        PotentialIdeaForElmFormat _ ->
             filterPotentialIdea
 
         NoEquivalent ->
@@ -115,7 +115,7 @@ type Advice
     | NotPartOfTheLanguage MissingFeature
     | HandledByElmFormat
     | HasCorrespondingRules (List String)
-    | PotentialIdea String
+    | PotentialIdeaForElmFormat String
     | NoEquivalent
 
 
@@ -1035,7 +1035,7 @@ suggestions =
           }
         , { eslintName = "no-mixed-operators"
           , eslintDescription = "disallow mixed binary operators"
-          , elmAdvice = PotentialIdea "This is a proposal for [`elm-format`](https://github.com/avh4/elm-format/issues/375)."
+          , elmAdvice = PotentialIdeaForElmFormat "This is a proposal for [`elm-format`](https://github.com/avh4/elm-format/issues/375)."
           , recommended = False
           , fixable = False
           , hasSuggestions = False
