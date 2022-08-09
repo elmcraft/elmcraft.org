@@ -273,7 +273,7 @@ possibleProblems =
           }
         , { eslintName = "no-dupe-else-if"
           , eslintDescription = "disallow duplicate conditions in if-else-if chains"
-          , elmAdvice = PotentialIdea "Tracked in [an issue](https://github.com/jfmengels/elm-review-simplify/issues/22)."
+          , elmAdvice = HasCorrespondingRules [ "[Simplify](https://package.elm-lang.org/packages/jfmengels/elm-review-simplify/latest/Simplify)" ]
           , recommended = True
           , fixable = False
           , hasSuggestions = False
