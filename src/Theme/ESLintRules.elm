@@ -49,11 +49,11 @@ view model =
             [ MarkdownPlain.fromString <|
                 "**"
                     ++ String.fromInt (List.length pointlessRules)
+                    ++ "/"
+                    ++ ruleCountText
                     ++ " ("
                     ++ percentOfTotal pointlessRules
-                    ++ ")"
-                    ++ " of the "
-                    ++ ruleCountText
+                    ++ ") of the "
                     ++ " core ESLint rules _aren't necessary_ in Elm**:"
             ]
         , buttonSecondary []
