@@ -13,6 +13,7 @@ import Markdown.Html
 import Pages.Homepage
 import Theme.Articles
 import Theme.CuratedBy
+import Theme.ESLintRules
 import Theme.Feature
 import Theme.FindYourPath
 import Theme.Header
@@ -253,6 +254,10 @@ htmlMapping model global =
                      ]
                         ++ children
                     )
+            )
+        , Markdown.Html.tag "eslint-compare-elm"
+            (\children ->
+                Theme.ESLintRules.view model
             )
         ]
 

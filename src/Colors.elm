@@ -5,6 +5,16 @@ import Color.Convert exposing (hexToColor)
 import Element exposing (..)
 
 
+eslintCompareColors =
+    { green = "#2C9879"
+    , secondGreen = "#448294"
+    , purple = "#8485D6"
+    , blue = "#5DAEC6"
+    , amber = "#E9A702"
+    , red = "#e7b0c8"
+    }
+
+
 elmTeal =
     fromHex "#5DAEC6"
 
@@ -14,11 +24,11 @@ elmTealDark =
 
 
 purple =
-    fromHex "#5b5cf1"
+    fromHex "#8D43F2"
 
 
 purpleLight =
-    fromHex "#8485D6"
+    fromHex "#AD79F6"
 
 
 yellow =

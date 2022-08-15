@@ -65,7 +65,7 @@ There are a number of reasons, but in brief;
 
 - Success in Elm is not measured in popularity or Github activity.
   - Elm's core release cycle works in batches, so a lack of frequent updates is not an indicator of inactivity.
-- Sometimes folks coming from Javascript or other languages bring across these expectations and then ask questions when they don't see the same indicators in the Elm ecosystem.
+- Sometimes folks coming from JavaScript or other languages bring across these expectations and then ask questions when they don't see the same indicators in the Elm ecosystem.
 
 - Elm's core development is not done by committee, but by trust.
 - Elm's [design philosophy](/todo) means certain things aren't available by design (like inline JS FFI from Elm).

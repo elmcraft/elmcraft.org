@@ -25,7 +25,7 @@ The [Elm compiler source code is publicly available](TODO).
 The compiler Haskell source is not enormous, and people who've worked with it found it is particularly clean and pleasant Haskell code.
 
 - 26,492 LOC: `src/compiler` - the core compiler code: parser, lexer, canonicalization, type-inference, type-checking, etc.
-- 5,500 LOC: `src/builder` - the compiler support code: CLI, package dependencies, Javascript output, HTTP/File helpers, etc.
+- 5,500 LOC: `src/builder` - the compiler support code: CLI, package dependencies, JavaScript output, HTTP/File helpers, etc.
 
 There are a number of [people who work with the Elm compiler source code](TODO).
 

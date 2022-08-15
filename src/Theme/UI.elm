@@ -117,6 +117,21 @@ buttonSecondary attrs msg label =
         el [ Font.color charcoal, Font.medium, Font.center, width fill ] (text <| String.toUpper label)
 
 
+buttonSecondaryPlain attrs msg label =
+    el
+        ([ width shrink
+         , paddingXY 20 12
+         , Border.rounded 4
+         , Border.width 1
+         , onClick msg
+         , pointer
+         ]
+            ++ attrs
+        )
+    <|
+        el [ Font.medium, Font.center, width fill ] (text <| String.toUpper label)
+
+
 buttonLinkSecondary attrs url label =
     prefetchLink
         ([ width shrink

@@ -17,7 +17,7 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 ## Common starting points
 
 
-### With some prior programming experience, especially Javascript:
+### With some prior programming experience, especially JavaScript:
 
 #### Free
 

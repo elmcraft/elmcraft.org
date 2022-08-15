@@ -153,6 +153,27 @@ update msg model =
         VideosRemoveCategoryFilter category ->
             ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
 
+        -- ESLint Rules
+        EslintToggleCategoryFilter category ->
+            ( { model
+                | appliedEslintFilter =
+                    if Just category == model.appliedEslintFilter then
+                        Nothing
+
+                    else
+                        Just category
+              }
+            , Cmd.none
+            )
+
+        EslintToggleRecommendedFilter ->
+            ( { model | appliedEslintRecommendedFilter = not model.appliedEslintRecommendedFilter }
+            , Cmd.none
+            )
+
+        EslintRemoveCategoryFilter ->
+            ( { model | appliedEslintFilter = Nothing }, Cmd.none )
+
         Noop ->
             ( model, Cmd.none )
 

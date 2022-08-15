@@ -41,9 +41,9 @@ Find out more:
 
 ### ⚠️ Elm JS interop is not direct FFI
 
-You answered "Unsure" to "Is direct Javascript FFI or usage of NPM packages on the frontend important to you?"
+You answered "Unsure" to "Is direct JavaScript FFI or usage of NPM packages on the frontend important to you?"
 
-Elm JS interop works via Ports, an explicit, type-safe and asyncronous in/out binding to Javascript.
+Elm JS interop works via Ports, an explicit, type-safe and asyncronous in/out binding to JavaScript.
 
 Elm is a pure/effect free language, with function-level dead-code-elimination made possible by this design choice.
 

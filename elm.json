@@ -2,7 +2,7 @@
     "type": "application",
     "source-directories": [
         "src",
-        "elm-pages/plugins",
+        "plugins",
         ".elm-pages"
     ],
     "elm-version": "0.19.1",

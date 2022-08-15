@@ -78,7 +78,7 @@ Maybe these could be spotlight pages, because certain areas i.e. Gaming have the
 
 ### Integration guides
 
-- Elm with Javascript
+- Elm with JavaScript
 - Elm with TypeScript
 - Elm with Node.js
 - Elm with Haskell
