@@ -143,13 +143,13 @@ summarise rules appliedEslintFilter percentOfTotal filters =
                                                 ( "Clear", adviceColor candidate, Font.color charcoal )
 
                                             else
-                                                ( "Filter", transparent_, Font.color greyDark )
+                                                ( "Focus", transparent_, Font.color greyDark )
 
                                         Nothing ->
-                                            ( "Filter", adviceColor candidate, Font.color charcoal )
+                                            ( "Focus", adviceColor candidate, Font.color charcoal )
 
                                 Nothing ->
-                                    ( "Filter", transparent_, Font.color greyDark )
+                                    ( "Focus", transparent_, Font.color greyDark )
 
                         filterCategory =
                             case candidates |> List.head of
