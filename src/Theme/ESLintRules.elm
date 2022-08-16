@@ -30,13 +30,11 @@ view model =
 
         ruleCountText : String
         ruleCountText =
-            String.fromInt (List.length allRules)
-                ++ (if model.appliedEslintRecommendedFilter then
-                        " _recommended_"
+            if model.appliedEslintRecommendedFilter then
+                " _recommended_"
 
-                    else
-                        ""
-                   )
+            else
+                ""
 
         percentOfTotal x =
             percentOfTotal_ (List.length x)
@@ -50,10 +48,11 @@ view model =
                 "**"
                     ++ String.fromInt (List.length pointlessRules)
                     ++ "/"
-                    ++ ruleCountText
+                    ++ String.fromInt (List.length allRules)
                     ++ " ("
                     ++ percentOfTotal pointlessRules
                     ++ ") of the "
+                    ++ ruleCountText
                     ++ " core ESLint rules _aren't necessary_ in Elm**:"
             ]
         , buttonSecondary []
