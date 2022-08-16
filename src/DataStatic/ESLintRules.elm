@@ -1681,7 +1681,7 @@ layoutAndFormatting =
           }
         , { eslintName = "eol-last"
           , eslintDescription = "require or disallow newline at the end of files"
-          , elmAdvice = NoEquivalent
+          , elmAdvice = HandledByElmFormat
           , recommended = False
           , fixable = True
           , hasSuggestions = False
