@@ -24,8 +24,6 @@ view model global _ =
     column [ width fill ]
         [ column [ width fill, spacing 50 ]
             [ none
-
-            -- , heading1 "World of Elmcraft"
             , column [ width fill, spacing 15 ]
                 [ heading2 [ Font.center ] "A place for all things Elm"
                 , paragraph [ Font.center ]
@@ -213,16 +211,6 @@ view model global _ =
                                 }
                             )
                         ]
-
-            -- , column
-            --     [ width fill, spacing 20 ]
-            --     [ heading2 [] "Elm ❤️'s"
-            --     , externalLink [] "Elm ❤️ Engineering" "/elm-loves/engineering"
-            --     , externalLink [] "Elm ❤️ Testing" "/elm-loves/testing"
-            --     , externalLink [] "Elm ❤️ Humans" "/elm-loves/humans"
-            --     , externalLink [] "Elm ❤️ Community" "/elm-loves/community"
-            --     , externalLink [] "Elm ❤️ Hiring" "/elm-loves/hiring"
-            --     ]
             ]
         ]
 
@@ -231,11 +219,7 @@ view_old model _ =
     column [ width fill ]
         [ column [ width fill, spacing 20 ]
             [ none
-
-            -- , heading1 "World of Elmcraft"
             , heading2 [] "A place for all things Elm"
-
-            -- , paragraph [] [ text "Welcome! We're just getting started here. Something missing? Got ideas? ", pageHover [] "Discuss them with us!" Pages.pages.discuss ]
             , spacer 20
             , column
                 [ width fill, spacing 20 ]
