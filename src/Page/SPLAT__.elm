@@ -5,7 +5,7 @@ import DataSource.ElmRadio
 import DataSource.ElmWeeklyRSS
 import DataSource.File
 import DataSource.Glob as Glob
-import DataSource.Markdown
+import DataSource.MarkdownElmUi
 import DataSource.Notion as Notion
 import Dict
 import Element exposing (..)
@@ -20,6 +20,7 @@ import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
 import Path
 import Route
+import RouteCommon exposing (..)
 import Shared
 import Theme
 import Theme.Markdown
@@ -33,20 +34,12 @@ type alias Model =
     ()
 
 
+type alias Data =
+    RouteCommon.Data
+
+
 type alias Msg =
     Types.Msg
-
-
-type alias RouteParams =
-    { splat : List String }
-
-
-type alias Data =
-    { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
-    , meta : DataSource.Markdown.Meta
-    , timestamps : Timestamps
-    , global : Types.GlobalData
-    }
 
 
 page : PageWithState RouteParams Data () Types.Msg
@@ -104,7 +97,7 @@ content =
 
 data : RouteParams -> DataSource Data
 data routeParams =
-    DataSource.Markdown.routeAsLoadedPageAndThen routeParams
+    DataSource.MarkdownElmUi.routeAsLoadedPageAndThen routeParams
         (\path d ->
             let
                 getVideos =

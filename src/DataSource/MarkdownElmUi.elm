@@ -1,4 +1,4 @@
-module DataSource.Markdown exposing (..)
+module DataSource.MarkdownElmUi exposing (..)
 
 import DataSource exposing (DataSource)
 import DataSource.File

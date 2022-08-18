@@ -2,7 +2,8 @@ module Api exposing (routes)
 
 import ApiRoute
 import DataSource exposing (DataSource)
-import DataSource.Markdown
+import DataSource.MarkdownElmUi
+import Element
 import Html exposing (Html)
 import Route exposing (Route)
 import Sitemap
@@ -17,9 +18,25 @@ routes getStaticRoutes htmlToString =
         routeToEntry route =
             case route of
                 Route.SPLAT__ routeParams ->
-                    DataSource.Markdown.routeAsLoadedPageAndThen routeParams
+                    DataSource.MarkdownElmUi.routeAsLoadedPageAndThen routeParams
                         (\path d ->
                             DataSource.succeed ( path, d, route )
+                        )
+
+                Route.NotFound ->
+                    let
+                        meta =
+                            { title = "Not found"
+                            , description = "Page not found"
+                            , published = True
+                            , status = Nothing
+                            , route = route
+                            }
+                    in
+                    DataSource.succeed
+                        ( "/not-found"
+                        , { ui = \model gdata -> [ Element.text "unused" ], meta = meta, markdown = "" }
+                        , route
                         )
     in
     [ ApiRoute.succeed
