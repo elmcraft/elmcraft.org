@@ -17,7 +17,7 @@ usingFunction : (a -> a) -> (Int, String)
 usingFunction id = (id 1, id "Hello")
 ```
 
-This :arrow_up: won't work because with the first usage the a -> a transforms to Int -> Int and then it's incompatible with String -> String for the other usage.
+This :arrow_up: won't work because with the first usage the `a -> a` transforms to `Int -> Int` and then it's incompatible with `String -> String` for the other usage.
 
 But on the other hand
 
@@ -33,6 +33,7 @@ usingLet =
 
 does work because `id 1` and `id "Hello"` each get their own version of `id : a -> a`.
 
+This is more formally known as [let polymorphism in the Hindley Milner type system](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system#Let-polymorphism).
 
 As for why this weird distinction happens, it's because if both `let`'s and lambdas had this generalization behaviour, the type system wouldn't be able to always infer all the types*, and so you'd sometimes have to provide type annotations.
 
