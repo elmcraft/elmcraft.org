@@ -40,4 +40,4 @@ As for why this weird distinction happens, it's because if both `let`'s and lamb
 Currently you don't need to use type annotations ever.
 
 
-*There's a paper somewhere... if you know of it, [let us know!](/discuss).
+*Wells, J.B. (1994). ["Typability and type checking in the second-order lambda-calculus are equivalent and undecidable"](http://www.macs.hw.ac.uk/~jbw/papers/Wells:Typability-and-Type-Checking-in-the-Second-Order-Lambda-Calculus-Are-Equivalent-and-Undecidable:LICS-1994.ps.gz). Proceedings of the 9th Annual IEEE Symposium on Logic in Computer Science (LICS). pp. 176–185. doi:10.1109/LICS.1994.316068. ISBN 0-8186-6310-3. S2CID 15078292.
