@@ -133,14 +133,7 @@ renderer model global =
                     Theme.Code.elmCodeBlock body
 
                 Just other ->
-                    column
-                        [ Font.family [ Font.monospace ]
-                        , Background.color grey
-                        , Border.rounded 5
-                        , padding 10
-                        , width fill
-                        ]
-                        [ paragraph [] [ text body ] ]
+                    Theme.Code.textCodeBlock body
     , thematicBreak = el [ Background.color grey, height (px 2), width fill ] none
     , table = \children -> column [ width fill ] children
     , tableHeader = \children -> column [] children

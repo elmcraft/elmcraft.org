@@ -1,6 +1,4 @@
-
-
-.childJustifyCenter > div {
+.childJustifyCenter>div {
   justify-content: center !important;
 }
 
@@ -8,33 +6,36 @@
   text-transform: uppercase;
 }
 
-h1, .headingLargest {
+h1,
+.headingLargest {
   font-size: 28px !important;
 }
 
 @media (min-width: 800px) {
-  h1, .headingLargest {
+
+  h1,
+  .headingLargest {
     font-size: 48px !important;
   }
 }
 
 .blueBorderBottomRight {
-  box-shadow: 10px 10px 0px 0px rgba(1,116,226,1);
+  box-shadow: 10px 10px 0px 0px rgba(1, 116, 226, 1);
 }
 
 @media (min-width: 800px) {
   .blueBorderBottomRight {
-    box-shadow: 20px 20px 0px 0px rgba(1,116,226,1);
+    box-shadow: 20px 20px 0px 0px rgba(1, 116, 226, 1);
   }
 }
 
 .blueBorderTopLeft {
-  box-shadow: -10px -10px 0px 0px rgba(1,116,226,1);
+  box-shadow: -10px -10px 0px 0px rgba(1, 116, 226, 1);
 }
 
 @media (min-width: 800px) {
   .blueBorderTopLeft {
-    box-shadow: -20px -20px 0px 0px rgba(1,116,226,1);
+    box-shadow: -20px -20px 0px 0px rgba(1, 116, 226, 1);
   }
 }
 
@@ -52,7 +53,8 @@ hr {
 }
 
 
-.sub, .sup {
+.sub,
+.sup {
   /* Specified in % so that the sup/sup is the
      right size relative to the surrounding text */
   font-size: 75% !important;
@@ -82,6 +84,19 @@ hr {
 }
 
 
+.code-text {
+  background: #282c34;
+  border-radius: 4px;
+}
+
+code.text {
+  /* background: #282c34; */
+  color: #abb2bf;
+  width: 100%;
+  /* border-radius: 4px; */
+  /* padding: 10px !important; */
+  overflow-x: scroll;
+}
 
 
 /* Syntax hilighting */
@@ -94,9 +109,11 @@ pre.elmsh {
   line-height: 24px;
   font-size: 16px;
 }
+
 code.elmsh {
   padding: 0;
 }
+
 .elmsh-line:before {
   content: attr(data-elmsh-lc);
   display: inline-block;
@@ -114,15 +131,15 @@ code.elmsh {
 }
 
 .elmsh-hl {
-  background: rgba(229,231,235, 0.1);
+  background: rgba(229, 231, 235, 0.1);
 }
 
 .elmsh-add {
-  background: rgba(40,124,82, 0.4);
+  background: rgba(40, 124, 82, 0.4);
 }
 
 .elmsh-del {
-  background: rgba(136,64,67, 0.4);
+  background: rgba(136, 64, 67, 0.4);
 }
 
 .elmsh-strong {
@@ -137,6 +154,7 @@ code.elmsh {
   color: #5c6370;
   font-style: italic
 }
+
 .elmsh2 {
   color: #98c379;
 }
@@ -165,6 +183,7 @@ code.elmsh {
 .elmsh-elm-c {
   color: #d19a66;
 }
+
 .elmsh-elm-n {
   color: #d19a66;
   font-style: normal;

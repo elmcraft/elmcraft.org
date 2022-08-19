@@ -25,7 +25,7 @@ view : a -> (Types.Msg -> wrapperMsg) -> Types.Model -> View.View wrapperMsg -> 
 view x toWrapperMsg model static =
     layout
         [ width fill
-        , Font.size 18
+        , Font.size 17
         , Font.color charcoal
         , Font.family [ Font.typeface "Inter var" ]
         , width fill
