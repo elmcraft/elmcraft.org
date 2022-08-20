@@ -4,6 +4,8 @@ title: Why does Elm sometimes require defining a function in a let?
 description: An explanation of let polymorphism in Elm.
 published: true
 status: seedling
+authors: "@janiczek"
+editors: "@supermario"
 ---
 
 <tldr>tl;dr: It would be nice if let and lambdas behaved the same, but we'd lose some type inference guarantees.</tldr>

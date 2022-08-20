@@ -83,6 +83,14 @@ hr {
   bottom: -0.25em;
 }
 
+.triangle-down {
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 5px solid transparent !important;
+  border-right: 5px solid transparent !important;
+  border-top-width: 5px !important;
+  border-top-style: solid !important;
+}
 
 .code-text {
   background: #282c34;

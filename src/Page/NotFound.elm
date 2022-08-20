@@ -1,6 +1,7 @@
 module Page.NotFound exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
+import DataSource.Meta
 import Element exposing (..)
 import Element.Font as Font
 import Head
@@ -81,4 +82,5 @@ view maybeUrl sharedModel static =
         , created = Time.millisToPosix 0
         }
     , published = True
+    , meta = DataSource.Meta.empty
     }

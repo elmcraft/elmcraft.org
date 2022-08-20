@@ -31,6 +31,8 @@ routes getStaticRoutes htmlToString =
                             , published = True
                             , status = Nothing
                             , route = route
+                            , authors = []
+                            , editors = []
                             }
                     in
                     DataSource.succeed

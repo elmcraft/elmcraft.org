@@ -1,6 +1,7 @@
 module ElmMarkupUI exposing (..)
 
 import Browser
+import DataSource.Metadata exposing (Metadata)
 import Element exposing (..)
 import Element.Font as Font
 import Element.Region as Region
@@ -9,7 +10,6 @@ import Html.Attributes as Attr
 import Json.Decode
 import Mark
 import Mark.Error
-import Metadata exposing (Metadata)
 import Types exposing (Model)
 
 

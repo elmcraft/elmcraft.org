@@ -1,13 +1,13 @@
 module ElmMarkupHtml exposing (..)
 
 import Browser
+import DataSource.Metadata exposing (Metadata)
 import Element exposing (Element)
 import Html exposing (Html)
 import Html.Attributes as Attr
 import Json.Decode
 import Mark
 import Mark.Error
-import Metadata exposing (Metadata)
 import Types exposing (Model)
 
 

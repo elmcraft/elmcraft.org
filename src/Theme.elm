@@ -1,6 +1,7 @@
 module Theme exposing (..)
 
 import Colors exposing (..)
+import DataSource.Meta exposing (..)
 import DateFormat
 import Element exposing (..)
 import Element.Background as Background
@@ -14,6 +15,7 @@ import Route
 import Theme.Footer
 import Theme.Layout
 import Theme.Navigation
+import Theme.Tooltip
 import Theme.UI exposing (..)
 import Time
 import Timestamps
@@ -64,6 +66,48 @@ view x toWrapperMsg model static =
 
                                     Evergreen ->
                                         "Evergreen 🌳"
+
+                            contributorCircle contribution name =
+                                el
+                                    [ Border.rounded 30
+                                    , Border.width 3
+                                    , Border.color purple
+                                    , Font.color white
+                                    , width (px 36)
+                                    , height (px 36)
+                                    , Theme.Tooltip.add
+                                        { hitboxSize = 30
+                                        , el =
+                                            el
+                                                [ Background.color purple
+                                                , paddingXY 4 8
+                                                , Border.rounded 5
+                                                , width (px 150)
+                                                , moveLeft (150 - 30 - 10)
+                                                , Font.center
+                                                , alignRight
+                                                , moveUp 34
+                                                , inFront <|
+                                                    el
+                                                        [ class "triangle-down"
+                                                        , moveRight 120
+                                                        , moveDown 30
+                                                        , Border.color purple
+                                                        ]
+                                                        none
+                                                ]
+                                                (text <| contribution ++ ": " ++ name)
+                                        }
+                                    ]
+                                    -- (text "things")
+                                    (image
+                                        [ width (px 30)
+                                        , height (px 30)
+                                        , Border.rounded 30
+                                        , clip
+                                        ]
+                                        { src = "/images/contributors/" ++ name ++ ".jpg", description = "Contributor picture" }
+                                    )
                           in
                           case static.status of
                             Just status ->
@@ -72,6 +116,10 @@ view x toWrapperMsg model static =
                                         paragraph [ Font.color charcoalLight, Font.size 14 ] <|
                                             [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
                                             , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
+                                            , row [ alignRight, spacing 5 ]
+                                                ((static.meta.authors |> List.map (contributorCircle "author"))
+                                                    ++ (static.meta.editors |> List.map (contributorCircle "editor"))
+                                                )
                                             ]
                                     , if not static.published && model.isDev then
                                         el [ Background.color elmcraftNude, padding 4, Border.rounded 5, Font.size 12 ] <| text "not published"
