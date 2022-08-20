@@ -173,4 +173,5 @@ view maybeUrl sharedModel static =
     , timestamps = static.data.timestamps
     , status = static.data.meta.status
     , published = static.data.meta.published
+    , meta = static.data.meta
     }

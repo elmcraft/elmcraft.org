@@ -1,6 +1,7 @@
 module Site exposing (config)
 
 import DataSource
+import Examples
 import Head
 import Helpers exposing (..)
 import MimeType

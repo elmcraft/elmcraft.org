@@ -10,6 +10,7 @@
         "direct": {
             "MartinSStewart/elm-serialize": "1.3.0",
             "NoRedInk/elm-json-decode-pipeline": "1.0.1",
+            "andrewMacmurray/elm-simple-animation": "2.3.0",
             "avh4/elm-color": "1.0.0",
             "danyx23/elm-mimetype": "4.0.1",
             "dillonkearns/elm-bcp47-language-tag": "1.0.1",

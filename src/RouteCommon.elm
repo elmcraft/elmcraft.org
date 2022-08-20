@@ -1,6 +1,6 @@
 module RouteCommon exposing (..)
 
-import DataSource.MarkdownElmUi
+import DataSource.Meta exposing (..)
 import Element exposing (Element)
 import Head
 import Head.Seo as Seo
@@ -13,7 +13,7 @@ import Types
 
 type alias Data =
     { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
-    , meta : DataSource.MarkdownElmUi.Meta
+    , meta : Meta
     , timestamps : Timestamps
     , global : Types.GlobalData
     }

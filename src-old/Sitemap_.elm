@@ -1,6 +1,6 @@
 module Sitemap_ exposing (build)
 
-import Metadata exposing (Metadata(..))
+import DataSource.Metadata exposing (Metadata(..))
 import Pages
 import Pages.PagePath as PagePath exposing (PagePath)
 import Sitemap

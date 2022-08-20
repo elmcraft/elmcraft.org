@@ -1,5 +1,6 @@
 module View exposing (..)
 
+import DataSource.Meta exposing (Meta, Status)
 import Element exposing (Element)
 import Html exposing (Html)
 import Route exposing (Route)
@@ -14,13 +15,8 @@ type alias View msg =
     , route : Route
     , timestamps : Timestamps
     , published : Bool
+    , meta : Meta
     }
-
-
-type Status
-    = Seedling
-    | Budding
-    | Evergreen
 
 
 map : (msg1 -> msg2) -> View msg1 -> View msg2
@@ -31,6 +27,7 @@ map fn doc =
     , route = doc.route
     , timestamps = doc.timestamps
     , published = doc.published
+    , meta = doc.meta
     }
 
 
@@ -45,4 +42,5 @@ placeholder moduleName =
         , created = Time.millisToPosix 0
         }
     , published = False
+    , meta = DataSource.Meta.empty
     }

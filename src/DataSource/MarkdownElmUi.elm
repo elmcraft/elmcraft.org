@@ -3,6 +3,7 @@ module DataSource.MarkdownElmUi exposing (..)
 import DataSource exposing (DataSource)
 import DataSource.File
 import DataSource.Glob as Glob
+import DataSource.Meta exposing (..)
 import Element exposing (..)
 import Markdown.Parser
 import Markdown.Renderer
@@ -14,13 +15,36 @@ import Theme.Markdown
 import View exposing (..)
 
 
-type alias Meta =
-    { title : String
-    , description : String
-    , published : Bool
-    , status : Maybe Status
-    , route : Route.Route
-    }
+decodeMeta : List String -> Decode.Decoder Meta
+decodeMeta splat =
+    Decode.succeed Meta
+        |> required "title" Decode.string
+        |> required "description" Decode.string
+        |> required "published" Decode.bool
+        |> optional "status" (decodeStatus |> Decode.andThen (\v -> Decode.succeed <| Just v)) Nothing
+        |> hardcoded (Route.SPLAT__ { splat = splat })
+        |> optional "authors" (Decode.string |> Decode.map (\v -> String.split "," v)) []
+        |> optional "editors" (Decode.string |> Decode.map (\v -> String.split "," v)) []
+
+
+decodeStatus : Decode.Decoder Status
+decodeStatus =
+    Decode.string
+        |> Decode.andThen
+            (\s ->
+                case s of
+                    "seedling" ->
+                        Decode.succeed Seedling
+
+                    "budding" ->
+                        Decode.succeed Budding
+
+                    "evergreen" ->
+                        Decode.succeed Evergreen
+
+                    _ ->
+                        Decode.fail ("Was expecting a Status of evergreen|seedling|budding but got: " ++ s)
+            )
 
 
 routeAsLoadedPageAndThen routeParams fn =
@@ -57,36 +81,6 @@ withOrWithoutIndexSegment parts =
         |> Glob.match (Glob.literal ".md")
         |> Glob.captureFilePath
         |> Glob.expectUniqueMatch
-
-
-decodeMeta : List String -> Decode.Decoder Meta
-decodeMeta splat =
-    Decode.succeed Meta
-        |> required "title" Decode.string
-        |> required "description" Decode.string
-        |> required "published" Decode.bool
-        |> optional "status" (decodeStatus |> Decode.andThen (\v -> Decode.succeed <| Just v)) Nothing
-        |> hardcoded (Route.SPLAT__ { splat = splat })
-
-
-decodeStatus : Decode.Decoder Status
-decodeStatus =
-    Decode.string
-        |> Decode.andThen
-            (\s ->
-                case s of
-                    "seedling" ->
-                        Decode.succeed Seedling
-
-                    "budding" ->
-                        Decode.succeed Budding
-
-                    "evergreen" ->
-                        Decode.succeed Evergreen
-
-                    _ ->
-                        Decode.fail ("Was expecting a Status of evergreen|seedling|budding but got: " ++ s)
-            )
 
 
 markdownRenderer rawMarkdown path meta =
