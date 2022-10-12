@@ -99,7 +99,6 @@ view x toWrapperMsg model static =
                                                 (text <| contribution ++ ": " ++ name)
                                         }
                                     ]
-                                    -- (text "things")
                                     (image
                                         [ width (px 30)
                                         , height (px 30)

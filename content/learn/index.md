@@ -60,7 +60,7 @@ There is unfortunately no known English material in this area! We hope there wil
 
 In Portuguese:
 
-- [elm.dev.br - a work-in-progress for for people who don't know how to program](https://elm.dev.br/) - Marcio Frayze
+- [elm.dev.br - a work-in-progress for people who don't know how to program](https://elm.dev.br/) - Marcio Frayze
 
 
 ## Exercises
