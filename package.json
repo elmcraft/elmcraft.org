@@ -4,7 +4,7 @@
   "description": "Elmcraft.org Website",
   "scripts": {
     "start": "elm-pages dev",
-    "build": "NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/not-found/index.html dist/404.html",
+    "build": "mkdir .elm-pages && elm make src/Config.elm && NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/not-found/index.html dist/404.html",
     "postinstall": "elm-tooling install"
   },
   "author": "Mario Rogic",
