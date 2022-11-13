@@ -84,6 +84,7 @@ status: budding
 
 - [Elm-in-Elm](https://github.com/elm-in-elm/compiler#contributing) – for the [Elm-in-Elm project](https://github.com/elm-in-elm/compiler)
 - [Lamdera](https://dashboard.lamdera.app/docs/discuss) – for the [Lamdera fullstack Elm platform](https://lamdera.com)
+- [Elm Land](https://join.elm.land/) - for the [Elm Land SPA Framework](https://elm.land/)
 
 
 ### Other
