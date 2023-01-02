@@ -8,7 +8,7 @@ published: true
 
 ## Elm Online Meetup
 
-Covid has changed the way the Elm community meets, and the Elm Online Meetup grew out from the Elm London meetups going online.
+Covid has changed the way the Elm community meets, and the [Elm Online Meetup](https://meetdown.app/group/10561/Elm-Online-Meetup) grew out from the [Elm London](https://meetdown.app/group/37aa26/Elm-London-Meetup) meetups going online.
 
 > Come join us to learn Elm, code and hang out online! Beginners welcome!
 >
@@ -24,6 +24,6 @@ See the [upcoming meetups](https://meetdown.app/group/10561/Elm-Online-Meetup).
 
 ## Regular Meetups
 
-Many regular Elm meetups were hosted on Meetup.com.
+Many regular Elm meetups were previously hosted on Meetup.com.
 
 You can find most of them via the [Meetup.com Elm topic](https://www.meetup.com/topics/elm/).

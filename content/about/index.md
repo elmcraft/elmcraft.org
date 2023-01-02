@@ -53,7 +53,7 @@ Here are the current Elm lovers behind Elmcraft!
 
 ### Mario - Groundskeeper
 
-Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) and [Elm London](https://www.meetup.com/Elm-London-Meetup/) meetups, has spoken at Elm Conferences, and is currently working on [Lamdera](https://lamdera.com). He founded Elmcraft to promote and facilitate the wealth of projects, initiatives, knowledge and people in the Elm community.
+Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) and [Elm London](https://meetdown.app/group/37aa26/Elm-London-Meetup) meetups, has spoken at Elm Conferences, and is currently working on [Lamdera](https://lamdera.com). He founded Elmcraft to promote and facilitate the wealth of projects, initiatives, knowledge and people in the Elm community.
 
 
 ### Contributors
