@@ -32,7 +32,7 @@ withNewsletters decoder =
         (Secrets.succeed
             -- This is the canonical URL but it does a redirect that shows HTML and confuses our decoder...
             -- { url = "https://www.elmweekly.nl/?format=rss"
-            { url = "https://s3.amazonaws.com/revue/accounts/rss_feeds/000/046/105/original/rss_feed_46105.xml"
+            { url = "https://www.elmweekly.nl/feed"
             , method = "GET"
             , headers = []
             , body = DataSource.Http.emptyBody
