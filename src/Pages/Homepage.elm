@@ -146,73 +146,143 @@ view model global _ =
                                 }
                             )
                         ]
-            , case global.latestNewsletter of
-                Nothing ->
-                    none
-
-                Just newsletter ->
-                    column [ width fill, spacing 30 ]
-                        [ row [ width fill ]
-                            [ heading3 [] "Latest Elm Newsletter"
-                            , externalLink [] "See all" "https://www.elmweekly.nl/#archive"
-                            ]
-                        , let
-                            url =
-                                newsletter.link
-
-                            v opts =
-                                boxNoPadding
-                                    [ rowToColumnWhen 500
-                                        model
-                                        [ width fill, spacing 10 ]
-                                        [ el
-                                            [ centerX
-                                            , width (fillPortion 1)
-                                            , height fill
-                                            , Background.color <| fromHex "#FFF"
-                                            , padding 20
-                                            , opts.border
-                                            ]
-                                          <|
-                                            link [ centerY, centerX ]
-                                                { url = url
-                                                , label =
-                                                    image [ width fill, centerY ]
-                                                        { src = "/images/logos/elm-weekly.png", description = "Elm Weekly Logo" }
-                                                }
-                                        , column [ spacing 10, width (fillPortion 3), padding 20 ]
-                                            [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] newsletter.title url ]
-                                            , paragraph [] [ textHtml newsletter.description ]
-
-                                            -- , paragraph [] [ text <| Theme.format newsletter.published ]
-                                            -- @TODO parse and format the odd time format nicely
-                                            , paragraph []
-                                                [ newsletter.published
-                                                    |> String.split " "
-                                                    |> List.take 4
-                                                    |> String.join " "
-                                                    |> text
-                                                ]
-                                            , paragraph [] [ externalLink [] "By Wolfgang Schuster" "https://www.elmweekly.nl/" ]
-                                            ]
-                                        ]
-                                    ]
-                          in
-                          adaptiveAt 500
-                            model
-                            (v
-                                { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
-                                , height = fill
-                                }
-                            )
-                            (v
-                                { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
-                                , height = fill |> minimum 160
-                                }
-                            )
-                        ]
+            , viewLatestNewsletter model global.latestNewsletter
+            , viewLatestPackages model global.latestPackage
             ]
         ]
+
+
+viewLatestNewsletter model newsletterM =
+    case newsletterM of
+        Nothing ->
+            none
+
+        Just newsletter ->
+            column [ width fill, spacing 30 ]
+                [ row [ width fill, spacing 10 ]
+                    [ heading3 [] "Latest Elm Newsletter"
+                    , externalLink [] "Subscribe" "https://www.elmweekly.nl/subscribe?utm_source=menu&simple=true&next=https%3A%2F%2Felmcraft.org%2F"
+                    , externalLink [] "See all" "https://www.elmweekly.nl/archive"
+                    ]
+                , let
+                    url =
+                        newsletter.link
+
+                    v opts =
+                        boxNoPadding
+                            [ rowToColumnWhen 500
+                                model
+                                [ width fill, spacing 10 ]
+                                [ el
+                                    [ centerX
+                                    , width (fillPortion 1)
+                                    , height fill
+                                    , Background.color <| fromHex "#FFF"
+                                    , padding 20
+                                    , opts.border
+                                    ]
+                                  <|
+                                    link [ centerY, centerX ]
+                                        { url = url
+                                        , label =
+                                            image [ width fill, centerY ]
+                                                { src = "/images/logos/elm-weekly.png", description = "Elm Weekly Logo" }
+                                        }
+                                , column [ spacing 10, width (fillPortion 3), padding 20 ]
+                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] newsletter.title url ]
+                                    , paragraph [] [ textHtml newsletter.description ]
+
+                                    -- , paragraph [] [ text <| Theme.format newsletter.published ]
+                                    -- @TODO parse and format the odd time format nicely
+                                    , paragraph []
+                                        [ newsletter.published
+                                            |> String.split " "
+                                            |> List.take 4
+                                            |> String.join " "
+                                            |> text
+                                        ]
+                                    , paragraph [] [ externalLink [] "By Wolfgang Schuster" "https://www.elmweekly.nl/" ]
+                                    ]
+                                ]
+                            ]
+                  in
+                  adaptiveAt 500
+                    model
+                    (v
+                        { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+                        , height = fill
+                        }
+                    )
+                    (v
+                        { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
+                        , height = fill |> minimum 160
+                        }
+                    )
+                ]
+
+
+viewLatestPackages model packagesM =
+    case packagesM of
+        Nothing ->
+            none
+
+        Just items ->
+            column [ width fill, spacing 30 ]
+                [ row [ width fill ]
+                    [ heading3 [] "Latest Elm Packages"
+                    , externalLink [] "See all" "https://elm-greenwood.com/"
+                    ]
+                , items |> List.map (viewPackage model) |> column [ spacing 5, width fill ]
+                ]
+
+
+viewPackage model item =
+    let
+        v opts =
+            boxNoPadding
+                [ rowToColumnWhen 500
+                    model
+                    [ width fill, spacing 10 ]
+                    [ el
+                        [ centerX
+                        , width (fillPortion 1)
+                        , Background.color <| fromHex "#FFF"
+                        , padding 20
+                        , opts.border
+                        ]
+                      <|
+                        link [ centerY, centerX ]
+                            { url = item.link
+                            , label =
+                                image [ width (px 50), centerY ]
+                                    { src = "/images/elm-logo.svg", description = "Elm Logo" }
+                            }
+                    , column [ spacing 10, width (fillPortion 3), padding 20 ]
+                        [ paragraph [ Font.bold ] [ externalLink [] item.title item.link ]
+                        , paragraph [] [ textHtml item.description ]
+                        , paragraph []
+                            [ item.published
+                                |> String.split " "
+                                |> List.take 5
+                                |> String.join " "
+                                |> text
+                            ]
+                        ]
+                    ]
+                ]
+    in
+    adaptiveAt 500
+        model
+        (v
+            { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+            , height = fill
+            }
+        )
+        (v
+            { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
+            , height = fill |> minimum 160
+            }
+        )
 
 
 view_old model _ =

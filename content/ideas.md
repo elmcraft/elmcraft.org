@@ -20,6 +20,7 @@ This is a non-committal list of ideas for Elmcraft. If you've got some ideas you
   - Forums/Chat ✅
   - Meetups ✅
     - Stretch goal: replace [meetup.com](http://meetup.com) and offer a nice alternative for meetup organisers
+      - ✅ There is now https://meetdown.app/ ([github](https://github.com/MartinSStewart/meetdown))
       - Include helpful packs, how to run a meetup, how to apply code of conduct, etc – might result in more meetups!
   - Conferences ✅
 
