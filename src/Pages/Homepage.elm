@@ -35,6 +35,9 @@ view model global _ =
             , column [ spacing 30 ]
                 [ heading3 [] "Featured article"
                 , let
+                    articleLink =
+                        "https://dev.to/lucamug/elm-2022-a-year-in-review-33pp"
+
                     v opts =
                         boxNoPadding
                             [ rowToColumnWhen 650
@@ -48,10 +51,10 @@ view model global _ =
                                     , clip
                                     ]
                                   <|
-                                    link [] { url = "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho", label = image [ width fill ] { src = "/articles/2021-in-review.webp", description = "2021 in review mosaic" } }
+                                    link [] { url = articleLink, label = image [ width fill ] { src = "/articles/2022-in-review.jpg", description = "2022 in review mosaic" } }
                                 , column [ spacing 10, width (fillPortion 1), padding 20 ]
-                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2021, a year in review" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
-                                    , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "252 things that happened in Elm in 2021!" "https://dev.to/lucamug/elm-2021-a-year-in-review-4pho" ]
+                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2022, a year in review" articleLink ]
+                                    , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "236 things that happened in Elm in 2022!" articleLink ]
                                     ]
                                 ]
                             ]
