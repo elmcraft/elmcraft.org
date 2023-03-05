@@ -18,7 +18,7 @@ status: budding
 
   The #beginner's channel is very active and full of kind people.
 
-  <button label="Register here" url="https://elmlang.herokuapp.com/" />
+  <button label="Register here" url="https://elm-lang.org/community/slack" />
   </column>
 </rowToColumnWhenSmall>
 
