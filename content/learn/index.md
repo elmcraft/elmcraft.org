@@ -25,7 +25,6 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
   - 🇫🇷 [Une introduction à Elm](https://guide.elm-france.fr/) - French community translation
 
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
-- [Start Using Elm to Build Web Applications](https://egghead.io/courses/start-using-elm-to-build-web-applications) - Murphy Randle (egghead.io)
 
 #### Paid Online Courses
 
@@ -90,6 +89,9 @@ Be kind, ask questions, and try to recognize [XY problems](https://en.wikipedia.
 Read the full [Elm Code of Conduct](https://github.com/elm-community/discussions/blob/master/code-of-conduct.md) as well!
 
 
+## Guides for older Elm versions
+
+- Elm 0.17 - [Start Using Elm to Build Web Applications](https://egghead.io/courses/start-using-elm-to-build-web-applications) - Murphy Randle (egghead.io)
 
 <wip>
 ## Known unfinished guides
