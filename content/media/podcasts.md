@@ -33,11 +33,11 @@ Prefer listening on the go? There are plenty of Elm podcast episodes to keep you
 
   <column>
 
-  Hosted by Kevin
+  Hosted by Jared M. Smith
 
-  53 Episodes (last May 26th 2020)
+  54 Episodes
 
-  [https://elmtown.simplecast.com/](https://elmtown.simplecast.com/)
+  [https://elm.town/](https://elm.town/)
 
   </column>
 </rowToColumnWhenSmall>
