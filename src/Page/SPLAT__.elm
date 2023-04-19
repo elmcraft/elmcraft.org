@@ -3,6 +3,7 @@ module Page.SPLAT__ exposing (Data, Model, Msg, page)
 import DataSource exposing (DataSource)
 import DataSource.ElmPackagesRSS
 import DataSource.ElmRadio
+import DataSource.ElmTown
 import DataSource.ElmWeeklyRSS
 import DataSource.File
 import DataSource.Glob as Glob
@@ -118,8 +119,8 @@ data routeParams =
                     else
                         DataSource.succeed default
             in
-            DataSource.map6
-                (\ts videos videosCount podcastM newsletterM packageM ->
+            DataSource.map7
+                (\ts videos videosCount elmRadioM elmTownM newsletterM packageM ->
                     let
                         data_ : Data
                         data_ =
@@ -129,7 +130,8 @@ data routeParams =
                             , global =
                                 { videos = videos
                                 , videosCount = videosCount
-                                , latestPodcast = podcastM
+                                , latestElmRadio = elmRadioM
+                                , latestElmTown = elmTownM
                                 , latestNewsletter = newsletterM
                                 , latestPackage = packageM
                                 }
@@ -141,6 +143,7 @@ data routeParams =
                 getVideos
                 (onlyOn "content/index.md" Notion.getVideosCount 0)
                 (onlyOn "content/index.md" (DataSource.ElmRadio.episodeLatest |> DataSource.map Just) Nothing)
+                (onlyOn "content/index.md" (DataSource.ElmTown.episodeLatest |> DataSource.map Just) Nothing)
                 (onlyOn "content/index.md" (DataSource.ElmWeeklyRSS.newsletterLatest |> DataSource.map Just) Nothing)
                 (onlyOn "content/index.md" (DataSource.ElmPackagesRSS.packagesLatest 3 |> DataSource.map Just) Nothing)
         )

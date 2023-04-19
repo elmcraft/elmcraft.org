@@ -85,74 +85,82 @@ view model global _ =
                         )
                     |> wrappedRow [ spacing 30, width fill ]
                 ]
-            , case global.latestPodcast of
-                Nothing ->
-                    none
+            , column [ width fill, spacing 30 ]
+                [ row [ width fill ]
+                    [ heading3 [] "Latest Elm Podcasts"
+                    , routeLink [] "See all" (splat "media" [ "podcasts" ])
+                    ]
+                , case global.latestElmRadio of
+                    Nothing ->
+                        none
 
-                Just episode ->
-                    column [ width fill, spacing 30 ]
-                        [ row [ width fill ]
-                            [ heading3 [] "Latest Elm Podcast"
-                            , routeLink [] "See all" (splat "media" [ "podcasts" ])
-                            ]
-                        , let
-                            url =
-                                episode.url
+                    Just episode ->
+                        latestPodcastView model episode "Elm Radio" "#002329" { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
+                , case global.latestElmTown of
+                    Nothing ->
+                        none
 
-                            v opts =
-                                boxNoPadding
-                                    [ rowToColumnWhen 500
-                                        model
-                                        [ width fill, spacing 10 ]
-                                        [ el
-                                            [ centerX
-                                            , width (fillPortion 1)
-                                            , height fill
-                                            , Background.color <| fromHex "#002329"
-                                            , padding 20
-                                            , opts.border
-                                            ]
-                                          <|
-                                            link [ centerY, centerX ]
-                                                { url = url
-                                                , label =
-                                                    image [ width fill, centerY ]
-                                                        { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
-                                                }
-                                        , column [ spacing 10, width (fillPortion 3), padding 20 ]
-                                            [ heading3 [] <| "Elm Radio - Episode " ++ String.fromInt episode.number
-                                            , paragraph [ Font.size 20, Font.bold ] [ externalLink [] episode.title url ]
-
-                                            -- , paragraph [] [ text <| Theme.format episode.published ]
-                                            -- @TODO parse and format the odd time format nicely
-                                            , paragraph []
-                                                [ episode.published
-                                                    |> Theme.format
-                                                    |> text
-                                                ]
-                                            , paragraph [] [ text episode.description ]
-                                            , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
-                                            ]
-                                        ]
-                                    ]
-                          in
-                          adaptiveAt 500
-                            model
-                            (v
-                                { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
-                                , height = fill
-                                }
-                            )
-                            (v
-                                { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
-                                , height = fill |> minimum 160
-                                }
-                            )
-                        ]
+                    Just episode ->
+                        latestPodcastView model episode "Elm Town" "#24222D" { src = "/images/logos/elm-town.jpg", description = "Elm Radio Logo" }
+                ]
             , viewLatestNewsletter model global.latestNewsletter
             , viewLatestPackages model global.latestPackage
             ]
         ]
+
+
+latestPodcastView model episode showName hex imageDetails =
+    let
+        url =
+            episode.url
+
+        v opts =
+            boxNoPadding
+                [ rowToColumnWhen 500
+                    model
+                    [ width fill, spacing 10 ]
+                    [ el
+                        [ centerX
+                        , width (fillPortion 1)
+                        , height fill
+                        , Background.color <| fromHex hex
+                        , padding 20
+                        , opts.border
+                        ]
+                      <|
+                        link [ centerY, centerX ]
+                            { url = url
+                            , label = image [ width (fill |> maximum 100), height (fill |> maximum 100), centerY ] imageDetails
+                            }
+                    , column [ spacing 10, width (fillPortion 3), padding 20 ]
+                        [ heading3 [] <| showName ++ " - Episode " ++ String.fromInt episode.number
+                        , paragraph [ Font.size 20, Font.bold ] [ externalLink [] episode.title url ]
+
+                        -- , paragraph [] [ text <| Theme.format episode.published ]
+                        -- @TODO parse and format the odd time format nicely
+                        , paragraph []
+                            [ episode.published
+                                |> Theme.format
+                                |> text
+                            ]
+                        , paragraph [] [ text episode.description ]
+                        , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
+                        ]
+                    ]
+                ]
+    in
+    adaptiveAt 500
+        model
+        (v
+            { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+            , height = fill
+            }
+        )
+        (v
+            { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
+            , height = fill |> minimum 160
+            }
+        )
 
 
 viewLatestNewsletter model newsletterM =
