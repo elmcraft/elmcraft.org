@@ -8,7 +8,7 @@ status: budding
 
 ## Upcoming conferences
 
-Due to Covid, there are currently no upcoming conferences. In the meantime, check out the [Elm meetups](/community/meetups)!
+- 🇩🇰 [Elm Camp 2023](https://elm.camp) - Denmark - June 28-30
 
 
 ## Past conferences
