@@ -101,6 +101,6 @@ episodeDecoder =
     succeed Episode
         |> required "title" string
         |> optional "description" string ""
-        |> required "href" string
+        |> required "slug" (string |> map (\slug -> "https://elm.town/episodes/" ++ slug))
         |> optional "number" int 0
         |> required "published_at" (string |> map (Iso8601.toTime >> Result.withDefault (Time.millisToPosix 0)))

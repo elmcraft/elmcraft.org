@@ -95,13 +95,27 @@ view model global _ =
                         none
 
                     Just episode ->
-                        latestPodcastView model episode "Elm Radio" "#002329" { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
+                        latestPodcastView model
+                            { episode = episode
+                            , showName = "Elm Radio"
+                            , bgColor = "#002329"
+                            , logo = { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
+                            , host = "Dillon and Jeroen"
+                            , podcastUrl = "https://elm-radio.com/"
+                            }
                 , case global.latestElmTown of
                     Nothing ->
                         none
 
                     Just episode ->
-                        latestPodcastView model episode "Elm Town" "#24222D" { src = "/images/logos/elm-town.jpg", description = "Elm Radio Logo" }
+                        latestPodcastView model
+                            { episode = episode
+                            , showName = "Elm Town"
+                            , bgColor = "#24222D"
+                            , logo = { src = "/images/logos/elm-town.jpg", description = "Elm Town Logo" }
+                            , host = "Jared M. Smith"
+                            , podcastUrl = "https://elm.town/"
+                            }
                 ]
             , viewLatestNewsletter model global.latestNewsletter
             , viewLatestPackages model global.latestPackage
@@ -109,7 +123,7 @@ view model global _ =
         ]
 
 
-latestPodcastView model episode showName hex imageDetails =
+latestPodcastView model { episode, showName, bgColor, logo, host, podcastUrl } =
     let
         url =
             episode.url
@@ -123,14 +137,14 @@ latestPodcastView model episode showName hex imageDetails =
                         [ centerX
                         , width (fillPortion 1)
                         , height fill
-                        , Background.color <| fromHex hex
+                        , Background.color <| fromHex bgColor
                         , padding 20
                         , opts.border
                         ]
                       <|
                         link [ centerY, centerX ]
                             { url = url
-                            , label = image [ width (fill |> maximum 100), height (fill |> maximum 100), centerY ] imageDetails
+                            , label = image [ width (fill |> maximum 100), height (fill |> maximum 100), centerY ] logo
                             }
                     , column [ spacing 10, width (fillPortion 3), padding 20 ]
                         [ heading3 [] <| showName ++ " - Episode " ++ String.fromInt episode.number
@@ -144,7 +158,7 @@ latestPodcastView model episode showName hex imageDetails =
                                 |> text
                             ]
                         , paragraph [] [ text episode.description ]
-                        , paragraph [] [ externalLink [] "Hosted by Dillon and Jeroen" "https://elm-radio.com/" ]
+                        , paragraph [] [ externalLink [] ("Hosted by " ++ host) podcastUrl ]
                         ]
                     ]
                 ]
