@@ -5,6 +5,7 @@ import DataSource.File
 import DataSource.Glob as Glob
 import DataSource.Meta exposing (..)
 import Element exposing (..)
+import List.Extra as List
 import Markdown.Parser
 import Markdown.Renderer
 import OptimizedDecoder as Decode
@@ -85,6 +86,7 @@ withOrWithoutIndexSegment parts =
 
 markdownRenderer rawMarkdown path meta =
     rawMarkdown
+        |> prefixMarkdownTableOfContents
         |> Markdown.Parser.parse
         |> Result.mapError
             (\errs ->
@@ -135,6 +137,49 @@ parserDeadEndToString err =
     , "problem:" ++ problemToString err.problem
     ]
         |> String.join "\n"
+
+
+prefixMarkdownTableOfContents s =
+    let
+        toc =
+            s
+                |> String.split "\n"
+                |> List.dropWhile (\l -> l /= "<toc></toc>")
+                |> List.filter (String.startsWith "##")
+                |> List.filter (not << String.startsWith "####")
+                |> List.map
+                    (\l ->
+                        let
+                            depth =
+                                l
+                                    |> String.split "#"
+                                    |> List.length
+                                    |> (\v -> List.repeat ((v - 3) * 2) " ")
+                                    |> String.join ""
+
+                            title =
+                                l |> String.replace "#" "" |> String.trim
+
+                            ref =
+                                title
+                                    |> String.toLower
+                                    |> String.replace "?" "-"
+                                    |> String.replace "." ""
+                                    |> String.replace "'" ""
+                                    |> String.replace "/" ""
+                                    |> String.split " "
+                                    |> List.filter (not << String.isEmpty)
+                                    |> String.join "-"
+                        in
+                        depth ++ "- [" ++ title ++ "](#" ++ ref ++ ")"
+                    )
+                |> String.join "\n"
+                |> (++) "**Contents:**\n\n"
+
+        -- _ =
+        --     Debug.log "" (toc |> String.split "\n")
+    in
+    s |> String.replace "<toc></toc>" toc
 
 
 problemToString problem =

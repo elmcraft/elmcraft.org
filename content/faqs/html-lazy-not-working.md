@@ -10,6 +10,15 @@ The [Elm guide on Html.Lazy](https://guide.elm-lang.org/optimization/lazy.html) 
 
 Here are some additional gotcha's that are helped by examples.
 
+<toc></toc>
+
+
+Don't want to remember these gotchas? You don't have to! Let `elm-review` remember for you:
+
+```
+npx elm-review --template jfmengels/elm-review-performance/preview#lazy --rules NoMisusingLazy
+```
+
 
 ### Understand what constitutes a changed value
 
@@ -59,7 +68,7 @@ showUser userInfo =
   ]
 ```
 
-Here the `userInfo` value is being created every time `showUserLazy` is called, so the .lazy always sees it as changed, because records are compared by reference.
+Here the `userInfo` value is being created every time `showUserLazy` is called, so the `lazy` always sees it as changed, because records are compared by reference.
 
 
 ### Gotcha: New view function passed to Html.Lazy functions
