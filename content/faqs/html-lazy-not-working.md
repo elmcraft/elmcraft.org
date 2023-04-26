@@ -11,7 +11,7 @@ The [Elm guide on Html.Lazy](https://guide.elm-lang.org/optimization/lazy.html) 
 Here are some additional gotcha's that are helped by examples.
 
 
-### Understand what consitutes a changed value
+### Understand what constitutes a changed value
 
 The Elm guide has the following note:
 
@@ -24,7 +24,7 @@ The Elm guide has the following note:
 Sometimes it's not clear however when we're ending up with new references. Here are a few common pitfalls:
 
 
-### Gotcha: New values created in the view
+### Gotcha: New references created for the arguments
 
 Here is a lazy that works:
 
@@ -33,7 +33,7 @@ import Html
 import Html.Lazy
 
 showUserLazy model =
-  Html.Lazy.lazy2 showUser model.user.firstname user.age
+  Html.Lazy.lazy2 showUser model.user.firstname model.user.age
 
 showUser firstname age =
   Html.div [] [
@@ -41,7 +41,7 @@ showUser firstname age =
   ]
 ```
 
-Here is a refactor that that doesn't:
+Here is a refactor that doesn't:
 
 ```
 import Html
@@ -59,10 +59,10 @@ showUser userInfo =
   ]
 ```
 
-Here the `userInfo` value is being created every time showUserLazy is called, so the .lazy always sees it as changed, because Records are compared by reference.
+Here the `userInfo` value is being created every time `showUserLazy` is called, so the .lazy always sees it as changed, because records are compared by reference.
 
 
-### Gotcha: Using an anonymous view function instead of a named one
+### Gotcha: New view function passed to Html.Lazy functions
 
 What if we wanted to force a view to be computed once with some dynamic values, and never again?
 
@@ -73,9 +73,9 @@ showUserLazy model =
   Html.Lazy.lazy (\_ -> showUser model.user) "never changes, right?"
 ```
 
-This doesn't work, because `lazy` also checks the function being passed in by reference!
+This doesn't work, because `lazy` also checks that the function being passed is the same reference as before!
 
-Here `(\_ -> showUser model.user)` is an anonymous function value that gets created every single time `showUserLazy` is called, so even though our argument is a static string, Html.Lazy is noticing our function is changing and busting the cache.
+Here `(\_ -> showUser model.user)` is an anonymous function value that gets created every single time `showUserLazy` is called, so even though our argument is a static string, `Html.Lazy.lazy` is noticing our function is changing and busting the cache.
 
 
 
@@ -102,7 +102,7 @@ showUser userInfoString =
     userInfo = userInfoFromString userInfoString
   in
   Html.div [] [
-    Html.text <| values.firstname ++ " is " ++ String.fromInt values.age ++ " years old."
+    Html.text <| userInfo.firstname ++ " is " ++ String.fromInt userInfo.age ++ " years old."
   ]
 ```
 
