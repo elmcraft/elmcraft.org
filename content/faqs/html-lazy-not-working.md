@@ -43,13 +43,15 @@ Here is a lazy that works:
 import Html
 import Html.Lazy
 
+
 showUserLazy model =
-  Html.Lazy.lazy2 showUser model.user.firstname model.user.age
+    Html.Lazy.lazy2 showUser model.user.firstname model.user.age
+
 
 showUser firstname age =
-  Html.div [] [
-    Html.text <| firstname ++ " is " ++ String.fromInt age ++ " years old."
-  ]
+    Html.div []
+        [ Html.text <| firstname ++ " is " ++ String.fromInt age ++ " years old."
+        ]
 ```
 
 Here is a refactor that doesn't:
@@ -58,16 +60,19 @@ Here is a refactor that doesn't:
 import Html
 import Html.Lazy
 
+
 showUserLazy model =
-  let
-    userInfo = { firstname = model.user.firstname, age = model.user.age }
-  in
-  Html.Lazy.lazy showUser userInfo
+    let
+        userInfo =
+            { firstname = model.user.firstname, age = model.user.age }
+    in
+    Html.Lazy.lazy showUser userInfo
+
 
 showUser userInfo =
-  Html.div [] [
-    Html.text <| userInfo.firstname ++ " is " ++ String.fromInt userInfo.age ++ " years old."
-  ]
+    Html.div []
+        [ Html.text <| userInfo.firstname ++ " is " ++ String.fromInt userInfo.age ++ " years old."
+        ]
 ```
 
 Here the `userInfo` value is being created every time `showUserLazy` is called, so the `lazy` always sees it as changed, because records are compared by reference.
@@ -81,7 +86,7 @@ Maybe we could apply this trick, and use a static value that we ignore?
 
 ```
 showUserLazy model =
-  Html.Lazy.lazy (\_ -> showUser model.user) "never changes, right?"
+    Html.Lazy.lazy (\_ -> showUser model.user) "never changes, right?"
 ```
 
 This doesn't work, because `lazy` also checks that the function being passed is the same reference as before!
@@ -102,19 +107,23 @@ There may be situations where reworking your model for this is onerous. We can m
 import Html
 import Html.Lazy
 
+
 showUserLazy model =
-  let
-    userInfoString = userInfoToString { firstname = model.user.firstname, age = model.user.age }
-  in
-  Html.Lazy.lazy showUser userInfoString
+    let
+        userInfoString =
+            userInfoToString { firstname = model.user.firstname, age = model.user.age }
+    in
+    Html.Lazy.lazy showUser userInfoString
+
 
 showUser userInfoString =
-  let
-    userInfo = userInfoFromString userInfoString
-  in
-  Html.div [] [
-    Html.text <| userInfo.firstname ++ " is " ++ String.fromInt userInfo.age ++ " years old."
-  ]
+    let
+        userInfo =
+            userInfoFromString userInfoString
+    in
+    Html.div []
+        [ Html.text <| userInfo.firstname ++ " is " ++ String.fromInt userInfo.age ++ " years old."
+        ]
 ```
 
 We can now have as many arguments dynamically added as we'd like, at the expense of:
