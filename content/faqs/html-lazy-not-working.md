@@ -6,7 +6,7 @@ published: true
 status: seedling
 ---
 
-<tldr>tl;dr: You're likely reacreating the values or view function on each render.</tldr>
+<tldr>tl;dr: You're likely recreating the values or view function on each render.</tldr>
 
 The [Elm guide on Html.Lazy](https://guide.elm-lang.org/optimization/lazy.html) is the best place to start.
 
