@@ -6,6 +6,8 @@ published: true
 status: seedling
 ---
 
+<tldr>tl;dr: You're likely reacreating the values or view function on each render.</tldr>
+
 The [Elm guide on Html.Lazy](https://guide.elm-lang.org/optimization/lazy.html) is the best place to start.
 
 Here are some additional gotcha's that are helped by examples.
@@ -33,7 +35,7 @@ The Elm guide has the following note:
 Sometimes it's not clear however when we're ending up with new references. Here are a few common pitfalls:
 
 
-### Gotcha: New references created for the arguments
+### Gotcha: You're recreating your values
 
 Here is a lazy that works:
 
@@ -71,7 +73,7 @@ showUser userInfo =
 Here the `userInfo` value is being created every time `showUserLazy` is called, so the `lazy` always sees it as changed, because records are compared by reference.
 
 
-### Gotcha: New view function passed to Html.Lazy functions
+### Gotcha: You're recreating your view function
 
 What if we wanted to force a view to be computed once with some dynamic values, and never again?
 
@@ -84,7 +86,7 @@ showUserLazy model =
 
 This doesn't work, because `lazy` also checks that the function being passed is the same reference as before!
 
-Here `(\_ -> showUser model.user)` is an anonymous function value that gets created every single time `showUserLazy` is called, so even though our argument is a static string, `Html.Lazy.lazy` is noticing our function is changing and busting the cache.
+Here `(\_ -> showUser model.user)` is an anonymous function value that gets created every single time `showUserLazy` is called, so even though our argument is a static string, `Html.Lazy.lazy` is being given a new function each time, with no matching cache.
 
 
 
