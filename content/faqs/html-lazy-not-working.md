@@ -1,9 +1,11 @@
 ---
 type: page
 title: Why is my use of Html.Lazy not working?
-description: We explore some common gotcha's for Html.Lazy
+description: We explore some common gotcha's for Html.Lazy in Elm
 published: true
 status: seedling
+authors: "@supermario"
+editors: "@jfmengels"
 ---
 
 <tldr>tl;dr: You're likely recreating the values or view function on each render.</tldr>
@@ -14,7 +16,7 @@ Here are some additional gotcha's that are helped by examples.
 
 <toc></toc>
 
-You can use the following `elm-review` rules to help detect issues with `lazy` usage:
+Note: you can use the following `elm-review` rules to help detect issues with `lazy` usage:
 
 ```
 npx elm-review --template jfmengels/elm-review-performance/preview#lazy --rules NoMisusingLazy
@@ -22,7 +24,7 @@ npx elm-review --template noredink/elm-review-html-lazy --rules UseMemoizedLazyL
 ```
 
 
-### Understand what constitutes a changed value
+## Understand what constitutes a changed value
 
 The Elm guide has the following note:
 
@@ -35,7 +37,7 @@ The Elm guide has the following note:
 Sometimes it's not clear however when we're ending up with new references. Here are a few common pitfalls:
 
 
-### Gotcha: You're recreating your values
+## Gotcha: You're recreating your values
 
 Here is a lazy that works:
 
@@ -78,7 +80,7 @@ showUser userInfo =
 Here the `userInfo` value is being created every time `showUserLazy` is called, so the `lazy` always sees it as changed, because records are compared by reference.
 
 
-### Gotcha: You're recreating your view function
+## Gotcha: You're recreating your view function
 
 What if we wanted to force a view to be computed once with some dynamic values, and never again?
 
