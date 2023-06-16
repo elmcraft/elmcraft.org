@@ -4,6 +4,8 @@ title: ESLint equivalents in Elm
 description: Comparing ESLint functionality and the equivalents in the Elm ecosystem
 published: true
 status: seedling
+authors: "@jfmengels"
+editors: "@supermario"
 ---
 
 
