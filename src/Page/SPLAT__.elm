@@ -25,7 +25,6 @@ import Route
 import RouteCommon exposing (..)
 import Shared
 import Theme
-import Theme.Markdown
 import Theme.Videos
 import Timestamps exposing (Timestamps)
 import Types exposing (..)
