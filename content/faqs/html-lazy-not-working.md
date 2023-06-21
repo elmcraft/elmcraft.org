@@ -130,7 +130,7 @@ import Html exposing (Html)
 import Html.Lazy
 
 
-showUser : Model -> Html msg
+showUserLazy : Model -> Html msg
 showUserLazy model =
     let
         userInfoString : String
