@@ -5,7 +5,7 @@ import DataSource.RSS as RSS
 
 
 url =
-    "https://elm-greenwood.com/.rss"
+    "https://releases.elm.dmy.fr/.rss"
 
 
 packages : DataSource (List RSS.Item)

@@ -255,7 +255,7 @@ viewLatestPackages model packagesM =
             column [ width fill, spacing 30 ]
                 [ row [ width fill ]
                     [ heading3 [] "Latest Elm Packages"
-                    , externalLink [] "See all" "https://elm-greenwood.com/"
+                    , externalLink [] "See all" "https://releases.elm.dmy.fr"
                     ]
                 , items |> List.map (viewPackage model) |> column [ spacing 5, width fill ]
                 ]
