@@ -79,6 +79,7 @@ status: budding
 #### Non-english
 
 - 🇫🇷 [Elm France](https://discord.gg/ZRvrcu7R3U)
+- 🇯🇵 [Elm Japan](https://discordapp.com/invite/4j2MxCg)
 
 #### Projects
 
