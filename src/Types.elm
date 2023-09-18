@@ -6,14 +6,13 @@ import DataSource.ElmTown
 import DataSource.RSS
 import DataStatic.ESLintRules
 import Dict exposing (Dict)
-import Path exposing (Path)
 import Route exposing (Route)
 import Time
+import UrlPath exposing (UrlPath)
 
 
 type alias Model =
     { window : { width : Int, height : Int }
-    , key : Maybe Browser.Navigation.Key
     , isDev : Bool
     , cookieConsent : Consent
     , navExpanded : Bool
@@ -34,10 +33,9 @@ type alias GlobalData =
     }
 
 
-init : { isDev : Bool, key : Maybe Browser.Navigation.Key } -> Model
-init { isDev, key } =
+init : { isDev : Bool } -> Model
+init { isDev } =
     { window = { width = 600, height = 800 }
-    , key = key
     , isDev = isDev
     , cookieConsent = ConsentApproved
     , navExpanded = False
@@ -57,7 +55,7 @@ type Consent
 
 type Msg
     = OnPageChange
-        { path : Path
+        { path : UrlPath
         , query : Maybe String
         , fragment : Maybe String
         }

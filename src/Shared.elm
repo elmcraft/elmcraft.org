@@ -1,17 +1,18 @@
 port module Shared exposing (..)
 
+import BackendTask
+import BackendTask.Helpers exposing (..)
 import Browser.Dom
 import Browser.Events
 import Browser.Navigation
-import DataSource
 import DataSource.Notion
 import Dict
+import Effect exposing (Effect)
 import Element exposing (..)
 import Html exposing (Html)
 import List.Extra as List
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
-import Path exposing (Path)
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import Task
@@ -19,6 +20,7 @@ import Theme
 import Theme.Videos
 import Types exposing (..)
 import Url
+import UrlPath exposing (UrlPath)
 import View exposing (View)
 
 
@@ -53,42 +55,46 @@ type alias Model =
 
 
 init :
-    Maybe Browser.Navigation.Key
-    -> Pages.Flags.Flags
+    Pages.Flags.Flags
     ->
         Maybe
-            { path : { path : Path, query : Maybe String, fragment : Maybe String }
-            , metadata : Maybe Route
+            { path :
+                { path : UrlPath
+                , query : Maybe String
+                , fragment : Maybe String
+                }
+            , metadata : route
             , pageUrl : Maybe PageUrl
             }
-    -> ( Model, Cmd Msg )
-init navigationKey flags maybePagePath =
+    -> ( Model, Effect Msg )
+init flags maybePagePath =
     -- @TODO need a better way to inject this isDev var...
-    ( Types.init { isDev = False, key = navigationKey }
-    , Cmd.batch
+    ( Types.init { isDev = False }
+    , Effect.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
+            |> Effect.fromCmd
         ]
     )
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> ( Model, Effect Msg )
 update msg model =
     case msg of
         OnPageChange _ ->
-            ( { model | navExpanded = False }, Cmd.none )
+            ( { model | navExpanded = False }, Effect.none )
 
         SharedMsg globalMsg ->
-            ( model, Cmd.none )
+            ( model, Effect.none )
 
         WindowResized width height ->
-            ( { model | window = { width = width, height = height } }, Cmd.none )
+            ( { model | window = { width = width, height = height } }, Effect.none )
 
         SetDev bool ->
-            ( { model | isDev = bool }, Cmd.none )
+            ( { model | isDev = bool }, Effect.none )
 
         NewTime newTime ->
-            -- ( { model | currentTime = newTime }, Cmd.none )
-            ( model, Cmd.none )
+            -- ( { model | currentTime = newTime }, Effect.none )
+            ( model, Effect.none )
 
         CookieConsentValueReceived consented ->
             ( { model
@@ -103,7 +109,7 @@ update msg model =
                         Nothing ->
                             ConsentAsk
               }
-            , Cmd.none
+            , Effect.none
             )
 
         CookieConsentSet bool ->
@@ -117,14 +123,14 @@ update msg model =
                             ConsentRejected
               }
               -- , cookieConsentSet bool
-            , Cmd.none
+            , Effect.none
             )
 
         ToggleNav ->
-            ( { model | navExpanded = not model.navExpanded }, Cmd.none )
+            ( { model | navExpanded = not model.navExpanded }, Effect.none )
 
         ClearNav ->
-            ( { model | navExpanded = False, navItemExpanded = Dict.empty }, Cmd.none )
+            ( { model | navExpanded = False, navItemExpanded = Dict.empty }, Effect.none )
 
         ToggleNavItem title ->
             ( { model
@@ -140,18 +146,18 @@ update msg model =
                                         Just True
                             )
               }
-            , Cmd.none
+            , Effect.none
             )
 
         -- Videos
         VideosAddCategoryFilter category ->
-            -- ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Cmd.none )
+            -- ( { model | appliedVideoFilters = category :: model.appliedVideoFilters |> List.uniqueBy Data.Videos.categoryToString }, Effect.none )
             ( { model | appliedVideoFilters = [ category ] }
-            , model.key |> Maybe.map (\key -> Browser.Navigation.pushUrl key "/media/videos") |> Maybe.withDefault Cmd.none
+            , Effect.PushUrl "/media/videos"
             )
 
         VideosRemoveCategoryFilter category ->
-            ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Cmd.none )
+            ( { model | appliedVideoFilters = model.appliedVideoFilters |> List.filter (\category_ -> category_ /= category) }, Effect.none )
 
         -- ESLint Rules
         EslintToggleCategoryFilter category ->
@@ -163,25 +169,25 @@ update msg model =
                     else
                         Just category
               }
-            , Cmd.none
+            , Effect.none
             )
 
         EslintToggleRecommendedFilter ->
             ( { model | appliedEslintRecommendedFilter = not model.appliedEslintRecommendedFilter }
-            , Cmd.none
+            , Effect.none
             )
 
         EslintRemoveCategoryFilter ->
-            ( { model | appliedEslintFilter = Nothing }, Cmd.none )
+            ( { model | appliedEslintFilter = Nothing }, Effect.none )
 
         Noop ->
-            ( model, Cmd.none )
+            ( model, Effect.none )
 
         Debug ->
-            ( model, Cmd.none )
+            ( model, Effect.none )
 
 
-subscriptions : Path -> Model -> Sub Msg
+subscriptions : UrlPath -> Model -> Sub Msg
 subscriptions _ _ =
     Sub.batch
         [ Browser.Events.onResize Types.WindowResized
@@ -189,27 +195,27 @@ subscriptions _ _ =
         ]
 
 
-data : DataSource.DataSource Data
+data : BTask Data
 data =
     -- @TODO figure out how we can use this globally and swap for SPLAT__ usage of Notion.getVideos
     -- Notion.getVideos
     --     |> DataSource.map (\videos -> { videos = videos })
-    DataSource.succeed { videos = [] }
+    BackendTask.succeed { videos = [] }
 
 
 view :
     Data
     ->
-        { path : Path
+        { path : UrlPath
         , route : Maybe Route
         }
     -> Model
     -> (Msg -> msg)
     -> View msg
-    -> { body : Html msg, title : String }
+    -> { body : List (Html msg), title : String }
 view sharedData page model toMsg pageView =
     { title = pageView.title
     , body =
         -- @NOTE: the sharedData is not helpful here, as pageView already contains rendered page
-        Theme.view { page = page, pageView = pageView, sharedData = sharedData } toMsg model pageView
+        [ Theme.view { page = page, pageView = pageView, sharedData = sharedData } toMsg model pageView ]
     }

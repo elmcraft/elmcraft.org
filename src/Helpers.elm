@@ -1,7 +1,7 @@
 module Helpers exposing (..)
 
-import Path
 import Route exposing (..)
+import UrlPath exposing (UrlPath)
 
 
 home =
@@ -20,4 +20,4 @@ splat s parts =
 
 
 toPath route =
-    route |> Route.toPath |> Path.toAbsolute
+    route |> Route.toPath |> UrlPath.toAbsolute

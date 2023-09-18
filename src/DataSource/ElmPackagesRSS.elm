@@ -1,6 +1,6 @@
 module DataSource.ElmPackagesRSS exposing (..)
 
-import DataSource exposing (DataSource)
+import BackendTask.Helpers exposing (..)
 import DataSource.RSS as RSS
 
 
@@ -8,16 +8,16 @@ url =
     "https://releases.elm.dmy.fr/.rss"
 
 
-packages : DataSource (List RSS.Item)
+packages : BTask (List RSS.Item)
 packages =
     RSS.items url
 
 
-packagesTotal : DataSource Int
+packagesTotal : BTask Int
 packagesTotal =
     RSS.itemsTotal url
 
 
-packagesLatest : Int -> DataSource (List RSS.Item)
+packagesLatest : Int -> BTask (List RSS.Item)
 packagesLatest count =
     RSS.itemsLatest url count

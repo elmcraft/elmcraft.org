@@ -25,7 +25,7 @@ empty =
     , description = "empty"
     , published = False
     , status = Nothing
-    , route = Route.NotFound
+    , route = Route.SPLAT__ { splat = [ "empty" ] }
     , authors = []
     , editors = []
     }
