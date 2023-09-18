@@ -12,6 +12,7 @@ import Icon
 import Markdown.Html
 import Pages.Homepage
 import Theme.Articles
+import Theme.Compare
 import Theme.CuratedBy
 import Theme.ESLintRules
 import Theme.Feature
@@ -258,6 +259,10 @@ htmlMapping model global =
         , Markdown.Html.tag "eslint-compare-elm"
             (\children ->
                 Theme.ESLintRules.view model
+            )
+        , Markdown.Html.tag "compare"
+            (\children ->
+                Theme.Compare.view model
             )
         ]
 

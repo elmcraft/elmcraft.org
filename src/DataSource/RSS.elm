@@ -1,49 +1,38 @@
 module DataSource.RSS exposing (..)
 
-import DataSource exposing (DataSource)
-import DataSource.Http
-import OptimizedDecoder as Optimized
-import Pages.Secrets as Secrets
+import BackendTask exposing (BackendTask)
+import BackendTask.Helpers exposing (..)
+import BackendTask.Http
 import Serialize as S
 import Xml.Decode exposing (..)
 
 
-items : String -> DataSource (List Item)
+items : String -> BTask (List Item)
 items url =
     withFeed url itemsDecoder
-        |> DataSource.distillSerializeCodec ("items:" ++ url) (S.list itemCodec)
 
 
-itemsTotal : String -> DataSource Int
+itemsTotal : String -> BTask Int
 itemsTotal url =
     withFeed url totalDecoder
-        |> DataSource.distillSerializeCodec ("itemTotal:" ++ url) S.int
 
 
-itemLatest : String -> DataSource Item
+itemLatest : String -> BTask Item
 itemLatest url =
     withFeed url latestItemDecoder
-        |> DataSource.distillSerializeCodec ("itemLatest:" ++ url) itemCodec
 
 
-itemsLatest : String -> Int -> DataSource (List Item)
+itemsLatest : String -> Int -> BTask (List Item)
 itemsLatest url count =
     withFeed url itemsDecoder
-        |> DataSource.map (List.take count)
-        |> DataSource.distillSerializeCodec ("itemLatest:" ++ String.fromInt count ++ ":" ++ url) (S.list itemCodec)
+        |> BackendTask.map (List.take count)
 
 
-withFeed : String -> Decoder a -> DataSource a
+withFeed : String -> Decoder a -> BTask a
 withFeed url decoder =
-    DataSource.Http.unoptimizedRequest
-        (Secrets.succeed
-            { url = url
-            , method = "GET"
-            , headers = []
-            , body = DataSource.Http.emptyBody
-            }
-        )
-        (DataSource.Http.expectString (decodeString decoder))
+    BackendTask.Http.get url BackendTask.Http.expectString
+        |> BackendTask.allowFatal
+        |> BackendTask.andThen (decodeString decoder >> fromResultFatal)
 
 
 type alias Item =

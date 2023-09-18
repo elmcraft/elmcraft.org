@@ -4,18 +4,18 @@ import DataSource.Meta exposing (..)
 import Element exposing (Element)
 import Head
 import Head.Seo as Seo
-import Page exposing (Page, PageWithState, StaticPayload)
 import Pages.Url
-import Path
+import RouteBuilder exposing (App)
 import Timestamps exposing (Timestamps)
 import Types
+import UrlPath
 
 
 type alias Data =
-    { ui : Types.Model -> Types.GlobalData -> List (Element Types.Msg)
-    , meta : Meta
+    { meta : Meta
     , timestamps : Timestamps
     , global : Types.GlobalData
+    , rawMarkdown : String
     }
 
 
@@ -23,7 +23,7 @@ type alias RouteParams =
     { splat : List String }
 
 
-head : StaticPayload Data routeParams -> List Head.Tag
+head : App Data actionData routeParams -> List Head.Tag
 head static =
     Seo.summary
         { canonicalUrlOverride = Nothing
@@ -37,7 +37,7 @@ head static =
 
 
 seoImage =
-    { url = Path.fromString "/images/elmcraft-logo.png" |> Pages.Url.fromPath
+    { url = UrlPath.fromString "/images/elmcraft-logo.png" |> Pages.Url.fromPath
     , alt = "Elmcraft logo"
     , dimensions = Nothing
     , mimeType = Nothing

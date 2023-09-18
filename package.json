@@ -2,19 +2,24 @@
   "name": "elmcraft.org",
   "version": "1.0.0",
   "description": "Elmcraft.org Website",
+  "type": "module",
   "scripts": {
+    "postinstall": "elm-tooling install",
     "start": "elm-pages dev",
-    "build": "(mkdir .elm-pages || true) && elm make src/Config.elm && NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/not-found/index.html dist/404.html",
-    "postinstall": "elm-tooling install"
+    "build": "NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/404/index.html dist/404.html"
   },
   "author": "Mario Rogic",
   "license": "BSD-3",
   "devDependencies": {
-    "elm-optimize-level-2": "^0.2.3",
-    "elm-review": "^2.6.1",
-    "elm-tooling": "^1.6.0"
+    "elm-codegen": "^0.5.0",
+    "elm-optimize-level-2": "^0.3.5",
+    "elm-pages": "^3.0.8",
+    "elm-review": "^2.10.2",
+    "elm-tooling": "^1.14.1",
+    "vite": "^4.4.9"
   },
   "dependencies": {
-    "elm-pages": "^2.1.11"
+    "@netlify/functions": "^2.0.2",
+    "lamdera": "^0.19.1-1.2.0-1"
   }
 }

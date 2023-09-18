@@ -1,50 +1,53 @@
 module DataSource.MarkdownElmUi exposing (..)
 
-import DataSource exposing (DataSource)
-import DataSource.File
-import DataSource.Glob as Glob
+import BackendTask
+import BackendTask.File
+import BackendTask.Glob as Glob
+import BackendTask.Helpers exposing (..)
 import DataSource.Meta exposing (..)
 import Element exposing (..)
+import Json.Decode as D
+import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import List.Extra as List
 import Markdown.Parser
 import Markdown.Renderer
-import OptimizedDecoder as Decode
-import OptimizedDecoder.Pipeline exposing (hardcoded, optional, required)
 import Parser
 import Route
 import Theme.Markdown
+import Types
+import UrlPath exposing (UrlPath)
 import View exposing (..)
 
 
-decodeMeta : List String -> Decode.Decoder Meta
+decodeMeta : List String -> D.Decoder Meta
 decodeMeta splat =
-    Decode.succeed Meta
-        |> required "title" Decode.string
-        |> required "description" Decode.string
-        |> required "published" Decode.bool
-        |> optional "status" (decodeStatus |> Decode.andThen (\v -> Decode.succeed <| Just v)) Nothing
+    D.succeed Meta
+        |> required "title" D.string
+        |> required "description" D.string
+        |> required "published" D.bool
+        |> optional "status" (decodeStatus |> D.andThen (\v -> D.succeed <| Just v)) Nothing
         |> hardcoded (Route.SPLAT__ { splat = splat })
-        |> optional "authors" (Decode.string |> Decode.map (\v -> String.split "," v)) []
-        |> optional "editors" (Decode.string |> Decode.map (\v -> String.split "," v)) []
+        |> optional "authors" (D.string |> D.map (\v -> String.split "," v)) []
+        |> optional "editors" (D.string |> D.map (\v -> String.split "," v)) []
 
 
-decodeStatus : Decode.Decoder Status
+decodeStatus : D.Decoder Status
 decodeStatus =
-    Decode.string
-        |> Decode.andThen
+    D.string
+        |> D.andThen
             (\s ->
                 case s of
                     "seedling" ->
-                        Decode.succeed Seedling
+                        D.succeed Seedling
 
                     "budding" ->
-                        Decode.succeed Budding
+                        D.succeed Budding
 
                     "evergreen" ->
-                        Decode.succeed Evergreen
+                        D.succeed Evergreen
 
                     _ ->
-                        Decode.fail ("Was expecting a Status of evergreen|seedling|budding but got: " ++ s)
+                        D.fail ("Was expecting a Status of evergreen|seedling|budding but got: " ++ s)
             )
 
 
@@ -53,23 +56,34 @@ routeAsLoadedPageAndThen routeParams fn =
         parts ->
             parts
                 |> withOrWithoutIndexSegment
-                |> DataSource.andThen
+                |> BackendTask.andThen
                     (\path ->
                         path
-                            |> DataSource.File.bodyWithFrontmatter
+                            |> BackendTask.File.bodyWithFrontmatter
                                 (\rawMarkdown ->
-                                    decodeMeta routeParams.splat
-                                        |> Decode.andThen
+                                    -- Remove when improvement merged
+                                    -- https://github.com/dillonkearns/elm-pages/pull/421
+                                    D.oneOf
+                                        [ decodeMeta routeParams.splat
+
+                                        -- , D.succeed ()
+                                        --     |> D.andThen
+                                        --         (\_ ->
+                                        --             decodeMeta routeParams.splat
+                                        --                 |> Debug.log ("❌ Failed to decode metadata for " ++ path)
+                                        --         )
+                                        ]
+                                        |> D.andThen
                                             (\meta ->
-                                                markdownRenderer rawMarkdown path meta
-                                                    |> Decode.map (\ui -> { ui = ui, meta = meta, markdown = rawMarkdown })
+                                                D.succeed { meta = meta, markdown = rawMarkdown }
                                             )
                                 )
-                            |> DataSource.andThen (fn path)
+                            |> BackendTask.allowFatal
+                            |> BackendTask.andThen (fn path)
                     )
 
 
-withOrWithoutIndexSegment : List String -> DataSource String
+withOrWithoutIndexSegment : List String -> BTask String
 withOrWithoutIndexSegment parts =
     Glob.succeed identity
         |> Glob.match (Glob.literal ("content" :: parts |> String.join "/"))
@@ -82,8 +96,10 @@ withOrWithoutIndexSegment parts =
         |> Glob.match (Glob.literal ".md")
         |> Glob.captureFilePath
         |> Glob.expectUniqueMatch
+        |> BackendTask.allowFatal
 
 
+markdownRenderer : String -> String -> Meta -> D.Decoder (Types.Model -> Types.GlobalData -> List (Element Types.Msg))
 markdownRenderer rawMarkdown path meta =
     rawMarkdown
         |> prefixMarkdownTableOfContents
@@ -112,7 +128,39 @@ markdownRenderer rawMarkdown path meta =
                     )
             )
         |> Result.mapError (\err -> err |> (++) ("Failure in path " ++ ": "))
-        |> Decode.fromResult
+        |> (\v ->
+                case v of
+                    Ok value ->
+                        D.succeed value
+
+                    Err err ->
+                        D.fail err
+           )
+
+
+markdownRendererDirect : String -> Route.Route -> Types.Model -> Types.GlobalData -> List (Element Types.Msg)
+markdownRendererDirect rawMarkdown route model global =
+    rawMarkdown
+        |> Markdown.Parser.parse
+        |> Result.mapError
+            (\errs ->
+                errs
+                    |> List.map parserDeadEndToString
+                    |> String.join "\n"
+                    |> (++) ("Failure in path " ++ ": ")
+            )
+        |> Result.andThen
+            (\blocks ->
+                Markdown.Renderer.render (Theme.Markdown.renderer model global) blocks
+            )
+        |> (\res ->
+                case res of
+                    Ok ui ->
+                        ui
+
+                    Err err ->
+                        [ text <| "Failure in path " ++ Route.toString route ++ ": " ++ err ]
+           )
 
 
 parserDeadEndToString err =
