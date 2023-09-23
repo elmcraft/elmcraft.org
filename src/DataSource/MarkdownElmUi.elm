@@ -99,8 +99,7 @@ withOrWithoutIndexSegment parts =
         |> BackendTask.allowFatal
 
 
-markdownRenderer : String -> String -> Meta -> D.Decoder (Types.Model -> Types.GlobalData -> List (Element Types.Msg))
-markdownRenderer rawMarkdown path meta =
+markdownRendererCore rawMarkdown =
     rawMarkdown
         |> prefixMarkdownTableOfContents
         |> Markdown.Parser.parse
@@ -111,6 +110,12 @@ markdownRenderer rawMarkdown path meta =
                     |> String.join "\n"
                     |> (++) ("Failure in path " ++ ": ")
             )
+
+
+markdownRenderer : String -> String -> Meta -> D.Decoder (Types.Model -> Types.GlobalData -> List (Element Types.Msg))
+markdownRenderer rawMarkdown path meta =
+    rawMarkdown
+        |> markdownRendererCore
         |> Result.andThen
             (\blocks ->
                 Ok
@@ -141,14 +146,7 @@ markdownRenderer rawMarkdown path meta =
 markdownRendererDirect : String -> Route.Route -> Types.Model -> Types.GlobalData -> List (Element Types.Msg)
 markdownRendererDirect rawMarkdown route model global =
     rawMarkdown
-        |> Markdown.Parser.parse
-        |> Result.mapError
-            (\errs ->
-                errs
-                    |> List.map parserDeadEndToString
-                    |> String.join "\n"
-                    |> (++) ("Failure in path " ++ ": ")
-            )
+        |> markdownRendererCore
         |> Result.andThen
             (\blocks ->
                 Markdown.Renderer.render (Theme.Markdown.renderer model global) blocks
