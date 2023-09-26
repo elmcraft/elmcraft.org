@@ -55,7 +55,7 @@ Prefer listening on the go? There are plenty of Elm podcast episodes to keep you
 
   5 Episodes
 
-  [https://www.implementingelm.com/](https://www.implementingelm.com/)
+  [https://www.implementingelm.com/](https://open.spotify.com/show/4FwkONPq0df0bx1K4PwXhX)
 
   </column>
 </rowToColumnWhenSmall>
