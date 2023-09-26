@@ -33,6 +33,7 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 - [Building Web Apps with Elm](https://pragmaticstudio.com/elm) - Pragmatic Studio
 - [Declarative UIs without CSS with elm-ui](https://egghead.io/courses/declarative-uis-without-css-with-elm-ui-93bd) - Flavio Corpa (egghead.io)
 - [Elm - The Complete Guide](https://www.udemy.com/course/elm-the-complete-guide/) - Carlos Saltos (Udemy)
+- [Elm for React Devs](https://elmforreactdevs.com/) - Dwight  (Patreon)
 
 #### Paid Books
 
