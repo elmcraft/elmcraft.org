@@ -245,6 +245,7 @@ blockQuote =
             Html.div
                 [ Attr.style "padding" "12px"
                 , Attr.style "border-left" "2px solid #eee"
+                , Attr.style "border-left" "2px solid #333"
                 , Attr.style "font-style" "italic"
                 , Attr.style "font-size" "22px"
                 ]

@@ -40,7 +40,7 @@ renderer model global =
                     [ Font.size 18
                     , Font.italic
                     , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
-                    , Border.color grey
+                    , Border.color charcoal
                     , Font.color charcoal
                     , paddingXY 15 0
                     , width fill

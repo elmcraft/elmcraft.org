@@ -251,12 +251,31 @@ heading { level, rawText, children } =
          )
             ++ [ Region.heading (headingLevelToInt level)
                , htmlAttribute
-                    (Html.Attributes.attribute "name" (rawTextToId rawText))
+                    (Html.Attributes.attribute "name" (stringToTitleId rawText))
                , htmlAttribute
-                    (Html.Attributes.id (rawTextToId rawText))
+                    (Html.Attributes.id (stringToTitleId rawText))
                ]
         )
         children
+
+
+stringToTitleId s =
+    s
+        |> String.toLower
+        |> String.replace "?" "-"
+        |> String.replace "!" ""
+        |> String.replace "." ""
+        |> String.replace "," ""
+        |> String.replace "'" ""
+        |> String.replace "/" "-"
+        |> String.replace "`" ""
+        |> String.replace "<" ""
+        |> String.replace ">" ""
+        |> String.replace "”" ""
+        |> String.replace "“" ""
+        |> String.split " "
+        |> List.filter (not << String.isEmpty)
+        |> String.join "-"
 
 
 heading1 label =
@@ -276,13 +295,6 @@ headingLargest attrs children =
             ++ attrs
         )
         children
-
-
-rawTextToId rawText =
-    rawText
-        |> String.toLower
-        |> String.replace " " "-"
-        |> String.replace "." ""
 
 
 heading2 attrs label =
@@ -458,3 +470,7 @@ boxNoPadding children =
         , alignTop
         ]
         children
+
+
+titleCase s =
+    (s |> String.left 1 |> String.toUpper) ++ String.dropLeft 1 s

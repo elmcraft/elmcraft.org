@@ -13,7 +13,6 @@ import UrlPath exposing (UrlPath)
 
 type alias Model =
     { window : { width : Int, height : Int }
-    , isDev : Bool
     , cookieConsent : Consent
     , navExpanded : Bool
     , navItemExpanded : Dict String Bool
@@ -24,7 +23,8 @@ type alias Model =
 
 
 type alias GlobalData =
-    { videos : List Video
+    { isDev : Bool
+    , videos : List Video
     , videosCount : Int
     , latestElmRadio : Maybe DataSource.ElmRadio.Episode
     , latestElmTown : Maybe DataSource.ElmTown.Episode
@@ -33,10 +33,9 @@ type alias GlobalData =
     }
 
 
-init : { isDev : Bool } -> Model
-init { isDev } =
+init : Model
+init =
     { window = { width = 600, height = 800 }
-    , isDev = isDev
     , cookieConsent = ConsentApproved
     , navExpanded = False
     , navItemExpanded = Dict.empty
@@ -61,7 +60,6 @@ type Msg
         }
     | SharedMsg SharedMsg
     | WindowResized Int Int
-    | SetDev Bool
     | NewTime Time.Posix
     | CookieConsentValueReceived (Maybe Bool)
     | CookieConsentSet Bool

@@ -1,6 +1,7 @@
-port module Shared exposing (..)
+module Shared exposing (..)
 
 import BackendTask
+import BackendTask.Env
 import BackendTask.Helpers exposing (..)
 import Browser.Dom
 import Browser.Events
@@ -24,9 +25,6 @@ import UrlPath exposing (UrlPath)
 import View exposing (View)
 
 
-port setDev : (Bool -> msg) -> Sub msg
-
-
 template : SharedTemplate Msg Model Data msg
 template =
     { init = init
@@ -43,7 +41,9 @@ type alias Msg =
 
 
 type alias Data =
-    { videos : List Video }
+    { isDev : Bool
+    , videos : List Video
+    }
 
 
 type alias SharedMsg =
@@ -69,7 +69,7 @@ init :
     -> ( Model, Effect Msg )
 init flags maybePagePath =
     -- @TODO need a better way to inject this isDev var...
-    ( Types.init { isDev = False }
+    ( Types.init
     , Effect.batch
         [ Task.perform (\vp -> WindowResized (round vp.viewport.width) (round vp.viewport.height)) Browser.Dom.getViewport
             |> Effect.fromCmd
@@ -88,9 +88,6 @@ update msg model =
 
         WindowResized width height ->
             ( { model | window = { width = width, height = height } }, Effect.none )
-
-        SetDev bool ->
-            ( { model | isDev = bool }, Effect.none )
 
         NewTime newTime ->
             -- ( { model | currentTime = newTime }, Effect.none )
@@ -191,7 +188,6 @@ subscriptions : UrlPath -> Model -> Sub Msg
 subscriptions _ _ =
     Sub.batch
         [ Browser.Events.onResize Types.WindowResized
-        , setDev SetDev
         ]
 
 
@@ -200,7 +196,23 @@ data =
     -- @TODO figure out how we can use this globally and swap for SPLAT__ usage of Notion.getVideos
     -- Notion.getVideos
     --     |> DataSource.map (\videos -> { videos = videos })
-    BackendTask.succeed { videos = [] }
+    BackendTask.Env.get "DEV"
+        |> BackendTask.andThen
+            (\isDevM ->
+                let
+                    isDev =
+                        case isDevM of
+                            Just _ ->
+                                True
+
+                            Nothing ->
+                                False
+                in
+                BackendTask.succeed
+                    { isDev = isDev
+                    , videos = []
+                    }
+            )
 
 
 view :
@@ -217,5 +229,14 @@ view sharedData page model toMsg pageView =
     { title = pageView.title
     , body =
         -- @NOTE: the sharedData is not helpful here, as pageView already contains rendered page
-        [ Theme.view { page = page, pageView = pageView, sharedData = sharedData } toMsg model pageView ]
+        [ Theme.view
+            { isDev = sharedData.isDev
+            , page = page
+            , pageView = pageView
+            , sharedData = sharedData
+            }
+            toMsg
+            model
+            pageView
+        ]
     }

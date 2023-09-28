@@ -95,6 +95,10 @@ elmcraftTurquoise =
     rgb 78 169 244
 
 
+loreBg =
+    fromHex "#f9eceb"
+
+
 pink =
     fromHex "#f9eceb"
 
