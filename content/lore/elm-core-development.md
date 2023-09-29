@@ -20,7 +20,7 @@ editors: "@jfmengels,@wolfadex"
 
 ---
 
-*Authored by non-core Elm community members: Mario Rogic and Jakub Hampl. Both Mario and Jakub have been in the Elm Community since 2016. Mario maintains Lamdera and Elmcraft. Jakub works on elm-visualization. This page expresses our private opinions; however we have some indication that these ideas are not uncommon among the more seasoned members of the community. Editors: Jeroen Engels, Wolfgang Schuster.*
+*Authored by non-core Elm community members: Mario Rogic and Jakub Hampl. Both Mario and Jakub have been in the Elm Community since 2016. Mario maintains [Lamdera](https://lamdera.com) and Elmcraft. Jakub works on [elm-visualization](https://package.elm-lang.org/packages/gampleman/elm-visualization/latest/). This page expresses our private opinions; however we have some indication that these ideas are not uncommon among the more seasoned members of the community. Editors: Jeroen Engels, Wolfgang Schuster.*
 
 ---
 
@@ -40,9 +40,9 @@ Today the “Elm core team” consists of Evan Czaplicki and Tereza Sokol. The p
 - [The Elm Compiler](https://github.com/elm/compiler)
 - [https://elm-lang.org/]() - [github](https://github.com/elm/elm-lang.org)
 - [https://package.elm-lang.org/](https://package.elm-lang.org/) - github
-- The `elm/*` Elm packages: [elm/core](), [elm/browser](), [elm/bytes](), [elm/file](), [elm/html](), [elm/http](), [elm/json](), [elm/parser](), [elm/random](), [elm/regex](), [elm/svg](), [elm/time](), [elm/url](), elm/virtual-dom, elm-explorations/markdown
+- The `elm/*` Elm packages: [elm/core](https://package.elm-lang.org/packages/elm/core/latest/), [elm/browser](https://package.elm-lang.org/packages/elm/browser/latest/), [elm/bytes](https://package.elm-lang.org/packages/elm/bytes/latest/), [elm/file](https://package.elm-lang.org/packages/elm/file/latest/), [elm/html](https://package.elm-lang.org/packages/elm/html/latest/), [elm/http](https://package.elm-lang.org/packages/elm/http/latest/), [elm/json](https://package.elm-lang.org/packages/elm/json/latest/), [elm/parser](https://package.elm-lang.org/packages/elm/parser/latest/), [elm/random](https://package.elm-lang.org/packages/elm/random/latest/), [elm/regex](https://package.elm-lang.org/packages/elm/regex/latest/), [elm/svg](https://package.elm-lang.org/packages/elm/svg/latest/), [elm/time](https://package.elm-lang.org/packages/elm/time/latest/), [elm/url](https://package.elm-lang.org/packages/elm/url/latest/), [elm/virtual-dom](https://package.elm-lang.org/packages/elm/virtual-dom/latest/), [elm-explorations/markdown](https://package.elm-lang.org/packages/elm-explorations/markdown/latest/)
 
-All these projects (the “Elm core projects”) are released with an open source licence (BSD-3-Clause).
+All these projects (the “Elm core projects”) are released with an open source licence ([BSD-3-Clause](https://github.com/elm/core/blob/master/LICENSE)).
 
 In many open source projects, this generally comes with some **implicit/defacto expectations** that other things will also be open; i.e. design, governance, future direction and contributions.
 
@@ -106,7 +106,7 @@ Arguments and debates usually spring up between people who’ve chosen different
     - [Lamdera](https://lamdera.com), a backwards/forwards-compatible soft-fork of the Elm compiler, with features for full-stack Elm and extensions for Elm tooling authors and Elm users
     - [elm-pages](https://elm-pages.com) - JAMstack for elm.
   - Some people take inspiration and start new initiatives not compatible with Elm core
-    - Gren, a hard fork of Elm by Robin Heggelund Hansen, previous contributor to various Elm projects
+    - [Gren](https://gren-lang.org), a hard fork of Elm by Robin Heggelund Hansen, previous contributor to various Elm projects
 
 
 The Elm community is not ignorant of the trade-offs of Evan’s choices – we just acknowledge they are the trade-offs he has chosen and communicated repeatedly.
@@ -120,12 +120,13 @@ Arguments in this line seem to carry a few assumptions:
 - That Evan has never had these conversations before
 - That because Evan is obviously wrong, the only remaining issue is to badger him until he becomes rational and changes his mind
 
+Since the second has been tried a lot (unsuccessfully), we can safely conclude the first isn't the case.
 
 
 
 ### But surely this way of doing things will cause people to abandon Elm? How is Elm going to achieve wide adoption?
 
-There is a certain inconsistency between some early Elm material (notably “Let’s be mainstream!”) and some of the later material (notably “The hard parts of Open Source”). Elm in the more distant past indeed was - and promoted itself to be - more open to participation, and a lot of this was scaled back over time. Humans are like that - we change. Our situations change. Our opinions and the tradeoffs we are willing to make evolve as we get older and get to know ourselves.
+There is a certain inconsistency between some early Elm material (notably [“Let’s be mainstream!”](https://www.youtube.com/watch?v=oYk8CKH7OhE)) and some of the later material (notably [“The hard parts of Open Source”](https://www.youtube.com/watch?v=o_4EX4dPppA)). Elm in the more distant past indeed was - and promoted itself to be - more open to participation, and a lot of this was scaled back over time. Humans are like that - we change. Our situations change. Our opinions and the tradeoffs we are willing to make evolve as we get older and get to know ourselves.
 
 <wip note="Mario: come back to this when we have a page to link to">The 0.19 Kernel Saga is an example of an event that was difficult for many along this path.</wip>
 
