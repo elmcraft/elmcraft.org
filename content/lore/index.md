@@ -8,9 +8,7 @@ authors: "@supermario"
 ---
 
 
-> lore
->
-> /lɔː/ *noun*
+> **LORE**  &nbsp;&nbsp; /lɔː/ *noun*
 >
 > a body of traditions and knowledge on a subject or held by a particular group, typically passed from person to person by word of mouth.
 
@@ -39,4 +37,4 @@ All Elmcraft Lore articles clearly mark their authors and editors.
 
 - [Elm Core Development](/lore/elm-core-development)
 - [Elm Core Team](/lore/elm-core-team)
-
+- [How to report critical issues](/lore/how-to-report-critical-issues)

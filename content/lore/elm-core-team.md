@@ -7,19 +7,21 @@ status: seedling
 authors: "@supermario"
 ---
 
-<lore/>
+<lore></lore>
 
 
 ## Who is on the Elm core team?
 
-A team is comprised of effectively one person: Evan. He also has the support of his wife, Tereza.
+The Elm core team is effectively [Evan Czaplicki](https://twitter.com/evancz). He works alongside his wife, [Tereza Sokol](https://twitter.com/tereza_sokol) as [elm.studio](https://elm.studio/).
 
 
 ## What happened to the core team?
 
-There never really was a core team. Earlier in Elm's history, Evan was in a phase that was more collaborative before Elm developed towards the relative stability that is present today, however that work was mostly centered around packages.
+There never really was a core team in the sense you might expect.
 
-The Elm language and [compiler work from a code perspective has always been predominantly Evan's work, as witnessed by the public contribution log](https://github.com/elm/compiler/graphs/contributors).
+Earlier in Elm's history, Evan was in a phase that was more collaborative in discussions before Elm developed towards the relative stability that is present today.
+
+The Elm language and [compiler work from a code perspective has always been predominantly Evan's work, as witnessed by the public contribution log](https://github.com/elm/compiler/graphs/contributors). Code contributions were mostly centered around packages.
 
 
 ## What about the `elm-explorations/*` repositories and maintainers?
@@ -44,4 +46,4 @@ The [September 2019 - Elm + Bekk](https://elm-lang.org/news/elm-and-bekk) blog p
 
 Robin's work was mostly focused on [specific performance improvements to Elm core package primitives, i.e. Dict](https://groups.google.com/g/elm-dev/c/--fK-wMoDig/m/p6zF4-5sAgAJ), which was done in consultation with Evan.
 
-According to Robin, Bekk stopped sponsoring his 20% for internal reasons unrelated to Elm.
+According to Robin, Bekk stopped sponsoring his 20% time for internal reasons unrelated to Elm.

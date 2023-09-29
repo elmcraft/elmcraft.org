@@ -8,10 +8,9 @@ authors: "@supermario,@gampleman"
 editors: "@jfmengels,@wolfadex"
 ---
 
-<lore/>
+<lore></lore>
 
-<tldr>TL;DR: Elm core dev (Evan) works differently, with tradeoffs some people dislike. Those conversations repeat. Core is considered stable, there are [no critical bugs or blockers](https://github.com/elm-janitor/manifesto). Rare [critical issues get attention](https://github.com/elm/virtual-dom/issues/168#issuecomment-1125076213). [Elm core design won't change for a while](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2). The [Elm community is very active](/).</tldr>
-
+<tldr>TL;DR: Elm core dev (Evan) works differently, with tradeoffs some people dislike. Those conversations repeat. Core is considered stable, there are [no critical bugs or blockers](https://github.com/elm-janitor/manifesto). Rare [critical issues get attention](https://github.com/elm/virtual-dom/issues/168#issuecomment-1125076213). [Elm core design won't change for a while](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2). Evan is in a long cycle [working on an Elm-DB exploration](https://discourse.elm-lang.org/t/status-update-3-nov-2021/7870). The [Elm community is very active](/).</tldr>
 
 
 > This article describes some of the peculiarities of Elm’s development model and their consequences. This model isn’t to everyone’s taste. We have noticed that there is often a desire to vocally criticise this model. That’s okay - there are certainly aspects worth criticising. We summarise or generalise some of these criticisms and try to respond to them, clearly delineating between productive and unproductive ways to move forward.
@@ -35,7 +34,7 @@ editors: "@jfmengels,@wolfadex"
 
 Elm is a language designed and developed by Evan Czaplicki. Elm core development functions differently to the average open source project.
 
-Today the “Elm core team” consists of Evan Czaplicki and Tereza Sokol. The projects they cover are:
+Today the “[Elm Core Team](/lore/elm-core-team)” consists of Evan Czaplicki and Tereza Sokol. The projects they cover are:
 
 - [The Elm Compiler](https://github.com/elm/compiler)
 - [https://elm-lang.org/]() - [github](https://github.com/elm/elm-lang.org)
@@ -59,6 +58,9 @@ All the action in the Elm community happens mostly outside the Elm core projects
 
 ## Common negative sentiments
 
+Note: for newcomers, many of these questions are natural, and it might be their first time asking them, even though others have heard the sentiment dozens of times.
+
+
 ### Why is there no activity on `<some core repository>`? There have been `<number>` of open PRs for `<long unit of time>`!
 
 Evan chooses to work in a [batching development workflow](https://github.com/elm/expectations/blob/master/batching.md), which means Elm core repositories don’t prioritise consistent activity as a signal for health. Evan’s design philosophy also tends to view issues holistically, not attempting to resolve issues one at a time, as is most common. [“It's better to do it right than to do it right now.”](https://twitter.com/evancz/status/928359227541798912) is the thinking that guides this.
@@ -71,10 +73,9 @@ In the rare case there are security issues, there is [precedence for these being
 
 ### I think Evan/”the core team”/”leadership” should just `<some action>`, it would `<good outcome>` for `<good arguments>`.
 
-We agree, it does seem that `<some action>` could lead to the `<good outcome>` and you’ve made some `<good arguments>`.
+We often agree, it does *seem* that `<some action>` could lead to the `<good outcome>` and you’ve made some `<good arguments>`.
 
-
-We don’t control Evan and Tereza’s focus or process however. Elm core is open sourced code, but not open governance. They have chosen a process that has a different set of tradeoffs and made their position clear.
+We don’t control Evan's focus or process however. Elm core is open sourced code, but not open governance. Evan has chosen a process that has a different set of tradeoffs and made his position clear.
 
 To reiterate: a bunch of Elm community members might agree with you! But we’re not in a position to make changes to the Elm core development model. It is also very probable that Evan has heard your `<good argument>` before. He has made it clear that he does not want to change the model and isn’t (as far as we can tell) particularly interested in revisiting these discussions at this time.
 
@@ -113,20 +114,22 @@ The Elm community is not ignorant of the trade-offs of Evan’s choices – we j
 
 We’re also human: the tradeoffs may not be ideal, they may not be the ones we would have chosen, but there is no choice that pleases everyone: so we respect Evan’s right to choose.
 
+
 ### Why doesn't someone talk to Evan and make him see sense?
 
 Arguments in this line seem to carry a few assumptions:
 
-- That Evan has never had these conversations before
-- That because Evan is obviously wrong, the only remaining issue is to badger him until he becomes rational and changes his mind
+- That Evan has never had these conversations before / is uninformed / is ignorant
+- That because Evan is “obviously wrong”, the only remaining issue is to badger him until he “becomes rational” and changes his mind
 
 Since the second has been tried a lot (unsuccessfully), we can safely conclude the first isn't the case.
 
+Evan spoke directly about this topic in [“The hard parts of Open Source”](https://www.youtube.com/watch?v=o_4EX4dPppA).
 
 
 ### But surely this way of doing things will cause people to abandon Elm? How is Elm going to achieve wide adoption?
 
-There is a certain inconsistency between some early Elm material (notably [“Let’s be mainstream!”](https://www.youtube.com/watch?v=oYk8CKH7OhE)) and some of the later material (notably [“The hard parts of Open Source”](https://www.youtube.com/watch?v=o_4EX4dPppA)). Elm in the more distant past indeed was - and promoted itself to be - more open to participation, and a lot of this was scaled back over time. Humans are like that - we change. Our situations change. Our opinions and the tradeoffs we are willing to make evolve as we get older and get to know ourselves.
+There is a certain inconsistency between some early Elm material (notably [“Let’s be mainstream!”](https://www.youtube.com/watch?v=oYk8CKH7OhE)) and some of the later material (notably [“The hard parts of Open Source”](https://www.youtube.com/watch?v=o_4EX4dPppA)). Elm in the more distant past indeed was - and promoted itself to be - more open to participation, and a lot of this was scaled back over time. Humans are like that - we change. Our situations change. Our opinions and the tradeoffs we are willing to make evolve as we get older and get to know ourselves. Elm also matured in that time and became relatively stable compared to other ecosystems.
 
 <wip note="Mario: come back to this when we have a page to link to">The 0.19 Kernel Saga is an example of an event that was difficult for many along this path.</wip>
 
@@ -134,15 +137,15 @@ It is fair to say that modern Elm is far more content to stay in its own niche. 
 
 Part of enjoying the benefits of Elm is understanding and accepting the constraints on Elm core changes.
 
-There are many individuals and companies find huge benefit in Elm despite the tradeoffs of the current core design approach, and have no plans to abandon Elm.
+There are many individuals and companies who find huge benefit in Elm despite the tradeoffs of the current core design approach, and have no plans to abandon Elm.
 
 
 ### So basically you don't want anyone to talk about this
 
 A number of Elm community members who have seen this discussion in various similar forms over the years are tired because:
 
-- New discussion points aren't brought up
-- Comments are either vaguely addressed to Evan (who is not present in the specific conversation), or to "the core team" (Evan again) or to "the community" (i.e. no-one in particular).
+- Discussions tend to rarely bring up new discussion points
+- Comments are either vaguely addressed to Evan (who is not present in the specific conversation), or to "[the core team](/lore/elm-core-team)" (Evan again) or to "the community" (i.e. no-one in particular).
 - There is usually no clear request or suggestion for what authors think should be done that ultimately _isn't_ explicitly or implicitly targeted at Evan
 - This ends up feeling (and often reading) like being dragged into a [drama triangle dynamic](https://en.wikipedia.org/wiki/Karpman_drama_triangle) exhausting everyone
 - The conversation reaches no conclusion or action
@@ -151,17 +154,17 @@ A number of Elm community members who have seen this discussion in various simil
 
 ## How to progress this dialogue
 
-We don’t want to shut down new conversation, we want to respectfully address repeats of old conversations.
+We don’t want to shut down new conversation, but we do want to respectfully address repeats of old conversations.
 
 
 ### Helpful ways to progress
 
 - A new discussion point
   - That isn’t essentially built on the prerequisite of “making Evan do `<some action>`”
-  - That has a clear request or action tied to it
+  - That has a clear request or action tied to it directed to a clear recipient
 - Taking personal action
   - Start a project that improves the status quo
-  - Support existing Elm projects that seek to improve the status quo by either contributing to or funding them
+  - Support existing Elm projects that seek to improve the status quo by either contributing to or [funding them](https://github.com/jfmengels/awesome-elm-sponsorship)
 - Seeking understanding
   - Many folks are using Elm in production, and are very happy with it. Many folks are so excited about Elm they spend countless hours building tools, projects, attending events, and supporting other community members with questions.
   - Why? How are they contextualising & managing the downsides of the Elm core process?
@@ -184,4 +187,3 @@ This page is an example of something some people tried to do to improve the situ
 - Presenting inaccurate or subjective statements about past events as facts
   - “Evan took away Kernel because he doesn’t trust anyone!” - this is misleading, see [Lore: Elm’s Kernel Code](/lore/elm-kernel-code)
   - “Only the blessed core team get to do X!” - there is no core team and there never really was, see [Lore: Elm’s core team](/lore/elm-core-team)
-

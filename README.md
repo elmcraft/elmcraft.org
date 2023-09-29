@@ -1,5 +1,9 @@
 # Elmcraft.org Website
 
+Before contributing please see the [Discuss](https://elmcraft.org/discuss) page.
+
+---
+
 Built with [elm-pages](https://elm-pages.com/).
 
 The entrypoint file is `index.js`. That file imports the generated elm-pages harness.

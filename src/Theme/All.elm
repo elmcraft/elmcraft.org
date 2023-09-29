@@ -266,7 +266,7 @@ htmlMapping model global =
                             paragraph []
                                 [ el [ Background.color loreBg, paddingXY 10 5, Border.rounded 10 ] <| text "📜 Lore"
                                 , text " "
-                                , el [ Font.italic, Font.underline ] <| text "Elm community history & cultural knowledge"
+                                , el [ Font.italic, Font.underline ] <| text "Unofficial Elm community history & cultural knowledge"
                                 ]
                         }
                     ]
