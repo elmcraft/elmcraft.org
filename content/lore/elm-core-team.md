@@ -36,6 +36,7 @@ These repos mostly exist in elm-explorations to have access to some escape hatch
 - `elm-explorations/linear-algebra` uses JS for fast math over Float64Arrays
 - `elm-explorations/benchmark` uses JS for high-precision timestamps
 - `elm-explorations/webgl` uses JS to interface with WebGL
+- `elm-explorations/markdown` uses JS to wrap an old version of the [marked](https://github.com/markedjs/marked/commit/cd2f6f5b7091154c5526e79b5f3bfb4d15995a51) library
 
 These repos are also largely stable and most work is done in Elm not kernel JS.
 
