@@ -37,7 +37,7 @@ renderer model global =
             -- fromHtml <| Html.blockquote [] (asHtml children)
             column [ paddingXY 0 20, width fill ]
                 [ column
-                    [ Font.size 18
+                    [ Font.size 17
                     , Font.italic
                     , Border.widthEach { bottom = 0, left = 4, right = 0, top = 0 }
                     , Border.color charcoal

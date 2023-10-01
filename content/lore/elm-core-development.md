@@ -10,12 +10,12 @@ editors: "@jfmengels,@wolfadex"
 
 <lore></lore>
 
-<tldr>TL;DR: Elm core dev (Evan) works differently, with tradeoffs some people dislike. Those conversations repeat. Core is considered stable, there are [no critical bugs or blockers](https://github.com/elm-janitor/manifesto). Rare [critical issues get attention](https://github.com/elm/virtual-dom/issues/168#issuecomment-1125076213). [Elm core design won't change for a while](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2). Evan is in a long cycle [working on an Elm-DB exploration](https://discourse.elm-lang.org/t/status-update-3-nov-2021/7870). The [Elm community is very active](/).</tldr>
+<tldr>**TL;DR:** Elm core dev (Evan) works differently, with tradeoffs some people dislike. Those conversations repeat. Core is considered stable, there are [no critical bugs or blockers](https://github.com/elm-janitor/manifesto). Rare [critical issues get attention](https://github.com/elm/virtual-dom/issues/168#issuecomment-1125076213). [Elm core design won't change for a while](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2). Evan is in a long cycle [working on an Elm-DB exploration](https://discourse.elm-lang.org/t/status-update-3-nov-2021/7870). The [Elm community is very active](/).</tldr>
 
 
 > This article describes some of the peculiarities of Elm’s development model and their consequences. This model isn’t to everyone’s taste. We have noticed that there is often a desire to vocally criticise this model. That’s okay - there are certainly aspects worth criticising. We summarise or generalise some of these criticisms and try to respond to them, clearly delineating between productive and unproductive ways to move forward.
 >
-> After all, we've had these conversations before. This repeated dialogue causes a lot of stress and emotional work for everyone involved. This content has been written in the hope we can help future reincarnations of this dialogue resolve or advance, and help everyone find their place in it quickly and without unnecessary drama.
+> **After all, we've had these conversations before. This repeated dialogue causes a lot of stress and emotional work for everyone involved.** This content has been written in the hope we can help future reincarnations of this dialogue resolve or advance, and help everyone find their place in it quickly and without unnecessary drama.
 
 ---
 
