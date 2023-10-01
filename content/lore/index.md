@@ -25,10 +25,10 @@ Inevitably there is no objective Lore. Authors leave their fingerprint on what t
 
 So the pages under Lore are framed in the following ways to try mitigate some of the downsides:
 
-- Don’t assume, and if you must, assume people aren’t malicious
 - The future isn't fixed by the past, things can and will change
-- Promote the future of Elm
+- Don’t assume, and if you must, assume people aren’t malicious
 - Focus on solutions and personal action
+- Promote the future of Elm
 
 All Elmcraft Lore articles clearly mark their authors and editors.
 
