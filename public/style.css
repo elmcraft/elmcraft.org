@@ -39,6 +39,28 @@ h1,
   }
 }
 
+@keyframes highlight-animation {
+
+  0%,
+  100% {
+    background-color: transparent;
+  }
+
+  20% {
+    background-color: #ffca38b1;
+  }
+
+  30%,
+  90% {
+    background-color: #ffca38b1;
+  }
+}
+
+.highlight {
+  animation: highlight-animation 4s ease forwards;
+}
+
+
 .navDropdown {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

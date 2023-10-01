@@ -13,4 +13,28 @@ const config: ElmPagesInit = {
   },
 };
 
+window.addEventListener("hashchange", function(){
+  console.log('hashchange');
+  highlightParentOfHash();
+});
+
+window.addEventListener("load", function(){
+  console.log('hashchangeload');
+  highlightParentOfHash();
+});
+
+function highlightParentOfHash() {
+  let hash = window.location.hash.substr(1); // Remove the '#'
+  console.log('trying to hilight hash', hash)
+  if (hash) {
+    let element = document.getElementById(hash);
+    console.log('find element', element);
+    if (element && element.parentElement) {
+      let parentElement = element.parentElement;
+      parentElement.classList.add("highlight");
+      setTimeout(() => { parentElement.classList.remove("highlight"); }, 4000);
+    }
+  }
+}
+
 export default config;
