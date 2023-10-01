@@ -1,16 +1,3 @@
-// import "./public/style.css";
-// const { Elm } = require("./src/Main.elm");
-// const pagesInit = require("elm-pages");
-
-// const isPrerendering = navigator.userAgent.indexOf("Headless") >= 0
-
-// pagesInit({
-//   mainElmModule: Elm.Main
-// }).then(app => {
-//   // post-load
-//   app.ports.setDev.send(window.location.hostname == "localhost")
-// })
-
 
 type ElmPagesInit = {
   load: (elmLoaded: Promise<unknown>) => Promise<void>;
@@ -25,5 +12,29 @@ const config: ElmPagesInit = {
     return "You can decode this in Shared.elm using Json.Decode.string!";
   },
 };
+
+window.addEventListener("hashchange", function(){
+  console.log('hashchange');
+  highlightParentOfHash();
+});
+
+window.addEventListener("load", function(){
+  console.log('hashchangeload');
+  highlightParentOfHash();
+});
+
+function highlightParentOfHash() {
+  let hash = window.location.hash.substr(1); // Remove the '#'
+  console.log('trying to hilight hash', hash)
+  if (hash) {
+    let element = document.getElementById(hash);
+    console.log('find element', element);
+    if (element && element.parentElement) {
+      let parentElement = element.parentElement;
+      parentElement.classList.add("highlight");
+      setTimeout(() => { parentElement.classList.remove("highlight"); }, 4000);
+    }
+  }
+}
 
 export default config;

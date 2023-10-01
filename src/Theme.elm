@@ -23,8 +23,8 @@ import Types
 import View exposing (..)
 
 
-view : a -> (Types.Msg -> wrapperMsg) -> Types.Model -> View.View wrapperMsg -> Html wrapperMsg
-view x toWrapperMsg model static =
+view : { a | isDev : Bool } -> (Types.Msg -> wrapperMsg) -> Types.Model -> View.View wrapperMsg -> Html wrapperMsg
+view global toWrapperMsg model static =
     layout
         [ width fill
         , Font.size 17
@@ -67,11 +67,15 @@ view x toWrapperMsg model static =
                                     Evergreen ->
                                         "Evergreen 🌳"
 
-                            contributorCircle contribution name =
+                            contributorCircle contribution color name =
+                                let
+                                    tooltipWidth =
+                                        160
+                                in
                                 el
                                     [ Border.rounded 30
                                     , Border.width 3
-                                    , Border.color purple
+                                    , Border.color color
                                     , Font.color white
                                     , width (px 36)
                                     , height (px 36)
@@ -79,24 +83,24 @@ view x toWrapperMsg model static =
                                         { hitboxSize = 30
                                         , el =
                                             el
-                                                [ Background.color purple
+                                                [ Background.color color
                                                 , paddingXY 4 8
                                                 , Border.rounded 5
-                                                , width (px 150)
-                                                , moveLeft (150 - 30 - 10)
+                                                , width (px tooltipWidth)
+                                                , moveLeft (tooltipWidth - 30 - 10)
                                                 , Font.center
                                                 , alignRight
                                                 , moveUp 34
                                                 , inFront <|
                                                     el
                                                         [ class "triangle-down"
-                                                        , moveRight 120
+                                                        , moveRight (tooltipWidth - 30)
                                                         , moveDown 30
-                                                        , Border.color purple
+                                                        , Border.color color
                                                         ]
                                                         none
                                                 ]
-                                                (text <| contribution ++ ": " ++ name)
+                                                (text <| Theme.UI.titleCase contribution ++ ": " ++ name)
                                         }
                                     ]
                                     (image
@@ -116,11 +120,11 @@ view x toWrapperMsg model static =
                                             [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
                                             , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
                                             , row [ alignRight, spacing 5 ]
-                                                ((static.meta.authors |> List.map (contributorCircle "author"))
-                                                    ++ (static.meta.editors |> List.map (contributorCircle "editor"))
+                                                ((static.meta.authors |> List.map (contributorCircle "author" purple))
+                                                    ++ (static.meta.editors |> List.map (contributorCircle "editor" charcoal))
                                                 )
                                             ]
-                                    , if not static.published && model.isDev then
+                                    , if not static.published && global.isDev then
                                         el [ Background.color elmcraftNude, padding 4, Border.rounded 5, Font.size 12 ] <| text "not published"
 
                                       else

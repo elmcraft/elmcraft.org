@@ -188,7 +188,7 @@ htmlMapping model global =
             )
         , Markdown.Html.tag "internal"
             (\children ->
-                if model.isDev then
+                if global.isDev then
                     column [ Background.color grey, padding 20, spacing 10 ]
                         [ el [ Font.bold ] <| text "Internal note:"
                         , column [] children
@@ -197,9 +197,14 @@ htmlMapping model global =
                 else
                     none
             )
+        , Markdown.Html.tag "ref"
+            (\ref children ->
+                el [ htmlAttribute <| Html.Attributes.id ref ] none
+            )
+            |> Markdown.Html.withAttribute "name"
         , Markdown.Html.tag "wip"
-            (\children ->
-                if model.isDev then
+            (\mNotes children ->
+                if global.isDev then
                     column
                         [ Background.color pink
                         , width fill
@@ -216,11 +221,20 @@ htmlMapping model global =
                                 <|
                                     text "WIP"
                         ]
-                        children
+                        (children
+                            ++ [ case mNotes of
+                                    Just notes ->
+                                        "WIP note: " ++ notes |> text |> el [ Border.color red, Border.width 2, width fill, padding 5 ]
+
+                                    Nothing ->
+                                        none
+                               ]
+                        )
 
                 else
                     none
             )
+            |> Markdown.Html.withOptionalAttribute "note"
         , Markdown.Html.tag "articles"
             (\tagged mLimit children ->
                 Theme.Articles.list model tagged mLimit
@@ -248,6 +262,22 @@ htmlMapping model global =
                 Icon.fromString type_
             )
             |> Markdown.Html.withAttribute "type"
+        , Markdown.Html.tag "lore"
+            (\children ->
+                row [ paddingEach { bottom = 20, top = 0, left = 0, right = 0 } ]
+                    [ row [ width fill, Background.color loreBg, paddingXY 10 8, Border.rounded 10 ]
+                        [ prefetchLink []
+                            { url = "/lore"
+                            , label =
+                                paragraph []
+                                    [ el [] <| text "📜 Lore – "
+                                    , text " "
+                                    , el [ Font.italic, Font.underline ] <| text "Unofficial Elm community history & cultural knowledge"
+                                    ]
+                            }
+                        ]
+                    ]
+            )
         , Markdown.Html.tag "tldr"
             (\children ->
                 row [ paddingXY 0 20, width fill, spacing 10 ]

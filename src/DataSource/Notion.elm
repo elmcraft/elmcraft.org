@@ -15,7 +15,7 @@ import Types exposing (..)
 
 -- curl 'https://api.notion.com/v1/databases/22332946dc144ade9cf97174ea0ecdea/query' \
 --   -H 'Authorization: Bearer secret_OXpMW30Ddljjh5sarOqFUnZkj2kyQ4qQjol7DR5INB8' \
---   -H 'Notion-Version: 2021-08-16' | jq
+--   -H 'Notion-Version: 2022-06-28' | jq
 
 
 videosDbQueryReq :
@@ -37,7 +37,7 @@ videosDbQueryReq body =
                 , method = "POST"
                 , headers =
                     [ ( "Authorization", bearer )
-                    , ( "Notion-Version", "2021-08-16" )
+                    , ( "Notion-Version", "2022-06-28" )
                     ]
                 , body = BackendTask.Http.jsonBody body
                 , retries = Just 5
@@ -136,7 +136,7 @@ type alias VideosResponse =
 -- Fusion
 -- https://api.notion.com/v1/databases/22332946dc144ade9cf97174ea0ecdea/query
 -- Authorization: Bearer secret_OXpMW30Ddljjh5sarOqFUnZkj2kyQ4qQjol7DR5INB8
--- Notion-Version: 2021-08-16
+-- Notion-Version: 2022-06-28
 -- {}
 
 

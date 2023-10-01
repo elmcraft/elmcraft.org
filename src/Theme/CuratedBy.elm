@@ -39,7 +39,3 @@ view model authors_ =
             ]
             [ text <| "Curated by " ++ (authors |> List.map titleCase |> String.join ", ") ]
         ]
-
-
-titleCase s =
-    (s |> String.left 1 |> String.toUpper) ++ String.dropLeft 1 s

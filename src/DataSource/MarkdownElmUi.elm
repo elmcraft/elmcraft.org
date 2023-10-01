@@ -9,11 +9,13 @@ import Element exposing (..)
 import Json.Decode as D
 import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import List.Extra as List
+import Markdown.Footnotes
 import Markdown.Parser
 import Markdown.Renderer
 import Parser
 import Route
 import Theme.Markdown
+import Theme.UI
 import Types
 import UrlPath exposing (UrlPath)
 import View exposing (..)
@@ -102,6 +104,7 @@ withOrWithoutIndexSegment parts =
 markdownRendererCore rawMarkdown =
     rawMarkdown
         |> prefixMarkdownTableOfContents
+        |> Markdown.Footnotes.formatFootnotes
         |> Markdown.Parser.parse
         |> Result.mapError
             (\errs ->
@@ -122,7 +125,7 @@ markdownRenderer rawMarkdown path meta =
                     (\model_ global_ ->
                         case Markdown.Renderer.render (Theme.Markdown.renderer model_ global_) blocks of
                             Ok ui ->
-                                if not meta.published && not model_.isDev then
+                                if not meta.published && not global_.isDev then
                                     [ text "Oops! This page isn't ready for prime-time yet! Check in again soon." ]
 
                                 else
@@ -207,15 +210,7 @@ prefixMarkdownTableOfContents s =
                                 l |> String.replace "#" "" |> String.trim
 
                             ref =
-                                title
-                                    |> String.toLower
-                                    |> String.replace "?" "-"
-                                    |> String.replace "." ""
-                                    |> String.replace "'" ""
-                                    |> String.replace "/" ""
-                                    |> String.split " "
-                                    |> List.filter (not << String.isEmpty)
-                                    |> String.join "-"
+                                Theme.UI.stringToTitleId title
                         in
                         depth ++ "- [" ++ title ++ "](#" ++ ref ++ ")"
                     )

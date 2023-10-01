@@ -53,13 +53,13 @@ Here are the current Elm lovers behind Elmcraft!
 
 ### Mario - Groundskeeper
 
-Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) and [Elm London](https://meetdown.app/group/37aa26/Elm-London-Meetup) meetups, has spoken at Elm Conferences, and is currently working on [Lamdera](https://lamdera.com). He founded Elmcraft to promote and facilitate the wealth of projects, initiatives, knowledge and people in the Elm community.
+Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) and [Elm London](https://meetdown.app/group/37aa26/Elm-London-Meetup) meetups, co-founded [Elm Camp](https://elm.camp), has spoken at [Elm Conferences](/community/conferences), and is currently working on [Lamdera](https://lamdera.com). He founded Elmcraft to promote and facilitate the wealth of projects, initiatives, knowledge and people in the Elm community.
 
 
 ### Contributors
 
 Thanks to the following people for their contributions and support:
 
-[@katjam](https://github.com/katjam), [@dillonkearns](https://github.com/dillonkearns), [@mdgriffith](https://github.com/mdgriffith), [@georgesboris](https://github.com/georgesboris), [@louiseahart](https://github.com/louiseahart), [@jfmengels](https://github.com/jfmengels), [@janiczek](https://github.com/Janiczek)
+[@katjam](https://github.com/katjam), [@dillonkearns](https://github.com/dillonkearns), [@mdgriffith](https://github.com/mdgriffith), [@georgesboris](https://github.com/georgesboris), [@louiseahart](https://github.com/louiseahart), [@jfmengels](https://github.com/jfmengels), [@janiczek](https://github.com/Janiczek), [@gampleman](https://github.com/gampleman).
 
 If you're interested in contributing, join the [#contribute channel on Discord](/discuss).
