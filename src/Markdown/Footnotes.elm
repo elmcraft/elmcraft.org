@@ -27,7 +27,7 @@ formatFootnotes s =
             footnotes
                 |> List.indexedMap
                     (\i footnote ->
-                        ("{num}. <ref name='ref-{num}'></ref>" ++ footnote ++ " [↑](#note-{num})")
+                        ("{num}. <ref name='note-{num}'></ref>" ++ footnote ++ " [↑](#ref-{num})")
                             |> String.replace "{num}" (String.fromInt (i + 1))
                     )
                 |> String.join "\n"
@@ -46,7 +46,7 @@ formatFootnotes s =
                                     Footnote c ->
                                         ( i + 1
                                         , acc
-                                            ++ ("<ref name='note-1'></ref><sup>[#{num}](#ref-{num})</sup>"
+                                            ++ ("<ref name='ref-1'></ref><sup>[#{num}](#note-{num})</sup>"
                                                     |> String.replace "{num}" (String.fromInt (i + 1))
                                                )
                                         )
