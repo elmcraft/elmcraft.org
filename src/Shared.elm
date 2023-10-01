@@ -196,23 +196,24 @@ data =
     -- @TODO figure out how we can use this globally and swap for SPLAT__ usage of Notion.getVideos
     -- Notion.getVideos
     --     |> DataSource.map (\videos -> { videos = videos })
-    BackendTask.Env.get "DEV"
-        |> BackendTask.andThen
-            (\isDevM ->
-                let
-                    isDev =
-                        case isDevM of
-                            Just _ ->
-                                True
+    map2_
+        -- https://docs.netlify.com/configure-builds/environment-variables/
+        -- In dev, we can use `CONTEXT=production` to mimic !isDev mode
+        (BackendTask.Env.get "CONTEXT")
+        -- In Netlify deploys, REVIEW_ID is set to the PR number for any preview deploys, so we treat that as isDev
+        (BackendTask.Env.get "REVIEW_ID")
+        (\envContext envReviewId ->
+            let
+                isReview =
+                    envReviewId |> Maybe.map (\_ -> True) |> Maybe.withDefault False
 
-                            Nothing ->
-                                False
-                in
-                BackendTask.succeed
-                    { isDev = isDev
-                    , videos = []
-                    }
-            )
+                isDev =
+                    envContext |> Maybe.map (\c -> c /= "production") |> Maybe.withDefault isReview
+            in
+            { isDev = isDev
+            , videos = []
+            }
+        )
 
 
 view :

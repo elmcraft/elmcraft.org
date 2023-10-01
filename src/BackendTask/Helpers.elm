@@ -20,3 +20,8 @@ fromResultFatal result =
 
         Err err ->
             BackendTask.fail (FatalError.fromString "failed")
+
+
+map2_ : BTask a -> BTask b -> (a -> b -> c) -> BTask c
+map2_ task1 task2 fn =
+    BackendTask.map2 fn task1 task2

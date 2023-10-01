@@ -259,16 +259,18 @@ htmlMapping model global =
             |> Markdown.Html.withAttribute "type"
         , Markdown.Html.tag "lore"
             (\children ->
-                row [ paddingXY 10 10, width fill, spacing 10 ]
-                    [ prefetchLink []
-                        { url = "/lore"
-                        , label =
-                            paragraph []
-                                [ el [ Background.color loreBg, paddingXY 10 5, Border.rounded 10 ] <| text "📜 Lore"
-                                , text " "
-                                , el [ Font.italic, Font.underline ] <| text "Unofficial Elm community history & cultural knowledge"
-                                ]
-                        }
+                row [ paddingEach { bottom = 20, top = 0, left = 0, right = 0 } ]
+                    [ row [ width fill, Background.color loreBg, paddingXY 10 8, Border.rounded 10 ]
+                        [ prefetchLink []
+                            { url = "/lore"
+                            , label =
+                                paragraph []
+                                    [ el [] <| text "📜 Lore – "
+                                    , text " "
+                                    , el [ Font.italic, Font.underline ] <| text "Unofficial Elm community history & cultural knowledge"
+                                    ]
+                            }
+                        ]
                     ]
             )
         , Markdown.Html.tag "tldr"

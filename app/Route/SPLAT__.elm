@@ -140,14 +140,14 @@ data routeParams =
                         BackendTask.succeed default
             in
             BackendTask.map8
-                (\isDev ts videos videosCount elmRadioM elmTownM newsletterM packageM ->
+                (\sharedData ts videos videosCount elmRadioM elmTownM newsletterM packageM ->
                     let
                         data_ : Data
                         data_ =
                             { meta = d.meta
                             , timestamps = ts
                             , global =
-                                { isDev = isDev
+                                { isDev = sharedData.isDev
                                 , videos = videos
                                 , videosCount = videosCount
                                 , latestElmRadio = elmRadioM
@@ -160,7 +160,7 @@ data routeParams =
                     in
                     data_
                 )
-                (BackendTask.succeed True)
+                Shared.data
                 (Timestamps.data path |> BackendTask.allowFatal)
                 getVideos
                 (onlyOn "content/index.md" Notion.getVideosCount 0)
