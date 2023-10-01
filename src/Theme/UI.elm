@@ -262,6 +262,7 @@ heading { level, rawText, children } =
 stringToTitleId s =
     s
         |> String.toLower
+        |> String.replace "<br/>" ""
         |> String.replace "?" "-"
         |> String.replace "!" ""
         |> String.replace "." ""

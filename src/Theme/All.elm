@@ -197,6 +197,11 @@ htmlMapping model global =
                 else
                     none
             )
+        , Markdown.Html.tag "ref"
+            (\ref children ->
+                el [ htmlAttribute <| Html.Attributes.id ref ] none
+            )
+            |> Markdown.Html.withAttribute "name"
         , Markdown.Html.tag "wip"
             (\mNotes children ->
                 if global.isDev then

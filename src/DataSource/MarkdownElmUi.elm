@@ -9,6 +9,7 @@ import Element exposing (..)
 import Json.Decode as D
 import Json.Decode.Pipeline exposing (hardcoded, optional, required)
 import List.Extra as List
+import Markdown.Footnotes
 import Markdown.Parser
 import Markdown.Renderer
 import Parser
@@ -103,6 +104,7 @@ withOrWithoutIndexSegment parts =
 markdownRendererCore rawMarkdown =
     rawMarkdown
         |> prefixMarkdownTableOfContents
+        |> Markdown.Footnotes.formatFootnotes
         |> Markdown.Parser.parse
         |> Result.mapError
             (\errs ->

@@ -91,7 +91,7 @@ renderer model global =
     , unorderedList =
         \items ->
             --     none
-            column [ spacing 15, width fill, paddingXY 0 20 ]
+            column [ spacing 15, width fill, paddingXY 0 15 ]
                 (items
                     |> List.map
                         (\listItem ->
@@ -99,27 +99,31 @@ renderer model global =
                                 ListItem task children ->
                                     wrappedRow
                                         [ spacing 5
-                                        , paddingEach { top = 0, right = 0, bottom = 0, left = 20 }
+                                        , paddingEach { top = 0, right = 0, bottom = 0, left = 15 }
                                         , width fill
                                         ]
-                                        [ paragraph [ alignTop ] (text " • " :: children)
+                                        [ row [ width fill, spacing 10 ]
+                                            [ el [ alignTop ] <| text " • "
+                                            , paragraph [ alignTop ] children
+                                            ]
                                         ]
                         )
                 )
     , orderedList =
         \startingIndex items ->
-            column [ spacing 15, width fill, paddingXY 0 20 ]
+            column [ spacing 15, width fill, paddingXY 0 15 ]
                 (items
                     |> List.indexedMap
                         (\index itemBlocks ->
                             wrappedRow
                                 [ spacing 5
-                                , paddingEach { top = 0, right = 0, bottom = 0, left = 20 }
+                                , paddingEach { top = 0, right = 0, bottom = 0, left = 15 }
                                 , width fill
                                 ]
-                                [ paragraph
-                                    [ alignTop ]
-                                    (text (String.fromInt (startingIndex + index) ++ ". ") :: itemBlocks)
+                                [ row [ width fill, spacing 10 ]
+                                    [ el [ alignTop ] <| text (String.fromInt (startingIndex + index) ++ ". ")
+                                    , paragraph [ alignTop ] itemBlocks
+                                    ]
                                 ]
                         )
                 )

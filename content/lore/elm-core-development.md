@@ -10,7 +10,7 @@ editors: "@jfmengels,@wolfadex"
 
 <lore></lore>
 
-<tldr>**TL;DR:** Elm core dev (Evan) works differently, with tradeoffs some people dislike. Those conversations repeat. Core is considered stable, there are [no critical bugs or blockers](https://github.com/elm-janitor/manifesto). Rare [critical issues get attention](https://github.com/elm/virtual-dom/issues/168#issuecomment-1125076213). [Elm core design won't change for a while](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2). Evan is in a long cycle [working on an Elm-DB exploration](https://discourse.elm-lang.org/t/status-update-3-nov-2021/7870). The [Elm community is very active](/).</tldr>
+<tldr>**TL;DR:** Elm core dev (Evan) works differently, with tradeoffs some people dislike. Those conversations repeat. Core is considered stable, there are [no critical bugs or blockers](https://github.com/elm-janitor/manifesto). Rare [critical issues get attention](https://github.com/elm/virtual-dom/issues/168#issuecomment-1125076213). [Elm core design won't change for a while](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2). [Evan is in a long cycle working on an Elm-DB exploration](/lore/what-is-evan-working-on). The [Elm community is very active](/).</tldr>
 
 
 > This article describes some of the peculiarities of Elm’s development model and their consequences. This model isn’t to everyone’s taste. We have noticed that there is often a desire to vocally criticise this model. That’s okay - there are certainly aspects worth criticising. We summarise or generalise some of these criticisms and try to respond to them, clearly delineating between productive and unproductive ways to move forward.
@@ -145,14 +145,14 @@ There are many individuals and companies who find huge benefit in Elm despite th
 A number of Elm community members who have seen this discussion in various similar forms over the years are tired because:
 
 - Discussions tend to rarely bring up new discussion points
-- Comments are either vaguely addressed to Evan (who is not present in the specific conversation), or to "[the core team](/lore/elm-core-team)" (Evan again) or to "the community" (i.e. no-one in particular).
+- Comments are either vaguely addressed to Evan (who is not present in the specific conversation), or to "[the core team](/lore/elm-core-team)" (Evan again)<note>Acknowledging this might also be an instance of [psychological distancing](https://en.wikipedia.org/wiki/Construal_level_theory), which allows for more abstract and comfortable expression of critique.</note> or to "the community" (i.e. no-one in particular).
 - There is usually no clear request or suggestion for what authors think should be done that ultimately _isn't_ explicitly or implicitly targeted at Evan
 - This ends up feeling (and often reading) like being dragged into a [drama triangle dynamic](https://en.wikipedia.org/wiki/Karpman_drama_triangle) exhausting everyone
 - The conversation reaches no conclusion or action
 - In a few weeks or months a similar conversation repeats
 
 
-## How to progress this dialogue
+## How to progress this dialogue <br/>
 
 We don’t want to shut down new conversation, but we do want to respectfully address repeats of old conversations.
 
@@ -164,7 +164,7 @@ We don’t want to shut down new conversation, but we do want to respectfully ad
   - That has a clear request or action tied to it directed to a clear recipient
 - Taking personal action
   - Start a project that improves the status quo
-  - Support existing Elm projects that seek to improve the status quo by either contributing to or [funding them](https://github.com/jfmengels/awesome-elm-sponsorship)
+  - Support existing Elm projects that seek to improve the status quo by contributing to, or [funding them](https://github.com/jfmengels/awesome-elm-sponsorship)
 - Seeking understanding
   - Many folks are using Elm in production, and are very happy with it. Many folks are so excited about Elm they spend countless hours building tools, projects, attending events, and supporting other community members with questions.
   - Why? How are they contextualising & managing the downsides of the Elm core process?
