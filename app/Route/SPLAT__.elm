@@ -79,9 +79,7 @@ route =
                 -- , update : PageUrl -> StaticPayload data routeParams -> msg -> model -> Shared.Model -> ( model, Effect msg, Maybe Shared.Msg )
                 \app modelShared msgTemplate modelTemplate ->
                     -- SPLAT__ uses Types_.Msg same as shared, so just route all handling up to shared.
-                    -- @TODO fix this after type checking....
-                    -- ( (), Effect.none, Just msgTemplate )
-                    ( (), Effect.none, Just Types.Noop )
+                    ( (), Effect.none, Just msgTemplate )
             , subscriptions =
                 \routeParams path modelShared modelTemplate ->
                     Sub.none
