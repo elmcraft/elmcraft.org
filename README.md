@@ -6,9 +6,9 @@ Before contributing please see the [Discuss](https://elmcraft.org/discuss) page.
 
 Built with [elm-pages](https://elm-pages.com/).
 
-The entrypoint file is `index.js`. That file imports the generated elm-pages harness.
+The entrypoint file is `index.ts`. That file imports the generated elm-pages harness.
 
-The `content` folder markdown files are currently turned into static pages entirely via the single `Page.SPLAT__.elm` page mapping.
+The `content` folder markdown files are currently turned into static pages entirely via the single `Route.SPLAT__` module mapping.
 
 Pretty much everything else about the site, from theming to functionality, is done from Elm.
 
@@ -18,12 +18,9 @@ Pretty much everything else about the site, from theming to functionality, is do
 We're currently using some elm-pages v2 pre-release plug-ins via a submodule.
 
 ```
-git submodule init
-git submodule update
 npm install
-NOTION_TOKEN="<ask mario for token>"
-npx elm-pages build
-npm start # starts a local live-reloading dev server
+# starts a local live-reloading dev server
+NOTION_TOKEN="<ask mario for token>" npx elm-pages dev
 ```
 
 From there you can tweak the `content` folder or change the Elm code.
@@ -33,7 +30,7 @@ From there you can tweak the `content` folder or change the Elm code.
 
 To make a new page, simply add a new `your-path/your-page.md` in `content/`.
 
-The 'frontmatter' (bits between `---` at the top of the markdown file) drives other static gen config i.e. SEO, and can be extended if desired (see [`DataSource.Markdown`](https://github.com/elmcraft/elmcraft.org/blob/main/src/DataSource/Markdown.elm)).
+The 'frontmatter' (bits between `---` at the top of the markdown file) drives other static gen config i.e. SEO, and can be extended if needed (see [`DataSource.MarkdownElmUi`](https://github.com/elmcraft/elmcraft.org/blob/main/src/DataSource/MarkdownElmUi.elm#L24)).
 
 `elm-pages` will pick up new pages, compile them and type check them.
 
@@ -49,6 +46,8 @@ See `src/Theme/All.elm` for which markdown/html tags end up being rendered by wh
 All the UI is built with [`elm-ui`](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/).
 
 ## Data Sources
+
+(Note: these are conceptually [`BackendTask`](https://package.elm-lang.org/packages/dillonkearns/elm-pages/latest/BackendTask) in elm-pages-v3, but we've not renamed them here yet)
 
 - `src/DataSource` contains elm-pages data sources
 - `src/DataStatic` contains hardcoded data in Elm format

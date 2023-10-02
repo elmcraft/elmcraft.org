@@ -145,7 +145,7 @@ There are many individuals and companies who find huge benefit in Elm despite th
 A number of Elm community members who have seen this discussion in various similar forms over the years are tired because:
 
 - Discussions tend to rarely bring up new discussion points
-- Comments are either vaguely addressed to Evan (who is not present in the specific conversation), or to "[the core team](/lore/elm-core-team)" (Evan again)<note>Acknowledging this might also be an instance of [psychological distancing](https://en.wikipedia.org/wiki/Construal_level_theory), which allows for more abstract and comfortable expression of critique.</note> or to "the community" (i.e. no-one in particular).
+- Comments are either vaguely addressed to Evan (who is not present in the specific conversation), or to "[the core team](/lore/elm-core-team)" (Evan again)<note>Acknowledging this might also be an instance of [psychological distancing](https://en.wikipedia.org/wiki/Construal_level_theory), which allows for more abstract and comfortable expression of critique & frustration, at the expense of clarity on who should address it.</note> or to "the community" (i.e. no-one in particular).
 - There is usually no clear request or suggestion for what authors think should be done that ultimately _isn't_ explicitly or implicitly targeted at Evan
 - This ends up feeling (and often reading) like being dragged into a [drama triangle dynamic](https://en.wikipedia.org/wiki/Karpman_drama_triangle) exhausting everyone
 - The conversation reaches no conclusion or action

@@ -13,19 +13,11 @@ const config: ElmPagesInit = {
   },
 };
 
-window.addEventListener("hashchange", function(){
-  console.log('hashchange');
-  highlightParentOfHash();
-});
-
-window.addEventListener("load", function(){
-  console.log('hashchangeload');
-  highlightParentOfHash();
-});
+window.addEventListener("hashchange", function(){ highlightParentOfHash(); });
+window.addEventListener("load", function(){ highlightParentOfHash(); });
 
 function highlightParentOfHash() {
   let hash = window.location.hash.substr(1); // Remove the '#'
-  console.log('trying to hilight hash', hash)
   if (hash) {
     let element = document.getElementById(hash);
     console.log('find element', element);

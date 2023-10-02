@@ -71,6 +71,7 @@ footerNav model =
             [ item "Forums/Chat" (splat "community" [ "forums-chat" ])
             , item "Meetups" (splat "community" [ "meetups" ])
             , item "Conferences" (splat "community" [ "conferences" ])
+            , item "Lore" (splat "lore" [])
 
             -- , item "FAQs" (splat "faqs" [])
             ]

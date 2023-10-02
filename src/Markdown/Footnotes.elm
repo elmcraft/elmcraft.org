@@ -46,7 +46,7 @@ formatFootnotes s =
                                     Footnote c ->
                                         ( i + 1
                                         , acc
-                                            ++ ("<ref name='ref-1'></ref><sup>[#{num}](#note-{num})</sup>"
+                                            ++ ("<ref name='ref-1'></ref><sup>[[{num}]](#note-{num})</sup>"
                                                     |> String.replace "{num}" (String.fromInt (i + 1))
                                                )
                                         )
