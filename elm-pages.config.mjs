@@ -6,6 +6,7 @@ export default {
   adapter,
   headTagsTemplate(context) {
     return `
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/style.css" />
 <meta name="generator" content="elm-pages v${context.cliVersion}" />
 `;
