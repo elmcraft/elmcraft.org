@@ -266,15 +266,17 @@ htmlMapping model global =
             (\children ->
                 row [ paddingEach { bottom = 20, top = 0, left = 0, right = 0 } ]
                     [ row [ width fill, Background.color loreBg, paddingXY 10 8, Border.rounded 10 ]
-                        [ prefetchLink []
-                            { url = "/lore"
-                            , label =
-                                paragraph []
-                                    [ el [] <| text "📜 Lore – "
-                                    , text " "
-                                    , el [ Font.italic, Font.underline ] <| text "Unofficial Elm community history & cultural knowledge"
-                                    ]
-                            }
+                        [ paragraph []
+                            [ prefetchLink []
+                                { url = "/lore"
+                                , label =
+                                    paragraph []
+                                        [ el [] <| text "📜 Lore – "
+                                        , text " "
+                                        , paragraph [ Font.italic, Font.underline ] [ text "Unofficial Elm community history & cultural knowledge" ]
+                                        ]
+                                }
+                            ]
                         ]
                     ]
             )
