@@ -169,7 +169,7 @@ We don’t want to shut down new conversation, but we do want to respectfully ad
   - Many folks are using Elm in production, and are very happy with it. Many folks are so excited about Elm they spend countless hours building tools, projects, attending events, and supporting other community members with questions.
   - Why? How are they contextualising & managing the downsides of the Elm core process?
 
-This page is an example of something some people tried to do to improve the situation.
+This page you're reading now is an example of something some people tried to do to improve the situation.
 
 
 ### Unhelpful ways to progress
