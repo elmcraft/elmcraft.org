@@ -39,4 +39,5 @@ All Elmcraft Lore articles clearly mark their authors and editors.
 - [Elm Core Team](/lore/elm-core-team)
 - [What is Evan working on?](/lore/what-is-evan-working-on)
 - [How to report critical issues](/lore/how-to-report-critical-issues)
+- [The history of Slack history](/lore/slack-history)
 - [Why is Elm named Elm?](/lore/why-is-elm-named-elm)

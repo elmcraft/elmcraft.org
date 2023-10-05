@@ -4,13 +4,16 @@ title: The history of the Elm Slack History
 description: Why does Elm still use Slack if there's no history?
 published: true
 status: budding
+authors: "@supermario"
 ---
+
+<lore></lore>
 
 At least a couple times a year folks ask similar questions around Slack History and the history of what’s been considered – ironically, because the history of those conversations is not visible in Slack!
 
 This page outlines some of the common questions that seem to recur and some of the history around Slack History.
 
-<tldr>TLDR: The current status is simply that there is a better place for more permanent discussions: https://discourse.elm-lang.org.</tldr>
+<tldr>**TL;DR:** The current status is simply that there is a better place for more permanent discussions: [https://discourse.elm-lang.org](https://discourse.elm-lang.org).</tldr>
 
 
 ### Why don’t we upgrade to a paid Slack?
@@ -50,7 +53,7 @@ There are over 20,000 members on Slack now, so a move anywhere is not trivial.
 More than 80% of our message traffic is in high volume channels #beginners and #general which don’t particularly benefit from history.
 
 
-### Okay, but have you considered <some alternative service>?
+### Okay, but have you considered `<some alternative service>`?
 
 Lots of other services have been suggested.
 
