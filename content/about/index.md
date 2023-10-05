@@ -10,7 +10,7 @@ Elmcraft is an unofficial endeavour, curated by a bunch of people who love and u
 
 Our goal is for Elmcraft to be the _official unofficial_ place for all things Elm.
 
-There is a wealth of knowledge, projects, initiatives and people in the Elm community. Elmcraft is a map to help you find your way.
+There is a wealth of projects, initiatives, knowledge, and people in the Elm community. Elmcraft is a map to help you find your way.
 
 
 ## Method
@@ -53,7 +53,7 @@ Here are the current Elm lovers behind Elmcraft!
 
 ### Mario - Groundskeeper
 
-Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) and [Elm London](https://meetdown.app/group/37aa26/Elm-London-Meetup) meetups, co-founded [Elm Camp](https://elm.camp), has spoken at [Elm Conferences](/community/conferences), and is currently working on [Lamdera](https://lamdera.com). He founded Elmcraft to promote and facilitate the wealth of projects, initiatives, knowledge and people in the Elm community.
+Mario runs the [Elm Online](https://meetdown.app/group/10561/Elm-Online-Meetup) and [Elm London](https://meetdown.app/group/37aa26/Elm-London-Meetup) meetups, co-founded [Elm Camp](https://elm.camp), has spoken at [Elm Conferences](/community/conferences), and is currently working on [Lamdera](https://lamdera.com). He founded Elmcraft to promote and facilitate the wealth of projects, initiatives, knowledge, and people in the Elm community. He'd deeply appreciate it if you'd consider [supporting his work directly](https://github.com/sponsors/supermario).
 
 
 ### Contributors
