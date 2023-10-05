@@ -15,15 +15,16 @@ Pretty much everything else about the site, from theming to functionality, is do
 
 ## Development
 
-We're currently using some elm-pages v2 pre-release plug-ins via a submodule.
-
 ```
+git submodule init && git submodule update
 npm install
 # starts a local live-reloading dev server
-NOTION_TOKEN="<ask mario for token>" npx elm-pages dev
+npx elm-pages dev
 ```
 
-From there you can tweak the `content` folder or change the Elm code.
+From there you can tweak `content/` files or change the Elm code.
+
+:warning: On the homepage and video pages you'll get an error about a `NOTION_TOKEN` being missing – please skip those pages for now we're going to migrate away from Notion. Ping @supermario if this is a blocker for what you're working on.
 
 
 ## Pages
