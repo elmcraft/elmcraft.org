@@ -109,8 +109,8 @@ Arguments and debates usually spring up between people who’ve chosen different
   - Many people choose to participate in building out a rich ecosystem on top of Elm core
     - Some of these people are very excited about the future of Elm
   - Some people choose explore new areas in a way that is compatible with Elm core
+    - [elm-pages](https://elm-pages.com) - JAMstack for Elm
     - [Lamdera](https://lamdera.com), a backwards/forwards-compatible soft-fork of the Elm compiler, with features for full-stack Elm and extensions for Elm tooling authors and Elm users
-    - [elm-pages](https://elm-pages.com) - JAMstack for elm.
   - Some people take inspiration and start new initiatives not compatible with Elm core
     - [Gren](https://gren-lang.org), a hard fork of Elm by Robin Heggelund Hansen, previous contributor to various Elm projects
 
