@@ -32,7 +32,7 @@ editors: "@jfmengels,@wolfadex"
 
 ## Current status
 
-Elm is a language designed and developed by Evan Czaplicki. Elm core development functions differently to the average open source project.
+Elm is a language designed and developed by Evan Czaplicki.
 
 Today the “[Elm Core Team](/lore/elm-core-team)” consists of Evan Czaplicki and Tereza Sokol. The projects they cover are:
 
@@ -43,7 +43,11 @@ Today the “[Elm Core Team](/lore/elm-core-team)” consists of Evan Czaplicki 
 
 All these projects (the “Elm core projects”) are released with an open source licence ([BSD-3-Clause](https://github.com/elm/core/blob/master/LICENSE)).
 
-In many open source projects, this generally comes with some **implicit/defacto expectations** that other things will also be open; i.e. design, governance, future direction and contributions.
+## Elm's design & development philosophy
+
+Elm core development functions differently to the average open source project.
+
+In many open source projects, being open source licensed generally comes with some ***implicit/defacto expectations*** that other things will also be open; i.e. design, governance, future direction and contributions.
 
 Evan's approach to these areas diverges from conventional open-source practices. Elm core development uses a [batching development workflow](https://github.com/elm/expectations/blob/master/batching.md), and Evan has spoken about his philosophy for Elm design & development if you’d like to understand it:
 
@@ -51,6 +55,7 @@ Evan's approach to these areas diverges from conventional open-source practices.
 - [Code is the easy part](https://youtu.be/DSjbTC-hvqQ)
 - [The Hard Parts of Open Source](https://www.youtube.com/watch?v=o_4EX4dPppA)
 - [Costs/Funding in Open-Source Languages](https://discourse.elm-lang.org/t/costs-funding-in-open-source-languages/5722)
+- [The Economics of Programming Languages](https://www.youtube.com/watch?v=XZ3w_jec1v8)
 
 Evan's latest status for the Elm core language is: [“If you like what you see now, that’s pretty much what Elm [core] is going to be…”](https://discourse.elm-lang.org/t/where-can-we-find-the-roadmap-of-elm/6038/2).
 

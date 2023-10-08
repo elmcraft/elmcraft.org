@@ -21,8 +21,8 @@ There are no timelines for this work, but he has recently been doing small demos
 - [Elm on The Backend - GOTO Aarhus May 22 2023](https://gotoaarhus.com/2023/sessions/2529/elm-on-the-backend)
   > NOTE: My goal is to get some early feedback from the in-person audience, so the video will be held back for now. I am not announcing a release, and the roadmap and this status update are still the primary documents for long-time Elm users to set expectations about this work.
   - This video has not yet been released
-- [The Economics of Programming Languages](https://www.thestrangeloop.com/2023/the-economics-of-programming-languages.html)
-  - Video expected soon, attendees note the talk references Evan's current work in context
+- [The Economics of Programming Languages](https://www.youtube.com/watch?v=XZ3w_jec1v8)
+  - Project status update [at the end of the talk](https://youtu.be/XZ3w_jec1v8?t=2342)
 
 ### When will the Elm compiler / `elm/*` packages see updates/releases?
 
