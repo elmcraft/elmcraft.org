@@ -190,5 +190,5 @@ This page you're reading now is an example of something some people tried to do 
   - “Evan is killing Elm!”
   - “Nobody is going to use Elm anymore!”
 - Presenting inaccurate or subjective statements about past events as facts
-  - “Evan took away Kernel because he doesn’t trust anyone!” - this is misleading, see [Lore: Elm’s Kernel Code](/lore/elm-kernel-code)
   - “Only the blessed core team get to do X!” - there is no core team and there never really was, see [Lore: Elm’s core team](/lore/elm-core-team)
+  - “Evan took away Kernel because he doesn’t trust anyone!” - this is misleading, see [Lore: Elm’s Kernel Code](/lore/elm-kernel-code)
