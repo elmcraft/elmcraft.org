@@ -1,3 +1,6 @@
 [build]
   publish = "./dist/"
   command = "export ELM_HOME=\"$NETLIFY_BUILD_BASE/cache/elm\" && npm i && npm run build"
+
+[functions]
+  node_bundler = "esbuild"

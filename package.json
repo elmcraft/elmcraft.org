@@ -19,7 +19,8 @@
     "vite": "^4.4.9"
   },
   "dependencies": {
-    "@netlify/functions": "^2.0.2",
-    "lamdera": "^0.19.1-1.2.0-1"
+    "@netlify/functions": "^2.4.0",
+    "lamdera": "^0.19.1-1.2.0-1",
+    "node-fetch": "^3.3.2"
   }
 }
