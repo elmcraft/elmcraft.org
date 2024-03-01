@@ -1,7 +1,7 @@
 ---
 type: page
-title: A case for opaque types
-description: The performance benefits of defaulting to opaque types
+title: Compilation performance benefits of opaque types
+description: Exploring the case for defaulting to opaque types
 published: false
 status: seedling
 authors: "@aemengo"
@@ -22,7 +22,7 @@ to
 type Model = Model { … }
 ```
 
-I would do this be able to **expose** the `type Model`, but not the `Model {...}`.<br/>
+I would do this to be able to **expose** the `type Model`, but not the `Model {...}`.<br/>
 That way I (*the library author*) can change `Model {...}` without you (*the one using my library*) having to change all your code.
 
 "Well... my Elm project isn't a library, so I don't need this 🤷", I thought to myself.
@@ -31,24 +31,24 @@ That way I (*the library author*) can change `Model {...}` without you (*the one
 
 The issues started when my CI system consistently failed to build my Elm project.
 
-![CI kills Elm build](./img/otp-ci-kill-elm-build.png)
+![CI kills Elm build](../../public/articles/perf-benefits-opaque-types/otp-ci-kill-elm-build.png)
 
-A little sleuthing lead me to find that my CI system was actually killing the `elm make` process because it was consuming too much memory. I was incredulous at first but here's the make process again in a local docker image, with a 4GB memory limit.
+A little sleuthing led me to find that my CI system was actually killing the `elm make` process because it was consuming too much memory. I was incredulous at first but here's the make process again in a local docker image, with a 4GB memory limit.
 
-![Elm build in docker memory graph](./img/otp-docker-memory-graph.png)
+![Elm build in docker memory graph](../../public/articles/perf-benefits-opaque-types/otp-docker-memory-graph.png)
 
 The make process spikes the memory all the way to the cap at 4GB, and is subsequently killed.
 
-Running the following command, lead me to believe that it was my liberal usage of `type alias` contributing to excessive amounts of garbage collection during the `elm make` process.
+Running the following command, led me to believe that it was my liberal usage of `type alias` contributing to excessive amounts of garbage collection during the `elm make` process.
 
 ```
 # inside source code folder
-du -hs elm-stuff/0.19.1/* | sort -h | tail -n 30 | tac
+du -hs elm-stuff/0.19.1/* | sort -h | tail -n 30
 ```
 
-![Elm stuff content](./img/otp-elm-stuff-content.png)
+![Elm stuff content](../../public/articles/perf-benefits-opaque-types/otp-elm-stuff-content.png)
 
-The helpful folk at the [Elm Slack Community](https://elm-lang.org/community) taught me that `.elmi` files `>10MB` are considered _extremely_ large. Even `>1MB` was pushing it.
+The helpful folks at [Elm Slack](https://elm-lang.org/community) taught me that `.elmi` files `>10MB` are considered _extremely_ large. Even `>1MB` was pushing it.
 
 ## The neat thing...
 
