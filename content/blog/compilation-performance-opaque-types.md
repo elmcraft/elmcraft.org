@@ -2,7 +2,7 @@
 type: page
 title: Compilation performance benefits of opaque types
 description: Exploring the case for defaulting to opaque types
-published: false
+published: true
 status: seedling
 authors: "@aemengo"
 ---
