@@ -5,7 +5,6 @@ description: Exploring the case for defaulting to opaque types
 published: false
 status: seedling
 authors: "@aemengo"
-editors: ""
 ---
 
 [Opaque types](https://sporto.github.io/elm-patterns/advanced/opaque-types.html) as an Elm design pattern always made sense - for libraries. The idea being that I use a **union type** for a plain old Elm object, instead of an **alias type**, even when there's only one **variant**.
@@ -31,11 +30,11 @@ That way I (*the library author*) can change `Model {...}` without you (*the one
 
 The issues started when my CI system consistently failed to build my Elm project.
 
-![CI kills Elm build](../../public/articles/perf-benefits-opaque-types/otp-ci-kill-elm-build.png)
+<img src="/articles/perf-benefits-opaque-types/otp-ci-kill-elm-build.png" alt="CI kills Elm build" style="max-width: 100%; height: auto;" />
 
 A little sleuthing led me to find that my CI system was actually killing the `elm make` process because it was consuming too much memory. I was incredulous at first but here's the make process again in a local docker image, with a 4GB memory limit.
 
-![Elm build in docker memory graph](../../public/articles/perf-benefits-opaque-types/otp-docker-memory-graph.png)
+<img src="/articles/perf-benefits-opaque-types/otp-docker-memory-graph.png" alt="Elm build in docker memory graph" style="max-width: 100%; height: auto;" />
 
 The make process spikes the memory all the way to the cap at 4GB, and is subsequently killed.
 
@@ -46,7 +45,7 @@ Running the following command, led me to believe that it was my liberal usage of
 du -hs elm-stuff/0.19.1/* | sort -h | tail -n 30
 ```
 
-![Elm stuff content](../../public/articles/perf-benefits-opaque-types/otp-elm-stuff-content.png)
+<img src="/articles/perf-benefits-opaque-types/otp-elm-stuff-content.png" alt="Elm stuff content" style="max-width: 100%; height: auto;" />
 
 The helpful folks at [Elm Slack](https://elm-lang.org/community) taught me that `.elmi` files `>10MB` are considered _extremely_ large. Even `>1MB` was pushing it.
 
