@@ -36,7 +36,7 @@ view model global _ =
                 [ heading3 [] "Featured article"
                 , let
                     articleLink =
-                        "https://dev.to/lucamug/elm-2022-a-year-in-review-33pp"
+                        "https://dev.to/lucamug/elm-2023-a-year-in-review-23d6"
 
                     v opts =
                         boxNoPadding
@@ -51,10 +51,10 @@ view model global _ =
                                     , clip
                                     ]
                                   <|
-                                    link [] { url = articleLink, label = image [ width fill ] { src = "/articles/2022-in-review.jpg", description = "2022 in review mosaic" } }
+                                    link [] { url = articleLink, label = image [ width fill ] { src = "/articles/2023-in-review.webp", description = "2023 in review mosaic" } }
                                 , column [ spacing 10, width (fillPortion 1), padding 20 ]
-                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2022, a year in review" articleLink ]
-                                    , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "236 things that happened in Elm in 2022!" articleLink ]
+                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2023, a year in review" articleLink ]
+                                    , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "A summary of 42 podcasts and 52 newsletters for Elm in 2023!" articleLink ]
                                     ]
                                 ]
                             ]
