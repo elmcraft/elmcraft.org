@@ -211,6 +211,8 @@ prefixMarkdownTableOfContents s =
 
                             ref =
                                 Theme.UI.stringToTitleId title
+                                    |> String.replace "(" "\\("
+                                    |> String.replace ")" "\\)"
                         in
                         depth ++ "- [" ++ title ++ "](#" ++ ref ++ ")"
                     )
