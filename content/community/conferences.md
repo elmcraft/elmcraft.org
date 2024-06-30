@@ -8,7 +8,7 @@ status: budding
 
 ## Upcoming conferences
 
-- ❓ Elm Camp 2024 - TBC!
+- Elm Camp 2025 - TBC!
 
 ## Past conferences
 
