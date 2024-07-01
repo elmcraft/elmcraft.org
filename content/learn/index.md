@@ -26,6 +26,8 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
 
+- [Welcome to Elm!](https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb) - Ryan Haskell
+
 #### Paid Online Courses
 
 - [Introduction to Elm, v2](https://frontendmasters.com/courses/intro-elm/) - Richard Feldman - ([Frontend Masters](https://frontendmasters.com/) subscription)
