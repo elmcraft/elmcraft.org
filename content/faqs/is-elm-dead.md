@@ -40,7 +40,7 @@ Elm's core release cycle works in batches, so a lack of frequent updates is not 
 
 Elm has a lot of [packages](https://package.elm-lang.org/) with a strong community philosophy of deeply thought out APIs and great documentation.
 
-Check out a list of recent package updates at [https://elm-greenwood.com/](https://elm-greenwood.com/).
+Check out a list of recent package updates at [https://releases.elm.dmy.fr/](https://releases.elm.dmy.fr/).
 
 
 ## Elm Ecosystem
