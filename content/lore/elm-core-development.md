@@ -23,10 +23,6 @@ editors: "@jfmengels,@wolfadex"
 
 ---
 
-
-
-## Contents
-
 <toc></toc>
 
 

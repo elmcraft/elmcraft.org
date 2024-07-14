@@ -11,7 +11,7 @@ authors: "@supermario"
 
 Evan is currently in a deep cycle exploring Elm within a backend/database context.
 
-There are no timelines for this work, but he has recently been doing small demos, so it appears to be progressing well.
+There are no timelines for this work, but Evan recently ([Elm Camp 2024](https://elm.camp)) indicated he's starting to look at privately working with a few companies, so it appears to be progressing well.
 
 ### Summary of public updates
 

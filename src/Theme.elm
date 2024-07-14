@@ -62,7 +62,7 @@ view global toWrapperMsg model static =
                                         "Seedling 🌱"
 
                                     Budding ->
-                                        "Budding \u{1FAB4}"
+                                        "Budding 🪴"
 
                                     Evergreen ->
                                         "Evergreen 🌳"

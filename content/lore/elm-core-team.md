@@ -9,6 +9,8 @@ authors: "@supermario"
 
 <lore></lore>
 
+<toc></toc>
+
 
 ## Who is on the Elm core team?
 
