@@ -15,3 +15,7 @@ Here is a small collection of testimonials about the delightfulness of Elm.
 ### From Slack
 
 <img maxwidth="600" src="/public/images/community/love/slack-@andrewc.png" alt="@AndrewC on Slack" />
+
+---
+
+<img maxwidth="600" src="/public/images/community/love/slack-@chadtech.png" alt="@chadtech on Slack" />
