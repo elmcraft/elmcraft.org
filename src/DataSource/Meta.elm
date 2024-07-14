@@ -15,6 +15,7 @@ type alias Meta =
     , published : Bool
     , status : Maybe Status
     , route : Route.Route
+    , markdownPath : String
     , authors : List String
     , editors : List String
     }
@@ -26,6 +27,7 @@ empty =
     , published = False
     , status = Nothing
     , route = Route.SPLAT__ { splat = [ "empty" ] }
+    , markdownPath = "404.md"
     , authors = []
     , editors = []
     }

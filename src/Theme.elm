@@ -11,6 +11,7 @@ import Element.Region as Region
 import Helpers exposing (..)
 import Html exposing (Html)
 import Html.Attributes as Html
+import Icon
 import Route
 import Theme.Footer
 import Theme.Layout
@@ -119,6 +120,7 @@ view global toWrapperMsg model static =
                                         paragraph [ Font.color charcoalLight, Font.size 14 ] <|
                                             [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
                                             , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
+                                            , Theme.UI.externalLink_ [ paddingXY 10 0 ] (Icon.editSmall []) ("https://github.com/elmcraft/elmcraft.org/edit/main/" ++ static.meta.markdownPath)
                                             , row [ alignRight, spacing 5 ]
                                                 ((static.meta.authors |> List.map (contributorCircle "author" purple))
                                                     ++ (static.meta.editors |> List.map (contributorCircle "editor" charcoal))

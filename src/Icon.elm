@@ -24,6 +24,11 @@ book attrs =
     toElement (FeatherIcons.bookOpen |> FeatherIcons.withSize 40) attrs
 
 
+editSmall : List (Attribute msg) -> Element msg
+editSmall attrs =
+    toElement (FeatherIcons.edit |> FeatherIcons.withSize 14) attrs
+
+
 
 -- Helpers
 

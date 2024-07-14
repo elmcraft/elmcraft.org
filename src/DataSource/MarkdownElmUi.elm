@@ -21,14 +21,15 @@ import UrlPath exposing (UrlPath)
 import View exposing (..)
 
 
-decodeMeta : List String -> D.Decoder Meta
-decodeMeta splat =
+decodeMeta : List String -> String -> D.Decoder Meta
+decodeMeta splat markdownPath =
     D.succeed Meta
         |> required "title" D.string
         |> required "description" D.string
         |> required "published" D.bool
         |> optional "status" (decodeStatus |> D.andThen (\v -> D.succeed <| Just v)) Nothing
         |> hardcoded (Route.SPLAT__ { splat = splat })
+        |> hardcoded markdownPath
         |> optional "authors" (D.string |> D.map (\v -> String.split "," v)) []
         |> optional "editors" (D.string |> D.map (\v -> String.split "," v)) []
 
@@ -66,7 +67,7 @@ routeAsLoadedPageAndThen routeParams fn =
                                     -- Remove when improvement merged
                                     -- https://github.com/dillonkearns/elm-pages/pull/421
                                     D.oneOf
-                                        [ decodeMeta routeParams.splat
+                                        [ decodeMeta routeParams.splat path
 
                                         -- , D.succeed ()
                                         --     |> D.andThen

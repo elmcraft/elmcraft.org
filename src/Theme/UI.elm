@@ -311,7 +311,11 @@ littleTitle attrs label =
 
 
 externalLink attrs label url =
-    link [ Font.underline, mouseOver [ Font.color purple ] ] { url = url, label = text label }
+    link ([ Font.underline, mouseOver [ Font.color purple ] ] ++ attrs) { url = url, label = text label }
+
+
+externalLink_ attrs label url =
+    link ([ Font.underline, mouseOver [ Font.color purple ] ] ++ attrs) { url = url, label = label }
 
 
 routeLinkBare : List (Attribute msg) -> String -> Route -> Element msg
