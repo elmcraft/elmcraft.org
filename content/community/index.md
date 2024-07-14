@@ -22,6 +22,10 @@ Elm conferences and larger events.
 
 History and cultural knowledge in the Elm community.
 
+## [Love](/community/love)
+
+Elm Community Love & Testimonials ❤️
+
 
 ## Sponsor
 
