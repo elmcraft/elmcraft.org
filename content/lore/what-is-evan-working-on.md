@@ -27,3 +27,15 @@ There are no timelines for this work, but Evan recently ([Elm Camp 2024](https:/
 ### When will the Elm compiler / `elm/*` packages see updates/releases?
 
 There is no timeframe on this. See [how Elm Core Development works](/lore/elm-core-development) for more info.
+
+
+### What about other maintenance?
+
+While the complier changes are in a research cycle, Evan has worked with the community on additional
+platform support and improved binary distribution for the current release.
+
+- In January 2021, version 0.19.1.-5 of the npm package was published with an [update](https://github.com/elm/compiler/pull/2156) to download x64 binaries for ARM macs to resolve installation issues on the newly released platform.
+- In September 2023, the [0.19.1 releases](https://github.com/elm/compiler/releases) were updated to include a 64-bit Mac ARM binary.
+- In November 2023, version 0.19.1-6 of the npm package was published with an [update](https://github.com/elm/compiler/pull/2287) to remove third-party download dependencies and include the new ARM binaries.
+
+See also [How to report critical issues](/lore/how-to-report-critical-issues).
