@@ -2,9 +2,13 @@
 type: page
 title: Elm Articles
 description: A collection of articles on Elm
-published: false
+published: true
 status: seedling
 ---
+
+This is super WIP – [please help contribute](https://github.com/elmcraft/elmcraft.org/edit/main/content/media/articles.md)!
+
+Eventually the plan is to make a page similar to [Videos](https://elmcraft.org/media/videos) so please note applicable [Categories](https://github.com/elmcraft/elmcraft.org/blob/main/src/Types.elm#L100) if you're adding links 💜
 
 ### Data modelling in Elm
 

@@ -26,7 +26,7 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
 
-- [Welcome to Elm!](https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb) - Ryan Haskell
+- [Welcome to Elm!](https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb) 40 episode video series - Ryan Haskell
 
 #### Paid Online Courses
 
@@ -72,9 +72,12 @@ In Portuguese:
 
 ## References
 
+- [Elm Cheatsheet](https://lucamug.github.io/elm-cheat-sheet/) - Learning Elm? Download the Elm Cheat Sheet to support your learning process
+- [FP Transforms](https://fptransforms.netlify.app/transformations.html) - Syntax comparisons between Elm and Gren, Haskell and Roc
 - [Elm Cookbook](https://orasund.gitbook.io/elm-cookbook/) - Jeremy Fairbank, the author of the Book Programming Elm, noticed that there is no Elm cookbook, that would serve as a follow-up to a beginners book. This book aims to fill this empty spot.
 - [Elm Types Glossary](https://gist.github.com/JoelQ/6b303d9ad450537163b6f8f6cf8a4ed8) - There's a lot of type terminology and jargon going around when discussing types in Elm. This glossary attempts to list some of the most common type terms along with synonyms, terms from other language communities, examples, and links to more detailed articles on each topic.
 - [Elm Patterns](https://sporto.github.io/elm-patterns/index.html) - A collection of common patterns for Elm.
+
 
 ## Meta guides
 
