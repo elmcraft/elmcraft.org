@@ -72,8 +72,11 @@ view global toWrapperMsg model static =
                                 let
                                     tooltipWidth =
                                         160
+
+                                    githubUsername =
+                                        name |> String.replace "@" ""
                                 in
-                                el
+                                link
                                     [ Border.rounded 30
                                     , Border.width 3
                                     , Border.color color
@@ -104,14 +107,16 @@ view global toWrapperMsg model static =
                                                 (text <| Theme.UI.titleCase contribution ++ ": " ++ name)
                                         }
                                     ]
-                                    (image
-                                        [ width (px 30)
-                                        , height (px 30)
-                                        , Border.rounded 30
-                                        , clip
-                                        ]
-                                        { src = "/images/contributors/" ++ name ++ ".jpg", description = "Contributor picture" }
-                                    )
+                                    { url = "https://github.com/" ++ githubUsername
+                                    , label =
+                                        image
+                                            [ width (px 30)
+                                            , height (px 30)
+                                            , Border.rounded 30
+                                            , clip
+                                            ]
+                                            { src = "https://github.com/" ++ githubUsername ++ ".png?size=200", description = name ++ "'s Github profile pic" }
+                                    }
                           in
                           case static.status of
                             Just status ->
