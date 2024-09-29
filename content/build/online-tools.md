@@ -12,7 +12,7 @@ Where a read-evaluate-print-loop UI is available to execute Elm code.
 
 * The REPL in the [official Elm guide](https://guide.elm-lang.org/core_language) is surrounded by tutorial code and explanations.
 * On [elmrepl.de](https://elmrepl.de/) you can edit one Elm file and also access its declarations from a REPL input field. You can create links for sharing and also import/export state.
-
+* With [elm.run/repl](https://elm.run/repl) the Elm code is compiled in your browser. You can also import the elm/json package there.
 
 ## Editor
 Where you can edit at least one Elm file, trigger compilation and view the result.
