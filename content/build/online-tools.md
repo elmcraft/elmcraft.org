@@ -32,5 +32,5 @@ Where you write a (text) document, and can have interactive code segments inside
 ## Code Generation
 
 * [json2elm](https://korban.net/elm/json2elm/) lets you paste a JSON sample and it will generate decoders and encoders for you. You can switch between different styles and packages.
-
 * [Fusion](https://fusion.lamdera.app/) allows you to interactively explore GET or POST requests, pick which fields you are interested in from the response, and receive generated query and decoder Elm code.
+* [html to elm](https://html-to-elm.com/) can convert pasted html and svg code to Elm. How the Elm packages are imported can be configured in the settings.
