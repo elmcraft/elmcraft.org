@@ -28,7 +28,7 @@ Even if the Elm Foundation was eligible to apply for it, and Slack were to award
 
 ### Has anyone reached out to Slack to try negotiate a solution?
 
-Yes, numerous people have tried over the last couple years, including @eeue56 and @supermario most recently.
+Yes, numerous people have tried over the last couple years, including [@eeue56](https://github.com/eeue56) and [@supermario](https://github.com/supermario) most recently.
 
 Despite a long and ongoing conversation with Slack, the final outcome can be summarised in these two email snippets;
 
@@ -43,7 +43,7 @@ The Elm Slack community is growing rapidly so the costs are both unknown and ris
 
 If for any reason the funding stalls for, or even simply falls marginally short one month, we’re flipping back and forth between history and no history.
 
-The combination of these two items warrants the question as to whether the history is worth the hassle and the significant ongoing cost to benefit a small number of very low volume channels, especially given we now have https://discourse.elm-lang.org.
+The combination of these two items warrants the question as to whether the history is worth the hassle and the significant ongoing cost to benefit a small number of very low volume channels, especially given we now have [https://discourse.elm-lang.org](https://discourse.elm-lang.org).
 
 
 ### Why don’t we just switch to something else?
