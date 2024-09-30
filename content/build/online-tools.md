@@ -3,7 +3,8 @@ type: page
 title: Elm online tools
 description: Tools we can use in the browser to work with Elm.
 status: seedling
-published: false
+published: true
+authors: "@marc136"
 ---
 There are a number of online Elm tools that let you interact with the Elm language without requiring any local installation.
 
