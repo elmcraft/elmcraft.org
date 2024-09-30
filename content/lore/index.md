@@ -21,7 +21,7 @@ A downside of documenting Lore is that you alter its nature somewhat. You calcif
 
 Like a photograph of a moment in time, the photographer adds composition, perspective and framing (selection and exclusion).
 
-Inevitably there is no objective Lore. Authors leave their fingerprint on what they write.
+Inevitably there is no *objective* Lore. Authors leave their subjective fingerprint on what they write.
 
 So the pages under Lore are framed in the following ways to try mitigate some of the downsides:
 
