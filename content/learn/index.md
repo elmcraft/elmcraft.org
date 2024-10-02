@@ -28,6 +28,7 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
 
 - [Welcome to Elm!](https://www.youtube.com/playlist?list=PLuGpJqnV9DXq_ItwwUoJOGk_uCr72Yvzb) 40 episode video series - Ryan Haskell
+- [A tour of Elm](https://a-tour-of-elm.axelerator.de/) An interactive Elm tutorial teaching the web basics to build SPAs with Elm
 
 #### Paid Online Courses
 
