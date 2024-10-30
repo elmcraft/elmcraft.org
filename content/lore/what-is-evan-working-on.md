@@ -23,6 +23,8 @@ There are no timelines for this work, but Evan recently (at [Elm Camp – June 
   - This video has not yet been released
 - [Sep 2023 – The Economics of Programming Languages](https://www.youtube.com/watch?v=XZ3w_jec1v8)
   - Project status update [at the end of the talk](https://youtu.be/XZ3w_jec1v8?t=2342)
+- [Oct 2024 – Kodsnack 604 - Farmer's disposition, with Evan Czaplicki](https://kodsnack.se/international/604/) - Evan talks about the last few years with context on his personal journey and where things are at now.
+
 
 ### When will the Elm compiler / `elm/*` packages see updates/releases?
 
