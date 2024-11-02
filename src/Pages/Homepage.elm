@@ -90,19 +90,6 @@ view model global _ =
                     [ heading3 [] "Latest Elm Podcasts"
                     , routeLink [] "See all" (splat "media" [ "podcasts" ])
                     ]
-                , case global.latestElmRadio of
-                    Nothing ->
-                        none
-
-                    Just episode ->
-                        latestPodcastView model
-                            { episode = episode
-                            , showName = "Elm Radio"
-                            , bgColor = "#002329"
-                            , logo = { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
-                            , host = "Dillon and Jeroen"
-                            , podcastUrl = "https://elm-radio.com/"
-                            }
                 , case global.latestElmTown of
                     Nothing ->
                         none
@@ -115,6 +102,21 @@ view model global _ =
                             , logo = { src = "/images/logos/elm-town.jpg", description = "Elm Town Logo" }
                             , host = "Jared M. Smith"
                             , podcastUrl = "https://elm.town/"
+                            , noteM = Nothing
+                            }
+                , case global.latestElmRadio of
+                    Nothing ->
+                        none
+
+                    Just episode ->
+                        latestPodcastView model
+                            { episode = episode
+                            , showName = "Elm Radio"
+                            , bgColor = "#002329"
+                            , logo = { src = "/images/logos/elm-radio.svg", description = "Elm Radio Logo" }
+                            , host = "Dillon and Jeroen"
+                            , podcastUrl = "https://elm-radio.com/"
+                            , noteM = Just "Currently on Baby Break!"
                             }
                 ]
             , viewLatestNewsletter model global.latestNewsletter
@@ -123,7 +125,7 @@ view model global _ =
         ]
 
 
-latestPodcastView model { episode, showName, bgColor, logo, host, podcastUrl } =
+latestPodcastView model { episode, showName, bgColor, logo, host, podcastUrl, noteM } =
     let
         url =
             episode.url
@@ -159,6 +161,12 @@ latestPodcastView model { episode, showName, bgColor, logo, host, podcastUrl } =
                             ]
                         , paragraph [] [ text episode.description ]
                         , paragraph [] [ externalLink [] ("Hosted by " ++ host) podcastUrl ]
+                        , case noteM of
+                            Just note ->
+                                paragraph [] [ text note ]
+
+                            Nothing ->
+                                none
                         ]
                     ]
                 ]
