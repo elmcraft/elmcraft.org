@@ -9,7 +9,7 @@ import DataSource.ElmTown
 import DataSource.ElmWeeklyRSS
 import DataSource.MarkdownElmUi
 import DataSource.Meta
-import DataSource.Notion as Notion
+import DataStatic.Videos
 import Dict
 import Effect
 import Element exposing (..)
@@ -122,10 +122,10 @@ data routeParams =
             let
                 getVideos =
                     if d.markdown |> String.contains "<video" then
-                        Notion.recursiveGetVideos Nothing
+                        DataStatic.Videos.all |> BackendTask.succeed
 
                     else if path == "content/index.md" then
-                        Notion.getVideos 3
+                        DataStatic.Videos.all |> List.take 3 |> BackendTask.succeed
 
                     else
                         BackendTask.succeed []
@@ -161,7 +161,7 @@ data routeParams =
                 Shared.data
                 (Timestamps.data path |> BackendTask.allowFatal)
                 getVideos
-                (onlyOn "content/index.md" Notion.getVideosCount 0)
+                (onlyOn "content/index.md" (BackendTask.succeed (List.length DataStatic.Videos.all)) 0)
                 (onlyOn "content/index.md" (DataSource.ElmRadio.episodeLatest |> BackendTask.map Just) Nothing)
                 (onlyOn "content/index.md" (DataSource.ElmTown.episodeLatest |> BackendTask.map Just) Nothing)
                 (onlyOn "content/index.md" (DataSource.ElmWeeklyRSS.newsletterLatest |> BackendTask.map Just) Nothing)

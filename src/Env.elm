@@ -1,5 +1,5 @@
 module Env exposing (..)
 
 
-notionApiToken =
+example =
     ""

@@ -24,8 +24,6 @@ npx elm-pages dev
 
 From there you can tweak `content/` files or change the Elm code.
 
-:warning: On the homepage and video pages you'll get an error about a `NOTION_TOKEN` being missing – please skip those pages for now we're going to migrate away from Notion. Ping @supermario if this is a blocker for what you're working on.
-
 
 ## Pages
 
@@ -51,9 +49,9 @@ All the UI is built with [`elm-ui`](https://package.elm-lang.org/packages/mdgrif
 (Note: these are conceptually [`BackendTask`](https://package.elm-lang.org/packages/dillonkearns/elm-pages/latest/BackendTask) in elm-pages-v3, but we've not renamed them here yet)
 
 - `src/DataSource` contains elm-pages data sources
-- `src/DataStatic` contains hardcoded data in Elm format
+- `src/DataStatic` contains static data as Elm values
 
-Generally err towards static data and if it becomes high churn then we can move it to Notion or elsewhere
+Generally err towards static data and if it becomes high churn then we can move elsewhere
 
 
 ## Static files

@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "elm-tooling install",
     "start": "elm-pages dev",
-    "build": "NOTION_TOKEN=$NOTION_TOKEN elm-pages build && cp dist/404/index.html dist/404.html"
+    "build": "elm-pages build && cp dist/404/index.html dist/404.html"
   },
   "author": "Mario Rogic",
   "license": "BSD-3",

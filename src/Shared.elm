@@ -6,7 +6,6 @@ import BackendTask.Helpers exposing (..)
 import Browser.Dom
 import Browser.Events
 import Browser.Navigation
-import DataSource.Notion
 import Dict
 import Effect exposing (Effect)
 import Element exposing (..)
@@ -193,9 +192,7 @@ subscriptions _ _ =
 
 data : BTask Data
 data =
-    -- @TODO figure out how we can use this globally and swap for SPLAT__ usage of Notion.getVideos
-    -- Notion.getVideos
-    --     |> DataSource.map (\videos -> { videos = videos })
+    -- @TODO figure out how we can use shared data globally and drop SPLAT__'s hacky usage of DataStatic.Videos
     map2_
         -- https://docs.netlify.com/configure-builds/environment-variables/
         -- In dev, we can use `CONTEXT=production` to mimic !isDev mode
