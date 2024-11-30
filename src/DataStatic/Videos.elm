@@ -212,6 +212,14 @@ all =
       , url = "https://youtu.be/E3LvpziCs0U"
       , year = "2022"
       }
+    , { categories = [ Hobby, Project, Games, Concept, Learn ]
+      , description = "For the better part of last year I've been writing a multiplayer browser game, with both frontend and backend written in the Elm language. I'll talk about my setup, the good, bad and ugly of this approach, anecdotes from development, what surprised me and what the future holds. Who said Elm's for frontend only!?"
+      , event = EventUnknown "NDC Oslo 2021"
+      , name = "Writing a MMORPG game in Elm on both client and server"
+      , speaker = "Martin Janiczek"
+      , url = "https://www.youtube.com/watch?v=_lmpAsy1RQ4"
+      , year = "2021"
+      }
     , { categories = [ Concept ]
       , description = "Jeroen Engels talks about The phantom builder pattern at the Elm Online Meetup on October 6th 2021."
       , event = EventUnknown ""
