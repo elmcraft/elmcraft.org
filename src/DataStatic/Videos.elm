@@ -4,7 +4,15 @@ import Types exposing (..)
 
 
 all =
-    [ { categories = [ ElmPhilosophy, Iconic ]
+    [ { categories = [ ElmPhilosophy ]
+      , description = "Evan Czaplicki—the creator of the Elm programming language —joins me to discuss the state and future of Elm, the friendly, type-safe functional programming language. On many fronts Elm has been a huge success: it’s been popular with new and seasoned programmers alike; it’s helped push several language ideas into the mainstream; it’s been a key part of several successful software businesses and he even found himself employed as a kind of Language Designer in Residence. And yet, the material rewards of a successful open-source project were…lacking. Was he naive? Can an open-source developer stay true to open-source principles and still make a decent living? Is open source being exploited by commercial software businesses? These topics and more tumble out of what has to be the first question in the podcast: What’s happening with Elm?"
+      , event = EventUnknown ""
+      , name = "Elm & The Future of Open Source"
+      , speaker = "Evan Czaplicki, Kris Jenkins"
+      , url = "https://www.youtube.com/watch?v=0SUM4869ODc"
+      , year = "2024"
+      }
+    , { categories = [ ElmPhilosophy, Iconic ]
       , description = "In the mythology of open source, programming languages are created by people who seemingly have no direct economic function. They are just really good at compilers (somehow) and have a house to live in (somehow) and have a lifetime to devote to creating a useful programming language (somehow!)\nWe will examine specific organizations that create programming languages. Where do the salaries for compiler engineers come from? How does Go end up with 5 engineers and Dart end up with 30? Who signs off on these expenses and why? Does this put any boundaries on language design or development practices? And how do the economics work for people outside of the major tech corporations?\nMy goal is to give the talk I needed to hear 10 years ago when I was just starting on Elm. By clearly delineating the many variations of corporate funding and independent funding, I hope users will come away with a better foundation for evaluating and comparing programming languages."
       , event = EventUnknown "Strange Loop 2023"
       , name = "The Economics of Programming Languages"
