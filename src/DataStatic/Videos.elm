@@ -4,6 +4,22 @@ import Types exposing (..)
 
 
 all =
+    ryanAOC2024 ++ rest
+
+
+ryanAOC2024 =
+    [ { categories = [ Learn ]
+      , description = "Learn how to solve holiday-themed problems with Elm, a functional language for making websites and web apps!"
+      , event = EventUnknown ""
+      , name = "Advent of Code 2024 (Day 1)"
+      , speaker = "Ryan Haskell"
+      , url = "https://www.youtube.com/watch?v=FJvOwtQcu6A"
+      , year = "2024"
+      }
+    ]
+
+
+rest =
     [ { categories = [ ElmPhilosophy ]
       , description = "Evan Czaplicki—the creator of the Elm programming language —joins me to discuss the state and future of Elm, the friendly, type-safe functional programming language. On many fronts Elm has been a huge success: it’s been popular with new and seasoned programmers alike; it’s helped push several language ideas into the mainstream; it’s been a key part of several successful software businesses and he even found himself employed as a kind of Language Designer in Residence. And yet, the material rewards of a successful open-source project were…lacking. Was he naive? Can an open-source developer stay true to open-source principles and still make a decent living? Is open source being exploited by commercial software businesses? These topics and more tumble out of what has to be the first question in the podcast: What’s happening with Elm?"
       , event = EventUnknown ""
