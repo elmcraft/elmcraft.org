@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "elm-tooling install",
+    "dev": "elm-pages dev",
     "start": "elm-pages dev",
     "build": "elm-pages build && cp dist/404/index.html dist/404.html"
   },
