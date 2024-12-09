@@ -7,7 +7,7 @@ import Types exposing (..)
 all =
     -- Front-load the latest AOC video in the first position, but leaving
     -- position 2 and 3 for the latest non-AOC videos.
-    case ryanAOC2024 of
+    case List.reverse ryanAOC2024 of
         latest :: rest ->
             case List.splitAt 2 all_ of
                 ( all2, allRest ) ->
@@ -18,13 +18,47 @@ all =
 
 
 ryanAOC2024 =
-    [ { categories = [ Learn ]
-      , description = "Learn how to solve holiday-themed problems with Elm, a functional language for making websites and web apps!"
-      , event = EventUnknown ""
-      , name = "Advent of Code 2024 (Day 1)"
-      , speaker = "Ryan Haskell"
-      , url = "https://www.youtube.com/watch?v=FJvOwtQcu6A"
-      , year = "2024"
+    let
+        base =
+            { categories = [ Learn ]
+            , description = description
+            , event = EventUnknown ""
+            , name = "Advent of Code 2024 (Day 1)"
+            , speaker = "Ryan Haskell"
+            , url = "https://www.youtube.com/watch?v=FJvOwtQcu6A"
+            , year = "2024"
+            }
+
+        description =
+            "Learn how to solve holiday-themed problems with Elm, a functional language for making websites and web apps!"
+    in
+    [ { base
+        | name = "Advent of Code 2024 (Day 1)"
+        , url = "https://www.youtube.com/watch?v=FJvOwtQcu6A"
+      }
+    , { base
+        | name = "Advent of Code 2024 (Day 2)"
+        , url = "https://www.youtube.com/watch?v=EUQlhjhgAMc"
+      }
+    , { base
+        | name = "Advent of Code 2024 (Day 3)"
+        , url = "https://www.youtube.com/watch?v=qcNWQAa4C-Y"
+      }
+    , { base
+        | name = "Advent of Code 2024 (Day 4)"
+        , url = "https://www.youtube.com/watch?v=klqSrpJmTIE"
+      }
+    , { base
+        | name = "Advent of Code 2024 (Day 5)"
+        , url = "https://www.youtube.com/watch?v=dHGVRgUk6tw"
+      }
+    , { base
+        | name = "Advent of Code 2024 (Day 6)"
+        , url = "https://www.youtube.com/watch?v=aljJUtoKz2Y"
+      }
+    , { base
+        | name = "Advent of Code 2024 (Day 7)"
+        , url = "https://www.youtube.com/watch?v=Nolt_xVAXY8"
       }
     ]
 
