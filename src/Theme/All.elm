@@ -1,6 +1,7 @@
 module Theme.All exposing (..)
 
 import Colors exposing (..)
+import DataSource.Meta exposing (..)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -9,8 +10,10 @@ import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes
 import Icon
+import Json.Encode
 import Markdown.Html
 import Pages.Homepage
+import Theme
 import Theme.Articles
 import Theme.Compare
 import Theme.CuratedBy
@@ -25,8 +28,8 @@ import Theme.Videos
 import Types exposing (..)
 
 
-htmlMapping : Types.Model -> Types.GlobalData -> Markdown.Html.Renderer (List (Element Msg) -> Element Msg)
-htmlMapping model global =
+htmlMapping : Meta -> Types.Model -> Types.GlobalData -> Markdown.Html.Renderer (List (Element Msg) -> Element Msg)
+htmlMapping meta model global =
     Markdown.Html.oneOf
         [ Markdown.Html.tag "img"
             (\src width_ maxWidth_ bg_ content ->
@@ -276,6 +279,24 @@ htmlMapping model global =
                                         , paragraph [ Font.italic, Font.underline ] [ text "Unofficial Elm community history & cultural knowledge" ]
                                         ]
                                 }
+                            ]
+                        ]
+                    ]
+            )
+        , Markdown.Html.tag "meta"
+            (\children ->
+                row [ paddingEach { bottom = 20, top = 0, left = 0, right = 0 } ]
+                    [ row [ width fill, Background.color metaBg, paddingXY 10 8, Border.rounded 10 ]
+                        [ paragraph []
+                            [ paragraph []
+                                [ el [ Font.bold ] <| text "🕸️ Meta"
+                                , text " "
+                                , paragraph []
+                                    [ text " – This page is currently just a collection of unqualified info. It would be better if there was a clearer guide for people new to this area from someone who's worked through it. That might be you soon! If so, please come back later and "
+                                    , Theme.githubEditLink meta "help refine this page with what you learn"
+                                    , text "."
+                                    ]
+                                ]
                             ]
                         ]
                     ]

@@ -124,7 +124,7 @@ markdownRenderer rawMarkdown path meta =
             (\blocks ->
                 Ok
                     (\model_ global_ ->
-                        case Markdown.Renderer.render (Theme.Markdown.renderer model_ global_) blocks of
+                        case Markdown.Renderer.render (Theme.Markdown.renderer meta model_ global_) blocks of
                             Ok ui ->
                                 if not meta.published && not global_.isDev then
                                     [ text "Oops! This page isn't ready for prime-time yet! Check in again soon." ]
@@ -147,13 +147,13 @@ markdownRenderer rawMarkdown path meta =
            )
 
 
-markdownRendererDirect : String -> Route.Route -> Types.Model -> Types.GlobalData -> List (Element Types.Msg)
-markdownRendererDirect rawMarkdown route model global =
+markdownRendererDirect : String -> Meta -> Types.Model -> Types.GlobalData -> List (Element Types.Msg)
+markdownRendererDirect rawMarkdown meta model global =
     rawMarkdown
         |> markdownRendererCore
         |> Result.andThen
             (\blocks ->
-                Markdown.Renderer.render (Theme.Markdown.renderer model global) blocks
+                Markdown.Renderer.render (Theme.Markdown.renderer meta model global) blocks
             )
         |> (\res ->
                 case res of
@@ -161,7 +161,7 @@ markdownRendererDirect rawMarkdown route model global =
                         ui
 
                     Err err ->
-                        [ text <| "Failure in path " ++ Route.toString route ++ ": " ++ err ]
+                        [ text <| "Failure in path " ++ Route.toString meta.route ++ ": " ++ err ]
            )
 
 

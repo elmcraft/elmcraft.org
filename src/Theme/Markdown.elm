@@ -8,6 +8,7 @@ import Browser.Dom
 import Browser.Events
 import Color
 import Colors exposing (..)
+import DataSource.Meta exposing (Meta)
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
@@ -28,8 +29,8 @@ import Theme.UI exposing (..)
 import Types exposing (..)
 
 
-renderer : Model -> GlobalData -> Markdown.Renderer.Renderer (Element Msg)
-renderer model global =
+renderer : Meta -> Model -> GlobalData -> Markdown.Renderer.Renderer (Element Msg)
+renderer meta model global =
     { heading = \data -> row [] [ heading data ]
     , paragraph = \children -> paragraph [ paddingXY 0 15, spacing 15 ] children
     , blockQuote =
@@ -47,7 +48,7 @@ renderer model global =
                     ]
                     children
                 ]
-    , html = Theme.All.htmlMapping model global
+    , html = Theme.All.htmlMapping meta model global
 
     -- @TODO preserve newlines on... new lines?
     , text = \s -> el [] <| text s

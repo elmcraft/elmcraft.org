@@ -125,7 +125,7 @@ view global toWrapperMsg model static =
                                         paragraph [ Font.color charcoalLight, Font.size 14 ] <|
                                             [ prefetchLink [ Font.color <| fromHex "#98B68F" ] { url = "/about/markers", label = text <| statusToString status }
                                             , text <| " Planted " ++ format static.timestamps.created ++ " - Last tended " ++ format static.timestamps.updated
-                                            , Theme.UI.externalLink_ [ paddingXY 10 0 ] (Icon.editSmall []) ("https://github.com/elmcraft/elmcraft.org/edit/main/" ++ static.meta.markdownPath)
+                                            , githubEditIcon static.meta
                                             , row [ alignRight, spacing 5 ]
                                                 ((static.meta.authors |> List.map (contributorCircle "author" purple))
                                                     ++ (static.meta.editors |> List.map (contributorCircle "editor" charcoal))
@@ -152,6 +152,14 @@ view global toWrapperMsg model static =
                     |> Element.map toWrapperMsg
                 ]
             ]
+
+
+githubEditIcon meta =
+    Theme.UI.externalLink_ [ paddingXY 10 0 ] (Icon.editSmall []) ("https://github.com/elmcraft/elmcraft.org/edit/main/" ++ meta.markdownPath)
+
+
+githubEditLink meta text_ =
+    Theme.UI.externalLink_ [] (text text_) ("https://github.com/elmcraft/elmcraft.org/edit/main/" ++ meta.markdownPath)
 
 
 manualCss =

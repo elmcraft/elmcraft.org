@@ -200,7 +200,7 @@ view app sharedModel =
     , content =
         DataSource.MarkdownElmUi.markdownRendererDirect
             app.data.rawMarkdown
-            app.data.meta.route
+            app.data.meta
             sharedModel
             app.data.global
             |> List.map (Element.map PagesMsg.fromMsg)

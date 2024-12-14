@@ -99,6 +99,10 @@ loreBg =
     fromHex "#f9eceb"
 
 
+metaBg =
+    fromHex "#e4efff"
+
+
 pink =
     fromHex "#f9eceb"
 
