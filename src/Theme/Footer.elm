@@ -51,14 +51,17 @@ footerNav model =
           --     , item "Developer" (splat "discover" [ "developer" ])
           --     , item "Manager/CTO" (splat "discover" [ "manager" ])
           --     ]
-          -- footerGroup "Build"
-          --   [ item "Packages" (splat "build" [ "packages" ])
-          --   , item "Tooling" (splat "build" [ "tooling" ])
-          --   , item "Design patterns" (splat "build" [ "design-patterns" ])
-          --   , item "Examples" (splat "build" [ "examples" ])
-          --   , item "Contributing" (splat "build" [ "contributing" ])
-          --   ]
-          footerGroup "Media"
+          footerGroup "Build"
+            [ item "Packages" (splat "build" [ "packages" ])
+            , item "Tools" (splat "build" [ "tools" ])
+            , item "Online Tools" (splat "build" [ "online-tools" ])
+            , item "Guides" (splat "build" [ "guides" ])
+
+            -- , item "Design patterns" (splat "build" [ "design-patterns" ])
+            -- , item "Examples" (splat "build" [ "examples" ])
+            -- , item "Contributing" (splat "build" [ "contributing" ])
+            ]
+        , footerGroup "Media"
             [ item "Newsletters" (splat "media" [ "newsletters" ])
 
             -- , item "Articles" (splat "media" [ "articles" ])
