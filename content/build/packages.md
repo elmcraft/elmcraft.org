@@ -15,6 +15,7 @@ Elm code can be optionally organised into published packages. Elm packages are d
 - [Elm's design guidelines](https://package.elm-lang.org/help/design-guidelines) - by Evan Czaplicki
 - [Elm's package documentation](https://package.elm-lang.org/help/documentation-format) - by Evan Czaplicki
 - [The basic steps to publish a package with Elm 0.19](https://korban.net/posts/elm/2018-10-02-basic-steps-publish-package-elm-19/) - by Alex Korban
+- [A template repository for new packages](https://github.com/dillonkearns/elm-package-starter) - by Dillon Kearns
 
 ## Alternative indexes
 
