@@ -58,6 +58,11 @@ h1,
 
 .highlight {
   animation: highlight-animation 4s ease forwards;
+  border-radius: 15px;
+  margin-left: -10px !important;
+  padding-left: 10px !important;
+  margin-right: -10px !important;
+  padding-right: 10px !important;
 }
 
 
