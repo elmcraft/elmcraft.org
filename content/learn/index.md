@@ -24,6 +24,7 @@ Looking to learn something more specific? Ask in one of the [Community forums](/
 - The [official Elm guide](https://guide.elm-lang.org/), the best starting place for most people for concepts and syntax
   - 🇫🇷 [Une introduction à Elm](https://guide.elm-france.fr/) - French community translation
   - 🇯🇵 [Elm公式ガイド](https://guide.elm-lang.jp/) - Japanese community translation
+  - 🇮🇷 [راهنمای Elm](https://guide.elm-lang.ir/) - Persian community translation
 
 - [Beginning Elm](https://elmprogramming.com/) - Pawan Poudel
 
