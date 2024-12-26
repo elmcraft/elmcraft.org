@@ -1,7 +1,7 @@
 ---
 type: page
 title: Contributing to Elm
-description: Learn all about the various ways to contribute in the Elm community.
+description: Various ways to contribute in the Elm community.
 published: false
 ---
 

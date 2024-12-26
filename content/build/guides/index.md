@@ -8,7 +8,7 @@ published: true
 
 The goal for this page is to answer "how do I do <some domain> in Elm?" questions.
 
-If you're looking for guides on build apps with Elm in general, see instead the [Learn](/learn) section.
+If you're looking for guides on learning Elm or the basics of building Elm apps in general, see the [Learn](/learn) section.
 
 
 ## [Native Apps (Desktop/Mobile)](/build/guides/native-apps)
