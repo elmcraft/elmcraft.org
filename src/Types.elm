@@ -134,6 +134,7 @@ type Category
     | Product
     | Teaching
     | Testing
+    | LiveStream
 
 
 type Conference

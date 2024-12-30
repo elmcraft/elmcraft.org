@@ -80,6 +80,30 @@ all_ =
       , url = "https://www.youtube.com/watch?v=cyC-iENMFrc"
       , year = "2024"
       }
+    , { categories = [ LiveStream, Learn, Project ]
+      , description = ""
+      , event = EventUnknown ""
+      , name = "learning elm, so I don't need to use javascript"
+      , speaker = "bashbunni"
+      , url = "https://www.youtube.com/live/RPona9LJYv4?si=I3n0p7Ug2EkZDsW_"
+      , year = "2024"
+      }
+    , { categories = [ LiveStream, Learn, Project ]
+      , description = ""
+      , event = EventUnknown ""
+      , name = "learning elm, so I can (eventually) build a blog without JavaScript"
+      , speaker = "bashbunni"
+      , url = "https://www.youtube.com/live/afA577RlvHI?si=UuUy3GHXumYpOgAU"
+      , year = "2024"
+      }
+    , { categories = [ LiveStream, Learn, Project ]
+      , description = ""
+      , event = EventUnknown ""
+      , name = "My (elm) website looks like a terminal | ep.1 home page"
+      , speaker = "bashbunni"
+      , url = "https://www.youtube.com/live/M8VCm_S9-uw?si=zHnq_YT2HguXE6-L"
+      , year = "2024"
+      }
     , { categories = [ ElmPhilosophy, Iconic ]
       , description = "In the mythology of open source, programming languages are created by people who seemingly have no direct economic function. They are just really good at compilers (somehow) and have a house to live in (somehow) and have a lifetime to devote to creating a useful programming language (somehow!)\nWe will examine specific organizations that create programming languages. Where do the salaries for compiler engineers come from? How does Go end up with 5 engineers and Dart end up with 30? Who signs off on these expenses and why? Does this put any boundaries on language design or development practices? And how do the economics work for people outside of the major tech corporations?\nMy goal is to give the talk I needed to hear 10 years ago when I was just starting on Elm. By clearly delineating the many variations of corporate funding and independent funding, I hope users will come away with a better foundation for evaluating and comparing programming languages."
       , event = EventUnknown "Strange Loop 2023"
