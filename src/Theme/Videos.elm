@@ -202,6 +202,16 @@ videoThumbnail video =
             if String.contains "youtube.com/watch/" video.url then
                 video.url |> String.split "/watch/" |> List.reverse |> List.head |> Maybe.withDefault ""
 
+            else if String.contains "youtube.com/shorts/" video.url then
+                video.url
+                    |> String.split "/shorts/"
+                    |> List.reverse
+                    |> List.head
+                    |> Maybe.withDefault ""
+                    |> String.split "?si="
+                    |> List.head
+                    |> Maybe.withDefault ""
+
             else if String.contains "youtube.com/live/" video.url then
                 video.url
                     |> String.split "/live/"
@@ -385,6 +395,9 @@ categoryToString c =
         LiveStream ->
             "Live Stream"
 
+        Short ->
+            "Short"
+
 
 categoryFromString s =
     case s of
@@ -499,6 +512,9 @@ categoryFromString s =
         "Live Stream" ->
             LiveStream
 
+        "Short" ->
+            Short
+
         _ ->
             Unknown s
 
@@ -611,6 +627,9 @@ categoryToBackground c =
             colourCategory8
 
         LiveStream ->
+            colourCategory8
+
+        Short ->
             colourCategory8
 
         Unknown s ->

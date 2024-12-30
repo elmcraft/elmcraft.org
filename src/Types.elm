@@ -135,6 +135,7 @@ type Category
     | Teaching
     | Testing
     | LiveStream
+    | Short
 
 
 type Conference
