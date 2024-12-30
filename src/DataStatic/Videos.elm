@@ -72,6 +72,14 @@ all_ =
       , url = "https://www.youtube.com/watch?v=0SUM4869ODc"
       , year = "2024"
       }
+    , { categories = [ ExperienceReport ]
+      , description = "A couple years back, frustrated with my limited but already painful experiences with React and Vue, I did what any sane developer would. After spending all of 20 minutes playing with in-browser tutorials, I opted to make Elm the main language for my next project. In this talk, I will reflect on my experience building and growing a 10k LOC Elm codebase. Most importantly, I hope to convince you that Elm is awesome and that frontend development needs not be the lawless, weakly typed wasteland it first appears to be."
+      , event = EventUnknown "London Scala User Group"
+      , name = "Lessons learnt from writing 10k LOC in Elm"
+      , speaker = "Sophie Collard"
+      , url = "https://www.youtube.com/watch?v=cyC-iENMFrc"
+      , year = "2024"
+      }
     , { categories = [ ElmPhilosophy, Iconic ]
       , description = "In the mythology of open source, programming languages are created by people who seemingly have no direct economic function. They are just really good at compilers (somehow) and have a house to live in (somehow) and have a lifetime to devote to creating a useful programming language (somehow!)\nWe will examine specific organizations that create programming languages. Where do the salaries for compiler engineers come from? How does Go end up with 5 engineers and Dart end up with 30? Who signs off on these expenses and why? Does this put any boundaries on language design or development practices? And how do the economics work for people outside of the major tech corporations?\nMy goal is to give the talk I needed to hear 10 years ago when I was just starting on Elm. By clearly delineating the many variations of corporate funding and independent funding, I hope users will come away with a better foundation for evaluating and comparing programming languages."
       , event = EventUnknown "Strange Loop 2023"
