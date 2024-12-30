@@ -234,6 +234,9 @@ videoThumbnail video =
                     |> String.split "?list="
                     |> List.head
                     |> Maybe.withDefault ""
+                    |> String.split "?si="
+                    |> List.head
+                    |> Maybe.withDefault ""
 
             else
                 "unknown"

@@ -1257,6 +1257,14 @@ all_ =
       , year = "2019"
       }
     , { categories = [ ExperienceReport, Commercial ]
+      , description = "Do you ever get tired of writing unit tests for ridiculous edge cases? Are you stuck on an old AngularJS app and need to modernize it, unsure how to move forward? Are you an FP lover looking for something more cohesive than lodash/fp and Ramda? Do you have a need for high-reliability in your project’s domain? Maybe the barrage of JS frameworks & libraries, ES features, TypeScript features, and package security issues are wearing you down. Well, look no further! I will introduce you to Elm, a fun way to build reliable web apps. We will look at common issues with reliability in popular frameworks and explore some of the ways Elm prevents them. Along the way, we’ll see how Elm reduces JS fatigue and makes happier developers. At the end, I will show how you can easily introduce Elm into an existing Angular or React app."
+      , event = EventUnknown "Detroit Tech Watch 2019"
+      , name = "Make Reliable Web Apps Without JS Fatigue"
+      , speaker = "Jared M. Smith"
+      , url = "https://youtu.be/80g1SnnvU0Q?si=8dus57QG3YZnRvL9"
+      , year = "2019"
+      }
+    , { categories = [ ExperienceReport, Commercial ]
       , description = "The UI client of our ARIC Fraud Hub product is a 100k LOC Elm app. Over the last 18 months we ported it from Agnular 1 to Elm, and added many new features. On the way we learned a lot. We’ll present a summary of that story: How we chose and adopted Elm. How we made Elm and Angular play nice together during the migration. What we learned from using Elm with a team of ~6 engineers on a large complex project. And what we want in the future: from Elm and from ourselves."
       , event = Conf ElmEurope2018
       , name = "Lessons from 100k LOC elm at Futurespace"
