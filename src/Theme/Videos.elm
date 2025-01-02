@@ -202,6 +202,26 @@ videoThumbnail video =
             if String.contains "youtube.com/watch/" video.url then
                 video.url |> String.split "/watch/" |> List.reverse |> List.head |> Maybe.withDefault ""
 
+            else if String.contains "youtube.com/shorts/" video.url then
+                video.url
+                    |> String.split "/shorts/"
+                    |> List.reverse
+                    |> List.head
+                    |> Maybe.withDefault ""
+                    |> String.split "?si="
+                    |> List.head
+                    |> Maybe.withDefault ""
+
+            else if String.contains "youtube.com/live/" video.url then
+                video.url
+                    |> String.split "/live/"
+                    |> List.reverse
+                    |> List.head
+                    |> Maybe.withDefault ""
+                    |> String.split "?si="
+                    |> List.head
+                    |> Maybe.withDefault ""
+
             else if String.contains "youtube.com" video.url then
                 video.url |> String.split "watch?v=" |> List.reverse |> List.head |> Maybe.withDefault ""
 
@@ -212,6 +232,9 @@ videoThumbnail video =
                     |> List.head
                     |> Maybe.withDefault ""
                     |> String.split "?list="
+                    |> List.head
+                    |> Maybe.withDefault ""
+                    |> String.split "?si="
                     |> List.head
                     |> Maybe.withDefault ""
 
@@ -372,6 +395,12 @@ categoryToString c =
         Testing ->
             "Testing"
 
+        LiveStream ->
+            "Live Stream"
+
+        Short ->
+            "Short"
+
 
 categoryFromString s =
     case s of
@@ -483,6 +512,12 @@ categoryFromString s =
         "Testing" ->
             Testing
 
+        "Live Stream" ->
+            LiveStream
+
+        "Short" ->
+            Short
+
         _ ->
             Unknown s
 
@@ -592,6 +627,12 @@ categoryToBackground c =
             colourCategory8
 
         Commercial ->
+            colourCategory8
+
+        LiveStream ->
+            colourCategory8
+
+        Short ->
             colourCategory8
 
         Unknown s ->
