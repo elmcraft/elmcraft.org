@@ -32,46 +32,6 @@ view model global _ =
                     ]
                 ]
             , spacer 0
-            , column [ spacing 30 ]
-                [ heading3 [] "Featured article"
-                , let
-                    articleLink =
-                        "https://dev.to/lucamug/elm-2023-a-year-in-review-23d6"
-
-                    v opts =
-                        boxNoPadding
-                            [ rowToColumnWhen 650
-                                model
-                                [ width fill, spacing 10 ]
-                                [ el
-                                    [ centerX
-                                    , width (fillPortion 1)
-                                    , height opts.height
-                                    , opts.border
-                                    , clip
-                                    ]
-                                  <|
-                                    link [] { url = articleLink, label = image [ width fill ] { src = "/articles/2023-in-review.webp", description = "2023 in review mosaic" } }
-                                , column [ spacing 10, width (fillPortion 1), padding 20 ]
-                                    [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2023, a year in review" articleLink ]
-                                    , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "A summary of 42 podcasts and 52 newsletters for Elm in 2023!" articleLink ]
-                                    ]
-                                ]
-                            ]
-                  in
-                  adaptiveAt 650
-                    model
-                    (v
-                        { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
-                        , height = fill
-                        }
-                    )
-                    (v
-                        { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
-                        , height = fill |> minimum 160
-                        }
-                    )
-                ]
             , column [ width fill, spacing 30 ]
                 [ row [ width fill ]
                     [ heading3 [] "Latest Elm videos"
@@ -120,6 +80,7 @@ view model global _ =
                             }
                 ]
             , viewLatestNewsletter model global.latestNewsletter
+            , featuredArticle model
             , viewLatestPackages model global.latestPackage
             ]
         ]
@@ -316,6 +277,49 @@ viewPackage model item =
             , height = fill |> minimum 160
             }
         )
+
+
+featuredArticle model =
+    column [ spacing 30 ]
+        [ heading3 [] "Featured article"
+        , let
+            articleLink =
+                "https://dev.to/lucamug/elm-2023-a-year-in-review-23d6"
+
+            v opts =
+                boxNoPadding
+                    [ rowToColumnWhen 650
+                        model
+                        [ width fill, spacing 10 ]
+                        [ el
+                            [ centerX
+                            , width (fillPortion 1)
+                            , height opts.height
+                            , opts.border
+                            , clip
+                            ]
+                          <|
+                            link [] { url = articleLink, label = image [ width fill ] { src = "/articles/2023-in-review.webp", description = "2023 in review mosaic" } }
+                        , column [ spacing 10, width (fillPortion 1), padding 20 ]
+                            [ paragraph [ Font.size 20, Font.bold ] [ externalLink [] "Elm 2023, a year in review" articleLink ]
+                            , paragraph [] [ text "Check out Luca's writeup of ", externalLink [] "A summary of 42 podcasts and 52 newsletters for Elm in 2023!" articleLink ]
+                            ]
+                        ]
+                    ]
+          in
+          adaptiveAt 650
+            model
+            (v
+                { border = Border.roundEach { topLeft = 10, topRight = 0, bottomLeft = 10, bottomRight = 0 }
+                , height = fill
+                }
+            )
+            (v
+                { border = Border.roundEach { topLeft = 10, topRight = 10, bottomLeft = 0, bottomRight = 0 }
+                , height = fill |> minimum 160
+                }
+            )
+        ]
 
 
 view_old model _ =
