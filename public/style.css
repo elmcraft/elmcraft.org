@@ -223,3 +223,12 @@ code.elmsh {
   color: #d19a66;
   font-style: normal;
 }
+
+/* The Theme.Markdown implementation has issues
+with nested lists which comes up mostly in our TOC
+implementation, this tries to fix that by
+setting block display on a 2nd child when the first
+child is an anchor */
+.list-fix a:first-child+div.c {
+  display: block !important;
+}

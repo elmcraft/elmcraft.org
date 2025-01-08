@@ -102,6 +102,7 @@ renderer meta model global =
                                         [ spacing 5
                                         , paddingEach { top = 0, right = 0, bottom = 0, left = 15 }
                                         , width fill
+                                        , class "list-fix"
                                         ]
                                         [ row [ width fill, spacing 10 ]
                                             [ el [ alignTop ] <| text " • "
