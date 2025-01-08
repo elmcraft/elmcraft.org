@@ -20,7 +20,7 @@ all =
 ryanAOC2024 =
     let
         base =
-            { categories = [ Learn ]
+            { categories = [ LiveStream, Learn ]
             , description = description
             , event = EventUnknown ""
             , name = "Advent of Code 2024 (Day 1)"
@@ -344,7 +344,7 @@ all_ =
       , url = "https://www.youtube.com/watch?v=3n17wHe5wEw"
       , year = "2021"
       }
-    , { categories = [ Learn ]
+    , { categories = [ Learn, LiveStream ]
       , description = "Just imagine: thousands of crabs, blasting their way through the ocean.\nAdvent of Code: "
       , event = EventUnknown ""
       , name = "Advent of Code 2021: Day 7"
@@ -360,7 +360,7 @@ all_ =
       , url = "https://www.youtube.com/watch?v=bmo9GV14Rm8"
       , year = "2021"
       }
-    , { categories = [ Learn ]
+    , { categories = [ Learn, LiveStream ]
       , description = "These fish made so many babies, my browser crashed!\nAdvent of Code: "
       , event = EventUnknown ""
       , name = "Advent of Code 2021: Day 6"
@@ -368,7 +368,7 @@ all_ =
       , url = "https://www.youtube.com/watch?v=9c2H-H3xgBk"
       , year = "2021"
       }
-    , { categories = [ Learn ]
+    , { categories = [ Learn, LiveStream ]
       , description = "It's Day 5, and I used my newfound reading skills to predict the future.\nAdvent of Code: "
       , event = EventUnknown ""
       , name = "Advent of Code 2021: Day 5"
@@ -376,7 +376,7 @@ all_ =
       , url = "https://www.youtube.com/watch?v=DnGQ2MOrb-w"
       , year = "2021"
       }
-    , { categories = [ Learn ]
+    , { categories = [ Learn, LiveStream ]
       , description = "Wait... why are elves playing bingo with a squid?\nAdvent of Code: "
       , event = EventUnknown ""
       , name = "Advent of Code 2021: Day 4"
@@ -384,7 +384,7 @@ all_ =
       , url = "https://www.youtube.com/watch?v=o_GgboNxvcE"
       , year = "2021"
       }
-    , { categories = [ Learn ]
+    , { categories = [ Learn, LiveStream ]
       , description = "Your boy measures gamma ratings, oxygen, CO2 and all kinds of invisible stuff– one bit at a time!\nAdvent of Code: "
       , event = EventUnknown ""
       , name = "Advent of Code 2021: Day 3"
@@ -448,7 +448,7 @@ all_ =
       , url = "https://youtu.be/vpc80c5iC6k"
       , year = "2016"
       }
-    , { categories = [ Learn ]
+    , { categories = [ Learn, LiveStream ]
       , description = "Join me as I do Advent of Code: Day 1 using Elm!\nAdvent of Code: "
       , event = EventUnknown ""
       , name = "Advent of Code 2021: Day 1"
