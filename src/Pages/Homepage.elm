@@ -45,6 +45,7 @@ view model global _ =
                         )
                     |> wrappedRow [ spacing 30, width fill ]
                 ]
+            , viewLatestNewsletter model global.latestNewsletter
             , column [ width fill, spacing 30 ]
                 [ row [ width fill ]
                     [ heading3 [] "Latest Elm Podcasts"
@@ -79,7 +80,6 @@ view model global _ =
                             , noteM = Just "Currently on Baby Break!"
                             }
                 ]
-            , viewLatestNewsletter model global.latestNewsletter
             , featuredArticle model
             , viewLatestPackages model global.latestPackage
             ]
