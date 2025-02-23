@@ -15,6 +15,9 @@ If you're looking for guides on learning Elm or the basics of building Elm apps 
 
 Wanting to write or turn your Elm app into a native app?
 
+## [Styling (HTML/CSS/UI)](/build/guides/styling)
+
+Not sure which package suits your styling needs?
 
 ## Help out
 
