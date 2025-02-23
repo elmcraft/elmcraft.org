@@ -13,11 +13,11 @@ Styling in Elm is an exciting blend of functional programming and web developmen
 ## elm/html
 The [elm-html](https://package.elm-lang.org/packages/elm/html/latest/) package allows you to write HTML directly in Elm. It provides a way to create HTML elements and attributes using Elm's functional programming paradigm. This package is backed by `elm/virtual-dom`, which handles the rendering of DOM nodes efficiently.
 
-**Example:**
+**Example with inline styles:**
 ```elm
 module Main exposing (..)
 
-import Html exposing (Html, div, text)
+import Html exposing (div, text)
 import Html.Attributes exposing (style)
 
 
@@ -29,6 +29,28 @@ main =
         , style "height" "100vh"
         ]
         [ text "Centered Element" ]
+```
+
+**Example with external styles:**
+```elm
+module Main exposing (..)
+
+import Html exposing (div, text)
+import Html.Attributes exposing (class)
+
+
+main =
+    div
+        [ class "center" ]
+        [ text "Centered Element" ]
+```
+```css
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 ```
 
 **Pros:**
@@ -48,7 +70,7 @@ The [elm-css](https://package.elm-lang.org/packages/rtfeldman/elm-css/latest/) p
 module Main exposing (..)
 
 import Css exposing (..)
-import Html.Styled exposing (Html, div, text, toUnstyled)
+import Html.Styled exposing (div, text, toUnstyled)
 import Html.Styled.Attributes exposing (css)
 
 
@@ -71,7 +93,7 @@ main =
 - Integration with Elm's type system.
 
 **Cons:**
-- Requires learning the `elm-css` syntax.
+- Requires learning the set of `elm-css` functions.
 - Can be verbose compared to traditional CSS.
 
 ## mdgriffith/elm-ui
@@ -105,5 +127,5 @@ main =
 | Package   | Pros                                                                 | Cons                                                            |
 |-----------|----------------------------------------------------------------------|-----------------------------------------------------------------|
 | elm/html  | - Directly integrates with HTML <br> - Efficient rendering <br> - Flexible to use any CSS properties | - Requires manual handling of CSS <br> - Limited abstraction    |
-| rtfeldman/elm-css   | - Type-safe CSS <br> - Reusable styles and mixins <br> - Integration with Elm's type system | - Requires learning `elm-css` syntax <br> - Can be verbose      |
+| rtfeldman/elm-css   | - Type-safe CSS <br> - Reusable styles and mixins <br> - Integration with Elm's type system | - Requires learning the set of `elm-css` functions <br> - Can be verbose      |
 | mdgriffith/elm-ui    | - Simplifies layout and styling <br> - Reduces common CSS errors <br> - Encourages consistency | - Limited flexibility <br> - Learning curve for traditional HTML/CSS users |
