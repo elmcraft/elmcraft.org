@@ -15,12 +15,19 @@ The [elm-html](https://package.elm-lang.org/packages/elm/html/latest/) package a
 
 **Example:**
 ```elm
+module Main exposing (..)
+
 import Html exposing (Html, div, text)
 import Html.Attributes exposing (style)
 
-view : Html msg
-view =
-    div [ style "display" "flex", style "justify-content" "center", style "align-items" "center", style "height" "100vh" ]
+
+main =
+    div
+        [ style "display" "flex"
+        , style "justify-content" "center"
+        , style "align-items" "center"
+        , style "height" "100vh"
+        ]
         [ text "Centered Element" ]
 ```
 
@@ -38,14 +45,24 @@ The [elm-css](https://package.elm-lang.org/packages/rtfeldman/elm-css/latest/) p
 
 **Example:**
 ```elm
-import Html.Styled exposing (Html, div, text)
-import Html.Styled.Attributes exposing (css)
-import Css exposing (..)
+module Main exposing (..)
 
-view : Html msg
-view =
-    div [ css [ display flex, justifyContent center, alignItems center, height (vh 100) ] ]
-        [ text "Centered Element" ]
+import Css exposing (..)
+import Html.Styled exposing (Html, div, text, toUnstyled)
+import Html.Styled.Attributes exposing (css)
+
+
+main =
+    toUnstyled <|
+        div
+            [ css
+                [ displayFlex
+                , justifyContent center
+                , alignItems center
+                , height (vh 100)
+                ]
+            ]
+            [ text "Centered Element" ]
 ```
 
 **Pros:**
@@ -62,12 +79,16 @@ The [elm-ui](https://package.elm-lang.org/packages/mdgriffith/elm-ui/latest/) pa
 
 **Example:**
 ```elm
-import Element exposing (Element, el, text, centerX, centerY, height, fill)
+module Main exposing (..)
 
-view : Element msg
-view =
-    el [ centerX, centerY, height fill ]
-        (text "Centered Element")
+import Element exposing (Element, centerX, centerY, el, fill, height, text)
+
+
+main =
+    Element.layout [] <|
+        el
+            [ centerX, centerY ]
+            (text "Centered Element")
 ```
 
 **Pros:**
