@@ -100,7 +100,7 @@ main =
 - Limited flexibility compared to raw HTML and CSS.
 - Learning curve for those used to traditional HTML and CSS.
 
-Here's the Pros and Cons section in table format:
+## Summary
 
 | Package   | Pros                                                                 | Cons                                                            |
 |-----------|----------------------------------------------------------------------|-----------------------------------------------------------------|
