@@ -4,11 +4,17 @@ title: Elm Styling
 description: How to style your app with different packages
 status: budding
 published: false
+author: @novid
 ---
 
 <meta>Needs review</meta>
 
-Styling in Elm is an exciting blend of functional programming and web development that offers several approaches to achieve visually appealing and responsive designs. Elm, known for its strong emphasis on simplicity, reliability, and maintainability, provides different packages to handle styling needs, catering to various preferences and workflows. Whether you're comfortable with traditional HTML and CSS, or looking for more type-safe or declarative approaches, Elm has you covered. The primary packages used for styling in Elm are `elm/html`, `rtfeldman/elm-css`, and `mdgriffith/elm-ui`. Each of these packages offers unique features and benefits, allowing you to choose the one that best fits your project's requirements and your personal coding style. By leveraging Elm's powerful type system and functional programming paradigm, you can create styles that are both robust and easy to maintain.
+There are a few fundamental approaches to styling in Elm:
+
+- **elm/html** is a core primitive that targets HTML and can facilitate raw inline or string chunk CSS styling
+- **rtfeldman/elm-css** tries to extend type safety to your CSS
+- **mdgriffith/elm-ui** is to HTML/CSS what Elm is to Javascript; what if we re-thought design primitives from scratch?
+- There's also design system wrapper packages available, i.e. The Material, Daisy UI, Tailwind, etc. That's the topic for another guide. 
 
 ## elm/html
 The [elm-html](https://package.elm-lang.org/packages/elm/html/latest/) package allows you to write HTML directly in Elm. It provides a way to create HTML elements and attributes using Elm's functional programming paradigm. This package is backed by `elm/virtual-dom`, which handles the rendering of DOM nodes efficiently.
