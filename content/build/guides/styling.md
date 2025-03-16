@@ -3,11 +3,8 @@ type: page
 title: Elm Styling
 description: How to style your app with different packages
 status: budding
-published: false
-author: @novid
+published: true
 ---
-
-<meta>Needs review</meta>
 
 There are a few fundamental approaches to styling in Elm:
 
@@ -50,6 +47,7 @@ main =
         [ class "center" ]
         [ text "Centered Element" ]
 ```
+
 ```css
 .center {
     display: flex;
@@ -127,11 +125,3 @@ main =
 **Cons:**
 - Limited flexibility compared to raw HTML and CSS.
 - Learning curve for those used to traditional HTML and CSS.
-
-## Summary
-
-| Package   | Pros                                                                 | Cons                                                            |
-|-----------|----------------------------------------------------------------------|-----------------------------------------------------------------|
-| elm/html  | - Directly integrates with HTML <br> - Efficient rendering <br> - Flexible to use any CSS properties | - Requires manual handling of CSS <br> - Limited abstraction    |
-| rtfeldman/elm-css   | - Type-safe CSS <br> - Reusable styles and mixins <br> - Integration with Elm's type system | - Requires learning the set of `elm-css` functions <br> - Can be verbose      |
-| mdgriffith/elm-ui    | - Simplifies layout and styling <br> - Reduces common CSS errors <br> - Encourages consistency | - Limited flexibility <br> - Learning curve for traditional HTML/CSS users |
