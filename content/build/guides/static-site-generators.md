@@ -64,6 +64,7 @@ elmstatic build
 ```
 
 ### Pros and Cons
+
 - ✅ Minimalistic and easy to use.
 - ✅ Direct Elm-to-HTML conversion.
 - ✅ CLI tooling available.
@@ -93,6 +94,7 @@ npx elm-pages build
 ```
 
 ### Pros and Cons
+
 - ✅ Supports both static and dynamic routes.
 - ✅ Strong integration with Elm backend.
 - ✅ CLI tooling available.
