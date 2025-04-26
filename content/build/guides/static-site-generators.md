@@ -1,7 +1,7 @@
 ---
 type: page
-title: Static Site Generators
-description: How to design, develop, and maintain websites and web applications with static site generators.
+title: Elm Static Site Generators
+description: How to design, develop, and maintain websites and web applications with static site generators in Elm
 status: budding
 published: true
 ---
