@@ -19,6 +19,10 @@ Wanting to write or turn your Elm app into a native app?
 
 Not sure which package suits your styling needs?
 
+## [Static Site Generators (SSGs)](/build/guides/static-site-generators)
+
+Need to build secure and scalable websites with ease?
+
 ## Help out
 
 It would be great to have way more guides here. Just hit edit above to contribute on github!
