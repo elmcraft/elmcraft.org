@@ -296,14 +296,6 @@ all_ =
       , url = "https://youtu.be/I0zhcetpXzg"
       , year = "2022"
       }
-    , { categories = [ Charts ]
-      , description = ""
-      , event = EventUnknown "Elm Online Meetup"
-      , name = "Introduction to elm-charts"
-      , speaker = "Tereza Sokol"
-      , url = "https://youtu.be/D-WaKYJLsFU"
-      , year = "2022"
-      }
     , { categories = [ Guide ]
       , description = ""
       , event = EventUnknown "Elm Online Meetup"
@@ -407,30 +399,6 @@ all_ =
       , speaker = "Einar W. Høst"
       , url = "https://youtu.be/jOu2hISeO5M?list=PLcAzxXzXQlPbalOfueVbHCRSo26ksIXiF"
       , year = "2019"
-      }
-    , { categories = [ ExperienceReport, Commercial ]
-      , description = "The UI client of our ARIC Fraud Hub product is a 100k LOC Elm app. Over the last 18 months we ported it from Agnular 1 to Elm, and added many new features. On the way we learned a lot. We’ll present a summary of that story: How we chose and adopted Elm. How we made Elm and Angular play nice together during the migration. What we learned from using Elm with a team of ~6 engineers on a large complex project. And what we want in the future: from Elm and from ourselves."
-      , event = Conf ElmEurope2018
-      , name = "Lessons from 100k LOC elm at Futurespace"
-      , speaker = "Mark Skipper and Decio Ferreira"
-      , url = "https://www.youtube.com/watch?v=0AosqGTEa0Q"
-      , year = "2018"
-      }
-    , { categories = [ Guide, Interop ]
-      , description = "While Elm pretty much solves the tool and framework fatigue when starting a new front-end project, we still have the same issue for the back-end. Using Horizon in your Elm app can help alleviate the pain by reducing the amount of work you have to do in the back-end, so you can write more Elm code.\nWhen starting a new project in JavaScript, you’re most likely going to spend a lot of time choosing the tools and frameworks to use, and then spend more time configuring them. Elm pretty much solves this problem by providing all the tooling you need out of the box, and by The Elm Community’s preference to have one way to do things, so you don’t have choose between 100 different packages just to solve 1 problem.\nBut, how about the back-end? You still have to choose all the stacks; from database, web server, programming language, and the framework. At least, until we have server side Elm, we still have the same problem here.\nWouldn’t it be great if you don’t have to worry about the back-end, and can just focus on writing Elm code and be happy? We can do that with Horizon. Horizon is an open source server designed for building real time application without writing any back-end code. With Horizon, all you need to do is to run the Horizon server, start writing Elm code, and be happy and productive."
-      , event = Conf ElmConf2016
-      , name = "0-60 in 15 Minutes: Building a Realtime App With Elm and Horizon"
-      , speaker = "Abadi Kurniawan"
-      , url = "https://youtu.be/fTHHn7NhU3w"
-      , year = "2016"
-      }
-    , { categories = [ Keynote ]
-      , description = ""
-      , event = Conf ElmConf2018
-      , name = "Immutable Relational Data"
-      , speaker = "Richard Feldman"
-      , url = "https://youtu.be/28OdemxhfbU"
-      , year = "2018"
       }
     , { categories = [ Project, Games, Iconic ]
       , description = "Emulators can look like dark magic, especially for programmers that are mostly doing high-level programming. In this talk, you can take a glimpse into the world of emulation and will discover how surpisingly well Elm is suited for writing easy-to-understand CPU emulation code that is not too different from the Elm code you are used to."
@@ -632,14 +600,6 @@ all_ =
       , url = "https://youtu.be/D-WaKYJLsFU"
       , year = "2021"
       }
-    , { categories = [ Animation, UI ]
-      , description = "Elm’s basis in immutability presents a unique set of challenges to animators.\nIn a language that allows mutation we can get away with hiding all our details behind local state, but in Elm we have to capture every detail in our model. This means many of the APIs we may be familiar with in languages like Javascript don’t translate directly over to Elm in the nicest way. Or they do translate, but require a lot of manual wiring and record keeping.\nHowever immutability is an incredible advantage and there’s no reason that advantage doesn’t translate into the realm of animation. The main challenge is adjusting our thinking around animation in Elm. So, what does an immutable animator’s toolkit look like?\nBy slightly shifting our thinking and embracing Elm’s design decisions we can arrive at a unique set of tools and techniques that provides high level control over our animations and feels unique to the Elm language."
-      , event = Conf ElmEurope2018
-      , name = "The immutable animator's toolkit"
-      , speaker = "Matthew Griffith"
-      , url = "https://www.youtube.com/watch?v=Nf4rElfA8SE"
-      , year = "2018"
-      }
     , { categories = [ Learn ]
       , description = "Some things can’t be done with Elm. It’s a young language with so much potential to be realized in the years ahead. If a program you are writing today falls outside of Elm’s capabilities, like writing a server, it can better to choose a different language. When it comes to fancy UI features, though, you might be able to have your cake and eat it too. In this talk you will learn about when and how to use web components in your Elm views. The most common inquiry we’ll cover is interop with fancy JS UI packages that are not economically viable to replicate in Elm, like rich text editors. We’ll also talk about components that make visual changes outside of the Elm update cycle for performance-critical UI behaviors, and more. The examples covered in this talk are based on production experience, fully compatible with Elm and all WHATWG specs, and can be polyfilled at least as far back as IE 11 and Safari 9."
       , event = Conf ElmEurope2018
@@ -663,14 +623,6 @@ all_ =
       , speaker = "Tessa Kelly"
       , url = "https://youtu.be/UzvCX-8bTDs?list=PLcAzxXzXQlPbalOfueVbHCRSo26ksIXiF"
       , year = "2019"
-      }
-    , { categories = [ Guide, Acesssibility ]
-      , description = "Learn about accessibility, the elm-html-a11y library, and delve into patterns enforcing good development habits.\nElm’s core library makes writing HTML a lovely experience, but making that HTML accessible can still be hard. The WAI-ARIA spec provides many modes of communication and interaction for users–but these largely attribute-based avenues are easy to ignore. Adding type-safety, an exhaustive set of attributes and tags, and friendly function names, elm-html-a11y makes writing accessible HTML nicer."
-      , event = Conf ElmConf2017
-      , name = "Accessibility with Elm"
-      , speaker = "Tessa Kelly"
-      , url = "https://www.youtube.com/watch?v=G_TNRuoF3FE"
-      , year = "2017"
       }
     , { categories = []
       , description = "On the surface, Elm and Fable (the F# to JavaScript compiler) look very similar - functional, ML based languages with a focus on pragmatism over complexity. In fact, the most common way of writing JavaScript in Fable is via the \"\"Elmish\"\" library which implements the, well, Elm architecture. But the philosophy behind the two languages is very different. Take a tour of the two languages with someone who's used both professionally, and we'll investigate how the different ideas behind them have lead to different features, different ecosystems, and even differences in how teams work with them."
@@ -752,30 +704,6 @@ all_ =
       , url = "https://youtu.be/FSec8QmgEWo?list=PLcAzxXzXQlPbalOfueVbHCRSo26ksIXiF"
       , year = "2019"
       }
-    , { categories = [ Project, Maps ]
-      , description = "Web applications often need interactive UI elements, e.g. slippy maps. Currently one has to interface with existing JS libraries with some trickery to have a map in an Elm app.\nIn this talk we will explore a different approach: a slippy map library written in pure Elm. You will hear about the initial motivation, see how it is implemented, learn about API decisions and get to know how to use, customize and extend a slippy map.\nThis will not only give you an additional UI widget in your Elm tool belt, but will hopefully teach you about how to build and use stateful UI elements in Elm in general."
-      , event = Conf ElmConf2017
-      , name = "Building a Slippy Map Library in Pure Elm"
-      , speaker = "Jonas Coch"
-      , url = "https://www.youtube.com/watch?v=kWIiXbn1FXU"
-      , year = "2017"
-      }
-    , { categories = [ Project, Hobby ]
-      , description = "We all already know that Elm is a great language for building reliable web apps, but it turns out it’s also great for prototyping Domain Specific Languages. Recently I’ve combined two of my hobbies by using Elm to begin creating a reusable data format for cooking recipes.\nAll recipes can be broken down into a number of raw ingredients which, when combined with various techniques, form a dish. In this talk I will explain why Elm’s straightforward yet robust type system is a perfect use case for modeling out these recipes. Thanks to Elm’s knack for taking a data model and translating it into HTML, it’s easy to generate a human-readable version of any one recipe.\nBut wait, there’s more! Elm’s decoder system makes it super easy to translate Elm models to and from JSON, allowing us to import and export them.\nFinally, I’ll show a few examples leveraging this framework to generate both pretty, human-readable recipes and interesting visualizations of them!"
-      , event = Conf ElmEurope2017
-      , name = "Cooking with elm"
-      , speaker = "Noah Zachary Gordon"
-      , url = "https://www.youtube.com/watch?v=C3mnyJlCqMk"
-      , year = "2017"
-      }
-    , { categories = [ Interop ]
-      , description = "We love the feeling we get writing Elm code where \"if it compiles it works™.\" But what happens when we need to interact with the outside world from Elm? Our API throws a curve ball and gives us an unexpected null. Or we're not sure what keys an object returned from a javascript library has. So we have to keep tweaking the code and refreshing the page to see if our decoders fail at runtime. Can't we do better than that!?\nWe can! In this talk you'll learn about 3 packages that enforce contracts with the outside world and give us confidence that things will work the FIRST time we load our app."
-      , event = Conf ElmConf2018
-      , name = "Types Without Borders"
-      , speaker = "Dillon Kearns"
-      , url = "https://youtu.be/memIRXFSNkU"
-      , year = "2018"
-      }
     , { categories = [ Project, Games ]
       , description = "Emulating a retro game console is a many-faceted task. Besides emulating the central processing unit, there are many other components that need to be emulated and integrated before games become really playable. This talk will focus on the Game Boy’s APU, the Audio Processing Unit.\nAs the Game Boy is limited in memory, computing power and storage, simply playing audio files is out of the question. To accomplish this task, the Game Boy synthesizes audio out of thin air, based on control instructions.\nYou will learn what sound actually is, how computers work with it, what tradeoffs can be made and why retro computers have their own distinct sound.\nLast but not least, we will take a deep-dive into the Game Boy specifics and how its APU can be emulated with Elm."
       , event = Conf ElmEurope2019
@@ -799,38 +727,6 @@ all_ =
       , speaker = "Dan Abrams"
       , url = "https://www.youtube.com/watch?v=fvb1MjYQik8"
       , year = "2019"
-      }
-    , { categories = [ Guide ]
-      , description = "While powerful in its simplicity and important to computation, the boolean can be extremely limiting in Elm applications. In this talk, we will briefly explore the history of boolean logic in computation and look at how booleans can become misused in Elm. We will look at examples where booleans obscure the meaning of code, make code harder to maintain, and hinder usability for our teammates and users. You will learn how to harness union types to write cleaner, clearer code. More importantly, you will learn how to place usability at the forefront of the APIs and UIs you build."
-      , event = Conf ElmConf2017
-      , name = "Solving the Boolean Identity Crisis"
-      , speaker = "Jeremy Fairbank"
-      , url = "https://www.youtube.com/watch?v=6TDKHGtAxeg"
-      , year = "2017"
-      }
-    , { categories = [ Project, Art ]
-      , description = "In this talk we will use the amazing powers of Elm to live code a Mondrian Art Generator. We will do a deep dive on building complex random generators and see how we can combine them to generate conceptual art. After that, we will go through a proof of concept that uses recursive random generators to achieve a similar effect."
-      , event = Conf ElmEurope2018
-      , name = "Live coding a Mondrian generator"
-      , speaker = "Ju Liu"
-      , url = "https://www.youtube.com/watch?v=xAZLceCZGks"
-      , year = "2018"
-      }
-    , { categories = [ Introduction, Learn ]
-      , description = ""
-      , event = EventUnknown ""
-      , name = "Elm for beginners: Creating your first Elm program."
-      , speaker = "Brodey Newman"
-      , url = "https://youtu.be/9Zl0m4rPl3s"
-      , year = "2018"
-      }
-    , { categories = [ Learn, Teaching, Introduction ]
-      , description = "Elm is a delightful functional language for reliable webapps. It compiles to JavaScript, has great performance, no runtime exceptions, and can be embeded easily into existing JS projects without the need for huge rewrites or time investment.\nWe'll be taking a practically focused crash course tour of Elm, ideally you'll walk away being able to put Elm into production either from scratch or in an existing project."
-      , event = EventUnknown "Reactivate London 2018"
-      , name = "Elm crash course - Building unbreakable webapps fast"
-      , speaker = "Mario Rogic"
-      , url = "https://www.youtube.com/watch?v=kEitFAY7Gc8"
-      , year = "2018"
       }
     , { categories = [ PanelDiscussion ]
       , description = ""
@@ -856,30 +752,6 @@ all_ =
       , url = "https://www.youtube.com/watch?v=7u9HUP-5Kc8"
       , year = "2019"
       }
-    , { categories = [ ExperienceReport ]
-      , description = "Functional programming is beloved by developers because it allows us to efficiently produce code that is easy to work with, stable, and reliable. But what if that's also our biggest weakness? What if our own brilliance is killing us on the market? Working in Elm, we produced an app that was fast, quick to develop in, and incredibly stable ... so stable that there was no need to keep paying me to maintain it anymore. What's a consultant to do?"
-      , event = EventUnknown "ClojuTRE 2018"
-      , name = "I used Elm in production and it cost me my job"
-      , speaker = "Annaia Berry"
-      , url = "https://youtu.be/RFrKffrKCeU"
-      , year = "2018"
-      }
-    , { categories = [ DatesTime, Learn ]
-      , description = "Manipulating Dates can quickly become a problem, even for simple things like getting the current Date, obtaining the start of the week (especially with different date systems). How can we manage these problems with Elm, keeping our sanity in check.\nThis talk will try to give an overview of the standard pitfall that can occurs when dealing with dates and how to overcome them with the Elm ecosystem."
-      , event = Conf ElmEurope2017
-      , name = "Date manipulation with elm"
-      , speaker = "Vincent Billey"
-      , url = "https://www.youtube.com/watch?v=ztqEIchSDgM"
-      , year = "2017"
-      }
-    , { categories = [ Project, Design ]
-      , description = "We are drawn to Elm for many reasons: ‘compiler as assistant’, friendly error messages, pedagogic documentation, static typing, immutable data structures, pure functions. Yet the whole is more than the sum of its parts resulting in a programming philosophy that is declarative, task focussed and beginner-friendly. This talk considers how that philosophy influenced the design of elm-vega and the adoption of Elm as the primary language to illustrate Literate Visualization (LitVis).\nLitVis combines declarative specification of a visualization with a narrative that justifies its design. Elm and Vega are ideal languages for expression of the design and we describe how we integrated them with markdown to create a LitVis environment in Atom and VS Code. We describe how the Elm philosophy has influenced the design of LitVis and lessons learned. This has relevance not only for those interested in visualization with Elm but also anyone designing new packages and programming environments."
-      , event = Conf ElmEurope2018
-      , name = "Infecting the visualization design process with the elm philosophy"
-      , speaker = "Alexander Kachkaev"
-      , url = "https://www.youtube.com/watch?v=K-yoLxnm95A"
-      , year = "2018"
-      }
     , { categories = [ Commercial, ExperienceReport ]
       , description = "We all know writing code isn’t the hard part. The most important decision we make is what to build - not how to build it. Once we start building, we should continuously reflect on our users, and concentrate on laying good foundations for our future selves. We can better do that as a team of equals.\nIt’s great to have Elm in the ecosystem making it less risky than ever for all members of the team to contribute lines of code. I’m on a mission to break down the barrier between those who git and those who do not. We can achieve (or aim for) the ultimate [insert meaningful word for ’agile’ here] collaboration. I’ll share my story about how my team iterated on a small Elm project over a couple of years and how we experienced continuous small benefits from allowing each other to contribute in our own ways."
       , event = Conf ElmConf2019
@@ -895,22 +767,6 @@ all_ =
       , speaker = "Jim Carlson"
       , url = "https://youtu.be/gqeqtZeDp18"
       , year = "2021"
-      }
-    , { categories = [ Keynote ]
-      , description = ""
-      , event = Conf ElmConf2017
-      , name = "Teaching Elm to Beginners"
-      , speaker = "Richard Feldman"
-      , url = "https://www.youtube.com/watch?v=G-GhUxeYc1U"
-      , year = "2017"
-      }
-    , { categories = [ Project ]
-      , description = "There are a lot of hidden and forgotten gems in Smalltalk. One of them is the System Browser: the main way to develop Smalltalk, and a way to explore and evolve the environment. elm-browser explores the usability of such tool in the Elm ecosystem, hopefully allowing for a faster and more to-the-point development cycle."
-      , event = Conf ElmEurope2018
-      , name = "Elm-browser: Smalltalk goodness for elm"
-      , speaker = "Martin Janiczek"
-      , url = "https://www.youtube.com/watch?v=As_vGSvjz_c"
-      , year = "2018"
       }
     , { categories = [ Project, Learn ]
       , description = "The elm/file and elm/bytes packages were recently released. They open up many new possibilities for Elm. One is to write a library elm-tar to encode a list of data—binary or text—as a tar archive, then download it to the user's machine. I'll describe the challenges of developing this little library, the bumps in the road to making it work, and a few use cases, ending with brief speculation on what else might be done with these new packages."
@@ -1280,44 +1136,12 @@ all_ =
       , url = "https://youtu.be/28OdemxhfbU"
       , year = "2018"
       }
-    , { categories = [ Learn ]
-      , description = "Parsers have a name for being an esoteric domain, but it's a misleading notion. In this talk, I'll teach you what I learned from starting out as a novice to making a full fledged YAML parser in Elm. A journey during which I discovered that parsers are super interesting and fun, and once you understand the fundamentals, they are a breeze thanks to the tooling available in Elm."
-      , event = Conf ElmConf2018
-      , name = "Demystifying Parsers"
-      , speaker = "Tereza Sokol"
-      , url = "https://youtu.be/M9ulswr1z0E"
-      , year = "2018"
-      }
-    , { categories = [ Project, Guide, UI ]
-      , description = "Elm helps us to think in terms of algorithms, not just in terms of “let’s make it work”. We can focus on one task at a time, without having the overhead of having to think in terms of “the whole app”.\nAnd it allows us to pick highly complex subjects and tackle them for fun and profit.\nCreating a date picker like https://developer.apple.com/documentation/uikit/uidatepicker is very complex. We have to model the display with inline css 3d and requestanimationframe, the touch with touch events, the physics of the date picker with some physics theory. And doing that is javascript would mean handling every aspect of it in a “global” way.\nCreating a native looking date picker in elm means we can concentrate on the bigger vision (the date picker), one little function at a time, and it means we can do it in a reusable manner.\nThis talk will outline how we did it and what the result looks like, and it’ll emphasise how we designed it."
-      , event = Conf ElmEurope2018
-      , name = "How to build a native looking date picker with elm"
-      , speaker = "Thibaut Assus"
-      , url = "https://www.youtube.com/watch?v=nal1MUgZ8Tc"
-      , year = "2018"
-      }
     , { categories = [ Animation, UI ]
       , description = "Elm’s basis in immutability presents a unique set of challenges to animators.\nIn a language that allows mutation we can get away with hiding all our details behind local state, but in Elm we have to capture every detail in our model. This means many of the APIs we may be familiar with in languages like Javascript don’t translate directly over to Elm in the nicest way. Or they do translate, but require a lot of manual wiring and record keeping.\nHowever immutability is an incredible advantage and there’s no reason that advantage doesn’t translate into the realm of animation. The main challenge is adjusting our thinking around animation in Elm. So, what does an immutable animator’s toolkit look like?\nBy slightly shifting our thinking and embracing Elm’s design decisions we can arrive at a unique set of tools and techniques that provides high level control over our animations and feels unique to the Elm language."
       , event = Conf ElmEurope2018
       , name = "The immutable animator's toolkit"
       , speaker = "Matthew Griffith"
       , url = "https://www.youtube.com/watch?v=Nf4rElfA8SE"
-      , year = "2018"
-      }
-    , { categories = [ Learn ]
-      , description = "Some things can’t be done with Elm. It’s a young language with so much potential to be realized in the years ahead. If a program you are writing today falls outside of Elm’s capabilities, like writing a server, it can better to choose a different language. When it comes to fancy UI features, though, you might be able to have your cake and eat it too. In this talk you will learn about when and how to use web components in your Elm views. The most common inquiry we’ll cover is interop with fancy JS UI packages that are not economically viable to replicate in Elm, like rich text editors. We’ll also talk about components that make visual changes outside of the Elm update cycle for performance-critical UI behaviors, and more. The examples covered in this talk are based on production experience, fully compatible with Elm and all WHATWG specs, and can be polyfilled at least as far back as IE 11 and Safari 9."
-      , event = Conf ElmEurope2018
-      , name = "When and how to use Web Components with elm"
-      , speaker = "Luke Westby"
-      , url = "https://www.youtube.com/watch?v=tyFe9Pw6TVE"
-      , year = "2018"
-      }
-    , { categories = [ Iconic, ElmPhilosophy ]
-      , description = "As more people enter /r/elm and the Elm discourse, I have thought a lot about how \"online communities\" work. Patterns of conflict. Why those patterns exist. Structures that would diffuse that conflict in healthy ways. Initially I just wanted to get yelled at less, but I instead stumbled upon \"a cultural history of open source\" that may reveal a path to more civil and productive online communication in general.\nAttendees will leave with (1) an inside perspective on open source projects, (2) a historical and cultural framework that I think can improve online communities right now, and (3) some interesting references and ideas to explore further in their own projects and interactions."
-      , event = EventUnknown "Strange Loop 2018"
-      , name = "The Hard Parts of Open Source"
-      , speaker = "Evan Czaplicki"
-      , url = "https://youtu.be/o_4EX4dPppA"
       , year = "2018"
       }
     , { categories = [ Interop ]
@@ -1544,60 +1368,12 @@ all_ =
       , url = "https://www.youtube.com/watch?v=x1FU3e0sT1I"
       , year = "2018"
       }
-    , { categories = [ Keynote, Iconic, ElmPhilosophy, Technique ]
-      , description = ""
-      , event = Conf ElmEurope2017
-      , name = "The life of a file"
-      , speaker = "Evan Czaplicki"
-      , url = "https://www.youtube.com/watch/XpDsk374LDE"
-      , year = "2017"
-      }
-    , { categories = [ Guide, Technique, Testing ]
-      , description = "In this talk, we’ll discuss how we manage to unblock ourselves whenever we encounter an edge in Elm at NoRedInk. I’ll discuss many of the experiments that I have done, and how best to go about being a productive member of a Elm workforce to enable others to use it. I’ll also explain how our custom testing tooling works, and how you can do it too. I’ll also briefly go over some potential problems you might face, and how to avoid them."
-      , event = Conf ElmEurope2017
-      , name = "How to unblock yourself with elm"
-      , speaker = "Noah Hall"
-      , url = "https://www.youtube.com/watch?v=OgH3pPXXSkY"
-      , year = "2017"
-      }
-    , { categories = [ Hobby, Project ]
-      , description = "On Elm’s website Prezi is featured for using Elm. However, as of December 2016, Prezi presentations are still based on Flash. So in this talk I introduce Dive, a programming framework written in Elm for building visual and animated presentations like Prezi’s. After explaining the API, I describe the internals of the framework and compare two rendering approaches, Canvas vs. SVG. Along the way, I also demonstrate why it was easy to create Dive with Elm, since the core of the framework took me just a couple of hours. And of course, the presentation slides of this talk are built with Dive itself."
-      , event = Conf ElmEurope2017
-      , name = "Dive: building Prezi-like presentations with elm"
-      , speaker = "Matthias Rella"
-      , url = "https://www.youtube.com/watch?v=TRATeS93bsA"
-      , year = "2017"
-      }
-    , { categories = [ ElmPhilosophy ]
-      , description = "What would Chanel say if inquired about the design choices of Elm? How do packages resemble wardrobes? What makes a good outfit and why is it relevant for you? The questions are many and seemingly nonsensical, but from the right perspective, the fashion and software industry are more alike than most would think. In this talk, we’ll examine these parallels in order to explore the nature of design."
-      , event = Conf ElmConf2017
-      , name = "If Coco Chanel Reviewed Elm"
-      , speaker = "Tereza Sokol"
-      , url = "https://www.youtube.com/watch?v=Wiw3YcwGwrU"
-      , year = "2017"
-      }
     , { categories = [ Guide, Acesssibility ]
       , description = "Learn about accessibility, the elm-html-a11y library, and delve into patterns enforcing good development habits.\nElm’s core library makes writing HTML a lovely experience, but making that HTML accessible can still be hard. The WAI-ARIA spec provides many modes of communication and interaction for users–but these largely attribute-based avenues are easy to ignore. Adding type-safety, an exhaustive set of attributes and tags, and friendly function names, elm-html-a11y makes writing accessible HTML nicer."
       , event = Conf ElmConf2017
       , name = "Accessibility with Elm"
       , speaker = "Tessa Kelly"
       , url = "https://www.youtube.com/watch?v=G_TNRuoF3FE"
-      , year = "2017"
-      }
-    , { categories = [ Introduction, Learn ]
-      , description = ""
-      , event = EventUnknown ""
-      , name = "Elm Tutorial - Why use Elm?"
-      , speaker = "Grace Hopper"
-      , url = "https://youtu.be/um0jxfgboNo"
-      , year = "2017"
-      }
-    , { categories = [ Project, Games ]
-      , description = "Mogee is a side-scroller that I created with my wife Nadya in three days for the #lowrezjam 2016. Since then we’ve been working on this game on our free time: added a music theme and improved the visuals.\nYou will learn how to evolve a simple time-travelling Mario example into a full fledged game. Even though Elm makes it easy and joyful, there are a few challenges to overcome:\ngrowing complexity of the code;\ninteractions between different game objects in the game loop;\nrendering animated objects with WebGL.\nIn the end you will witness yet another milestone of our game, and it’s going to be remarkable!"
-      , event = Conf ElmConf2017
-      , name = "Mogee or how we fit Elm in a 64×64 grid"
-      , speaker = "Andrey Kuzmin"
-      , url = "https://www.youtube.com/watch?v=NRXTMaXO15I"
       , year = "2017"
       }
     , { categories = [ Project, Maps ]
@@ -1830,38 +1606,6 @@ all_ =
       , name = "0-60 in 15 Minutes: Building a Realtime App With Elm and Horizon"
       , speaker = "Abadi Kurniawan"
       , url = "https://youtu.be/fTHHn7NhU3w"
-      , year = "2016"
-      }
-    , { categories = [ Guide ]
-      , description = "Have you come into grips with Elm as a language and prolific enough to start using it in a real project? Awesome! Did you already have an idea of how you would structure your application, handle authentication and maybe show toast-like pop up messages in the UI? If not, this talk is for you.\nMany people know how to create small apps for fun in Elm. Some have crafted larger things but felt they were missing something. Having done two larger customer projects in Elm, I have some solid experience under my belt about building big applications for production. In both projects, the initial folder structure and the initial module architecture became untenable in a few months. This talk is a down-to-earth lessons learned aimed for everyone who has done or is planning on doing production applications using the language. I will introduce strategies to overcome some of the common problems we have as frontend engineers, but also share some war stories of times when things didn’t quite go as planned."
-      , event = Conf ElmConf2016
-      , name = "Beyond Hello World and Todo Lists"
-      , speaker = "Ossi Hanhinen"
-      , url = "https://youtu.be/vpc80c5iC6k"
-      , year = "2016"
-      }
-    , { categories = [ Keynote, Iconic, ElmPhilosophy ]
-      , description = ""
-      , event = Conf ElmConf2016
-      , name = "Code is the easy part"
-      , speaker = "Evan Czaplicki"
-      , url = "https://youtu.be/DSjbTC-hvqQ"
-      , year = "2016"
-      }
-    , { categories = [ Animation, UI ]
-      , description = "Games and rich applications present a compelling use-case for Elm, but managing dynamic animations can quickly become complicated. Here’s how to succinctly express animation pipelines using the elm-style-animation library and how to architect your animation code in a readable, extensible manner.\nIn this talk we’ll cover…\nWhat options are available for animation in Elm and when it makes sense to use them.\nHow to tackle real-world animation using the elm-style-animation library.\nA straightforward way to organize animations so that they are readable, extensible, and easily integrated into the Elm architecture.\nIf you’re here, you probably already know that Elm is a solid base for building complex applications. You’ll come away from this talk with the tools to make those applications gorgeous as well."
-      , event = Conf ElmConf2016
-      , name = "Rich Animation"
-      , speaker = "Matthew Griffith"
-      , url = "https://youtu.be/DsDwYqsLU3E"
-      , year = "2016"
-      }
-    , { categories = [ PanelDiscussion ]
-      , description = ""
-      , event = Conf ElmConf2016
-      , name = "elm-conf 2016 speaker Q&A"
-      , speaker = "All Speakers"
-      , url = "https://youtu.be/LCNs92YQjhw"
       , year = "2016"
       }
     , { categories = [ Introduction ]
