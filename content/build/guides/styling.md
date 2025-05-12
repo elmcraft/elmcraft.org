@@ -3,6 +3,8 @@ type: page
 title: Elm Styling
 description: How to style your app with different packages
 status: budding
+authors: "@novid"
+editors: "@jfmengels"
 published: true
 ---
 
