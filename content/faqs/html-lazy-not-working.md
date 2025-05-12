@@ -10,9 +10,11 @@ editors: "@jfmengels"
 
 <tldr>tl;dr: You're likely recreating the values or view function on each render.</tldr>
 
-The [Elm guide on Html.Lazy](https://guide.elm-lang.org/optimization/lazy.html) is the best place to start.
+The [Elm guide on `Html.Lazy`](https://guide.elm-lang.org/optimization/lazy.html) is the best place to start.
 
 Here are some additional gotcha's that are helped by examples.
+
+For a deep dive into how `Html.Lazy` works, you can read [the caching behind Elm's `Html.Lazy`](https://jfmengels.net/caching-behind-elm-lazy/).
 
 <toc></toc>
 
