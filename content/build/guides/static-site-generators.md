@@ -10,6 +10,8 @@ published: true
 
 [Static Site Generators (SSGs)](https://jamstack.org/generators) provide a structured way to create fast, maintainable websites. Unlike traditional dynamic sites, static sites are pre-rendered at build time, making them efficient and secure. In this guide, we’ll explore three static site generators in Elm: **elm-starter**, **Elmstatic**, and **elm-pages**. Each tool offers unique features and workflows, helping developers choose the best fit for their projects.
 
+<toc></toc>
+
 ## lucamug/elm-starter
 
 [elm-starter](https://github.com/lucamug/elm-starter) is an experimental Elm-based bootstrapper designed to generate Progressive Web Applications (PWAs). It focuses on pre-rendering pages at build time, ensuring offline functionality and search engine optimization.
