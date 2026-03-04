@@ -65,6 +65,14 @@ ryanAOC2024 =
 
 all_ =
     [ { categories = [ ElmPhilosophy, Keynote ]
+      , description = "How many companies miss out on functional languages because they do not know how to find functional programmers? After interviewing engineering leadership at four companies that have used Elm successfully, I found that they all independently chose to hire people without Elm experience and all got them fully onboarded in about four weeks. (That is competitive with the time it takes to onboard into a JavaScript/TypeScript project with particular in-house conventions and library combinations.) That means they get all the benefits of functional programming while still drawing from the largest possible talent pool. How does this work, and how can this method of growing your own functional programmers be useful to the broader ecosystem of functional languages?"
+      , event = EventUnknown "Scala Days 2025"
+      , name = "How to Grow More Functional Programmers"
+      , speaker = "Evan Czaplicki"
+      , url = "https://www.youtube.com/watch?v=9OtN4iiFBsQ"
+      , year = "2025"
+      }
+    , { categories = [ ElmPhilosophy, Keynote ]
       , description = "Language decisions are often made by non-technical founders, risk-averse managers, that one contractor who wrote the whole MVP in Ruby, etc. It may be true that languages like Elm, Haskell, and OCaml offer great technical advantages, but that just is not how the decisions are made. I argue that we must revise our adoption strategy to account for the perspective of the non-technical business person. I hope that this talk will save other language authors some time, and inspire renewed cooperation between companies that love Productivity Languages."
       , event = EventUnknown "Lambda Days 2025"
       , name = "Rethinking our Adoption Strategy"
